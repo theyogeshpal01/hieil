@@ -7,6 +7,7 @@
   height: 85px;
   font-family: 'Inter', sans-serif;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative; /* For mobile overlay positioning */
 }
 
 .logoContainer {
@@ -51,6 +52,12 @@
   color: #c2a373;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .getQuoteBtn {
   background: transparent;
   border: 1px solid #4a3e35;
@@ -67,4 +74,90 @@
 .getQuoteBtn:hover {
   border-color: #c2a373;
   background: rgba(194, 163, 115, 0.05);
+}
+
+.hamburgerBtn {
+  display: none;
+  background: none;
+  border: none;
+  color: #c2a373;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.mobileNavOverlay {
+  display: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .nav, .getQuoteBtn {
+    display: none;
+  }
+  .hamburgerBtn {
+    display: block;
+  }
+  .header {
+    padding: 0 30px;
+  }
+  .mobileNavOverlay {
+    display: block;
+    position: absolute;
+    top: 85px; /* height of header */
+    left: 0;
+    right: 0;
+    background-color: #110e0c;
+    padding: 20px 30px 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  .mobileNav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .mobileNavLink {
+    color: #b5aaa0;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+  .mobileNavLink:hover {
+    color: #c2a373;
+  }
+  .mobileGetQuoteBtn {
+    background: transparent;
+    border: 1px solid #c2a373;
+    color: #c2a373;
+    padding: 14px 28px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0 20px;
+    height: 70px;
+  }
+  .logoText {
+    font-size: 18px;
+  }
+  .logoIcon {
+    width: 32px;
+    height: 32px;
+  }
+  .mobileNavOverlay {
+    top: 70px;
+    padding: 20px 20px 30px;
+  }
 }

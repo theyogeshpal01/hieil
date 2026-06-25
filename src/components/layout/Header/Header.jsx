@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import styles from './Header.module.css';
 import { HEADER_LINKS } from '../../../constants/navigation';
 
 const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logoContainer}>
@@ -15,6 +22,7 @@ const Header = () => {
         <span className={styles.logoText}>HIEIL</span>
       </Link>
 
+      {/* Desktop Nav */}
       <nav className={styles.nav}>
         {HEADER_LINKS.map((link) => (
           <Link key={link.label} to={link.href} className={styles.navLink}>
@@ -23,7 +31,31 @@ const Header = () => {
         ))}
       </nav>
 
-      <button className={styles.getQuoteBtn}>GET QUOTE</button>
+      <div className={styles.actions}>
+        <button className={styles.getQuoteBtn}>GET QUOTE</button>
+        <button className={styles.hamburgerBtn} onClick={toggleMobileMenu} aria-label="Toggle menu">
+          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Mobile Nav Overlay */}
+      {isMobileMenuOpen && (
+        <div className={styles.mobileNavOverlay}>
+          <div className={styles.mobileNav}>
+            {HEADER_LINKS.map((link) => (
+              <Link 
+                key={link.label} 
+                to={link.href} 
+                className={styles.mobileNavLink}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <button className={styles.mobileGetQuoteBtn}>GET QUOTE</button>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

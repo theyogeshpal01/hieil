@@ -188,3 +188,38 @@
 .bottomLinks a:hover {
   color: #c2a373;
 }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 60px 40px 30px;
+  }
+  .container {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 20px 20px;
+  }
+  .container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .column {
+    width: 100%;
+  }
+  .storeInfoText {
+    max-width: 100%;
+  }
+  .bottomBar {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .bottomLinks {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
