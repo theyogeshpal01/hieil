@@ -1,0 +1,190 @@
+.footer {
+  background-color: #110e0c;
+  color: #b5aaa0;
+  font-family: 'Inter', sans-serif;
+  padding: 80px 60px 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.column {
+  flex: 1;
+  min-width: 220px;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 36px;
+  height: 36px;
+  stroke: #c2a373;
+  stroke-width: 1;
+  fill: none;
+}
+
+.logoText {
+  font-size: 20px;
+  letter-spacing: 4px;
+  font-weight: 300;
+  color: #fff;
+  font-family: 'Times New Roman', serif;
+}
+
+.storeInfoText {
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  max-width: 280px;
+  color: #8c827a;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 12px;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #8c827a;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.socialIcon:hover {
+  color: #c2a373;
+  border-color: #c2a373;
+}
+
+.columnTitle {
+  color: #c2a373;
+  font-size: 11px;
+  letter-spacing: 2px;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.linkList a {
+  color: #8c827a;
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.3s ease;
+}
+
+.linkList a:hover {
+  color: #c2a373;
+}
+
+.contactRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  margin-bottom: 16px;
+  color: #8c827a;
+}
+
+.contactIcon {
+  color: #c2a373;
+}
+
+.newsletterText {
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #8c827a;
+}
+
+.subscribeForm {
+  display: flex;
+  gap: 0;
+}
+
+.emailInput {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 16px;
+  color: #fff;
+  font-size: 13px;
+  width: 100%;
+  outline: none;
+  border-right: none;
+}
+
+.emailInput:focus {
+  border-color: #c2a373;
+}
+
+.subscribeBtn {
+  background: #c2a373;
+  color: #110e0c;
+  border: 1px solid #c2a373;
+  padding: 0 20px;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.subscribeBtn:hover {
+  background: #d4af37;
+  border-color: #d4af37;
+}
+
+.bottomBar {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: #5c554e;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bottomLinks {
+  display: flex;
+  gap: 24px;
+}
+
+.bottomLinks a {
+  color: #5c554e;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.bottomLinks a:hover {
+  color: #c2a373;
+}

@@ -1,0 +1,70 @@
+.header {
+  background-color: #110e0c; /* Very dark background from screenshot */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 60px;
+  height: 85px;
+  font-family: 'Inter', sans-serif;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+
+.logoIcon {
+  width: 40px;
+  height: 40px;
+  stroke: #c2a373; /* Gold/Beige color */
+  stroke-width: 1;
+  fill: none;
+}
+
+.logoText {
+  font-size: 22px;
+  letter-spacing: 4px;
+  font-weight: 300;
+  color: #fff;
+  font-family: 'Times New Roman', serif; /* Or similar elegant serif */
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.navLink {
+  color: #b5aaa0;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+}
+
+.navLink:hover {
+  color: #c2a373;
+}
+
+.getQuoteBtn {
+  background: transparent;
+  border: 1px solid #4a3e35;
+  color: #c2a373;
+  padding: 12px 28px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.getQuoteBtn:hover {
+  border-color: #c2a373;
+  background: rgba(194, 163, 115, 0.05);
+}
