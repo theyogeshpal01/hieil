@@ -5,7 +5,7 @@
 /* ── Top Split Section ── */
 .topSection {
   background-color: #15110F;
-  padding: 6rem 2rem;
+  padding: 3rem 2rem;
   border-bottom: 1px solid #2c241c;
 }
 
@@ -88,7 +88,7 @@
 /* ── Features Strip ── */
 .featuresStrip {
   background-color: #15110F;
-  padding: 4rem 2rem;
+  padding: 2rem 2rem;
   border-bottom: 1px solid #2c241c;
 }
 
@@ -106,7 +106,7 @@
   gap: 1.25rem;
   padding: 2.5rem 2rem;
   background-color: #15110F;
-  border-right: 1px solid #eeeeee;
+  border-right: 1px solid #2c241c;
   border-top: 3px solid var(--color-brand-base);
   transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
@@ -146,7 +146,7 @@
 /* ── CTA Section ── */
 .ctaSection {
   background-color: #15110F;
-  padding: 6rem 2rem;
+  padding: 3rem 2rem;
   border-top: 1px solid #2c241c;
 }
 
