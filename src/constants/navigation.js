@@ -10,19 +10,7 @@ export const HEADER_LINKS = [
       { label: 'How We Work', href: '/about/how-we-work' },
     ]
   },
-  { 
-    label: 'CATEGORIES', 
-    href: '/categories', 
-    hasDropdown: true,
-    dropdownItems: [
-      { label: 'Handcrafted Blue Pottery', href: '/categories/blue-pottery', hasArrow: true },
-      { label: 'Handcrafted Metal Products', href: '/categories/metal', hasArrow: true },
-      { label: 'Handcrafted Stone Products', href: '/categories/stone', hasArrow: true },
-      { label: 'Handcrafted Wooden Products', href: '/categories/wooden', hasArrow: true },
-      { label: 'Luxury Clock', href: '/categories/clock', hasArrow: true },
-    ]
-  },
-  { label: 'PRODUCT', href: '/categories' },
+  { label: 'PRODUCT', href: '/products' },
   { 
     label: 'SERVICES', 
     href: '/services', 
@@ -51,11 +39,11 @@ export const FOOTER_LINKS = {
     { label: 'What\'s Trending', href: '#' },
     { label: 'Let\'s Connect', href: '#' },
   ],
-  products: [
+  categories: [
     { label: 'Handcrafted Blue Pottery', href: '#' },
-    { label: 'Handcrafted Metal Products', href: '#' },
-    { label: 'Handcrafted Stone Products', href: '#' },
-    { label: 'Handcrafted Wooden Products', href: '#' },
+    { label: 'Handcrafted Metal categories', href: '#' },
+    { label: 'Handcrafted Stone categories', href: '#' },
+    { label: 'Handcrafted Wooden categories', href: '#' },
     { label: 'Luxury clock', href: '#' },
   ],
   care: [

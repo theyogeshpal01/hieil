@@ -1,0 +1,474 @@
+/* Blog Page Styles */
+.blog-page {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  color: var(--hww-dark);
+  background-color: #15110F;
+  overflow-x: hidden;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header h2 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.section-header p.subtitle {
+  font-size: 1.1rem;
+  color: #b5aaa0;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-subtitle {
+  font-size: 1.8rem;
+  color: var(--hww-primary);
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+/* Hero Section */
+.blog-hero {
+  color: white;
+  padding: 120px 20px 60px;
+  text-align: center;
+  position: relative;
+}
+
+.blog-hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.blog-title {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 30px;
+  line-height: 1.2;
+}
+
+.blog-search-bar {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  background: rgba(28, 23, 19, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid #4a3e35;
+  border-radius: 30px;
+  padding: 5px 5px 5px 25px;
+  transition: all 0.3s ease;
+}
+
+.blog-search-bar:focus-within {
+  border-color: #c2a373;
+  box-shadow: 0 0 20px rgba(194, 163, 115, 0.1);
+}
+
+.blog-search-bar input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #ffffff;
+  background: transparent;
+}
+
+.search-btn {
+  background: transparent;
+  border: none;
+  color: #c2a373;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  background: rgba(194, 163, 115, 0.1);
+  color: #e6c89c;
+}
+
+/* Topics Section */
+.blog-topics-section {
+  padding: 60px 0;
+  background: #15110F;
+}
+
+.topics-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.topics-header h3 {
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0;
+}
+
+.topics-list {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.topic-btn {
+  background: transparent;
+  border: 1px solid #4a3e35;
+  color: #c2a373;
+  padding: 10px 25px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+.topic-btn:hover, .topic-btn.active {
+  background: rgba(194, 163, 115, 0.1);
+  color: #c2a373;
+  border-color: #c2a373;
+  box-shadow: 0 0 15px rgba(194, 163, 115, 0.2);
+}
+
+.sub-topics-list {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.sub-topic-btn {
+  background: transparent;
+  border: none;
+  color: #8c8279;
+  padding: 8px 15px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+}
+
+.sub-topic-btn:hover, .sub-topic-btn.active {
+  color: #c2a373;
+}
+
+.blog-content-area {
+  background: rgba(28, 23, 19, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 100px 20px;
+  text-align: center;
+  border: 1px solid #2c241c;
+}
+
+.empty-state p {
+  color: #b5aaa0;
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+/* Artisans Section */
+.blog-artisans-section {
+  padding: 80px 0;
+  background: #15110F;
+}
+
+.artisans-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-top: 50px;
+}
+
+.artisan-card {
+  display: flex;
+  background: rgba(28, 23, 19, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid #2c241c;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.artisan-card:hover {
+  border-color: #4a3e35;
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.artisan-video-placeholder {
+  flex: 0 0 45%;
+  position: relative;
+  min-height: 400px;
+  overflow: hidden;
+  background: #3e332a; /* Fallback if image doesn't load */
+}
+
+.artisan-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: var(--hww-transition);
+  opacity: 0.8;
+}
+
+.artisan-card:hover .artisan-thumbnail {
+  transform: scale(1.05);
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: var(--hww-transition);
+}
+
+.video-overlay:hover {
+  background: rgba(0,0,0,0.4);
+}
+
+.video-overlay svg {
+  transition: var(--hww-transition);
+}
+
+.video-overlay:hover svg {
+  transform: scale(1.1);
+  color: var(--hww-primary);
+}
+
+.artisan-tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--hww-primary);
+  color: white;
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.artisan-info {
+  padding: 50px 40px;
+  flex: 1;
+}
+
+.artisan-craft {
+  color: var(--hww-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.artisan-info h3 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin-bottom: 25px;
+}
+
+.artisan-desc p {
+  color: #b5aaa0;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.artisan-desc p:last-child {
+  margin-bottom: 0;
+}
+
+/* Newsletter Section */
+.blog-newsletter-section {
+  padding: 80px 0 120px;
+  background: #15110F;
+}
+
+.newsletter-box {
+  background: rgba(28, 23, 19, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid #c2a373;
+  border-radius: 30px;
+  padding: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  color: white;
+  box-shadow: 0 10px 40px rgba(194, 163, 115, 0.05);
+}
+
+.newsletter-content {
+  flex: 1;
+}
+
+.newsletter-content h2 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #c2a373;
+}
+
+.newsletter-content p {
+  font-size: 1.05rem;
+  color: #b5aaa0;
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+.newsletter-form {
+  flex: 0 0 450px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background: rgba(21, 17, 15, 0.8);
+  border: 1px solid #4a3e35;
+  border-radius: 30px;
+  padding: 5px 7px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+  border-color: #c2a373;
+}
+
+.mail-icon {
+  color: #8c8279;
+  margin-left: 20px;
+}
+
+.input-group input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  padding: 15px;
+  font-size: 1rem;
+  color: #ffffff;
+  background: transparent;
+}
+
+.input-group button {
+  background: #c2a373;
+  border: 1px solid #c2a373;
+  color: #15110F;
+  border-radius: 25px;
+  padding: 15px 30px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.input-group button:hover {
+  background: transparent;
+  color: #c2a373;
+}
+
+.privacy-text {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .artisan-card {
+    flex-direction: column;
+  }
+  .artisan-video-placeholder {
+    min-height: 300px;
+  }
+  .newsletter-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .newsletter-content p {
+    margin: 0 auto;
+  }
+  .newsletter-form {
+    flex: 1;
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-title {
+    font-size: 2.5rem;
+  }
+  .blog-hero {
+    padding: 120px 20px 80px;
+  }
+  .topics-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .artisan-info {
+    padding: 30px 20px;
+  }
+  .artisan-info h3 {
+    font-size: 1.6rem;
+  }
+  .input-group {
+    flex-direction: column;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    gap: 15px;
+  }
+  .mail-icon {
+    display: none;
+  }
+  .input-group input {
+    width: 100%;
+    border-radius: 30px;
+    padding: 15px 25px;
+  }
+  .input-group button {
+    width: 100%;
+  }
+}

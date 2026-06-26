@@ -51,7 +51,7 @@
   line-height: 1.8;
   margin-bottom: 24px;
   max-width: 280px;
-  color: #8c827a;
+  color: #b5aaa0;
 }
 
 .socialLinks {
@@ -66,7 +66,7 @@
   width: 36px;
   height: 36px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #8c827a;
+  color: #b5aaa0;
   text-decoration: none;
   transition: all 0.3s ease;
 }
@@ -94,7 +94,7 @@
 }
 
 .linkList a {
-  color: #8c827a;
+  color: #b5aaa0;
   text-decoration: none;
   font-size: 13px;
   transition: color 0.3s ease;
@@ -110,7 +110,7 @@
   gap: 12px;
   font-size: 13px;
   margin-bottom: 16px;
-  color: #8c827a;
+  color: #b5aaa0;
 }
 
 .contactIcon {
@@ -121,7 +121,7 @@
   font-size: 13px;
   line-height: 1.8;
   margin-bottom: 20px;
-  color: #8c827a;
+  color: #b5aaa0;
 }
 
 .subscribeForm {

@@ -1,0 +1,101 @@
+.luxuryHero {
+  background-color: #15110F;
+  color: #ffffff;
+  padding: 140px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Playfair Display', 'Georgia', serif;
+}
+
+.heroContent {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.overline {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-brand-base);
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 5.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 25px;
+  letter-spacing: -1px;
+}
+
+.italic {
+  font-style: italic;
+  color: var(--color-brand-dark);
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #b5aaa0;
+  margin-bottom: 50px;
+  font-weight: 300;
+}
+
+.btnGroup {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.btnPrimary {
+  background: transparent;
+  border: 1px solid #4a3e35;
+  color: #c2a373;
+  padding: 12px 28px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btnPrimary:hover {
+  border-color: #c2a373;
+  background: rgba(194, 163, 115, 0.05);
+  color: #c2a373;
+}
+
+.btnSecondary {
+  background: transparent;
+  border: 1px solid #4a3e35;
+  color: #c2a373;
+  padding: 12px 28px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btnSecondary:hover {
+  border-color: #c2a373;
+  background: rgba(194, 163, 115, 0.05);
+  color: #c2a373;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 3.5rem;
+  }
+  .btnGroup {
+    flex-direction: column;
+    width: 100%;
+  }
+}

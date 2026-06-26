@@ -1,0 +1,129 @@
+.galleryWrapper {
+  display: flex;
+  gap: 1.5rem;
+  height: 600px; /* Fixed height matching the image */
+}
+
+.thumbnailsColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.navButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.navButton:hover {
+  color: #c07a5d;
+}
+
+.thumbnailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  overflow: hidden;
+  padding: 0.5rem 0;
+}
+
+.thumbnail {
+  width: 70px;
+  height: 80px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  background-color: #15110F;
+  padding: 0.25rem;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.thumbnail.active {
+  border-color: #c07a5d; /* Coral border for active */
+}
+
+.mainImageContainer {
+  flex: 1;
+  background-color: #15110F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: crosshair;
+}
+
+.mainImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.zoomLens {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #d2691e;
+  background-color: rgba(255, 255, 255, 0.4);
+  pointer-events: none; /* Allows mouse events to pass through to the image */
+}
+
+.zoomResult {
+  position: absolute;
+  left: 105%; /* Position to the right of the gallery */
+  top: 0;
+  width: 500px; /* Large zoom pane */
+  height: 600px;
+  border: 1px solid #2c241c;
+  background-color: #15110F;
+  background-repeat: no-repeat;
+  background-size: 250%; /* How much to zoom in */
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 600px) {
+  .galleryWrapper {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+  
+  .thumbnailsColumn {
+    width: 100%;
+    flex-direction: row;
+    height: 80px;
+  }
+  
+  .thumbnailsContainer {
+    flex-direction: row;
+    padding: 0 0.5rem;
+  }
+  
+  .navButton {
+    transform: rotate(-90deg);
+  }
+  .navButton:last-child {
+    transform: rotate(-90deg);
+  }
+  
+  .mainImageContainer {
+    height: 400px;
+  }
+}

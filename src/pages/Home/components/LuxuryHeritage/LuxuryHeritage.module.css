@@ -1,0 +1,89 @@
+.luxuryHeritage {
+  background-color: #15110F;
+  color: #ffffff;
+  padding: 100px 20px;
+  display: flex;
+  justify-content: flex-start;
+  font-family: 'Playfair Display', 'Georgia', serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.content {
+  max-width: 650px;
+}
+
+.overlineContainer {
+  margin-bottom: 40px;
+}
+
+.overline {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-brand-base);
+  display: block;
+  margin-bottom: 15px;
+}
+
+.line {
+  height: 1px;
+  width: 60px;
+  background-color: #eeeeee;
+}
+
+.title {
+  font-size: 4.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+  margin: 0 0 40px;
+  letter-spacing: -0.5px;
+}
+
+.italic {
+  font-style: italic;
+  color: var(--color-brand-dark);
+}
+
+.description {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  color: #b5aaa0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 50px;
+  font-weight: 300;
+}
+
+.description p {
+  margin-bottom: 20px;
+}
+
+.btnSecondary {
+  background: transparent;
+  border: 1px solid #4a3e35;
+  color: #c2a373;
+  padding: 12px 28px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btnSecondary:hover {
+  border-color: #c2a373;
+  background: rgba(194, 163, 115, 0.05);
+  color: #c2a373;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+}

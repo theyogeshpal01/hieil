@@ -1,0 +1,127 @@
+.section {
+  display: flex;
+  width: 100%;
+  max-width: 1400px;
+  margin: 5rem auto;
+  background-color: #15110F;
+}
+
+.section.reverse {
+  flex-direction: row-reverse;
+}
+
+.imageContainer {
+  flex: 1;
+  min-height: 500px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contentContainer {
+  flex: 1;
+  padding: 4rem 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.textContent {
+  max-width: 500px;
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  color: #db6e52; /* Coral */
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.paragraphs {
+  margin-bottom: 3rem;
+}
+
+.paragraph {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: #b5aaa0;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.actionBtn {
+  background-color: var(--color-brand-dark);
+  color: #ffffff;
+  border: none;
+  padding: 0.9rem 2.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.actionBtn:hover {
+  background-color: #0c5650;
+}
+
+.scrollUpBtn {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #db6e52;
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.scrollUpBtn:hover {
+  background-color: #bd563d;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 992px) {
+  .section {
+    flex-direction: column;
+  }
+  .section.reverse {
+    flex-direction: column;
+  }
+  .contentContainer {
+    padding: 3rem 2rem;
+  }
+  .imageContainer {
+    min-height: 350px;
+  }
+  .title {
+    font-size: 2.2rem;
+  }
+  .scrollUpBtn {
+    display: none;
+  }
+}

@@ -1,5 +1,5 @@
 .header {
-  background-color: #110e0c; /* Very dark background from screenshot */
+  background-color: #15110F; /* Very dark background from screenshot */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,7 +7,9 @@
   height: 85px;
   font-family: 'Inter', sans-serif;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  position: relative; /* For mobile overlay positioning */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .logoContainer {
@@ -36,6 +38,15 @@
 .nav {
   display: flex;
   gap: 20px;
+  height: 100%;
+  align-items: center;
+}
+
+.navItem {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .navLink {
@@ -46,10 +57,59 @@
   font-weight: 500;
   transition: color 0.3s ease;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
 }
 
 .navLink:hover {
   color: #c2a373;
+}
+
+.dropdownIcon {
+  margin-top: -1px;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(21, 17, 15, 0.98);
+  backdrop-filter: blur(10px);
+  border: 1px solid #2c241c;
+  min-width: 250px;
+  padding: 15px 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.navItem:hover .dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdownItemLink {
+  display: block;
+  padding: 10px 25px;
+  color: #b5aaa0;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.dropdownItemLink:hover {
+  color: #c2a373;
+  background: rgba(194, 163, 115, 0.05);
+  padding-left: 30px;
 }
 
 .actions {
@@ -110,12 +170,16 @@
     padding: 20px 30px 40px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     z-index: 100;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   }
   .mobileNav {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
+  }
+  .mobileNavItem {
+    display: flex;
+    flex-direction: column;
   }
   .mobileNavLink {
     color: #b5aaa0;
@@ -125,8 +189,34 @@
     font-weight: 500;
     text-transform: uppercase;
     transition: color 0.3s ease;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
   }
   .mobileNavLink:hover {
+    color: #c2a373;
+  }
+  .mobileSubMenu {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    border-left: 1px solid #2c241c;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+  .mobileSubLink {
+    color: #8c8279;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 10px 0;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+  .mobileSubLink:hover {
     color: #c2a373;
   }
   .mobileGetQuoteBtn {
@@ -139,7 +229,7 @@
     cursor: pointer;
     text-transform: uppercase;
     font-weight: 500;
-    margin-top: 10px;
+    margin-top: 20px;
     text-align: center;
   }
 }

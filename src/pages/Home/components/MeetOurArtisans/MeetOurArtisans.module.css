@@ -1,0 +1,135 @@
+.section {
+  padding: 5rem 2rem;
+  background-color: #15110F; /* Very light grey matching the image */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #ffffff; /* Dark blue/black */
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #888888;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 3rem;
+  max-width: 1300px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.card {
+  background-color: #15110F;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.content {
+  padding: 2.5rem;
+}
+
+.category {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.name {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #f26f21; /* Orange/Coral matching the image */
+  margin-bottom: 1.5rem;
+}
+
+.desc {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: #6c757d; /* Soft grey */
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.desc:last-child {
+  margin-bottom: 0;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.actionBtn {
+  background-color: var(--color-brand-dark);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 1rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.actionBtn:hover {
+  background-color: #0c5650;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .content {
+    padding: 1.5rem;
+  }
+  .title {
+    font-size: 1.8rem;
+  }
+}

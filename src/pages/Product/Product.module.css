@@ -1,0 +1,50 @@
+.productPage {
+  background-color: #15110F;
+  min-height: 100vh;
+}
+
+.breadcrumb {
+  background-color: #15110F; /* Light beige/sand color from image */
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+.breadcrumbContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  color: #ffffff;
+}
+
+.breadcrumbContainer a {
+  color: #b5aaa0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbContainer a:hover {
+  color: #c07a5d;
+}
+
+.topSection {
+  padding: 4rem 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
