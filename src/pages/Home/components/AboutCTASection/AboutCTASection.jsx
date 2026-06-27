@@ -46,7 +46,13 @@ const AboutCTASection = () => {
 
         <div className={styles.rightCol} ref={rightRef} style={{opacity:0,transform:'translateX(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
           <div className={styles.mediaFrame}>
-            <video className={styles.video} autoPlay loop muted playsInline><source src="https://drive.google.com/file/d/1Z8MaOaJT7RUiKwoGwBnSfP5RS8pCbm2g/view?usp=drive_link" type="video/mp4" /></video>
+            <iframe 
+              src="https://drive.google.com/file/d/1Z8MaOaJT7RUiKwoGwBnSfP5RS8pCbm2g/preview?autoplay=1&mute=1" 
+              className={styles.video} 
+              allow="autoplay" 
+              frameBorder="0"
+              title="HIEIL About Video"
+            ></iframe>
           </div>
         </div>
       </div>
