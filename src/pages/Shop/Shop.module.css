@@ -68,7 +68,7 @@
   border-radius: 10px;
 }
 .sidebar::-webkit-scrollbar-thumb:hover {
-  background: #c2a373;
+  background: #c8956c;
 }
 
 .filterHeader {
@@ -95,7 +95,7 @@
   border: none;
   font-family: var(--font-sans);
   font-size: 0.8rem;
-  color: #c2a373;
+  color: #c8956c;
   cursor: pointer;
   padding: 0;
 }
@@ -159,8 +159,8 @@
 }
 
 .checkboxLabel input[type="checkbox"]:checked {
-  background: #c2a373;
-  border-color: #c2a373;
+  background: #c8956c;
+  border-color: #c8956c;
 }
 
 .checkboxLabel input[type="checkbox"]:checked::after {
@@ -192,7 +192,7 @@
 .colorSwatch:hover {
   transform: scale(1.15);
   box-shadow: 0 0 10px rgba(194, 163, 115, 0.4);
-  border-color: #c2a373;
+  border-color: #c8956c;
 }
 
 /* Right Content Area */
@@ -237,7 +237,7 @@
 .viewIcons {
   display: flex;
   gap: 0.5rem;
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .viewIcon {
@@ -246,7 +246,7 @@
 }
 
 .viewIcon.active {
-  color: #c2a373;
+  color: #c8956c;
 }
 
 /* Product Grid */
@@ -289,7 +289,7 @@
 }
 
 .productCard:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   box-shadow: 0 10px 40px rgba(194, 163, 115, 0.05);
   transform: translateY(-5px);
 }
@@ -337,7 +337,7 @@
 }
 
 .productCard:hover .productTitle {
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .stars {
@@ -364,8 +364,8 @@
   flex: 1;
   padding: 0.5rem;
   text-align: center;
-  border: 1px solid #c2a373;
-  color: #c2a373;
+  border: 1px solid #c8956c;
+  color: #c8956c;
   background-color: transparent;
   font-family: var(--font-sans);
   font-size: 0.8rem;
@@ -377,7 +377,7 @@
 }
 
 .actionBtnOutline:hover {
-  background-color: #c2a373;
+  background-color: #c8956c;
   color: #15110F;
   box-shadow: 0 5px 15px rgba(194, 163, 115, 0.3);
 }
@@ -386,8 +386,8 @@
   flex: 1;
   padding: 0.5rem;
   text-align: center;
-  border: 1px solid #c2a373;
-  background-color: #c2a373;
+  border: 1px solid #c8956c;
+  background-color: #c8956c;
   color: #15110F;
   font-family: var(--font-sans);
   font-size: 0.8rem;
@@ -400,7 +400,7 @@
 
 .actionBtnPrimary:hover {
   background-color: transparent;
-  color: #c2a373;
+  color: #c8956c;
   box-shadow: 0 5px 15px rgba(194, 163, 115, 0.3);
 }
 

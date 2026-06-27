@@ -34,7 +34,7 @@ const BulkWholesaleSupply = () => {
   ];
 
   const partners = [
-    { title: 'Proven Track Record', desc: '7+ years of experience in wholesale supply with hundreds of satisfied business partners worldwide.', icon: <Award size={32} /> },
+    { title: 'Proven Track Record', desc: '2+ years of experience in wholesale supply with hundreds of satisfied business partners worldwide.', icon: <Award size={32} /> },
     { title: 'Scalable Production', desc: 'Manufacturing capabilities to handle orders from hundreds to hundreds of thousands of units.', icon: <TrendingUp size={32} /> },
     { title: 'Quality Assurance', desc: 'Stringent quality control processes ensure every product meets international standards and your expectations.', icon: <ShieldCheck size={32} /> },
     { title: 'Partnership Focus', desc: 'We invest in long-term relationships, providing support and flexibility to help your business grow.', icon: <HeartHandshake size={32} /> }

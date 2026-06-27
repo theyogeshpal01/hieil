@@ -51,7 +51,7 @@
   padding: 6px 16px;
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 3px;
@@ -112,7 +112,7 @@
   font-family: var(--font-serif);
   font-size: 3.5rem;
   font-weight: 400;
-  color: #c2a373;
+  color: #c8956c;
   margin-bottom: 5px;
 }
 
@@ -147,7 +147,7 @@
 }
 
 .quote-icon {
-  color: #c2a373;
+  color: #c8956c;
   opacity: 0.15;
   position: absolute;
   top: 40px;
@@ -155,7 +155,7 @@
 }
 
 .stars {
-  color: #c2a373;
+  color: #c8956c;
   margin-bottom: 40px;
   display: flex;
   justify-content: center;
@@ -183,7 +183,7 @@
 .author-line {
   width: 40px;
   height: 2px;
-  background-color: #c2a373;
+  background-color: #c8956c;
   margin-bottom: 20px;
 }
 
@@ -230,7 +230,7 @@
 }
 
 .brand-logo-card:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   box-shadow: 0 4px 20px rgba(194, 163, 115, 0.1);
   transform: translateY(-5px);
 }
@@ -246,7 +246,7 @@
 }
 
 .brand-logo-card:hover .brand-name {
-  color: #c2a373;
+  color: #c8956c;
 }
 
 /* Actions Section */
@@ -282,7 +282,7 @@
 
 .action-icon {
   margin-bottom: 25px;
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .primary-action h2 {
@@ -304,7 +304,7 @@
   display: inline-block;
   padding: 15px 35px;
   background: transparent;
-  color: #c2a373;
+  color: #c8956c;
   border: 1px solid #4a3e35;
   font-weight: 500;
   text-decoration: none;
@@ -315,9 +315,9 @@
 }
 
 .btn-primary:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   background: rgba(194, 163, 115, 0.05);
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .secondary-action {
@@ -352,7 +352,7 @@
   gap: 10px;
   padding: 12px 25px;
   background: transparent;
-  color: #c2a373;
+  color: #c8956c;
   border: 1px solid #4a3e35;
   font-weight: 500;
   font-size: 0.8rem;
@@ -363,9 +363,9 @@
 }
 
 .btn-outline:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   background: rgba(194, 163, 115, 0.05);
-  color: #c2a373;
+  color: #c8956c;
 }
 
 /* Responsive */

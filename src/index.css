@@ -3,10 +3,10 @@
 @import "tailwindcss";
 
 :root {
-  --color-brand-base: #c2a373;
-  --color-brand-accent: #c2a373;
+  --color-brand-base: #c8956c;
+  --color-brand-accent: #c8956c;
   --color-brand-accent-dark: #917751;
-  --color-brand-dark: #c2a373;
+  --color-brand-dark: #c8956c;
   --color-brand-white: #15110F;
   --color-brand-gray: #b5aaa0;
   --font-serif: "Cormorant Garamond", serif;
@@ -49,3 +49,27 @@ body {
 .delay2 { transition-delay: 0.2s; }
 .delay3 { transition-delay: 0.3s; }
 .delay4 { transition-delay: 0.4s; }
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', Georgia, serif !important; }
+
+*:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+
+
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, .highlight { font-family: 'Cinzel', Georgia, serif !important; }
+
+
+
+button { text-transform: uppercase !important; }
+
+
+
+button { font-weight: normal !important; }
+
+
+
+.showMoreBtn, .btnPrimary, .subscribeBtn, .addToCartBtn, .actionBtnPrimary { color: #000000 !important; }
+
+
+
+button[class*="bg-[#c8956c]"], a[class*="bg-[#c8956c]"] { color: #000000 !important; }
+

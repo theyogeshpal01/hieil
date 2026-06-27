@@ -73,7 +73,7 @@ const ExportLogistics = () => {
   ];
 
   const partners = [
-    { title: 'Experience', desc: '7+ years of expertise in international export and compliance procedures across global markets.', icon: <Clock size={32} /> },
+    { title: 'Experience', desc: '2+ years of expertise in international export and compliance procedures across global markets.', icon: <Clock size={32} /> },
     { title: 'Global Presence', desc: 'Established export relationships with buyers and distributors in 50+ countries worldwide.', icon: <Globe size={32} /> },
     { title: 'Quality Assurance', desc: 'Rigorous quality control and export standards compliance for international market requirements.', icon: <ShieldCheck size={32} /> },
     { title: 'Trusted Partner', desc: 'Reliable export services with transparent processes and dedicated support for international trade.', icon: <HeartHandshake size={32} /> }
@@ -87,7 +87,7 @@ const ExportLogistics = () => {
         <div className="page-header" data-aos="fade-up">
           <span className="ex-tag" style={{
             display: 'inline-block', padding: '6px 16px', background: 'transparent', 
-            border: '1px solid #4a3e35', color: '#c2a373', fontSize: '0.75rem', 
+            border: '1px solid #4a3e35', color: '#c8956c', fontSize: '0.75rem', 
             fontWeight: '600', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '30px'
           }}>Service Directory</span>
           <h1 className="page-title">Global Export & Logistics</h1>

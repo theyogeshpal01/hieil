@@ -22,7 +22,7 @@
 .logoIcon {
   width: 40px;
   height: 40px;
-  stroke: #c2a373; /* Gold/Beige color */
+  stroke: #c8956c; /* Gold/Beige color */
   stroke-width: 1;
   fill: none;
 }
@@ -64,7 +64,7 @@
 }
 
 .navLink:hover {
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .dropdownIcon {
@@ -107,7 +107,7 @@
 }
 
 .dropdownItemLink:hover {
-  color: #c2a373;
+  color: #c8956c;
   background: rgba(194, 163, 115, 0.05);
   padding-left: 30px;
 }
@@ -121,7 +121,7 @@
 .getQuoteBtn {
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   padding: 12px 28px;
   font-size: 12px;
   letter-spacing: 2px;
@@ -132,7 +132,7 @@
 }
 
 .getQuoteBtn:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   background: rgba(194, 163, 115, 0.05);
 }
 
@@ -140,7 +140,7 @@
   display: none;
   background: none;
   border: none;
-  color: #c2a373;
+  color: #c8956c;
   cursor: pointer;
   padding: 4px;
 }
@@ -196,7 +196,7 @@
     cursor: pointer;
   }
   .mobileNavLink:hover {
-    color: #c2a373;
+    color: #c8956c;
   }
   .mobileSubMenu {
     display: flex;
@@ -217,12 +217,12 @@
     transition: color 0.3s ease;
   }
   .mobileSubLink:hover {
-    color: #c2a373;
+    color: #c8956c;
   }
   .mobileGetQuoteBtn {
     background: transparent;
-    border: 1px solid #c2a373;
-    color: #c2a373;
+    border: 1px solid #c8956c;
+    color: #c8956c;
     padding: 14px 28px;
     font-size: 12px;
     letter-spacing: 2px;

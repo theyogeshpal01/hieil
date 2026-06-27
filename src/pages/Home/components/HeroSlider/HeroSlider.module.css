@@ -70,7 +70,7 @@
 .btnPrimary {
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   padding: 12px 28px;
   font-size: 12px;
   letter-spacing: 2px;
@@ -81,15 +81,15 @@
 }
 
 .btnPrimary:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   background: rgba(194, 163, 115, 0.05);
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .btnOutline {
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   padding: 12px 28px;
   font-size: 12px;
   letter-spacing: 2px;
@@ -100,9 +100,9 @@
 }
 
 .btnOutline:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   background: rgba(194, 163, 115, 0.05);
-  color: #c2a373;
+  color: #c8956c;
 }
 
 /* Nav Buttons */
@@ -196,7 +196,7 @@
   .btnPrimary, .btnOutline {
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   padding: 12px 28px;
   font-size: 12px;
   letter-spacing: 2px;

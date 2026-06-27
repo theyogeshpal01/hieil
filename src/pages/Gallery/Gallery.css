@@ -67,7 +67,7 @@
 .category-btn {
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   padding: 10px 20px;
   font-size: 12px;
   letter-spacing: 2px;
@@ -82,14 +82,14 @@
 
 .category-btn:hover {
   background: rgba(194, 163, 115, 0.1);
-  border-color: #c2a373;
+  border-color: #c8956c;
   box-shadow: 0 0 15px rgba(194, 163, 115, 0.2);
 }
 
 .category-btn.active {
-  background: #c2a373;
+  background: #c8956c;
   color: #15110F;
-  border-color: #c2a373;
+  border-color: #c8956c;
   font-weight: 600;
   box-shadow: 0 0 15px rgba(194, 163, 115, 0.3);
 }
@@ -176,7 +176,7 @@
 
 .item-info p {
   font-size: 0.85rem;
-  color: #c2a373;
+  color: #c8956c;
   margin: 0;
   letter-spacing: 0.5px;
 }
@@ -248,7 +248,7 @@
   .category-btn {
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   padding: 12px 28px;
   font-size: 12px;
   letter-spacing: 2px;

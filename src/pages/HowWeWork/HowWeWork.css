@@ -1,6 +1,6 @@
 /* Variables & Base Styles */
 :root {
-  --hww-primary: #c2a373; /* Luxury Copper */
+  --hww-primary: #c8956c; /* Luxury Copper */
   --hww-primary-light: #e6c89c;
   --hww-dark: #ffffff; /* Primary text in dark theme */
   --hww-light: #15110F; /* Background */
@@ -36,7 +36,7 @@
   padding: 6px 16px;
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 3px;
@@ -269,7 +269,7 @@
 }
 
 .workflow-item:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   box-shadow: 0 10px 40px rgba(194, 163, 115, 0.05);
   transform: translateY(-5px);
 }

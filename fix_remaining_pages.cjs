@@ -9,7 +9,7 @@ const replacements = [
     { regex: /bg-\[#1C1713\]0/g, replace: 'bg-[#1C1713]' },
     
     // Replace orange/zinc/gray colors with theme colors
-    { regex: /orange-500/g, replace: '[#c2a373]' },
+    { regex: /orange-500/g, replace: '[#c8956c]' },
     { regex: /orange-600/g, replace: '[#917751]' },
     { regex: /zinc-900/g, replace: '[#1C1713]' },
     { regex: /zinc-800/g, replace: '[#2c241c]' },
@@ -24,13 +24,13 @@ const replacements = [
     { regex: /gray-200/g, replace: '[#2c241c]' },
     { regex: /gray-100/g, replace: '[#1C1713]' },
     { regex: /gray-50/g, replace: '[#15110F]' },
-    { regex: /emerald-500/g, replace: '[#c2a373]' },
-    { regex: /blue-500/g, replace: '[#c2a373]' },
+    { regex: /emerald-500/g, replace: '[#c8956c]' },
+    { regex: /blue-500/g, replace: '[#c8956c]' },
     { regex: /blue-600/g, replace: '[#917751]' },
     { regex: /indigo-600/g, replace: '[#917751]' },
-    { regex: /purple-500/g, replace: '[#c2a373]' },
-    { regex: /rose-500/g, replace: '[#c2a373]' },
-    { regex: /amber-500/g, replace: '[#c2a373]' },
+    { regex: /purple-500/g, replace: '[#c8956c]' },
+    { regex: /rose-500/g, replace: '[#c8956c]' },
+    { regex: /amber-500/g, replace: '[#c8956c]' },
     
     // Fix buttons (remove rounded-full, rounded-lg, add luxury border)
     { regex: /rounded-full/g, replace: 'rounded-none' },
@@ -43,7 +43,7 @@ const replacements = [
     { regex: /shadow-2xl/g, replace: 'shadow-none' },
     { regex: /shadow-md/g, replace: 'shadow-none' },
     { regex: /shadow-sm/g, replace: 'shadow-none' },
-    { regex: /shadow-\[#c2a373\]\/30/g, replace: '' },
+    { regex: /shadow-\[#c8956c\]\/30/g, replace: '' },
     
     // Replace text-black with text-white
     { regex: /text-black/g, replace: 'text-white' },

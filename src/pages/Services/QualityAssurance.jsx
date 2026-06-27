@@ -81,7 +81,7 @@ const QualityAssurance = () => {
         <div className="page-header" data-aos="fade-up">
           <span className="qa-tag" style={{
             display: 'inline-block', padding: '6px 16px', background: 'transparent', 
-            border: '1px solid #4a3e35', color: '#c2a373', fontSize: '0.75rem', 
+            border: '1px solid #4a3e35', color: '#c8956c', fontSize: '0.75rem', 
             fontWeight: '600', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '30px'
           }}>Service Directory</span>
           <h1 className="page-title">Quality Assurance</h1>

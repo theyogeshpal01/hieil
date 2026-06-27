@@ -110,7 +110,7 @@ const B2BPartnerships = () => {
   ];
 
   const partners = [
-    { title: 'Proven Track Record', desc: '7+ years of successful partnerships with businesses across 50+ countries and multiple industries.', icon: <Award size={32} /> },
+    { title: 'Proven Track Record', desc: '2+ years of successful partnerships with businesses across 50+ countries and multiple industries.', icon: <Award size={32} /> },
     { title: 'Relationship Focus', desc: 'We invest in long-term relationships, not just transactions, with personalized service and mutual growth focus.', icon: <HeartHandshake size={32} /> },
     { title: 'Flexible Solutions', desc: 'Customized partnership models that adapt to your changing business needs and market dynamics.', icon: <Scale size={32} /> },
     { title: 'Growth Commitment', desc: 'We measure our success by your growth, with dedicated resources and strategic support for your expansion.', icon: <TrendingUp size={32} /> }
@@ -160,7 +160,7 @@ const B2BPartnerships = () => {
       <section className="b2b-models-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Partnership Models</h2>
+            <h2 className="mt-16">Partnership Models</h2>
             <p>Tailored Solutions for Your Business</p>
           </div>
           <div className="offer-grid">
@@ -210,7 +210,7 @@ const B2BPartnerships = () => {
       <section className="b2b-terms-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Flexible Partnership Terms</h2>
+            <h2 className="mt-16">Flexible Partnership Terms</h2>
             <p>Designed for Your Business Needs</p>
           </div>
           <div className="advantage-grid">
@@ -231,7 +231,7 @@ const B2BPartnerships = () => {
       <section className="b2b-reasons-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Why Partner With Us</h2>
+            <h2 className="mt-16">Why Partner With Us</h2>
             <p>Building Success Together</p>
           </div>
           <div className="advantage-grid">
@@ -252,7 +252,7 @@ const B2BPartnerships = () => {
       <section className="b2b-testimonials-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Successful Partnerships</h2>
+            <h2 className="mt-16">Successful Partnerships</h2>
             <p>Stories of Growth and Collaboration</p>
           </div>
           <div className="advantage-grid">

@@ -71,7 +71,7 @@
 }
 
 .blog-search-bar:focus-within {
-  border-color: #c2a373;
+  border-color: #c8956c;
   box-shadow: 0 0 20px rgba(194, 163, 115, 0.1);
 }
 
@@ -87,7 +87,7 @@
 .search-btn {
   background: transparent;
   border: none;
-  color: #c2a373;
+  color: #c8956c;
   padding: 10px 15px;
   display: flex;
   align-items: center;
@@ -132,7 +132,7 @@
 .topic-btn {
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   padding: 10px 25px;
   font-size: 12px;
   letter-spacing: 2px;
@@ -145,8 +145,8 @@
 
 .topic-btn:hover, .topic-btn.active {
   background: rgba(194, 163, 115, 0.1);
-  color: #c2a373;
-  border-color: #c2a373;
+  color: #c8956c;
+  border-color: #c8956c;
   box-shadow: 0 0 15px rgba(194, 163, 115, 0.2);
 }
 
@@ -172,7 +172,7 @@
 }
 
 .sub-topic-btn:hover, .sub-topic-btn.active {
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .blog-content-area {
@@ -325,7 +325,7 @@
 .newsletter-box {
   background: rgba(28, 23, 19, 0.6);
   backdrop-filter: blur(10px);
-  border: 1px solid #c2a373;
+  border: 1px solid #c8956c;
   border-radius: 30px;
   padding: 60px;
   display: flex;
@@ -344,7 +344,7 @@
   font-family: var(--font-serif);
   font-size: 2.5rem;
   margin-bottom: 15px;
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .newsletter-content p {
@@ -370,7 +370,7 @@
 }
 
 .input-group:focus-within {
-  border-color: #c2a373;
+  border-color: #c8956c;
 }
 
 .mail-icon {
@@ -389,8 +389,8 @@
 }
 
 .input-group button {
-  background: #c2a373;
-  border: 1px solid #c2a373;
+  background: #c8956c;
+  border: 1px solid #c8956c;
   color: #15110F;
   border-radius: 25px;
   padding: 15px 30px;
@@ -404,7 +404,7 @@
 
 .input-group button:hover {
   background: transparent;
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .privacy-text {

@@ -131,8 +131,8 @@
 }
 
 .showMoreBtn {
-  background-color: #a86950;
-  color: #ffffff;
+  background-color: #c8956c;
+  color: #000000;
   font-family: var(--font-sans);
   font-size: 0.9rem;
   font-weight: 500;
@@ -146,7 +146,7 @@
 }
 
 .showMoreBtn:hover {
-  background-color: #8c5641;
+  background-color: #917751;
 }
 
 .lineStyle {

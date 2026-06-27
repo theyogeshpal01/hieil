@@ -15,7 +15,7 @@ const LuxuryHero = () => {
         </p>
         <div className={styles.btnGroup}>
           <button className={styles.btnPrimary}>EXPLORE COLLECTION</button>
-          <button className={styles.btnSecondary}>OUR ATELIER</button>
+          <button className={styles.btnSecondary}>Request Quote</button>
         </div>
       </div>
     </section>

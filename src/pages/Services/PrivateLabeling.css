@@ -25,7 +25,7 @@
   padding: 6px 16px;
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 3px;
@@ -69,7 +69,7 @@
 
 .section-header p {
   font-size: 1.1rem;
-  color: #c2a373;
+  color: #c8956c;
   font-weight: 400;
   font-style: italic;
   font-family: var(--font-serif);
@@ -98,7 +98,7 @@
 }
 
 .offer-card:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   box-shadow: 0 10px 40px rgba(194, 163, 115, 0.05);
   transform: translateY(-5px);
 }
@@ -112,13 +112,13 @@
   justify-content: center;
   background: rgba(194, 163, 115, 0.05);
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   border-radius: 50%;
   transition: all 0.4s ease;
 }
 
 .offer-card:hover .offer-icon {
-  background: #c2a373;
+  background: #c8956c;
   color: #15110F;
 }
 
@@ -163,7 +163,7 @@
 }
 
 .adv-icon {
-  color: #c2a373;
+  color: #c8956c;
   margin-bottom: 20px;
 }
 
@@ -198,7 +198,7 @@
 }
 
 .empty-icon {
-  color: #c2a373;
+  color: #c8956c;
   opacity: 0.5;
   margin-bottom: 20px;
 }
@@ -246,8 +246,8 @@
   height: 80px;
   margin: 0 auto 30px;
   background: #15110F;
-  border: 1px solid #c2a373;
-  color: #c2a373;
+  border: 1px solid #c8956c;
+  color: #c8956c;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -257,7 +257,7 @@
 }
 
 .timeline-step:hover .timeline-number {
-  background: #c2a373;
+  background: #c8956c;
   color: #15110F;
   box-shadow: 0 0 30px rgba(194, 163, 115, 0.2);
 }
@@ -301,7 +301,7 @@
 }
 
 .partner-icon {
-  color: #c2a373;
+  color: #c8956c;
   margin-bottom: 25px;
   display: flex;
   justify-content: center;
@@ -354,7 +354,7 @@
   display: inline-block;
   padding: 15px 35px;
   background: transparent;
-  color: #c2a373;
+  color: #c8956c;
   border: 1px solid #4a3e35;
   font-weight: 500;
   text-decoration: none;
@@ -365,9 +365,9 @@
 }
 
 .pl-btn:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   background: rgba(194, 163, 115, 0.05);
-  color: #c2a373;
+  color: #c8956c;
 }
 
 /* Responsive */
@@ -417,32 +417,32 @@
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; background: rgba(28, 23, 19, 0.6); backdrop-filter: blur(10px); border: 1px solid #2c241c; border-radius: 20px; padding: 40px; }
 .stat-card { text-align: center; border-right: 1px solid #2c241c; }
 .stat-card:last-child { border-right: none; }
-.stat-card h3 { font-family: var(--font-serif); font-size: 3.5rem; color: #c2a373; margin-bottom: 15px; font-weight: 400; }
+.stat-card h3 { font-family: var(--font-serif); font-size: 3.5rem; color: #c8956c; margin-bottom: 15px; font-weight: 400; }
 .stat-card p { color: #ffffff; font-family: var(--font-sans); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
 
 /* Service Cards */
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 .service-card { background: rgba(28, 23, 19, 0.6); backdrop-filter: blur(10px); border: 1px solid #2c241c; border-radius: 20px; padding: 40px; transition: all 0.4s ease; display: flex; flex-direction: column; }
-.service-card:hover { border-color: #c2a373; box-shadow: 0 10px 40px rgba(194, 163, 115, 0.05); transform: translateY(-5px); }
+.service-card:hover { border-color: #c8956c; box-shadow: 0 10px 40px rgba(194, 163, 115, 0.05); transform: translateY(-5px); }
 .service-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 25px; }
-.service-icon { color: #c2a373; }
-.service-tag { background: rgba(194, 163, 115, 0.1); color: #c2a373; padding: 4px 10px; font-size: 0.75rem; letter-spacing: 1px; font-weight: 600; border-radius: 4px; }
+.service-icon { color: #c8956c; }
+.service-tag { background: rgba(194, 163, 115, 0.1); color: #c8956c; padding: 4px 10px; font-size: 0.75rem; letter-spacing: 1px; font-weight: 600; border-radius: 4px; }
 .service-card h3 { font-family: var(--font-serif); font-size: 1.8rem; color: #ffffff; margin-bottom: 10px; }
-.service-card h4 { color: #c2a373; font-size: 1rem; margin-bottom: 15px; font-weight: 500; }
+.service-card h4 { color: #c8956c; font-size: 1rem; margin-bottom: 15px; font-weight: 500; }
 .service-card p { color: #b5aaa0; line-height: 1.7; margin-bottom: 25px; }
 .service-features { list-style: none; padding: 0; margin: 0 0 30px 0; flex-grow: 1; }
 .service-features li { display: flex; align-items: center; gap: 10px; color: #8c8279; margin-bottom: 12px; font-size: 0.95rem; }
-.service-features li svg { color: #c2a373; }
-.pl-btn-outline { display: inline-block; padding: 12px 25px; border: 1px solid #c2a373; color: #c2a373; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; text-align: center; transition: all 0.3s ease; border-radius: 30px; }
-.pl-btn-outline:hover { background: #c2a373; color: #15110F; }
+.service-features li svg { color: #c8956c; }
+.pl-btn-outline { display: inline-block; padding: 12px 25px; border: 1px solid #c8956c; color: #c8956c; text-decoration: none; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; text-align: center; transition: all 0.3s ease; border-radius: 30px; }
+.pl-btn-outline:hover { background: #c8956c; color: #15110F; }
 
 /* Testimonials */
 .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
 .testimonial-card { background: transparent; border: 1px solid #2c241c; padding: 40px 30px; transition: all 0.4s ease; border-radius: 20px; }
 .testimonial-card:hover { border-color: #4a3e35; background: rgba(28, 23, 19, 0.4); }
-.testimonial-icon { color: #c2a373; margin-bottom: 20px; opacity: 0.5; }
+.testimonial-icon { color: #c8956c; margin-bottom: 20px; opacity: 0.5; }
 .testimonial-desc { color: #b5aaa0; font-style: italic; line-height: 1.8; margin-bottom: 25px; font-size: 1.05rem; }
-.testimonial-card h4 { color: #c2a373; font-family: var(--font-sans); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+.testimonial-card h4 { color: #c8956c; font-family: var(--font-sans); font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
 
 @media (max-width: 992px) {
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0; }

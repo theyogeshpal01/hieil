@@ -5,7 +5,7 @@ const directoryPath = path.join(__dirname, 'src', 'pages');
 
 const newBtnStyle = `  background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   padding: 12px 28px;
   font-size: 12px;
   letter-spacing: 2px;
@@ -15,9 +15,9 @@ const newBtnStyle = `  background: transparent;
   cursor: pointer;
   border-radius: 0;`;
 
-const newBtnHoverStyle = `  border-color: #c2a373;
+const newBtnHoverStyle = `  border-color: #c8956c;
   background: rgba(194, 163, 115, 0.05);
-  color: #c2a373;`;
+  color: #c8956c;`;
 
 function replaceInFile(filePath) {
     let content = fs.readFileSync(filePath, 'utf8');

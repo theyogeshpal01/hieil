@@ -108,7 +108,7 @@ const PrivateLabeling = () => {
   ];
 
   const partners = [
-    { title: 'Brand Expertise', desc: '7+ years of experience building successful brands across multiple product categories and global markets.', icon: <Award size={32} /> },
+    { title: 'Brand Expertise', desc: '2+ years of experience building successful brands across multiple product categories and global markets.', icon: <Award size={32} /> },
     { title: 'Creative Excellence', desc: 'Talented design team that understands brand psychology and creates compelling visual identities.', icon: <PenTool size={32} /> },
     { title: 'Scalable Solutions', desc: 'Flexible manufacturing and branding solutions that grow with your business from startup to enterprise.', icon: <TrendingUp size={32} /> },
     { title: 'Partnership Approach', desc: 'We work as your branding partner, invested in your success and committed to your brand growth.', icon: <HeartHandshake size={32} /> }
@@ -122,7 +122,7 @@ const PrivateLabeling = () => {
         <div className="page-header" data-aos="fade-up">
           <span className="pl-tag" style={{
             display: 'inline-block', padding: '6px 16px', background: 'transparent', 
-            border: '1px solid #4a3e35', color: '#c2a373', fontSize: '0.75rem', 
+            border: '1px solid #4a3e35', color: '#c8956c', fontSize: '0.75rem', 
             fontWeight: '600', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '30px'
           }}>Service Directory</span>
           <h1 className="page-title">Private Labeling & OEM</h1>

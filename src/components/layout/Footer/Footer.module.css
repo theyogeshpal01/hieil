@@ -33,7 +33,7 @@
 .logoIcon {
   width: 36px;
   height: 36px;
-  stroke: #c2a373;
+  stroke: #c8956c;
   stroke-width: 1;
   fill: none;
 }
@@ -72,12 +72,12 @@
 }
 
 .socialIcon:hover {
-  color: #c2a373;
-  border-color: #c2a373;
+  color: #c8956c;
+  border-color: #c8956c;
 }
 
 .columnTitle {
-  color: #c2a373;
+  color: #c8956c;
   font-size: 11px;
   letter-spacing: 2px;
   margin-bottom: 28px;
@@ -101,7 +101,7 @@
 }
 
 .linkList a:hover {
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .contactRow {
@@ -114,7 +114,7 @@
 }
 
 .contactIcon {
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .newsletterText {
@@ -141,13 +141,13 @@
 }
 
 .emailInput:focus {
-  border-color: #c2a373;
+  border-color: #c8956c;
 }
 
 .subscribeBtn {
-  background: #c2a373;
+  background: #c8956c;
   color: #110e0c;
-  border: 1px solid #c2a373;
+  border: 1px solid #c8956c;
   padding: 0 20px;
   font-weight: 500;
   font-size: 11px;
@@ -186,7 +186,7 @@
 }
 
 .bottomLinks a:hover {
-  color: #c2a373;
+  color: #c8956c;
 }
 
 /* Responsive Styles */

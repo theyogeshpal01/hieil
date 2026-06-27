@@ -15,7 +15,6 @@ const HowWeWork = () => {
       subtitle: 'Discovery',
       description: 'Begin your journey with us by sharing your requirements. Our team of experts will guide you through our extensive collection and help you select the perfect handcrafted pieces for your specific needs.',
       features: ['Detailed Consultation', 'Customization Options', 'Sample Requests', 'Timeline Planning'],
-      image: '/inquiry_consultation.png'
     },
     {
       number: '02',
@@ -23,7 +22,6 @@ const HowWeWork = () => {
       subtitle: 'Estimation',
       description: 'Receive a comprehensive quotation outlining all costs, including product pricing, customization charges, packaging, and shipping. We ensure complete transparency with no hidden fees.',
       features: ['Transparent Pricing', 'Shipping Estimations', 'Flexible Terms', 'Cost Optimization'],
-      image: '/detailed_quotation.png'
     },
     {
       number: '03',
@@ -31,7 +29,6 @@ const HowWeWork = () => {
       subtitle: 'Confirmation',
       description: 'Once you approve the quotation, we\'ll send a formal order confirmation. Secure payments can be made through multiple channels, ensuring your financial safety at every step.',
       features: ['Secure Transactions', 'Multiple Channels', 'Order Verification', 'Digital Receipts'],
-      image: '/Approval_secure_payment.png'
     },
     {
       number: '04',
@@ -39,7 +36,6 @@ const HowWeWork = () => {
       subtitle: 'Crafting',
       description: 'Our skilled artisans begin crafting your order using traditional techniques passed down through generations. We maintain regular updates and maintain strict quality control.',
       features: ['Expert Craftsmanship', 'Quality Control', 'Progress Updates', 'Material Sourcing'],
-      image: '/Artisan_Production.png'
     },
     {
       number: '05',
@@ -47,7 +43,6 @@ const HowWeWork = () => {
       subtitle: 'Protection',
       description: 'Each piece is carefully packaged using premium, eco-friendly materials to ensure it reaches you in perfect condition. We follow international standards for safe transport.',
       features: ['Custom Crating', 'Eco-Friendly Materials', 'Impact Resistance', 'Final Inspection'],
-      image: '/Secure_Packaging.png'
     },
     {
       number: '06',
@@ -55,7 +50,6 @@ const HowWeWork = () => {
       subtitle: 'Logistics',
       description: 'We partner with reliable logistics providers for timely worldwide delivery. Track your order in real-time and receive support for customs and documentation.',
       features: ['Global Delivery', 'Real-time Tracking', 'Customs Support', 'Safe Handover'],
-      image: '/global_shipping_delivery.png'
     }
   ];
 

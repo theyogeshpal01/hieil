@@ -29,7 +29,7 @@
   padding: 6px 16px;
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 3px;
@@ -86,7 +86,7 @@
   width: 70px;
   height: 70px;
   background: rgba(194, 163, 115, 0.1);
-  color: #c2a373;
+  color: #c8956c;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -96,7 +96,7 @@
 }
 
 .quick-contact-card:hover .qc-icon {
-  background: #c2a373;
+  background: #c8956c;
   color: #15110F;
 }
 
@@ -117,7 +117,7 @@
 .qc-highlight {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #c2a373;
+  color: #c8956c;
 }
 
 /* Main Content Area */
@@ -199,7 +199,7 @@
 .form-group input:focus, 
 .form-group textarea:focus, 
 .form-group select:focus {
-  border-color: #c2a373;
+  border-color: #c8956c;
   box-shadow: 0 0 15px rgba(194, 163, 115, 0.1);
 }
 
@@ -242,23 +242,27 @@
 }
 
 .btn-submit {
-  background: #c2a373;
-  border: 1px solid #c2a373;
+  background: #c8956c;
+  border: 1px solid #c8956c;
   color: #15110F;
   padding: 15px 30px;
   font-size: 12px;
+  font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transition: all 0.3s ease;
-  font-weight: 600;
   cursor: pointer;
-  border-radius: 30px;
-  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  width: 100%;
+  border-radius: 6px;
 }
 
 .btn-submit:hover {
   background: transparent;
-  color: #c2a373;
+  color: #c8956c;
 }
 
 /* Sidebar Section */
@@ -300,7 +304,7 @@
 }
 
 .info-icon {
-  color: #c2a373;
+  color: #c8956c;
   margin-top: 2px;
 }
 
@@ -318,7 +322,7 @@
 }
 
 .visit-link {
-  color: #c2a373;
+  color: #c8956c;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
@@ -327,12 +331,12 @@
 }
 
 .visit-link:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
 }
 
 .urgent-card {
   background: rgba(21, 17, 15, 0.9);
-  border: 1px solid #c2a373;
+  border: 1px solid #c8956c;
   color: white;
   position: relative;
   overflow: hidden;
@@ -344,7 +348,7 @@
   top: -20px;
   right: -20px;
   opacity: 0.05;
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .urgent-content {
@@ -356,7 +360,7 @@
   font-family: var(--font-serif);
   font-size: 1.8rem;
   font-weight: 400;
-  color: #c2a373;
+  color: #c8956c;
   margin-bottom: 15px;
 }
 
@@ -380,7 +384,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #c2a373;
+  color: #c8956c;
 }
 
 /* Office Locations */
@@ -391,7 +395,7 @@
 }
 
 .section-header .subtitle {
-  color: #c2a373;
+  color: #c8956c;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -462,7 +466,7 @@
 
 .loc-icon-wrapper {
   background: rgba(194, 163, 115, 0.1);
-  color: #c2a373;
+  color: #c8956c;
   width: 50px;
   height: 50px;
   border-radius: 12px;
@@ -497,7 +501,7 @@
 }
 
 .loc-info-list li svg {
-  color: #c2a373;
+  color: #c8956c;
   flex-shrink: 0;
   margin-top: 3px;
 }
@@ -505,7 +509,7 @@
 .btn-loc-map {
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   padding: 10px 25px;
   font-size: 12px;
   letter-spacing: 2px;
@@ -520,9 +524,9 @@
 }
 
 .btn-loc-map:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   background: rgba(194, 163, 115, 0.1);
-  color: #c2a373;
+  color: #c8956c;
 }
 
 /* FAQ & Support Section */
@@ -542,7 +546,7 @@
 }
 
 .faq-container .subtitle {
-  color: #c2a373;
+  color: #c8956c;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -594,7 +598,7 @@
 }
 
 .faq-question:hover {
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .faq-icon {
@@ -604,7 +608,7 @@
 
 .faq-question.active .faq-icon {
   transform: rotate(180deg);
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .faq-answer {
@@ -650,7 +654,7 @@
 }
 
 .support-card h3 svg {
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .business-hours ul {
@@ -717,7 +721,7 @@
 }
 
 .icon-circle.phone {
-  color: #c2a373;
+  color: #c8956c;
 }
 
 .icon-circle.whatsapp {

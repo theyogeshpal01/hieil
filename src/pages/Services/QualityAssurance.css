@@ -25,7 +25,7 @@
   padding: 6px 16px;
   background: transparent;
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 3px;
@@ -69,7 +69,7 @@
 
 .section-header p {
   font-size: 1.1rem;
-  color: #c2a373;
+  color: #c8956c;
   font-weight: 400;
   font-style: italic;
   font-family: var(--font-serif);
@@ -98,7 +98,7 @@
 }
 
 .offer-card:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   box-shadow: 0 10px 40px rgba(194, 163, 115, 0.05);
   transform: translateY(-5px);
 }
@@ -112,13 +112,13 @@
   justify-content: center;
   background: rgba(194, 163, 115, 0.05);
   border: 1px solid #4a3e35;
-  color: #c2a373;
+  color: #c8956c;
   border-radius: 50%;
   transition: all 0.4s ease;
 }
 
 .offer-card:hover .offer-icon {
-  background: #c2a373;
+  background: #c8956c;
   color: #15110F;
 }
 
@@ -163,7 +163,7 @@
 }
 
 .adv-icon {
-  color: #c2a373;
+  color: #c8956c;
   margin-bottom: 20px;
 }
 
@@ -198,7 +198,7 @@
 }
 
 .empty-icon {
-  color: #c2a373;
+  color: #c8956c;
   opacity: 0.5;
   margin-bottom: 20px;
 }
@@ -246,8 +246,8 @@
   height: 80px;
   margin: 0 auto 30px;
   background: #15110F;
-  border: 1px solid #c2a373;
-  color: #c2a373;
+  border: 1px solid #c8956c;
+  color: #c8956c;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -257,7 +257,7 @@
 }
 
 .timeline-step:hover .timeline-number {
-  background: #c2a373;
+  background: #c8956c;
   color: #15110F;
   box-shadow: 0 0 30px rgba(194, 163, 115, 0.2);
 }
@@ -301,7 +301,7 @@
 }
 
 .partner-icon {
-  color: #c2a373;
+  color: #c8956c;
   margin-bottom: 25px;
   display: flex;
   justify-content: center;
@@ -354,7 +354,7 @@
   display: inline-block;
   padding: 15px 35px;
   background: transparent;
-  color: #c2a373;
+  color: #c8956c;
   border: 1px solid #4a3e35;
   font-weight: 500;
   text-decoration: none;
@@ -365,9 +365,9 @@
 }
 
 .qa-btn:hover {
-  border-color: #c2a373;
+  border-color: #c8956c;
   background: rgba(194, 163, 115, 0.05);
-  color: #c2a373;
+  color: #c8956c;
 }
 
 /* Responsive */
@@ -441,7 +441,7 @@
 .stat-card h3 {
   font-family: var(--font-serif);
   font-size: 3.5rem;
-  color: #c2a373;
+  color: #c8956c;
   margin-bottom: 15px;
   font-weight: 400;
 }
