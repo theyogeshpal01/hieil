@@ -45,7 +45,7 @@ const Certifications = () => {
           <span className={styles.eyebrow}>Trust & Transparency</span>
           <h2 className={styles.title}>Our Certifications & Accreditations</h2>
           <p className={styles.subtitle}>
-            Recognized for excellence in quality and authentic Indian handicraft exports — verified, compliant, and trusted worldwide.
+            Recognized for excellence in quality and authentic Indian handicraft exports â€” verified, compliant, and trusted worldwide.
           </p>
         </div>
 

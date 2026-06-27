@@ -82,7 +82,7 @@ const Footer = () => {
       </div>
 
       <div className={styles.bottomBar}>
-        <p>© 2026 HIEIL (OPC) Pvt. Ltd. All rights reserved.</p>
+        <p>Â© 2026 HIEIL (OPC) Pvt. Ltd. All rights reserved.</p>
         <div className={styles.bottomLinks}>
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>

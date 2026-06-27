@@ -108,7 +108,7 @@
   opacity: 0.8;
 }
 
-/* ── Media Frame ── */
+/* â”€â”€ Media Frame â”€â”€ */
 .rightCol {
   position: relative;
 }
@@ -170,7 +170,7 @@
   border-radius: 2px;
 }
 
-/* ── Responsive ── */
+/* â”€â”€ Responsive â”€â”€ */
 @media (max-width: 900px) {
   .container {
     grid-template-columns: 1fr;

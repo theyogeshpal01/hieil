@@ -77,7 +77,7 @@ const BulkWholesaleSupply = () => {
             <div className="offer-card" data-aos="fade-up" data-aos-delay="200">
               <div className="offer-icon"><Box size={40} /></div>
               <h3>Wide Product Range</h3>
-              <p>Rugs, Home Décor, Furniture, Brassware, Wall Art, and more - all available for wholesale purchase.</p>
+              <p>Rugs, Home DÃ©cor, Furniture, Brassware, Wall Art, and more - all available for wholesale purchase.</p>
             </div>
             <div className="offer-card" data-aos="fade-up" data-aos-delay="300">
               <div className="offer-icon"><PackageOpen size={40} /></div>
@@ -122,7 +122,7 @@ const BulkWholesaleSupply = () => {
               </div>
               <div className="category-content">
                 <h3>Handcrafted Metal categories</h3>
-                <p>Handcrafted metal categories are skillfully created by experienced artisans using high-quality metals such as brass, copper, iron, and aluminum. These items include decorative pieces, sculptures, utensils, and home décor accessories. Each product reflects traditional craftsmanship, durability, and artistic elegance.</p>
+                <p>Handcrafted metal categories are skillfully created by experienced artisans using high-quality metals such as brass, copper, iron, and aluminum. These items include decorative pieces, sculptures, utensils, and home dÃ©cor accessories. Each product reflects traditional craftsmanship, durability, and artistic elegance.</p>
                 <Link to="/contact" className="cat-btn">Request Catalog</Link>
               </div>
             </div>
@@ -148,7 +148,7 @@ const BulkWholesaleSupply = () => {
               </div>
               <div className="category-content">
                 <h3>Handcrafted Wooden categories</h3>
-                <p>Handcrafted wooden categories are carefully created by skilled artisans using high-quality natural wood. These categories include decorative items, furniture, kitchenware, and home décor pieces. Each item reflects fine craftsmanship, traditional techniques, and natural beauty.</p>
+                <p>Handcrafted wooden categories are carefully created by skilled artisans using high-quality natural wood. These categories include decorative items, furniture, kitchenware, and home dÃ©cor pieces. Each item reflects fine craftsmanship, traditional techniques, and natural beauty.</p>
                 <Link to="/contact" className="cat-btn">Request Catalog</Link>
               </div>
             </div>

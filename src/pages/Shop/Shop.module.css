@@ -164,7 +164,7 @@
 }
 
 .checkboxLabel input[type="checkbox"]:checked::after {
-  content: '✔';
+  content: 'âœ”';
   position: absolute;
   color: #15110F;
   font-size: 10px;

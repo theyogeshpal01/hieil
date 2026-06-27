@@ -28,7 +28,7 @@ const Relatedcategories = () => {
                   <h3 className={styles.title}>{product.name}</h3>
                   
                   <div className={styles.rating}>
-                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    <span>â˜…</span><span>â˜…</span><span>â˜…</span><span>â˜…</span><span>â˜…</span>
                   </div>
                   
                   <div className={styles.pricing}>

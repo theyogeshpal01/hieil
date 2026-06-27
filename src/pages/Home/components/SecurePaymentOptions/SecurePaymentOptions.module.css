@@ -109,7 +109,7 @@
   color: #ffffff;
 }
 
-/* Right � Staggered Grid */
+/* Right â€” Staggered Grid */
 .staggeredGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

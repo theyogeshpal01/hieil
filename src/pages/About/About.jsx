@@ -32,7 +32,7 @@ const About = () => {
               HIEIL is committed to preserving the rich heritage of Indian craftsmanship by connecting skilled artisans to global markets. We work directly with artisan communities, ensuring fair wages, transparency, and sustainable growth.
             </p>
             <p className="text-lg text-white mb-8 leading-relaxed">
-              With every handcrafted creation, we strive to tell a story — a story of culture, legacy, and passion, making each piece a true representation of India's traditional artistry.
+              With every handcrafted creation, we strive to tell a story â€” a story of culture, legacy, and passion, making each piece a true representation of India's traditional artistry.
             </p>
             <div className="flex flex-wrap gap-4">
               <button className="px-8 py-4 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-semibold transition-all duration-300 shadow-none  flex items-center gap-2">
