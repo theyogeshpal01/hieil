@@ -30,11 +30,11 @@ const WhyChooseUs = () => {
             WHY CHOOSE US
           </div>
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 font-serif">
-            More Than Just Exporters â€” <br />
+            More Than Just Exporters — <br />
             <span className="text-[#c8956c]">Partners in Your Success</span>
           </h1>
           <p className="text-lg text-white mb-10 leading-relaxed max-w-3xl mx-auto">
-            At HIEIL, we are more than just exporters â€” we are partners in your success. Based in Jaipur, India's hub of heritage and craftsmanship, we bring together traditional artistry and modern business standards to deliver authentic handicrafts trusted worldwide. Experience the perfect blend of Indian tradition and world-class business reliability.
+            At HIEIL, we are more than just exporters — we are partners in your success. Based in Jaipur, India's hub of heritage and craftsmanship, we bring together traditional artistry and modern business standards to deliver authentic handicrafts trusted worldwide. Experience the perfect blend of Indian tradition and world-class business reliability.
           </p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto border-t border-white/10 pt-10">

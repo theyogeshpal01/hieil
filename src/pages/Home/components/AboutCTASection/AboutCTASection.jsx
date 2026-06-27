@@ -26,7 +26,7 @@ const AboutCTASection = () => {
           
           <div className={styles.textContent}>
             <p>
-              Welcome to HIEIL (OPC) Pvt. Ltd. We bring India's timeless handicrafts to the global stage. Every product reflects the artistry of skilled Indian craftsmen â€” preserved through generations, delivered with modern excellence.
+              Welcome to HIEIL (OPC) Pvt. Ltd. We bring India's timeless handicrafts to the global stage. Every product reflects the artistry of skilled Indian craftsmen — preserved through generations, delivered with modern excellence.
             </p>
           </div>
 

@@ -58,7 +58,7 @@ const Testimonials = () => {
               <Star size={24} fill="currentColor" />
             </div>
             <p className="testimonial-text">
-              "I recently purchased a beautiful handicraft from Hieil Company, and I am deeply impressed by the skill involved. In Japan, we deeply respect the 'Takumi' (artisan) spirit, and I see that same dedication in Hieilâ€™s categories. The balance of tradition and quality is excellent. It is a wonderful addition to my collection in Tokyo."
+              "I recently purchased a beautiful handicraft from Hieil Company, and I am deeply impressed by the skill involved. In Japan, we deeply respect the 'Takumi' (artisan) spirit, and I see that same dedication in Hieil’s categories. The balance of tradition and quality is excellent. It is a wonderful addition to my collection in Tokyo."
             </p>
             <div className="testimonial-author-wrapper">
               <div className="author-line"></div>

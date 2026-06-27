@@ -294,7 +294,7 @@ const B2BPartnerships = () => {
       <section className="b2b-cta-section" data-aos="zoom-in">
         <div className="b2b-cta-inner">
           <h2>Looking For A Trusted Handicraft Exporter?</h2>
-          <p>Let's build a partnership that grows your business and creates lasting value. With our flexible solutions, dedicated support, and commitment to your success, we're more than just a supplier â€” we're your strategic partner in global expansion.</p>
+          <p>Let's build a partnership that grows your business and creates lasting value. With our flexible solutions, dedicated support, and commitment to your success, we're more than just a supplier — we're your strategic partner in global expansion.</p>
           <Link to="/contact" className="b2b-btn">Let's Build a Partnership</Link>
         </div>
       </section>
