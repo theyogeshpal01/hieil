@@ -30,7 +30,7 @@ const PrivateLabeling = () => {
 
   const stats = [
     { value: '10+', label: 'Brands Built' },
-    { value: '7+', label: 'Years Experience' },
+    { value: '2+', label: 'Years Experience' },
     { value: '50+', label: 'Countries Served' },
     { value: '100%', label: 'Brand Exclusivity' }
   ];
@@ -80,7 +80,7 @@ const PrivateLabeling = () => {
     { title: 'Brand Strategy', desc: 'Strategic guidance for brand positioning, target audience identification, and market entry planning.', icon: <Target size={32} /> },
     { title: 'Design Development', desc: 'Creative design services for logos, packaging, and marketing materials that reflect your brand essence.', icon: <PenTool size={32} /> },
     { title: 'Brand Guidelines', desc: 'Comprehensive brand manuals ensuring consistent application across all categories and markets.', icon: <FileText size={32} /> },
-    { title: 'Global Adaptation', desc: 'Localization services for different markets while maintaining core brand identity and values.', icon: <Globe size={32} /> }
+    { title: 'Global Adaptation', desc: 'Localization services for different markets while maintaining core brand identity and values.'}
   ];
 
   const advantages = [
@@ -88,7 +88,7 @@ const PrivateLabeling = () => {
     { title: 'Market Differentiation', icon: <Star size={24} />, desc: 'Stand out from competitors with unique branded categories that cannot be replicated by others.' },
     { title: 'Higher Margins', icon: <TrendingUp size={24} />, desc: 'Command premium pricing and better profit margins with exclusive branded categories versus generic alternatives.' },
     { title: 'Brand Protection', icon: <ShieldCheck size={24} />, desc: 'Secure your market position with exclusive categories that competitors cannot easily copy or undercut.' },
-    { title: 'Global Expansion', icon: <Globe size={24} />, desc: 'Scale your brand internationally with categories and packaging designed for global markets and compliance.' },
+    { title: 'Global Expansion', desc: 'Scale your brand internationally with categories and packaging designed for global markets and compliance.' },
     { title: 'Customer Loyalty', icon: <HeartHandshake size={24} />, desc: 'Build lasting relationships with customers through consistent brand experience and product quality.' },
     { title: 'Ip Ownership Clarity', icon: <FileText size={24} />, desc: '100% Transparency on all design rights and intellectual property, ensuring you own your brand\'s future.' },
     { title: 'Ethical Branding Mission', icon: <Scale size={24} />, desc: 'A commitment to original creativity and ethical sourcing, with zero tolerance for design plagiarism or corruption.' }
@@ -150,7 +150,7 @@ const PrivateLabeling = () => {
       <section className="pl-offer-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Comprehensive Branding Solutions</h2>
+            <h2>Comprehensive <br /> <span style={{ color: 'var(--color-brand-base)' }}>Branding Solutions</span></h2>
             <p>End-to-End Private Label Services</p>
           </div>
           <div className="offer-grid">
@@ -169,7 +169,7 @@ const PrivateLabeling = () => {
       <section className="pl-services-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Our Branding Services</h2>
+            <h2>Our <br /> <span style={{ color: 'var(--color-brand-base)' }}>Branding Services</span></h2>
             <p>Complete Solutions for Brand Building</p>
           </div>
           <div className="services-grid">
@@ -198,7 +198,7 @@ const PrivateLabeling = () => {
       <section className="pl-advantage-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Packaging Solutions</h2>
+            <h2>Packaging <br /> <span style={{ color: 'var(--color-brand-base)' }}>Solutions</span></h2>
             <p>Customized for Your Brand Needs</p>
           </div>
           <div className="advantage-grid">
@@ -219,7 +219,7 @@ const PrivateLabeling = () => {
       <section className="pl-advantage-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Brand Identity Services</h2>
+            <h2>Brand <br /> <span style={{ color: 'var(--color-brand-base)' }}>Identity Services</span></h2>
             <p>Complete Brand Development Support</p>
           </div>
           <div className="advantage-grid">
@@ -240,7 +240,7 @@ const PrivateLabeling = () => {
       <section className="pl-advantage-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Your Brand Growth Advantage</h2>
+            <h2>Your Brand <br /> <span style={{ color: 'var(--color-brand-base)' }}>Growth Advantage</span></h2>
             <p>Grow Your Brand Globally with Exclusive categories</p>
           </div>
           <div className="advantage-grid">
@@ -261,7 +261,7 @@ const PrivateLabeling = () => {
       <section className="pl-testimonials-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Success Stories</h2>
+            <h2>Success <br /> <span style={{ color: 'var(--color-brand-base)' }}>Stories</span></h2>
             <p>Brands We've Helped Build</p>
           </div>
           <div className="testimonials-grid">
@@ -282,7 +282,7 @@ const PrivateLabeling = () => {
       <section className="pl-process-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Brand Development Process</h2>
+            <h2>Brand <br /> <span style={{ color: 'var(--color-brand-base)' }}>Development Process</span></h2>
             <p>Simple Steps to Launch Your Brand</p>
           </div>
           <div className="process-timeline">
@@ -302,7 +302,7 @@ const PrivateLabeling = () => {
       {/* CTA Section */}
       <section className="pl-cta-section" data-aos="zoom-in">
         <div className="pl-cta-inner">
-          <h2>Ready To Build Your Brand?</h2>
+          <h2>Ready To Build <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Brand</span>?</h2>
           <p>Partner with us to create exclusive branded categories that stand out in the global marketplace. From white-label manufacturing to customized packaging and retail-ready solutions, we provide everything you need to grow your brand globally with exclusive, high-quality categories.</p>
           <Link to="/contact" className="pl-btn">Start Your Brand Journey</Link>
         </div>
@@ -312,7 +312,7 @@ const PrivateLabeling = () => {
       <section className="pl-partners-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Why Brands Choose Our Services</h2>
+            <h2>Why Brands <br /> <span style={{ color: 'var(--color-brand-base)' }}>Choose Our Services</span></h2>
           </div>
           <div className="partners-grid">
             {partners.map((partner, index) => (

@@ -22,7 +22,7 @@ const Enquiry = () => {
     return (
       <div className={styles.pageWrapper}>
         <div className={styles.notFound}>
-          <h2>Product not found</h2>
+          <h2>Product <br /> <span style={{ color: 'var(--color-brand-base)' }}>not found</span></h2>
           <Link to="/" className={styles.backLink}>Return to Home</Link>
         </div>
       </div>
@@ -69,7 +69,7 @@ const Enquiry = () => {
           <form className={styles.form} onSubmit={handleSubmit} ref={formRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
             {/* Section 1: Personal Info */}
             <div className={styles.formSection}>
-              <h2 className={styles.sectionTitle}>Personal Information</h2>
+              <h2 className={styles.sectionTitle}>Personal <br /> <span style={{ color: 'var(--color-brand-base)' }}>Information</span></h2>
               <div className={styles.formGrid}>
                 <div className={styles.formGroup}>
                   <label>Full Name *</label>
@@ -96,7 +96,7 @@ const Enquiry = () => {
 
             {/* Section 2: Location Details */}
             <div className={styles.formSection}>
-              <h2 className={styles.sectionTitle}>Location Details</h2>
+              <h2 className={styles.sectionTitle}>Location <br /> <span style={{ color: 'var(--color-brand-base)' }}>Details</span></h2>
               <div className={styles.formGrid}>
                 <div className={styles.formGroup}>
                   <label>Country *</label>
@@ -132,7 +132,7 @@ const Enquiry = () => {
 
             {/* Section 3: Project Requirements */}
             <div className={styles.formSection}>
-              <h2 className={styles.sectionTitle}>Project Requirements</h2>
+              <h2 className={styles.sectionTitle}>Project <br /> <span style={{ color: 'var(--color-brand-base)' }}>Requirements</span></h2>
               <div className={styles.formGrid}>
                 <div className={styles.formGroup}>
                   <label>Total Quantity *</label>

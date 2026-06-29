@@ -57,7 +57,7 @@ const AffiliateProgram = () => {
       <section className="ap-process-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>How It Works</h2>
+            <h2>How <br /> <span style={{ color: 'var(--color-brand-base)' }}>It Works</span></h2>
             <p>Three Simple Steps to Success</p>
           </div>
           <div className="process-timeline">
@@ -80,7 +80,7 @@ const AffiliateProgram = () => {
       {/* CTA Section */}
       <section className="ap-cta-section" data-aos="zoom-in">
         <div className="ap-cta-inner">
-          <h2>Ready To Start Your Journey?</h2>
+          <h2>Ready To Start <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Journey</span>?</h2>
           <p>Join hundreds of successful affiliates who are already earning with HIEIL. Start your partnership today and grow your earnings with a brand that people love.</p>
           <Link to="/contact" className="ap-btn">Register As An Affiliate</Link>
         </div>

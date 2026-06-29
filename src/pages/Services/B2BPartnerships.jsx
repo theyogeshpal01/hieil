@@ -32,7 +32,7 @@ const B2BPartnerships = () => {
 
   const stats = [
     { value: '200+', label: 'Active Partners' },
-    { value: '7+', label: 'Years Experience' },
+    { value: '2+', label: 'Years Experience' },
     { value: '98%', label: 'Partnership Retention' },
     { value: '50+', label: 'Countries Served' }
   ];
@@ -90,7 +90,7 @@ const B2BPartnerships = () => {
     { title: 'Growth Acceleration', icon: <TrendingUp size={24} />, desc: 'Leverage our expertise and resources to accelerate your market expansion and product development.' },
     { title: 'Supply Chain Security', icon: <ShieldCheck size={24} />, desc: 'Ensure business continuity with reliable supply chain management and risk mitigation strategies.' },
     { title: 'Innovation Partnership', icon: <Lightbulb size={24} />, desc: 'Collaborate on new product development and market innovations that keep you ahead of competitors.' },
-    { title: 'Global Reach', icon: <Globe size={24} />, desc: 'Access international markets with our export expertise and global logistics capabilities.' },
+    { title: 'Global Reach', desc: 'Access international markets with our export expertise and global logistics capabilities.' },
     { title: 'Quality Assurance', icon: <CheckCircle size={24} />, desc: 'Maintain product excellence with our rigorous quality control processes and international certifications.' },
     { title: '100% Transparency', icon: <Search size={24} />, desc: 'Complete visibility into pricing, documentation, and tracking for total peace of mind.' },
     { title: 'No Corruption Policy', icon: <Scale size={24} />, desc: 'Ethical business practices with zero tolerance for corruption across all global operations.' }
@@ -160,7 +160,7 @@ const B2BPartnerships = () => {
       <section className="b2b-models-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2 className="mt-16">Partnership Models</h2>
+            <h2 className="mt-16">Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Models</span></h2>
             <p>Tailored Solutions for Your Business</p>
           </div>
           <div className="offer-grid">
@@ -189,7 +189,7 @@ const B2BPartnerships = () => {
       <section className="b2b-advantage-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Your Partnership Advantage</h2>
+            <h2>Your <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnership Advantage</span></h2>
             <p>A Reliable Export Partner Invested in Your Success</p>
           </div>
           <div className="advantage-grid">
@@ -210,7 +210,7 @@ const B2BPartnerships = () => {
       <section className="b2b-terms-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2 className="mt-16">Flexible Partnership Terms</h2>
+            <h2 className="mt-16">Flexible <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnership Terms</span></h2>
             <p>Designed for Your Business Needs</p>
           </div>
           <div className="advantage-grid">
@@ -231,7 +231,7 @@ const B2BPartnerships = () => {
       <section className="b2b-reasons-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2 className="mt-16">Why Partner With Us</h2>
+            <h2 className="mt-16">Why Partner <br /> <span style={{ color: 'var(--color-brand-base)' }}>With Us</span></h2>
             <p>Building Success Together</p>
           </div>
           <div className="advantage-grid">
@@ -252,7 +252,7 @@ const B2BPartnerships = () => {
       <section className="b2b-testimonials-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2 className="mt-16">Successful Partnerships</h2>
+            <h2 className="mt-16">Successful <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnerships</span></h2>
             <p>Stories of Growth and Collaboration</p>
           </div>
           <div className="advantage-grid">
@@ -273,7 +273,7 @@ const B2BPartnerships = () => {
       <section className="b2b-process-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Partnership Journey</h2>
+            <h2>Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Journey</span></h2>
             <p>Building Our Relationship Step by Step</p>
           </div>
           <div className="process-timeline">
@@ -293,7 +293,7 @@ const B2BPartnerships = () => {
       {/* CTA Section */}
       <section className="b2b-cta-section" data-aos="zoom-in">
         <div className="b2b-cta-inner">
-          <h2>Looking For A Trusted Handicraft Exporter?</h2>
+          <h2>Looking For A Trusted <br /> <span style={{ color: 'var(--color-brand-base)' }}>Handicraft Exporter</span>?</h2>
           <p>Let's build a partnership that grows your business and creates lasting value. With our flexible solutions, dedicated support, and commitment to your success, we're more than just a supplier — we're your strategic partner in global expansion.</p>
           <Link to="/contact" className="b2b-btn">Let's Build a Partnership</Link>
         </div>
@@ -303,7 +303,7 @@ const B2BPartnerships = () => {
       <section className="b2b-partners-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Why Businesses Choose Our Partnership</h2>
+            <h2>Why Businesses <br /> <span style={{ color: 'var(--color-brand-base)' }}>Choose Our Partnership</span></h2>
           </div>
           <div className="partners-grid">
             {partners.map((partner, index) => (

@@ -10,7 +10,7 @@ const ProductDetailsTab = ({ product }) => {
         </div>
 
         <div className={styles.tabContent}>
-          <h2 className={styles.contentTitle}>About this item</h2>
+          <h2 className={styles.contentTitle}>About <br /> <span style={{ color: 'var(--color-brand-base)' }}>this item</span></h2>
           <p className={styles.paragraph}>
             {product?.description || "These bowl set are very light to hold for microwave utensils and the smooth round edges make you touch them with delight. Unlike ceramic bowls or plastic bowl our unbreakable wheat straw bowls are made of a robust and light material that protects the bowl from breaking if it is dropped, get this must-have tableware item that is both eco-friendly and stylish for your home."}
           </p>

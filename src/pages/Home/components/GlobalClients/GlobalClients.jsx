@@ -4,8 +4,8 @@ import styles from './GlobalClients.module.css';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 
 const stats = [
-  { number: '7+',    label: 'Years Experience', icon: <TrendingUp size={20} strokeWidth={1.5} /> },
-  { number: '25+',   label: 'Countries Served',  icon: <Globe2    size={20} strokeWidth={1.5} /> },
+  { number: '2+',    label: 'Years Experience', icon: <TrendingUp size={20} strokeWidth={1.5} /> },
+  { number: '25+',   label: 'Countries Served'},
   { number: '500+',  label: 'Artisan Clusters',  icon: <Users     size={20} strokeWidth={1.5} /> },
   { number: '1000+', label: 'Local Clients',      icon: <Award     size={20} strokeWidth={1.5} /> },
 ];
@@ -43,7 +43,9 @@ const GlobalClients = () => {
         {/* Top: heading + stats */}
         <div className={styles.topRow}>
           <div className={styles.headingCol} ref={headingRef} style={{opacity:0,transform:'translateX(-40px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-            <span className={styles.eyebrow}>Our Global Presence</span>
+            <div className={styles.eyebrowContainer}>
+              <span>OUR GLOBAL PRESENCE</span>
+            </div>
             <h2 className={styles.title}>Trusted By Global<br />Clients & Partners</h2>
             <p className={styles.subtitle}>
               Over 2+ years of excellence in exporting authentic Indian handicrafts \u2014 maintaining the highest standards of quality and reliability worldwide.
@@ -68,7 +70,6 @@ const GlobalClients = () => {
             {/* Export Network Box */}
             <div className={`${styles.box} ${styles.exportBox}`}>
               <div className={styles.boxHeader}>
-                <Globe2 size={16} strokeWidth={1.5} className={styles.boxIcon} />
                 <h3 className={styles.boxTitle}>EXPORTING TO</h3>
               </div>
               <div className={styles.pillGrid}>

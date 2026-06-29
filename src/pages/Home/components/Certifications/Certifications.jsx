@@ -42,8 +42,10 @@ const Certifications = () => {
       <div className={styles.container}>
 
         <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-          <span className={styles.eyebrow}>Trust & Transparency</span>
-          <h2 className={styles.title}>Our Certifications & Accreditations</h2>
+          <div className={styles.eyebrowContainer}>
+              <span>TRUST & TRANSPARENCY</span>
+            </div>
+          <h2 className={styles.title}>Our Certifications <br /> <span style={{ color: 'var(--color-brand-base)' }}>& Accreditations</span></h2>
           <p className={styles.subtitle}>
             Recognized for excellence in quality and authentic Indian handicraft exports — verified, compliant, and trusted worldwide.
           </p>

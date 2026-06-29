@@ -35,8 +35,10 @@ const ProductCatalogue = () => {
       <div className={styles.container}>
 
         <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-          <span className={styles.eyebrow}>Resources</span>
-          <h2 className={styles.title}>Product Catalogue & Quotation</h2>
+          <div className={styles.eyebrowContainer}>
+              <span>RESOURCES</span>
+            </div>
+          <h2 className={styles.title}>Product Catalogue <br /> <span style={{ color: 'var(--color-brand-base)' }}>& Quotation</span></h2>
           <p className={styles.subtitle}>
             Get detailed product information and customized pricing for your business needs.
           </p>

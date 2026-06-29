@@ -19,15 +19,20 @@
   align-items: flex-start;
 }
 
-.eyebrow {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 3px;
+.eyebrowContainer {
+  font-family: 'Inter', 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: #c8956c;
-  margin-bottom: 1.5rem;
+  border: 1px solid #c8956c;
+  border-radius: 999px;
+  padding: 8px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  background-color: transparent;
 }
 
 .title {

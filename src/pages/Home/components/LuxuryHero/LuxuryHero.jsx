@@ -1,11 +1,14 @@
 import React from 'react';
+import { Globe2 } from 'lucide-react';
 import styles from './LuxuryHero.module.css';
 
 const LuxuryHero = () => {
   return (
     <section className={styles.luxuryHero}>
       <div className={styles.heroContent}>
-        <div className={styles.overline}>THE NEW COLLECTION &mdash; 2025</div>
+        <div className={styles.overline}>
+          <span>THE NEW COLLECTION &mdash; 2025</span>
+        </div>
         <h1 className={styles.title}>
           Where Art<br />
           Meets <span className={styles.italic}>Elegance</span>

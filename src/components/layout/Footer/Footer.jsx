@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, MapPin } from 'lucide-react';
 import styles from './Footer.module.css';
 import { FOOTER_LINKS, SOCIAL_LINKS } from '../../../constants/navigation';
 
@@ -66,11 +66,19 @@ const Footer = () => {
           <h3 className={styles.columnTitle}>CONTACT</h3>
           <div className={styles.contactRow}>
             <Mail size={16} className={styles.contactIcon} />
-            <span>contact@hieil.com</span>
+            <span>indiaexport@hieil.com</span>
           </div>
           <div className={styles.contactRow} style={{ marginBottom: '24px' }}>
             <Phone size={16} className={styles.contactIcon} />
-            <span>(+91) 0123-456-789</span>
+            <span>+91 9050001972</span>
+          </div>
+          <div className={styles.contactRow} style={{ marginBottom: '24px', alignItems: 'flex-start' }}>
+            <MapPin size={16} className={styles.contactIcon} style={{ marginTop: '4px' }} />
+            <span style={{ fontSize: '0.85rem', lineHeight: '1.5' }}>
+              <strong style={{ color: '#fff' }}>Registered Office</strong><br/>
+              Hind Import Export International OPC Pvt. Ltd.<br/>
+              Jaipur, Rajasthan – 302 001, India
+            </span>
           </div>
           
           <p className={styles.newsletterText}>Subscribe to get news about special discounts.</p>
@@ -82,7 +90,7 @@ const Footer = () => {
       </div>
 
       <div className={styles.bottomBar}>
-        <p>Â© 2026 HIEIL (OPC) Pvt. Ltd. All rights reserved.</p>
+        <p>© 2024 HIEIL — Hind Import Export International OPC Pvt. Ltd. All rights reserved.</p>
         <div className={styles.bottomLinks}>
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>

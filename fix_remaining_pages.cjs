@@ -1,80 +1,38 @@
 const fs = require('fs');
 const path = require('path');
 
-const directoryPath = path.join(__dirname, 'src', 'pages');
-
-const replacements = [
-    // Fix broken backgrounds from previous script
-    { regex: /bg-\[#15110F\]0/g, replace: 'bg-[#15110F]' },
-    { regex: /bg-\[#1C1713\]0/g, replace: 'bg-[#1C1713]' },
-    
-    // Replace orange/zinc/gray colors with theme colors
-    { regex: /orange-500/g, replace: '[#c8956c]' },
-    { regex: /orange-600/g, replace: '[#917751]' },
-    { regex: /zinc-900/g, replace: '[#1C1713]' },
-    { regex: /zinc-800/g, replace: '[#2c241c]' },
-    { regex: /zinc-100/g, replace: '[#1C1713]' },
-    { regex: /gray-900/g, replace: '[#1C1713]' },
-    { regex: /gray-800/g, replace: '[#2c241c]' },
-    { regex: /gray-700/g, replace: '[#4a3e35]' },
-    { regex: /gray-600/g, replace: '[#8c8279]' },
-    { regex: /gray-500/g, replace: '[#b5aaa0]' },
-    { regex: /gray-400/g, replace: '[#b5aaa0]' },
-    { regex: /gray-300/g, replace: '[#2c241c]' },
-    { regex: /gray-200/g, replace: '[#2c241c]' },
-    { regex: /gray-100/g, replace: '[#1C1713]' },
-    { regex: /gray-50/g, replace: '[#15110F]' },
-    { regex: /emerald-500/g, replace: '[#c8956c]' },
-    { regex: /blue-500/g, replace: '[#c8956c]' },
-    { regex: /blue-600/g, replace: '[#917751]' },
-    { regex: /indigo-600/g, replace: '[#917751]' },
-    { regex: /purple-500/g, replace: '[#c8956c]' },
-    { regex: /rose-500/g, replace: '[#c8956c]' },
-    { regex: /amber-500/g, replace: '[#c8956c]' },
-    
-    // Fix buttons (remove rounded-full, rounded-lg, add luxury border)
-    { regex: /rounded-full/g, replace: 'rounded-none' },
-    { regex: /rounded-lg/g, replace: 'rounded-none' },
-    { regex: /rounded-xl/g, replace: 'rounded-none' },
-    { regex: /rounded-2xl/g, replace: 'rounded-none' },
-    { regex: /rounded-md/g, replace: 'rounded-none' },
-    { regex: /shadow-lg/g, replace: 'shadow-none' },
-    { regex: /shadow-xl/g, replace: 'shadow-none' },
-    { regex: /shadow-2xl/g, replace: 'shadow-none' },
-    { regex: /shadow-md/g, replace: 'shadow-none' },
-    { regex: /shadow-sm/g, replace: 'shadow-none' },
-    { regex: /shadow-\[#c8956c\]\/30/g, replace: '' },
-    
-    // Replace text-black with text-white
-    { regex: /text-black/g, replace: 'text-white' },
+const cssFiles = [
+  'src/pages/Services/CustomProductDevelopment.css',
+  'src/pages/Services/BulkWholesaleSupply.css',
+  'src/pages/About/WhyChooseUs.jsx'
 ];
 
-function replaceInFile(filePath) {
-    let content = fs.readFileSync(filePath, 'utf8');
-    let originalContent = content;
-    
-    replacements.forEach(rule => {
-        content = content.replace(rule.regex, rule.replace);
-    });
+// For CustomProductDevelopment and similar
+const newCardCss = `  background-color: #15110F;
+  border: 1px solid #2c241c;
+  border-radius: 4px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: all 0.3s ease;`;
 
-    if (content !== originalContent) {
-        fs.writeFileSync(filePath, content, 'utf8');
-        console.log(`Updated ${filePath}`);
-    }
-}
+const newTitleCss = `  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;`;
 
-function processDirectory(dirPath) {
-    const files = fs.readdirSync(dirPath);
+const newDescCss = `  font-family: var(--font-sans);
+  font-size: 15.2px;
+  color: #b5aaa0;
+  line-height: 1.8;
+  margin: 0;`;
 
-    files.forEach(file => {
-        const fullPath = path.join(dirPath, file);
-        if (fs.statSync(fullPath).isDirectory()) {
-            processDirectory(fullPath);
-        } else if (fullPath.endsWith('.jsx')) {
-            replaceInFile(fullPath);
-        }
-    });
-}
+const newIconCss = `  color: #c8956c;
+  margin-bottom: 1.5rem;`;
 
-processDirectory(directoryPath);
-console.log('Done fixing remaining pages.');
+// We will apply this to the feature cards across the services and about page.

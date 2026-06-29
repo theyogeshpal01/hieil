@@ -1,7 +1,7 @@
 .luxuryHero {
   background-color: #15110F;
   color: #ffffff;
-  padding: 140px 20px;
+  padding: 80px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +21,13 @@
   font-size: 0.75rem;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--color-brand-base);
+  color: #c8956c;
+  border: 1px solid #c8956c;
+  border-radius: 999px;
+  padding: 8px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 30px;
 }
 

@@ -1,70 +1,40 @@
 const fs = require('fs');
 const path = require('path');
 
-const directoryPath = path.join(__dirname, 'src', 'pages');
+const cssFiles = [
+  'src/pages/Home/components/AboutCTASection/AboutCTASection.module.css',
+  'src/pages/Home/components/Certifications/Certifications.module.css',
+  'src/pages/Home/components/FeaturedProducts/FeaturedProducts.module.css',
+  'src/pages/Home/components/GlobalClients/GlobalClients.module.css',
+  'src/pages/Home/components/HeroSlider/HeroSlider.module.css',
+  'src/pages/Home/components/ProductCatalogue/ProductCatalogue.module.css',
+  'src/pages/Home/components/SecurePaymentOptions/SecurePaymentOptions.module.css',
+  'src/pages/Home/components/ShopByCategories/ShopByCategories.module.css'
+];
 
-const newBtnStyle = `  background: transparent;
-  border: 1px solid #4a3e35;
-  color: #c8956c;
-  padding: 12px 28px;
-  font-size: 12px;
-  letter-spacing: 2px;
+const newEyebrowCss = `  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  transition: all 0.3s ease;
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: 0;`;
+  color: #c8956c;
+  border: 1px solid #c8956c;
+  border-radius: 999px;
+  padding: 8px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 30px;
+  background-color: transparent;`;
 
-const newBtnHoverStyle = `  border-color: #c8956c;
-  background: rgba(194, 163, 115, 0.05);
-  color: #c8956c;`;
-
-function replaceInFile(filePath) {
-    let content = fs.readFileSync(filePath, 'utf8');
-    let originalContent = content;
-
-    // Fix white gradients
-    content = content.replace(/linear-gradient\([^,]+,\s*transparent,\s*#ffffff\)/gi, 'linear-gradient(to bottom, transparent, #15110F)');
-
-    // Fix button CSS classes across all files
-    const btnClassesToFix = [
-        '.search-btn',
-        '.topic-btn',
-        '.sub-topic-btn',
-        '.btn-submit',
-        '.btn-loc-map',
-        '.category-btn',
-        '.view-btn',
-        '.download-btn',
-        '.cta-btn',
-        '.submit-btn'
-    ];
-
-    btnClassesToFix.forEach(btnClass => {
-        const regexMain = new RegExp(`\\${btnClass}\\s*\\{[^}]*\\}`, 'g');
-        const regexHover = new RegExp(`\\${btnClass}:hover\\s*\\{[^}]*\\}`, 'g');
-        content = content.replace(regexMain, `${btnClass} {\n${newBtnStyle}\n}`);
-        content = content.replace(regexHover, `${btnClass}:hover {\n${newBtnHoverStyle}\n}`);
-    });
-
-    if (content !== originalContent) {
-        fs.writeFileSync(filePath, content, 'utf8');
-        console.log(`Updated ${filePath}`);
-    }
+for (const file of cssFiles) {
+  const fullPath = path.join(__dirname, file);
+  if (fs.existsSync(fullPath)) {
+    let content = fs.readFileSync(fullPath, 'utf8');
+    
+    // Replace the block of .eyebrow { ... }
+    content = content.replace(/\.eyebrow\s*\{[^}]+\}/g, `.eyebrow {\n${newEyebrowCss}\n}`);
+    
+    fs.writeFileSync(fullPath, content, 'utf8');
+    console.log(`Updated CSS: ${file}`);
+  }
 }
-
-function processDirectory(dirPath) {
-    const files = fs.readdirSync(dirPath);
-
-    files.forEach(file => {
-        const fullPath = path.join(dirPath, file);
-        if (fs.statSync(fullPath).isDirectory()) {
-            processDirectory(fullPath);
-        } else if (fullPath.endsWith('.css') || fullPath.endsWith('.jsx')) {
-            replaceInFile(fullPath);
-        }
-    });
-}
-
-processDirectory(directoryPath);
-console.log('Done fixing CSS and gradients.');

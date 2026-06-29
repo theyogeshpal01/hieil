@@ -38,27 +38,29 @@
 }
 
 .navBtn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background-color: #a56149; /* Brownish-coral color from the image */
-  color: white;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+  
 .navBtn:hover {
-  background-color: #8c4e38;
-}
+    background-color: var(--color-brand-base);
+    border-color: var(--color-brand-base);
+    color: #15110F;
+  }
 
 .navBtn:active {
   transform: translateY(-50%) scale(0.95);
@@ -124,7 +126,7 @@
 
 .description {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 15.2px;
   color: #b5aaa0;
   line-height: 1.8;
   margin: 0;

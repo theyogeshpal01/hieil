@@ -11,7 +11,7 @@ const BulkWholesaleSupply = () => {
   const stats = [
     { value: '50+', label: 'Wholesale Partners' },
     { value: '1M+', label: 'categories Delivered' },
-    { value: '7+', label: 'Years Experience' },
+    { value: '2+', label: 'Years Experience' },
     { value: '50+', label: 'Countries Served' }
   ];
 
@@ -20,7 +20,7 @@ const BulkWholesaleSupply = () => {
     { title: 'Reliable Delivery', icon: <Clock size={24} />, desc: 'Streamlined logistics and supply chain management ensure timely delivery of your wholesale orders.' },
     { title: 'Steady Inventory', icon: <Package size={24} />, desc: 'Maintain consistent stock levels with our reliable volume supply, preventing out-of-stock situations.' },
     { title: 'Partnership Approach', icon: <HeartHandshake size={24} />, desc: 'We work as your strategic partner, understanding your business needs and growing together.' },
-    { title: 'Global Reach', icon: <Globe size={24} />, desc: 'Experience in shipping to multiple countries with understanding of international trade requirements.' },
+    { title: 'Global Reach', desc: 'Experience in shipping to multiple countries with understanding of international trade requirements.' },
     { title: 'Dedicated Support', icon: <Users size={24} />, desc: 'Personal account managers and 24/7 customer support for all your wholesale business needs.' },
     { title: '100% Transparency', icon: <Search size={24} />, desc: 'Complete visibility into pricing, documentation, and tracking for total peace of mind.' },
     { title: 'No Corruption Policy', icon: <Scale size={24} />, desc: 'Ethical business practices with zero tolerance for corruption across all global operations.' }
@@ -63,7 +63,7 @@ const BulkWholesaleSupply = () => {
         <div className="container">
           <div className="page-header" data-aos="fade-up">
             <span className="ws-tag">Service Directory</span>
-            <h1 className="page-title">Scaling Your Business with Consistent Quality</h1>
+            <h1 className="page-title">Scaling Your Business with Consistent <span style={{ color: 'var(--color-brand-base)' }}>Quality</span></h1>
             <p className="page-subtitle">
               We specialize in handling large-scale bulk orders while maintaining uncompromised quality consistency. With years of experience in wholesale distribution, we understand the unique demands of volume business and provide reliable supply chain solutions that keep your inventory stocked and your customers satisfied.
             </p>
@@ -77,7 +77,7 @@ const BulkWholesaleSupply = () => {
             <div className="offer-card" data-aos="fade-up" data-aos-delay="200">
               <div className="offer-icon"><Box size={40} /></div>
               <h3>Wide Product Range</h3>
-              <p>Rugs, Home DÃ©cor, Furniture, Brassware, Wall Art, and more - all available for wholesale purchase.</p>
+              <p>Rugs, Home Decor, Furniture, Brassware, Wall Art, and more - all available for wholesale purchase.</p>
             </div>
             <div className="offer-card" data-aos="fade-up" data-aos-delay="300">
               <div className="offer-icon"><PackageOpen size={40} /></div>
@@ -97,7 +97,7 @@ const BulkWholesaleSupply = () => {
       <section className="ws-categories-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Wholesale Product categories</h2>
+            <h2>Wholesale <br /> <span style={{ color: 'var(--color-brand-base)' }}>Product categories</span></h2>
             <p>Extensive Range for All Your Business Needs</p>
           </div>
           <div className="categories-grid">
@@ -156,40 +156,12 @@ const BulkWholesaleSupply = () => {
         </div>
       </section>
 
-      {/* MOQ Information Section */}
-      <section className="ws-moq-section">
-        <div className="container">
-          <div className="moq-wrapper" data-aos="fade-up">
-            <div className="moq-content">
-              <h2>Flexible Minimum Order Quantity</h2>
-              <p className="moq-subtitle">Tailored to Support Businesses of All Sizes</p>
-              
-              <div className="moq-highlight">
-                <span className="highlight-tag">All categories</span>
-                <h3>MOQ: 100 pieces</h3>
-              </div>
-
-              <div className="moq-details">
-                <p>To maintain premium quality standards and ensure cost-effective production, our handicraft categories are available with a Minimum Order Quantity (MOQ) of 100 pieces per design.</p>
-                <p>As each item is carefully handcrafted by skilled artisans, a 100-piece MOQ allows us to efficiently manage raw materials, production time, and quality control while offering competitive international pricing.</p>
-                <p>We are also open to customisation in design, size, finish, packaging, and branding for bulk orders meeting the MOQ requirement. Mixed designs can be discussed depending on product category and availability.</p>
-                <p>Our goal is to support global buyers with authentic Indian handicrafts while empowering local artisans through sustainable production practices.</p>
-                <p>For customized requirements or sample requests, please feel free to contact us.</p>
-              </div>
-              <Link to="/contact" className="ws-btn mt-4">Get Started</Link>
-            </div>
-            <div className="moq-image" data-aos="fade-left">
-               <img src="/artisan1.png" alt="Artisan Crafting" />
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Business Advantage */}
-      <section className="ws-advantage-section">
+      <section className="ws-advantage-section py-10">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Your Business Advantage</h2>
+            <h2>Your <span style={{ color: 'var(--color-brand-base)' }}>Business Advantage</span></h2>
             <p>Why Partner with Us for Wholesale Supply?</p>
           </div>
           <div className="advantage-grid">
@@ -210,7 +182,7 @@ const BulkWholesaleSupply = () => {
       <section className="ws-process-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Simple Order Process</h2>
+            <h2>Simple <br /> <span style={{ color: 'var(--color-brand-base)' }}>Order Process</span></h2>
             <p>Streamlined for Your Convenience</p>
           </div>
           <div className="process-timeline">
@@ -230,7 +202,7 @@ const BulkWholesaleSupply = () => {
       {/* CTA Section */}
       <section className="ws-cta-section" data-aos="zoom-in">
         <div className="ws-cta-inner">
-          <h2>Ready To Scale Your Business?</h2>
+          <h2>Ready To Scale <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Business</span>?</h2>
           <p>Partner with us for reliable bulk wholesale supply that ensures steady inventory and consistent quality for your customers. Let's discuss how we can support your growth with our extensive product range and flexible wholesale solutions.</p>
           <Link to="/contact" className="ws-btn">Start Wholesale Partnership</Link>
         </div>
@@ -240,7 +212,7 @@ const BulkWholesaleSupply = () => {
       <section className="ws-partners-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Why Wholesale Partners Choose Us</h2>
+            <h2>Why Wholesale <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partners Choose Us</span></h2>
           </div>
           <div className="partners-grid">
             {partners.map((partner, index) => (

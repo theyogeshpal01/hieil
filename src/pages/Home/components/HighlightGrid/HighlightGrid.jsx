@@ -31,7 +31,7 @@ const HighlightGrid = () => {
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-          <h2 className={styles.mainTitle}>OUR COMMITMENT</h2>
+          <h2 className={styles.mainTitle}>OUR <br /> <span style={{ color: 'var(--color-brand-base)' }}>COMMITMENT</span></h2>
           <p className={styles.mainSubtitle}>Sustainable & Ethical Practices</p>
         </div>
 

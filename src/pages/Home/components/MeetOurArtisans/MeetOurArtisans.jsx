@@ -28,7 +28,7 @@ const MeetOurArtisans = () => {
   return (
     <section className={styles.section}>
       <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-        <h2 className={styles.title}>MEET OUR ARTISANS</h2>
+        <h2 className={styles.title}>MEET <span style={{ color: 'var(--color-brand-base)' }}>OUR ARTISANS</span></h2>
         <p className={styles.subtitle}>The Hands Behind Our Crafts</p>
       </div>
 

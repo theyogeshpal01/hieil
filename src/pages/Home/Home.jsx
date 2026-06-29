@@ -24,20 +24,7 @@ const Home = () => {
       <ShopByCategories />
       <FeaturedProducts />
       
-      {/* MOQ Section using the Split Layout */}
-      <SplitInfoSection 
-        subtitle="Flexible Minimum Order Quantity"
-        title="TAILORED TO SUPPORT BUSINESSES OF ALL SIZES"
-        paragraphs={[
-          "To maintain premium quality standards and ensure cost-effective production, our handicraft categories are available with a Minimum Order Quantity (MOQ) of 100 pieces per design.",
-          "As each item is carefully handcrafted by skilled artisans, a 100-piece MOQ allows us to efficiently manage raw materials, production time, and quality control while offering competitive international pricing.",
-          "We are also open to customisation in design, size, finish, packaging, and branding for bulk orders meeting the MOQ requirement."
-        ]}
-        buttonText="REQUEST QUOTE"
-        imageSrc="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=800&auto=format&fit=crop"
-        imageAlt="Pottery details"
-      />
-      
+
       <MeetOurArtisans />
       <CountryRepresentatives />
       

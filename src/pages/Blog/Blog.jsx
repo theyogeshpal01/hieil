@@ -85,7 +85,7 @@ const Blog = () => {
       <section className="blog-artisans-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Meet Our Artisans</h2>
+            <h2>Meet <br /> <span style={{ color: 'var(--color-brand-base)' }}>Our Artisans</span></h2>
             <p className="subtitle">Authentic videos showcasing the skill, dedication, and stories behind our master craftsmen.</p>
             <h3 className="section-subtitle mt-4">The Hands Behind Our Crafts</h3>
           </div>
@@ -118,7 +118,7 @@ const Blog = () => {
         <div className="container">
           <div className="newsletter-box" data-aos="zoom-in">
             <div className="newsletter-content">
-              <h2>Get Importer-Focused Insights</h2>
+              <h2>Get <br /> <span style={{ color: 'var(--color-brand-base)' }}>Importer-Focused Insights</span></h2>
               <p>Subscribe to receive exclusive guides, market intelligence, and early access to new artisan collections curated for international buyers.</p>
             </div>
             <div className="newsletter-form">

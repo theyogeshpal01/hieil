@@ -12,7 +12,9 @@ const Featuredcategories = () => {
       <div className={styles.container}>
         <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
           <div className={styles.headerLeft}>
-            <span className={styles.eyebrow}>FEATURED</span>
+            <div className={styles.eyebrowContainer}>
+              <span>FEATURED</span>
+            </div>
             <h2 className={styles.title}>FEATURED <span className={styles.highlight}>CATEGORIES</span></h2>
           </div>
           <div className={styles.headerRight}>

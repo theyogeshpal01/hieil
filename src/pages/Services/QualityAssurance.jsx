@@ -53,7 +53,7 @@ const QualityAssurance = () => {
     { title: 'Expert Inspectors', icon: <Users size={24} />, desc: 'A dedicated team of quality control professionals with years of industry experience.' },
     { title: 'Detailed Reporting', icon: <FileText size={24} />, desc: 'Comprehensive inspection reports provided for transparency and record-keeping.' },
     { title: 'Consistent Output', icon: <ThumbsUp size={24} />, desc: 'Maintaining uniform quality across bulk orders, regardless of volume.' },
-    { title: 'International Standards', icon: <Globe size={24} />, desc: 'Adherence to global quality benchmarks suitable for export markets.' },
+    { title: 'International Standards', desc: 'Adherence to global quality benchmarks suitable for export markets.' },
     { title: 'Continuous Improvement', icon: <TrendingUp size={24} />, desc: 'Regular review of our processes to enhance quality and efficiency continually.' },
     { title: '100% Transparency', icon: <Search size={24} />, desc: 'Open communication regarding quality metrics and any potential issues.' },
     { title: 'No Corruption Policy', icon: <Scale size={24} />, desc: 'Strict ethical guidelines ensuring unbiased and honest quality assessments.' }
@@ -109,7 +109,7 @@ const QualityAssurance = () => {
       <section className="qa-offer-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Our Quality Framework</h2>
+            <h2>Our <br /> <span style={{ color: 'var(--color-brand-base)' }}>Quality Framework</span></h2>
             <p>Comprehensive Quality Management</p>
           </div>
           <div className="offer-grid">
@@ -128,7 +128,7 @@ const QualityAssurance = () => {
       <section className="qa-advantage-section" style={{ borderTop: '1px solid #2c241c' }}>
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Detailed Quality Checks</h2>
+            <h2>Detailed <br /> <span style={{ color: 'var(--color-brand-base)' }}>Quality Checks</span></h2>
             <p>Rigorous Testing Protocols</p>
           </div>
           <div className="advantage-grid">
@@ -149,7 +149,7 @@ const QualityAssurance = () => {
       <section className="qa-process-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Quality Control Process</h2>
+            <h2>Quality <br /> <span style={{ color: 'var(--color-brand-base)' }}>Control Process</span></h2>
             <p>Four Steps to Perfection</p>
           </div>
           <div className="process-timeline">
@@ -170,7 +170,7 @@ const QualityAssurance = () => {
       <section className="qa-advantage-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>The QA Advantage</h2>
+            <h2>The <br /> <span style={{ color: 'var(--color-brand-base)' }}>QA Advantage</span></h2>
             <p>Why Our Quality Assurance Matters</p>
           </div>
           <div className="advantage-grid">
@@ -190,7 +190,7 @@ const QualityAssurance = () => {
       {/* CTA Section */}
       <section className="qa-cta-section" data-aos="zoom-in">
         <div className="qa-cta-inner">
-          <h2>Experience Premium Quality</h2>
+          <h2>Experience <br /> <span style={{ color: 'var(--color-brand-base)' }}>Premium Quality</span></h2>
           <p>Partner with us and experience the peace of mind that comes with reliable, top-tier quality assurance. We protect your brand reputation by delivering categories that speak of excellence.</p>
           <Link to="/contact" className="qa-btn">Discuss Your Requirements</Link>
         </div>
@@ -200,7 +200,7 @@ const QualityAssurance = () => {
       <section className="qa-partners-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Why Partners Trust Our Quality</h2>
+            <h2>Why Partners <br /> <span style={{ color: 'var(--color-brand-base)' }}>Trust Our Quality</span></h2>
           </div>
           <div className="partners-grid">
             {partners.map((partner, index) => (

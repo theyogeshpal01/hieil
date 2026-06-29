@@ -48,12 +48,20 @@
   background-color: var(--color-brand-base);
 }
 
-.eyebrow {
-  font-family: var(--font-sans);
+.eyebrowContainer {
+  font-family: 'Inter', 'Outfit', sans-serif;
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: var(--color-brand-base);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #c8956c;
+  border: 1px solid #c8956c;
+  border-radius: 999px;
+  padding: 8px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  background-color: transparent;
 }
 
 .title {
@@ -72,7 +80,7 @@
 
 .subtitle {
   font-family: var(--font-sans);
-  font-size: 1rem;
+  font-size: 15.2px;
   color: #a0978e;
   line-height: 1.7;
   margin: 0 0 3rem 0;

@@ -29,7 +29,9 @@ const SecurePaymentOptions = () => {
         <div className={styles.left} ref={leftRef} style={{opacity:0,transform:'translateX(-40px)',transition:'all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1)'}}>
           <div className={styles.eyebrowWrapper}>
             <span className={styles.eyebrowLine}></span>
-            <span className={styles.eyebrow}>PAYMENTS</span>
+            <div className={styles.eyebrowContainer}>
+              <span>PAYMENTS</span>
+            </div>
           </div>
           <h2 className={styles.title}>
             Secure <br />

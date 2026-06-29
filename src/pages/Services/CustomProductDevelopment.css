@@ -21,16 +21,19 @@
 }
 
 .cs-tag {
-  display: inline-block;
-  padding: 6px 16px;
-  background: transparent;
-  border: 1px solid #4a3e35;
-  color: #c8956c;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
+  color: #c8956c;
+  border: 1px solid #c8956c;
+  border-radius: 999px;
+  padding: 8px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 30px;
+  background-color: transparent;
 }
 
 .page-title {
@@ -89,12 +92,12 @@
 }
 
 .offer-card {
-  background: rgba(28, 23, 19, 0.6);
-  backdrop-filter: blur(10px);
+  background: #15110F;
   border: 1px solid #2c241c;
-  padding: 50px 40px;
-  text-align: center;
+  padding: 40px;
+  text-align: left;
   transition: all 0.4s ease;
+  border-radius: 0;
 }
 
 .offer-card:hover {
@@ -104,37 +107,52 @@
 }
 
 .offer-icon {
-  width: 70px;
-  height: 70px;
-  margin: 0 auto 30px;
+  width: 48px;
+  height: 48px;
+  margin: 0 0 24px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(194, 163, 115, 0.05);
-  border: 1px solid #4a3e35;
+  background: transparent;
+  border: 1px solid rgba(200, 149, 108, 0.3);
   color: #c8956c;
   border-radius: 50%;
-  transition: all 0.4s ease;
+  transition: background-color 0.4s ease;
 }
 
 .offer-card:hover .offer-icon {
-  background: #c8956c;
-  color: #15110F;
+  background: rgba(200, 149, 108, 0.1);
 }
 
 .offer-card h3 {
   font-family: var(--font-serif);
-  font-size: 1.8rem;
-  font-weight: 400;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: #ffffff;
-  margin-bottom: 20px;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .offer-card p {
   color: #b5aaa0;
-  line-height: 1.7;
-  font-size: 1rem;
+  line-height: 1.6;
+  font-size: 15.2px;
+  margin: 0;
 }
+
+
+
+
+
+
+
+
+.offer-card:hover 
+
+
+
+
 
 /* Advantage Section */
 .cs-advantage-section {
@@ -149,11 +167,14 @@
 }
 
 .adv-item {
-  background: transparent;
+  background: #15110F;
   border: 1px solid #2c241c;
-  padding: 30px;
+  border-radius: 4px;
+  padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
   transition: all 0.4s ease;
 }
 
@@ -164,22 +185,25 @@
 
 .adv-icon {
   color: #c8956c;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .adv-content h4 {
-  font-family: var(--font-sans);
-  font-size: 1.1rem;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 500;
   color: #ffffff;
-  margin-bottom: 12px;
+  margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .adv-content p {
-  color: #8c8279;
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-family: var(--font-sans);
+  font-size: 15.2px;
+  color: #b5aaa0;
+  line-height: 1.8;
+  margin: 0;
 }
 
 /* Categories Section */

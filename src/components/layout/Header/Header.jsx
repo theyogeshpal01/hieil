@@ -22,11 +22,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Link to="/" className={styles.logoContainer}>
-        <svg viewBox="0 0 24 24" className={styles.logoIcon}>
-          <polygon points="12 2 20.66 7 20.66 17 12 22 3.34 17 3.34 7" />
-          <polygon points="12 5 18.06 8.5 18.06 15.5 12 19 5.94 15.5 5.94 8.5" />
-          <circle cx="12" cy="12" r="1.5" stroke="none" fill="#c8956c" />
-        </svg>
+        <img src="/logo.png" alt="HIEIL Logo" className={styles.logoIcon} />
         <span className={styles.logoText}>HIEIL</span>
       </Link>
 

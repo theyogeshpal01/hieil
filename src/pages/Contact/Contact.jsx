@@ -75,7 +75,7 @@ const Contact = () => {
             
             {/* Form Section */}
             <div className="contact-form-container" data-aos="fade-right">
-              <h2>Send Us A Message</h2>
+              <h2>Send Us <br /> <span style={{ color: 'var(--color-brand-base)' }}>A Message</span></h2>
               <p className="form-intro">Have a specific inquiry? Fill out the form below and our team will get back to you shortly.</p>
               
               <form className="contact-form">
@@ -204,7 +204,7 @@ const Contact = () => {
         <div className="container">
           <div className="section-header" data-aos="fade-up">
             <p className="subtitle">Our Office Locations</p>
-            <h2>Visit Us at Any of Our Convenient Locations</h2>
+            <h2>Visit Us at Any <br /> <span style={{ color: 'var(--color-brand-base)' }}>of Our Convenient Locations</span></h2>
           </div>
           
           <div className="locations-grid">
@@ -255,7 +255,7 @@ const Contact = () => {
             {/* FAQs */}
             <div className="faq-container" data-aos="fade-right">
               <p className="subtitle">Frequently Asked Questions</p>
-              <h2>Quick Answers to Common Questions</h2>
+              <h2>Quick Answers <br /> <span style={{ color: 'var(--color-brand-base)' }}>to Common Questions</span></h2>
               
               <div className="faq-list">
                 {faqs.map((faq, index) => (

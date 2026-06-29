@@ -22,7 +22,7 @@ const Login = () => {
       {/* Main Content */}
       <div className={styles.mainContent}>
         <div className={styles.loginCard} ref={cardRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-          <h2 className={styles.loginTitle}>Log in to your account</h2>
+          <h2 className={styles.loginTitle}>Log in <br /> <span style={{ color: 'var(--color-brand-base)' }}>to your account</span></h2>
           
           <form className={styles.loginForm} onSubmit={(e) => e.preventDefault()}>
             <div className={styles.inputGroup}>

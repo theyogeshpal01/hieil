@@ -31,7 +31,9 @@ const ShopBycategories = () => {
   return (
     <section className={styles.section}>
       <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-        <span className={styles.eyebrow}>OUR COLLECTION</span>
+        <div className={styles.eyebrowContainer}>
+              <span>OUR COLLECTION</span>
+            </div>
         <h2 className={styles.title}>SHOP BY <span className={styles.highlight}>CATEGORIES</span></h2>
         <p className={styles.subtitle}>Explore our diverse range of authentic Indian handicrafts</p>
       </div>

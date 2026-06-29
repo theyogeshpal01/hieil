@@ -5,7 +5,7 @@ import styles from './AboutCTASection.module.css';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 
 const features = [
-  { icon: <Globe size={16} strokeWidth={1.5} />, label: 'Global Shipping' },
+  { label: 'Global Shipping' },
   { icon: <Award size={16} strokeWidth={1.5} />, label: 'Premium Quality' },
   { icon: <ShieldCheck size={16} strokeWidth={1.5} />, label: 'Quality Assured' },
   { icon: <Leaf size={16} strokeWidth={1.5} />, label: 'Expert Support' },
@@ -19,14 +19,19 @@ const AboutCTASection = () => {
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.leftCol} ref={leftRef} style={{opacity:0,transform:'translateX(-40px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-          <span className={styles.eyebrow}>About HIEIL</span>
+          <div className={styles.eyebrowContainer}>
+              <span>ABOUT HIEIL</span>
+            </div>
           <h2 className={styles.title}>
             Handcrafted categories, <br className={styles.hideMobile} />Inspired By <span className={styles.highlight}>India</span>
           </h2>
           
           <div className={styles.textContent}>
             <p>
-              Welcome to HIEIL (OPC) Pvt. Ltd. We bring India's timeless handicrafts to the global stage. Every product reflects the artistry of skilled Indian craftsmen — preserved through generations, delivered with modern excellence.
+              HIEIL (Hind Import Export International) is a Jaipur-based handicraft export firm led by Jogendra Singh, with over 2+ years of dedicated industry experience. Our team of 800 highly skilled artisans carries forward centuries of tradition.
+            </p>
+            <p>
+              Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers. Every piece tells a story — of culture, legacy, and passion.
             </p>
           </div>
 

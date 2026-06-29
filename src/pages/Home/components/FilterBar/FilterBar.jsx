@@ -6,7 +6,7 @@ const FilterBar = () => {
   return (
     <section className={styles.section}>
       <div className={styles.header}>
-        <h2 className={styles.title}>THE GREAT INDIAN HANDICRAFT HERITAGE</h2>
+        <h2 className={styles.title}>THE GREAT <br /> <span style={{ color: 'var(--color-brand-base)' }}>INDIAN HANDICRAFT HERITAGE</span></h2>
         <p className={styles.subtitle}>HIEIL</p>
       </div>
 

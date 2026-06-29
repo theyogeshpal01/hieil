@@ -11,7 +11,7 @@ const faqs = [
   { id: 5, question: 'Shipping And Delivery', answer: 'We offer fast and reliable shipping worldwide. Delivery times depend on the destination and the size of the order.' },
   { id: 6, question: 'Payment Terms', answer: 'We accept multiple secure payment methods including T/T, SWIFT, PayPal, and Letter of Credit for bulk orders.' },
   { id: 7, question: 'Quality Assurance', answer: 'Every product undergoes strict quality control checks by our experienced team before being packed and dispatched.' },
-  { id: 8, question: 'Contact Information', answer: 'You can reach us 24/7 via phone at (+91)0123-456-789 or email us at support@hieil.com.' }
+  { id: 8, question: 'Contact Information', answer: 'You can reach us 24/7 via phone at +91 9050001972 or email us at indiaexport@hieil.com.' }
 ];
 
 const FAQ = () => {
@@ -27,7 +27,7 @@ const FAQ = () => {
     <section className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-          <h2 className={styles.title}>FREQUENTLY ASKED QUESTIONS</h2>
+          <h2 className={styles.title}>FREQUENTLY <span style={{ color: 'var(--color-brand-base)' }}>ASKED QUESTIONS</span></h2>
           <p className={styles.subtitle}>Find answers to common questions about our categories and services</p>
         </div>
 

@@ -124,7 +124,7 @@ const Gallery = () => {
             {/* Gallery Grid */}
             <div className="gallery-content">
               <div className="gallery-content-header">
-                <h2>All Collections</h2>
+                <h2>All <br /> <span style={{ color: 'var(--color-brand-base)' }}>Collections</span></h2>
                 <p>Showing {filteredItems.length} handcrafted items</p>
               </div>
 
@@ -151,7 +151,7 @@ const Gallery = () => {
       <section className="shared-moments-section">
         <div className="container">
           <div className="section-header text-center">
-            <h2>User Shared Moments</h2>
+            <h2>User <br /> <span style={{ color: 'var(--color-brand-base)' }}>Shared Moments</span></h2>
             <p className="subtitle">Real Stories Shared by Our Global Community</p>
             <p className="desc">Explore the beautiful spaces our customers have created using HIEIL handicrafts. See how our categories blend into diverse lifestyles and professional settings.</p>
           </div>

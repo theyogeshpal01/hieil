@@ -75,7 +75,7 @@ const Testimonials = () => {
       <section className="trusted-brands-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Trusted By Leading Brands</h2>
+            <h2>Trusted By <br /> <span style={{ color: 'var(--color-brand-base)' }}>Leading Brands</span></h2>
             <p>Our clients include some of the most prestigious names in the industry</p>
           </div>
           <div className="brands-logo-grid" data-aos="fade-up">
@@ -95,14 +95,14 @@ const Testimonials = () => {
             {/* CTA 1: Create Success Story */}
             <div className="action-card primary-action" data-aos="fade-right">
               <CheckCircle className="action-icon" size={48} />
-              <h2>Ready To Create Your Success Story?</h2>
+              <h2>Ready To Create <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Success Story</span>?</h2>
               <p>Join thousands of satisfied customers who have transformed their spaces with HIEIL handicrafts</p>
               <Link to="/contact" className="btn-primary">Start Your Project</Link>
             </div>
 
             {/* CTA 2: Share Experience */}
             <div className="action-card secondary-action" data-aos="fade-left">
-              <h2>Share Your Experience</h2>
+              <h2>Share <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Experience</span></h2>
               <p>Loved our categories and services? We'd love to hear about your experience! Share your story and help others discover the quality and craftsmanship of HIEIL handicrafts.</p>
               <div className="action-buttons">
                 <button className="btn-outline"><PenTool size={18} /> Write a Review</button>

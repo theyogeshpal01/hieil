@@ -45,7 +45,7 @@ const CountryRepresentatives = () => {
   return (
     <section className={styles.section}>
       <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-        <h2 className={styles.title}>COUNTRY REPRESENTATIVE</h2>
+        <h2 className={styles.title}>COUNTRY <span style={{ color: 'var(--color-brand-base)' }}>REPRESENTATIVE</span></h2>
         <p className={styles.subtitle}>Building Trust Across Borders</p>
       </div>
 

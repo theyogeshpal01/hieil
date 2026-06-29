@@ -107,7 +107,7 @@ const HowWeWork = () => {
       {/* Simple Workflow Section */}
       <section className="hww-workflow-section">
         <div className="container">
-          <h2 className="workflow-title" data-aos="fade-up">Our Simple Workflow</h2>
+          <h2 className="workflow-title" data-aos="fade-up">Our <br /> <span style={{ color: 'var(--color-brand-base)' }}>Simple Workflow</span></h2>
           <div className="workflow-grid">
             {simpleWorkflow.map((item, index) => (
               <div className="workflow-item" key={index} data-aos="zoom-in" data-aos-delay={index * 100}>
@@ -123,7 +123,7 @@ const HowWeWork = () => {
       {/* Call to Action */}
       <section className="hww-cta-section">
         <div className="hww-cta-content" data-aos="fade-up">
-          <h2>Ready To Start Your Order?</h2>
+          <h2>Ready To Start <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Order</span>?</h2>
           <p>
             Join hundreds of satisfied clients worldwide who trust us for authentic Indian handicrafts. Let's create something beautiful together.
           </p>
