@@ -87,7 +87,7 @@
 
 .offer-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
 }
 
@@ -393,7 +393,7 @@
   .offer-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .advantage-grid, .partners-grid {
+  .advantage-grid, .partners-grid, .models-grid, .b2b-testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -402,7 +402,7 @@
   .page-title {
     font-size: 2.5rem;
   }
-  .offer-grid, .advantage-grid, .partners-grid {
+  .ex-offer-grid, .advantage-grid, .partners-grid, .models-grid, .b2b-testimonials-grid {
     grid-template-columns: 1fr;
   }
   .process-timeline {
@@ -428,4 +428,96 @@
   .b2b-cta-inner h2 {
     font-size: 2.2rem;
   }
+}
+.models-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.b2b-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.model-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.model-tag {
+  background: rgba(200, 149, 108, 0.1);
+  color: #c8956c;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 50px;
+  border: 1px solid rgba(200, 149, 108, 0.3);
+}
+
+.offer-card h4 {
+  font-family: var(--font-sans);
+  color: #c8956c;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.model-features {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0;
+}
+
+.model-features li {
+  color: #b5aaa0;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.model-features li svg {
+  color: #c8956c;
+  flex-shrink: 0;
+}
+
+.b2b-btn-outline {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 12px 24px;
+  border: 1px solid #c8956c;
+  color: #c8956c;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+  margin-top: auto;
+}
+
+.b2b-btn-outline:hover {
+  background: #c8956c;
+  color: #15110F;
+}
+
+.b2b-models-section, 
+.b2b-terms-section, 
+.b2b-reasons-section, 
+.b2b-testimonials-section {
+  padding: 100px 0;
+  background: #15110F;
+}
+
+.b2b-terms-section,
+.b2b-testimonials-section {
+  background: radial-gradient(circle at center, #1C1713 0%, #15110F 100%);
 }

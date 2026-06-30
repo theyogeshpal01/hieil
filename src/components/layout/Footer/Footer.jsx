@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import styles from './Footer.module.css';
 import { FOOTER_LINKS, SOCIAL_LINKS } from '../../../constants/navigation';
@@ -9,21 +10,21 @@ const Footer = () => {
       <div className={styles.container}>
         {/* Column 1: Store Info */}
         <div className={styles.column}>
-          <a href="/" className={styles.logoContainer}>
+          <Link to="/" className={styles.logoContainer}>
             <svg viewBox="0 0 24 24" className={styles.logoIcon}>
               <polygon points="12 2 20.66 7 20.66 17 12 22 3.34 17 3.34 7" />
               <polygon points="12 5 18.06 8.5 18.06 15.5 12 19 5.94 15.5 5.94 8.5" />
               <circle cx="12" cy="12" r="1.5" stroke="none" fill="#c8956c" />
             </svg>
             <span className={styles.logoText}>HIEIL</span>
-          </a>
+          </Link>
           <p className={styles.storeInfoText}>
             Since 2024, HIEIL has been redefining shopping with premium categories.
             Every item is designed to add style, comfort, and innovation.
           </p>
           <div className={styles.socialLinks}>
             {SOCIAL_LINKS.map((link) => (
-              <a key={link.platform} href={link.href} className={styles.socialIcon} aria-label={link.platform}>
+              <a key={link.platform} href={link.href} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label={link.platform}>
                 {link.platform === 'facebook' && <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>}
                 {link.platform === 'instagram' && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>}
                 {link.platform === 'youtube' && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>}
@@ -40,10 +41,10 @@ const Footer = () => {
           <h3 className={styles.columnTitle}>SERVICES</h3>
           <ul className={styles.linkList}>
             {FOOTER_LINKS.explore.map((link) => (
-              <li key={link.label}><a href={link.href}>{link.label}</a></li>
+              <li key={link.label}><Link to={link.href}>{link.label}</Link></li>
             ))}
             {FOOTER_LINKS.categories.slice(0, 2).map((link) => (
-              <li key={link.label}><a href={link.href}>{link.label}</a></li>
+              <li key={link.label}><Link to={link.href}>{link.label}</Link></li>
             ))}
           </ul>
         </div>
@@ -53,10 +54,10 @@ const Footer = () => {
           <h3 className={styles.columnTitle}>QUICK LINKS</h3>
           <ul className={styles.linkList}>
             {FOOTER_LINKS.policies.map((link) => (
-              <li key={link.label}><a href={link.href}>{link.label}</a></li>
+              <li key={link.label}><Link to={link.href}>{link.label}</Link></li>
             ))}
             {FOOTER_LINKS.care.map((link) => (
-              <li key={link.label}><a href={link.href}>{link.label}</a></li>
+              <li key={link.label}><Link to={link.href}>{link.label}</Link></li>
             ))}
           </ul>
         </div>
@@ -66,19 +67,19 @@ const Footer = () => {
           <h3 className={styles.columnTitle}>CONTACT</h3>
           <div className={styles.contactRow}>
             <Mail size={16} className={styles.contactIcon} />
-            <span>indiaexport@hieil.com</span>
+            <a href="mailto:indiaexport@hieil.com" style={{ color: 'inherit', textDecoration: 'none' }}>indiaexport@hieil.com</a>
           </div>
           <div className={styles.contactRow} style={{ marginBottom: '24px' }}>
             <Phone size={16} className={styles.contactIcon} />
-            <span>+91 9050001972</span>
+            <a href="tel:+919050001972" style={{ color: 'inherit', textDecoration: 'none' }}>+91 9050001972</a>
           </div>
           <div className={styles.contactRow} style={{ marginBottom: '24px', alignItems: 'flex-start' }}>
             <MapPin size={16} className={styles.contactIcon} style={{ marginTop: '4px' }} />
-            <span style={{ fontSize: '0.85rem', lineHeight: '1.5' }}>
+            <a href="https://maps.google.com/?q=Hind+Import+Export+International+OPC+Pvt.+Ltd.,+Jaipur,+Rajasthan" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', lineHeight: '1.5', color: 'inherit', textDecoration: 'none' }}>
               <strong style={{ color: '#fff' }}>Registered Office</strong><br/>
               Hind Import Export International OPC Pvt. Ltd.<br/>
               Jaipur, Rajasthan – 302 001, India
-            </span>
+            </a>
           </div>
           
           <p className={styles.newsletterText}>Subscribe to get news about special discounts.</p>
@@ -92,8 +93,8 @@ const Footer = () => {
       <div className={styles.bottomBar}>
         <p>© 2024 HIEIL — Hind Import Export International OPC Pvt. Ltd. All rights reserved.</p>
         <div className={styles.bottomLinks}>
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+          <Link to="/privacy-policy">Privacy Policy</Link>
+          <Link to="/terms-of-service">Terms of Service</Link>
         </div>
       </div>
     </footer>

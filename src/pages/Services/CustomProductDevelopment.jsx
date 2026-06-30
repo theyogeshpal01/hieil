@@ -47,7 +47,7 @@ const CustomProductDevelopment = () => {
             </p>
           </div>
           
-          <div className="offer-grid">
+          <div className="custom-offer-grid">
             <div className="offer-card" data-aos="fade-up" data-aos-delay="100">
               <div className="offer-icon"><Palette size={32} /></div>
               <h3>Tailor-made Designs</h3>

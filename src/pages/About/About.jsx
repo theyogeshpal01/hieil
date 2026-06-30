@@ -61,7 +61,7 @@ const About = () => {
       <section className="py-10 bg-[#15110F] border-y border-[#2c241c]">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="text-2xl font-bold text-white mb-1">Company Profile Pdf</h3>
+            <h3 className="text-2xl font-bold text-white mb-1">Company Profile <span className="text-[#c8956c]">Pdf</span></h3>
             <p className="text-[#b5aaa0]">Download our complete journey & catalog</p>
           </div>
           <div className="flex flex-wrap gap-4">
@@ -81,7 +81,7 @@ const About = () => {
           <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>WHO WE ARE</span>
             </div>
-          <h3 className="text-3xl md:text-5xl font-serif font-bold text-white mb-8">Crafting Excellence, Empowering Artisans</h3>
+          <h3 className="text-3xl md:text-5xl font-serif font-bold text-white mb-8">Crafting Excellence, <span style={{ color: 'var(--color-brand-base)' }}>Empowering Artisans</span></h3>
           <p className="text-lg text-[#b5aaa0] leading-relaxed mb-6">
             We are a Jaipur-based handicraft export firm led by Jogendra Singh, with over 2+ years of dedicated industry experience and a team of 800 highly skilled artisans. Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers.
           </p>
@@ -100,7 +100,7 @@ const About = () => {
           <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>OUR IMPACT</span>
             </div>
-          <h3 className="text-3xl md:text-4xl font-serif font-bold">Crafting change through innovation,<br/>sustainability & empowerment.</h3>
+          <h3 className="text-3xl md:text-4xl font-serif font-bold">Crafting change through innovation,<br/><span className="text-[#c8956c]">sustainability & empowerment.</span></h3>
         </div>
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
@@ -194,7 +194,7 @@ const About = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>OUR JOURNEY</span>
             </div>
-            <h3 className="text-3xl md:text-5xl font-serif font-bold text-white">2+ years of Excellence</h3>
+            <h3 className="text-3xl md:text-5xl font-serif font-bold text-white">2+ years of <span className="text-[#c8956c]">Excellence</span></h3>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

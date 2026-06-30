@@ -23,6 +23,9 @@ import AffiliateProgram from './pages/Services/AffiliateProgram';
 import Blog from './pages/Blog/Blog';
 import Gallery from './pages/Gallery/Gallery';
 import Testimonials from './pages/Testimonials/Testimonials';
+import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService/TermsOfService';
+import Breadcrumb from './components/common/Breadcrumb/Breadcrumb';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -55,7 +58,7 @@ function App() {
       <ScrollToTop />
       <div className="app-container">
         <Header />
-        
+        <Breadcrumb />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about/us" element={<About />} />
@@ -78,6 +81,8 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
         </Routes>
         
         <Footer />

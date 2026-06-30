@@ -41,7 +41,7 @@ const ExportLogistics = () => {
   const documents = [
     { title: 'Commercial Invoice', desc: 'Detailed invoice specifying goods, values, and terms of sale for customs valuation.', icon: <FileText size={32} /> },
     { title: 'Packing List', desc: 'Comprehensive list detailing contents, weights, and dimensions of each package.', icon: <Box size={32} /> },
-    { title: 'Certificate Of Origin', desc: 'Official document certifying the country of manufacture for your categories.'},
+    { title: 'Certificate Of Origin', desc: 'Official document certifying the country of manufacture for your categories.', icon: <Globe size={32} /> },
     { title: 'Customs Clearance', desc: 'Complete handling of customs documentation and regulatory compliance.', icon: <ShieldCheck size={32} /> },
     { title: 'Bill Of Lading', desc: 'Shipping documents for sea freight and airway bills for air shipments.', icon: <Ship size={32} /> },
     { title: 'Insurance Certificate', desc: 'Cargo insurance documentation to protect your shipment during transit.', icon: <Briefcase size={32} /> }
@@ -138,7 +138,7 @@ const ExportLogistics = () => {
             <h2>Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>Documentation</span></h2>
             <p>Complete Paperwork Handling</p>
           </div>
-          <div className="advantage-grid">
+          <div className="docs-grid">
             {documents.map((doc, index) => (
               <div className="adv-item" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                 <div className="adv-icon">{doc.icon}</div>

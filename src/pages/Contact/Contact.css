@@ -35,6 +35,7 @@
   letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 30px;
+  border-radius: 50px;
 }
 
 .contact-title {
@@ -587,7 +588,7 @@
   background: transparent;
   border: none;
   padding: 25px;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: 500;
   color: #ffffff;
   cursor: pointer;

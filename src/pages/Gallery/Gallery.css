@@ -9,7 +9,7 @@
 .gallery-header-section {
   background: radial-gradient(circle at center, #1C1713 0%, #15110F 100%);
   color: white;
-  padding: 120px 20px 60px;
+  padding: 40px 20px 60px;
   text-align: center;
   position: relative;
 }

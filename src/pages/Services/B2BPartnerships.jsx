@@ -139,7 +139,7 @@ const B2BPartnerships = () => {
         <div className="container">
           <div className="page-header" data-aos="fade-up">
             <span className="b2b-tag">Service Directory</span>
-            <h1 className="page-title">Global B2B Partnership Opportunities</h1>
+            <h1 className="page-title">Global B2B Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Opportunities</span></h1>
             <p className="page-subtitle">
               We specialize in forging strong, long-lasting business relationships across the globe. Whether you're a wholesaler, retailer, or distributor, our B2B partnership programs are designed to provide you with exclusive categories, reliable supply chains, and dedicated support to scale your business.
             </p>
@@ -160,10 +160,10 @@ const B2BPartnerships = () => {
       <section className="b2b-models-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2 className="mt-16">Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Models</span></h2>
+            <h2>Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Models</span></h2>
             <p>Tailored Solutions for Your Business</p>
           </div>
-          <div className="offer-grid">
+          <div className="models-grid">
             {partnershipModels.map((model, index) => (
               <div className="offer-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                 <div className="model-header">
@@ -186,7 +186,7 @@ const B2BPartnerships = () => {
       </section>
 
       {/* Your Partnership Advantage */}
-      <section className="b2b-advantage-section">
+      <section className="b2b-advantage-section py-10">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
             <h2>Your <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnership Advantage</span></h2>
@@ -210,7 +210,7 @@ const B2BPartnerships = () => {
       <section className="b2b-terms-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2 className="mt-16">Flexible <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnership Terms</span></h2>
+            <h2 className="">Flexible <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnership Terms</span></h2>
             <p>Designed for Your Business Needs</p>
           </div>
           <div className="advantage-grid">
@@ -231,7 +231,7 @@ const B2BPartnerships = () => {
       <section className="b2b-reasons-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2 className="mt-16">Why Partner <br /> <span style={{ color: 'var(--color-brand-base)' }}>With Us</span></h2>
+            <h2 className="">Why Partner <br /> <span style={{ color: 'var(--color-brand-base)' }}>With Us</span></h2>
             <p>Building Success Together</p>
           </div>
           <div className="advantage-grid">
@@ -252,10 +252,10 @@ const B2BPartnerships = () => {
       <section className="b2b-testimonials-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2 className="mt-16">Successful <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnerships</span></h2>
+            <h2>Successful <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnerships</span></h2>
             <p>Stories of Growth and Collaboration</p>
           </div>
-          <div className="advantage-grid">
+          <div className="b2b-testimonials-grid">
             {testimonials.map((testimonial, index) => (
               <div className="adv-item" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                 <div className="adv-icon">{testimonial.icon}</div>

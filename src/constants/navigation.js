@@ -33,37 +33,35 @@ export const HEADER_LINKS = [
 
 export const FOOTER_LINKS = {
   explore: [
-    { label: 'Our Story & Vision', href: '#' },
-    { label: 'Why Choose HIEIL?', href: '#' },
-    { label: 'Got Questions? (FAQs)', href: '#' },
-    { label: 'What\'s Trending', href: '#' },
-    { label: 'Let\'s Connect', href: '#' },
+    { label: 'Our Story & Vision', href: '/about' },
+    { label: 'Why Choose HIEIL?', href: '/about/why-choose-us' },
+    { label: 'Got Questions? (FAQs)', href: '/#faq' },
+    { label: 'What\'s Trending', href: '/products' },
+    { label: 'Let\'s Connect', href: '/contact' },
   ],
   categories: [
-    { label: 'Handcrafted Blue Pottery', href: '#' },
-    { label: 'Handcrafted Metal categories', href: '#' },
-    { label: 'Handcrafted Stone categories', href: '#' },
-    { label: 'Handcrafted Wooden categories', href: '#' },
-    { label: 'Luxury clock', href: '#' },
+    { label: 'Handcrafted Blue Pottery', href: '/products' },
+    { label: 'Handcrafted Metal categories', href: '/products' },
+    { label: 'Handcrafted Stone categories', href: '/products' },
+    { label: 'Handcrafted Wooden categories', href: '/products' },
+    { label: 'Luxury clock', href: '/products' },
   ],
   care: [
-    { label: 'Customer Love & Reviews', href: '#' },
-    { label: 'Global Payments', href: '#' },
-    { label: 'Support', href: '#' },
-    { label: 'Give Feedback', href: '#' },
+    { label: 'Customer Love & Reviews', href: '/testimonials' },
+    { label: 'Global Payments', href: '/services/wholesale' },
+    { label: 'Support', href: '/contact' },
   ],
   policies: [
-    { label: 'Privacy Matters', href: '#' },
-    { label: 'Terms & Conditions', href: '#' },
-    { label: 'Legal Info', href: '#' },
+    { label: 'Privacy Matters', href: '/privacy-policy' },
+    { label: 'Terms & Conditions', href: '/terms-of-service' },
   ],
 };
 
 export const SOCIAL_LINKS = [
-  { platform: 'facebook', href: '#' },
-  { platform: 'x', href: '#' },
-  { platform: 'instagram', href: '#' },
-  { platform: 'pinterest', href: '#' },
-  { platform: 'youtube', href: '#' },
-  { platform: 'linkedin', href: '#' },
+  { platform: 'facebook', href: 'https://facebook.com/hieil' },
+  { platform: 'x', href: 'https://twitter.com/hieil' },
+  { platform: 'instagram', href: 'https://instagram.com/hieil' },
+  { platform: 'pinterest', href: 'https://pinterest.com/hieil' },
+  { platform: 'youtube', href: 'https://youtube.com/c/hieil' },
+  { platform: 'linkedin', href: 'https://linkedin.com/company/hieil' },
 ];

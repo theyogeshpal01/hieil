@@ -201,7 +201,7 @@
   background: radial-gradient(circle at center, #1C1713 0%, #15110F 100%);
 }
 
-.advantage-grid {
+.advantage-grid, .docs-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
@@ -431,7 +431,7 @@
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .advantage-grid, .partners-grid {
+  .advantage-grid, .partners-grid, .docs-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -440,7 +440,7 @@
   .page-title {
     font-size: 2.5rem;
   }
-  .ex-offer-grid, .advantage-grid, .partners-grid {
+  .ex-offer-grid, .advantage-grid, .partners-grid, .docs-grid {
     grid-template-columns: 1fr;
   }
   .process-timeline {

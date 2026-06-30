@@ -154,10 +154,13 @@ const Shop = () => {
     <div className={styles.pageWrapper}>
       {/* Header Banner */}
       <div className={styles.pageHeader}>
-        <h1 className={styles.pageTitle}>{initialCategory.toUpperCase()}</h1>
-        <div className={styles.breadcrumbs}>
-          <Link to="/">Home</Link> &gt; categories {initialCategory !== 'All categories' && `> ${initialCategory}`}
-        </div>
+        <h1 className={styles.pageTitle}>
+          {initialCategory.toUpperCase() === 'ALL CATEGORIES' ? (
+            <>ALL <span style={{ color: 'var(--color-brand-base)' }}>CATEGORIES</span></>
+          ) : (
+            initialCategory.toUpperCase()
+          )}
+        </h1>
       </div>
 
       <div className={styles.mainLayout}>
