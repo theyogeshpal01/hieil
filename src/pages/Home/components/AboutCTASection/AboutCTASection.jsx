@@ -52,7 +52,7 @@ const AboutCTASection = () => {
         <div className={styles.rightCol} ref={rightRef} style={{opacity:0,transform:'translateX(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
           <div className={styles.mediaFrame}>
             <video 
-              src="/about-video.mp4" 
+              src="https://drive.google.com/file/d/1Z8MaOaJT7RUiKwoGwBnSfP5RS8pCbm2g/view?usp=drive_link" 
               className={styles.video} 
               autoPlay 
               muted 

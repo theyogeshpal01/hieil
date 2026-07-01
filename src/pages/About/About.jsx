@@ -26,7 +26,7 @@ const About = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent">
               <span>HIEIL CRAFTSMANSHIP</span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6 font-serif tracking-wide">
+            <h1 className="text-5xl md:text-6xl font-normal leading-tight mb-6 font-serif tracking-wide">
               A FEW WORDS <br />
               <span className="text-[#c8956c]">ABOUT US</span>
             </h1>
@@ -47,7 +47,7 @@ const About = () => {
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-none border-4 border-[#c8956c]/30 flex items-center justify-center p-4 relative z-10 bg-[url('/aboutus.png')] bg-cover bg-center overflow-hidden shadow-none">
                 <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
                 <div className="text-center relative z-20">
-                  <span className="block text-6xl font-bold text-[#c8956c] mb-2">2+</span>
+                  <span className="block text-6xl font-normal text-[#c8956c] mb-2">2+</span>
                   <span className="block text-xl font-medium tracking-wide uppercase text-white">Years of<br/>Excellence</span>
                 </div>
               </div>
@@ -61,7 +61,7 @@ const About = () => {
       <section className="py-10 bg-[#15110F] border-y border-[#2c241c]">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="text-2xl font-bold text-white mb-1">Company Profile <span className="text-[#c8956c]">Pdf</span></h3>
+            <h3 className="text-2xl font-normal text-white mb-1">Company Profile <span className="text-[#c8956c]">Pdf</span></h3>
             <p className="text-[#b5aaa0]">Download our complete journey & catalog</p>
           </div>
           <div className="flex flex-wrap gap-4">
@@ -81,7 +81,7 @@ const About = () => {
           <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>WHO WE ARE</span>
             </div>
-          <h3 className="text-3xl md:text-5xl font-serif font-bold text-white mb-8">Crafting Excellence, <span style={{ color: 'var(--color-brand-base)' }}>Empowering Artisans</span></h3>
+          <h3 className="text-3xl md:text-5xl font-serif font-normal text-white mb-8">Crafting Excellence, <span style={{ color: 'var(--color-brand-base)' }}>Empowering Artisans</span></h3>
           <p className="text-lg font-medium text-[#b5aaa0] leading-relaxed mb-6">
             We are a Jaipur-based handicraft export firm led by Jogendra Singh, with over 2+ years of dedicated industry experience and a team of 500+ highly skilled artisans. Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers.
           </p>
@@ -100,7 +100,7 @@ const About = () => {
           <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>OUR IMPACT</span>
             </div>
-          <h3 className="text-3xl md:text-4xl font-serif font-bold">Crafting change through innovation,<br/><span className="text-[#c8956c]">sustainability & empowerment.</span></h3>
+          <h3 className="text-3xl md:text-4xl font-serif font-normal">Crafting change through innovation,<br/><span className="text-[#c8956c]">sustainability & empowerment.</span></h3>
         </div>
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
@@ -111,7 +111,7 @@ const About = () => {
           ].map((stat, i) => (
             <div key={i} className="text-center p-6 rounded-none bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
               <stat.icon className="w-10 h-10 text-[#c8956c] mx-auto mb-4 opacity-80" />
-              <div className="text-4xl font-bold mb-1">{stat.count}</div>
+              <div className="text-4xl font-normal mb-1">{stat.count}</div>
               <div className="text-base font-medium text-[#2c241c] mb-1">{stat.label}</div>
               <div className="text-sm text-[#b5aaa0]">{stat.desc}</div>
             </div>
@@ -126,7 +126,7 @@ const About = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>OUR LEADERS</span>
             </div>
-            <h3 className="text-3xl md:text-5xl font-serif font-bold text-white">Visionaries Crafting India's <span className="text-[#c8956c]">Heritage Legacy</span></h3>
+            <h3 className="text-3xl md:text-5xl font-serif font-normal text-white">Visionaries Crafting India's <span className="text-[#c8956c]">Heritage Legacy</span></h3>
           </div>
           
           <div className="grid md:grid-cols-2 gap-10">
@@ -139,7 +139,7 @@ const About = () => {
                 <div className="flex items-center gap-5 mb-6">
                   <img src="/founder.jpg" alt="Jogendra Singh" className="w-20 h-20 object-cover rounded-none" />
                   <div>
-                    <h4 className="text-2xl font-bold text-white">Jogendra Singh</h4>
+                    <h4 className="text-2xl font-normal text-white">Jogendra Singh</h4>
                     <p className="text-[#c8956c] font-medium text-sm">Founder & Director</p>
                   </div>
                 </div>
@@ -166,7 +166,7 @@ const About = () => {
                 <div className="flex items-center gap-5 mb-6">
                   <img src="/ceo.jpg" alt="Renu Kumari" className="w-20 h-20 object-cover rounded-none" />
                   <div>
-                    <h4 className="text-2xl font-bold text-white">Renu Kumari</h4>
+                    <h4 className="text-2xl font-normal text-white">Renu Kumari</h4>
                     <p className="text-[#c8956c] font-medium text-sm">Chief Executive Officer</p>
                   </div>
                 </div>
@@ -194,7 +194,7 @@ const About = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>OUR JOURNEY</span>
             </div>
-            <h3 className="text-3xl md:text-5xl font-serif font-bold text-white">2+ years of <span className="text-[#c8956c]">Excellence</span></h3>
+            <h3 className="text-3xl md:text-5xl font-serif font-normal text-white">2+ years of <span className="text-[#c8956c]">Excellence</span></h3>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -207,8 +207,8 @@ const About = () => {
               { num: '6', title: 'Sustainability', desc: 'Implemented Green Craft initiative focusing on eco-friendly materials and sustainable practices.' },
             ].map((step, i) => (
               <div key={i} className="relative p-6 border border-[#2c241c] rounded-none bg-[#1C1713] hover:bg-[#15110F] hover:shadow-none transition-all duration-300 group">
-                <div className="text-4xl font-bold text-[#c8956c]/20 mb-4 group-hover:text-[#c8956c]/30 transition-colors">0{step.num}</div>
-                <h4 className="text-xl font-serif font-bold uppercase text-white mb-3 tracking-wide">{step.title}</h4>
+                <div className="text-4xl font-normal text-[#c8956c]/20 mb-4 group-hover:text-[#c8956c]/30 transition-colors">0{step.num}</div>
+                <h4 className="text-xl font-serif font-normal uppercase text-white mb-3 tracking-wide">{step.title}</h4>
                 <p className="text-[15.2px] text-[#b5aaa0] leading-relaxed">{step.desc}</p>
               </div>
             ))}
@@ -223,7 +223,7 @@ const About = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>OUR VALUES</span>
             </div>
-            <h3 className="text-3xl md:text-4xl font-serif font-bold">The Principles That <span className="text-[#c8956c]">Guide Us</span></h3>
+            <h3 className="text-3xl md:text-4xl font-serif font-normal">The Principles That <span className="text-[#c8956c]">Guide Us</span></h3>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -241,7 +241,7 @@ const About = () => {
                 <div className="w-12 h-12 bg-transparent border border-[#c8956c]/30 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#c8956c]/10 transition-colors duration-300">
                   <value.icon className="text-[#c8956c]" size={24} />
                 </div>
-                <h4 className="text-lg font-serif font-bold uppercase text-white mb-3 tracking-wide">{value.title}</h4>
+                <h4 className="text-lg font-serif font-normal uppercase text-white mb-3 tracking-wide">{value.title}</h4>
                 <p className="text-[15.2px] text-[#b5aaa0] leading-relaxed">{value.desc}</p>
               </div>
             ))}
@@ -252,7 +252,7 @@ const About = () => {
       {/* CTA Section */}
       <section className="py-16 px-6 md:px-12 bg-[#15110F]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Ready To Experience <br /> <span className="text-[#c8956c]">Hieil Craftsmanship</span>?</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-normal text-white mb-4">Ready To Experience <br /> <span className="text-[#c8956c]">Hieil Craftsmanship</span>?</h2>
           <p className="text-lg text-[#b5aaa0] mb-8 max-w-2xl mx-auto">
             Join thousands of satisfied customers worldwide who have transformed their spaces with our authentic, handcrafted pieces. Discover the perfect blend of traditional artistry and contemporary design.
           </p>

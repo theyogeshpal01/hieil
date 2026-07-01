@@ -29,7 +29,7 @@ const WhyChooseUs = () => {
           <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent">
             <span>WHY CHOOSE US</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6 font-serif">
+          <h1 className="text-4xl md:text-6xl font-normal leading-tight mb-6 font-serif">
             More Than Just Exporters — <br />
             <span className="text-[#c8956c]">Partners in Your Success</span>
           </h1>
@@ -39,19 +39,19 @@ const WhyChooseUs = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto border-t border-white/10 pt-10">
             <div className="text-center">
-              <div className="text-3xl font-bold text-[#c8956c] mb-1">100%</div>
+              <div className="text-3xl font-normal text-[#c8956c] mb-1">100%</div>
               <div className="text-sm text-[#b5aaa0] font-medium">Customizations</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-[#c8956c] mb-1">100%</div>
+              <div className="text-3xl font-normal text-[#c8956c] mb-1">100%</div>
               <div className="text-sm text-[#b5aaa0] font-medium">Reliable</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-[#c8956c] mb-1">50+</div>
+              <div className="text-3xl font-normal text-[#c8956c] mb-1">50+</div>
               <div className="text-sm text-[#b5aaa0] font-medium">Global Markets</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-[#c8956c] mb-1">24/7</div>
+              <div className="text-3xl font-normal text-[#c8956c] mb-1">24/7</div>
               <div className="text-sm text-[#b5aaa0] font-medium">Dedicated Support</div>
             </div>
           </div>
@@ -65,7 +65,7 @@ const WhyChooseUs = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>GLOBAL STANDARDS, LOCAL CRAFT</span>
             </div>
-            <h3 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Where Tradition Meets <span className="text-[#c8956c]">Excellence</span></h3>
+            <h3 className="text-3xl md:text-4xl font-serif font-normal text-white mb-6">Where Tradition Meets <span className="text-[#c8956c]">Excellence</span></h3>
             <p className="text-[15.2px] text-[#b5aaa0] leading-relaxed mb-6">
               <strong className="text-white">Authentic Craftsmanship Meets Modern Excellence.</strong> Every product is handmade by skilled artisans and passes through strict quality control and export compliance checks. From design to packaging, we ensure that each piece meets international quality expectations while preserving the authentic touch of traditional Indian craftsmanship.
             </p>
@@ -75,7 +75,7 @@ const WhyChooseUs = () => {
                   <Star className="text-[#c8956c]" size={24} />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-white mb-1">Handcrafted Excellence</h4>
+                  <h4 className="text-xl font-normal text-white mb-1">Handcrafted Excellence</h4>
                   <p className="text-[#b5aaa0] text-sm">Each piece created by skilled artisans with generations of craftsmanship heritage.</p>
                 </div>
               </div>
@@ -84,7 +84,7 @@ const WhyChooseUs = () => {
                   <ShieldCheck className="text-[#c8956c]" size={24} />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-white mb-1">Quality Assured</h4>
+                  <h4 className="text-xl font-normal text-white mb-1">Quality Assured</h4>
                   <p className="text-[#b5aaa0] text-sm">Rigorous quality control processes meeting international standards and expectations.</p>
                 </div>
               </div>
@@ -93,7 +93,7 @@ const WhyChooseUs = () => {
                   <FileText className="text-[#c8956c]" size={24} />
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-white mb-1">Export Compliance</h4>
+                  <h4 className="text-xl font-normal text-white mb-1">Export Compliance</h4>
                   <p className="text-[#b5aaa0] text-sm">Full compliance with international export regulations and documentation requirements.</p>
                 </div>
               </div>
@@ -105,7 +105,7 @@ const WhyChooseUs = () => {
              <div className="absolute bottom-8 left-8 right-8 text-white">
                 <div className="flex items-center gap-3 mb-2">
                   <Award className="text-[#c8956c]" size={32} />
-                  <span className="text-2xl font-serif font-bold">100% Quality Assured</span>
+                  <span className="text-2xl font-serif font-normal">100% Quality Assured</span>
                 </div>
                 <p className="text-[#2c241c]">Tested and verified for international markets.</p>
              </div>
@@ -120,7 +120,7 @@ const WhyChooseUs = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent">
               <span>OUR TRUST FACTORS</span>
             </div>
-            <h3 className="text-3xl md:text-4xl font-serif font-bold text-white">Why Businesses Worldwide <span className="text-[#c8956c]">Trust Us</span></h3>
+            <h3 className="text-3xl md:text-4xl font-serif font-normal text-white">Why Businesses Worldwide <span className="text-[#c8956c]">Trust Us</span></h3>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -133,7 +133,7 @@ const WhyChooseUs = () => {
                 <div className="w-14 h-14 bg-[#15110F] rounded-none flex items-center justify-center mb-6 group-hover:bg-[#15110F] transition-colors duration-300">
                   <feature.icon className="text-[#c8956c] group-hover:text-white transition-colors" size={28} />
                 </div>
-                <h4 className="text-xl font-bold text-white mb-3">{feature.title}</h4>
+                <h4 className="text-xl font-normal text-white mb-3">{feature.title}</h4>
                 <p className="text-[#b5aaa0] text-sm leading-relaxed">{feature.desc}</p>
               </div>
             ))}
@@ -149,7 +149,7 @@ const WhyChooseUs = () => {
               <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>END-TO-END EXPORT SOLUTIONS</span>
             </div>
-              <h3 className="text-3xl md:text-4xl font-serif font-bold">Making Importing from India <span className="text-[#c8956c]">Simple and Secure</span></h3>
+              <h3 className="text-3xl md:text-4xl font-serif font-normal">Making Importing from India <span className="text-[#c8956c]">Simple and Secure</span></h3>
             </div>
             <p className="text-[#b5aaa0] max-w-md">
               Comprehensive services designed to streamline your sourcing process from conception to delivery.
@@ -168,7 +168,7 @@ const WhyChooseUs = () => {
                   <sol.icon className="text-[#c8956c]" size={32} />
                 </div>
                 <div>
-                  <h4 className="text-2xl font-bold mb-2">{sol.title}</h4>
+                  <h4 className="text-2xl font-normal mb-2">{sol.title}</h4>
                   <p className="text-[#b5aaa0] leading-relaxed">{sol.desc}</p>
                 </div>
               </div>
@@ -185,7 +185,7 @@ const WhyChooseUs = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>BY INTERNATIONAL BUYERS</span>
             </div>
-            <h3 className="text-3xl font-serif font-bold text-white mb-8">Growing Global Presence Across <span className="text-[#c8956c]">Continents</span></h3>
+            <h3 className="text-3xl font-serif font-normal text-white mb-8">Growing Global Presence Across <span className="text-[#c8956c]">Continents</span></h3>
             <div className="space-y-6">
               {[
                 { region: 'United States', desc: 'Strong partnerships with retailers and distributors across major US cities and states.' },
@@ -196,7 +196,7 @@ const WhyChooseUs = () => {
                 <div key={i} className="flex gap-4 items-start p-4 rounded-none hover:bg-[#1C1713] transition-colors border border-transparent hover:border-[#1C1713]">
                   <MapPin className="text-[#c8956c] shrink-0 mt-1" size={24} />
                   <div>
-                    <h4 className="text-lg font-bold text-white mb-1">{item.region}</h4>
+                    <h4 className="text-lg font-normal text-white mb-1">{item.region}</h4>
                     <p className="text-[#b5aaa0] text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
@@ -209,7 +209,7 @@ const WhyChooseUs = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>OUR VALUED CLIENTS</span>
             </div>
-            <h3 className="text-3xl font-serif font-bold text-white mb-8">Trusted by Industry Leaders <span className="text-[#c8956c]">Worldwide</span></h3>
+            <h3 className="text-3xl font-serif font-normal text-white mb-8">Trusted by Industry Leaders <span className="text-[#c8956c]">Worldwide</span></h3>
             <div className="grid sm:grid-cols-2 gap-6">
               {[
                 { title: 'Retailers', desc: 'Boutique stores, chain retailers, and specialty shops worldwide trust our quality and reliability.' },
@@ -219,7 +219,7 @@ const WhyChooseUs = () => {
               ].map((client, i) => (
                 <div key={i} className="bg-[#1C1713] p-6 rounded-none border border-[#1C1713]">
                   <Building className="text-[#c8956c] mb-4" size={32} />
-                  <h4 className="text-xl font-bold text-white mb-2">{client.title}</h4>
+                  <h4 className="text-xl font-normal text-white mb-2">{client.title}</h4>
                   <p className="text-[#b5aaa0] text-sm leading-relaxed">{client.desc}</p>
                 </div>
               ))}
@@ -235,7 +235,7 @@ const WhyChooseUs = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>YOUR SUCCESS PARTNER</span>
             </div>
-            <h3 className="text-3xl md:text-4xl font-serif font-bold text-white">Why Choose Us as Your <span className="text-[#c8956c]">Export Partner</span></h3>
+            <h3 className="text-3xl md:text-4xl font-serif font-normal text-white">Why Choose Us as Your <span className="text-[#c8956c]">Export Partner</span></h3>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -262,12 +262,12 @@ const WhyChooseUs = () => {
                <ShieldCheck size={120} />
              </div>
              <div className="flex-1 relative z-10">
-               <h4 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+               <h4 className="text-xl font-normal text-white mb-2 flex items-center gap-2">
                  <Star className="text-[#c8956c]" size={20} fill="currentColor" /> 100% Transparency
                </h4>
                <p className="text-[#b5aaa0] mb-6">Complete visibility into development costs, material sourcing, and production timelines.</p>
                
-               <h4 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
+               <h4 className="text-xl font-normal text-white mb-2 flex items-center gap-2">
                  <ShieldCheck className="text-[#c8956c]" size={20} fill="currentColor" /> No Corruption Policy
                </h4>
                <p className="text-[#b5aaa0]">Zero-tolerance for unethical practices, ensuring fair and honest product development cycles.</p>
@@ -282,7 +282,7 @@ const WhyChooseUs = () => {
           <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
             <span>THE HIEIL DIFFERENCE</span>
           </div>
-          <h3 className="text-3xl md:text-4xl font-serif font-bold mb-12">Setting Standards in <span className="text-[#c8956c]">Export Excellence</span></h3>
+          <h3 className="text-3xl md:text-4xl font-serif font-normal mb-12">Setting Standards in <span className="text-[#c8956c]">Export Excellence</span></h3>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { title: 'Heritage & Experience', desc: '2+ years of expertise combining traditional craftsmanship with modern practices.' },
@@ -292,9 +292,9 @@ const WhyChooseUs = () => {
             ].map((diff, i) => (
               <div key={i}>
                 <div className="w-12 h-12 bg-[#15110F]/20 text-[#c8956c] rounded-none flex items-center justify-center mx-auto mb-4 border border-[#c8956c]/30">
-                  <span className="font-bold">{i+1}</span>
+                  <span className="font-normal">{i+1}</span>
                 </div>
-                <h4 className="text-lg font-bold mb-2">{diff.title}</h4>
+                <h4 className="text-lg font-normal mb-2">{diff.title}</h4>
                 <p className="text-[#b5aaa0] text-sm leading-relaxed">{diff.desc}</p>
               </div>
             ))}
@@ -305,7 +305,7 @@ const WhyChooseUs = () => {
       {/* CTA Section */}
       <section className="py-20 px-6 md:px-12 bg-[#15110F]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6">Ready To <br /> <span style={{ color: 'var(--color-brand-base)' }}>Experience Excellence?</span></h2>
+          <h2 className="text-3xl md:text-5xl font-serif font-normal text-white mb-6">Ready To <br /> <span style={{ color: 'var(--color-brand-base)' }}>Experience Excellence?</span></h2>
           <p className="text-[15.2px] text-[#b5aaa0] mb-10 max-w-2xl mx-auto leading-relaxed">
             Work with us, and experience the perfect blend of Indian tradition and world-class business reliability. Join hundreds of satisfied clients worldwide who trust us for their handicraft sourcing needs.
           </p>

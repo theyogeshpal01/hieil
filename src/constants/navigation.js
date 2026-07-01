@@ -13,7 +13,7 @@ export const HEADER_LINKS = [
   { label: 'SHOP', href: '/shop' },
   { 
     label: 'SERVICES', 
-    href: '/services', 
+    href: '/services/custom', 
     hasDropdown: true,
     dropdownItems: [
       { label: 'Custom Product Development', href: '/services/custom' },

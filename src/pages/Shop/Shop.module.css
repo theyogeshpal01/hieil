@@ -1,7 +1,6 @@
 .pageWrapper {
   background-color: #15110F;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 /* Header Banner */
@@ -36,73 +35,9 @@
 .mainLayout {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 1rem 2rem 4rem;
-  display: block;
-}
-
-/* Horizontal Category Nav */
-.categoryNav {
+  padding: 3rem 2rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
-}
-
-.filterHeading {
-  font-family: var(--font-serif);
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #888;
-  letter-spacing: 2px;
-  margin-bottom: 1.5rem;
-}
-
-.categoryList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.categoryBtn {
-  background: none;
-  border: none;
-  color: #888;
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  padding: 5px 10px;
-  transition: all 0.3s ease;
-}
-
-.categoryBtn.active, .categoryBtn:hover {
-  color: #c8956c;
-}
-
-/* Redesigned Top Header (All Collections) */
-.collectionsHeader {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.collectionsTitle {
-  font-family: var(--font-serif);
-  font-size: 2rem;
-  font-weight: 400;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
-
-.collectionsSubtitle {
-  font-family: var(--font-sans);
-  font-size: 3.5rem;
-  color: #888;
+  gap: 3.5rem;
 }
 
 /* Sidebar */
@@ -299,50 +234,27 @@
   font-weight: 500;
 }
 
-.viewControlsWrapper {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 2rem;
-}
-
 .viewIcons {
   display: flex;
   gap: 0.5rem;
-  background: rgba(28, 23, 19, 0.6);
-  padding: 5px;
-  border-radius: 8px;
-  border: 1px solid #2c241c;
+  color: #c8956c;
 }
 
-.viewIconBtn {
-  background: transparent;
-  border: none;
-  color: #888;
+.viewIcon {
   cursor: pointer;
-  padding: 5px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+  color: #888888;
 }
 
-.viewIconBtn.active, .viewIconBtn:hover {
-  background: #c8956c;
-  color: #15110F;
+.viewIcon.active {
+  color: #c8956c;
 }
 
-/* Dynamic Grid Setup */
+/* Product Grid */
 .productGrid {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 2.5rem;
-  transition: all 0.3s ease;
 }
-
-.grid1Col { grid-template-columns: 1fr; max-width: 600px; margin: 0 auto; }
-.grid2Col { grid-template-columns: repeat(2, 1fr); }
-.grid3Col { grid-template-columns: repeat(3, 1fr); }
-.grid4Col { grid-template-columns: repeat(4, 1fr); }
 
 .productCard {
   background: rgba(28, 23, 19, 0.6);
@@ -354,6 +266,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  height: 100%;
 }
 
 .imageBox {
@@ -361,7 +274,7 @@
   background-color: #15110F; /* Very subtle off-white from Image 3 */
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 260px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -370,9 +283,9 @@
 }
 
 .productImage {
-  width: 75%;
-  height: 75%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.4s ease;
 }
 
@@ -389,13 +302,15 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background-color: #c8956c; /* Coral/Red badge from Image 3 */
+  background-color: #c8956c;
   color: #000000;
   font-family: var(--font-sans);
   font-size: 0.7rem;
-  font-weight: 700;
-  padding: 0.2rem 0.5rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
   letter-spacing: 0.5px;
+  z-index: 2;
+  border-radius: 4px;
 }
 
 .brandName {
