@@ -59,10 +59,10 @@ export const FOOTER_LINKS = {
 };
 
 export const SOCIAL_LINKS = [
-  { platform: 'facebook', href: 'https://facebook.com/hieil' },
+  { platform: 'facebook', href: 'https://www.facebook.com/hieilofficial' },
   { platform: 'x', href: 'https://twitter.com/hieil' },
-  { platform: 'instagram', href: 'https://instagram.com/hieil' },
-  { platform: 'pinterest', href: 'https://pinterest.com/hieil' },
+  { platform: 'instagram', href: 'https://www.instagram.com/hieilofficial/' },
+  { platform: 'pinterest', href: 'https://in.pinterest.com/hieilofficial/' },
   { platform: 'youtube', href: 'https://youtube.com/c/hieil' },
-  { platform: 'linkedin', href: 'https://linkedin.com/company/hieil' },
+  { platform: 'linkedin', href: 'https://www.linkedin.com/company/hieilofficial' },
 ];
