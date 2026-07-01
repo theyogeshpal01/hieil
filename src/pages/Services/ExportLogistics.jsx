@@ -35,7 +35,7 @@ const ExportLogistics = () => {
     { title: 'Export Documentation', icon: <FileText size={32} />, desc: 'We handle all export documentation including invoices, packing lists, certificates of origin, and export compliance paperwork.' },
     { title: 'Quality Assurance', icon: <ShieldCheck size={32} />, desc: 'Rigorous quality control and inspection processes to ensure categories meet international export standards.' },
     { title: 'Export Packaging', icon: <Box size={32} />, desc: 'Professional export packaging solutions that ensure your categories are ready for international shipping.' },
-    { title: 'Global Markets', desc: 'Export to USA, Europe, Middle East, Asia, and more with our established international market presence.' }
+    { title: 'Global Markets', icon: <Globe size={32} />, desc: 'Export to USA, Europe, Middle East, Asia, and more with our established international market presence.' }
   ];
 
   const documents = [
@@ -74,7 +74,7 @@ const ExportLogistics = () => {
 
   const partners = [
     { title: 'Experience', desc: '2+ years of expertise in international export and compliance procedures across global markets.', icon: <Clock size={32} /> },
-    { title: 'Global Presence', desc: 'Established export relationships with buyers and distributors in 50+ countries worldwide.'},
+    { title: 'Global Presence', desc: 'Established export relationships with buyers and distributors in 50+ countries worldwide.', icon: <Globe size={32} /> },
     { title: 'Quality Assurance', desc: 'Rigorous quality control and export standards compliance for international market requirements.', icon: <ShieldCheck size={32} /> },
     { title: 'Trusted Partner', desc: 'Reliable export services with transparent processes and dedicated support for international trade.', icon: <HeartHandshake size={32} /> }
   ];
@@ -96,20 +96,6 @@ const ExportLogistics = () => {
           </p>
         </div>
       </div>
-
-      {/* Stats Section */}
-      <section className="ex-stats-section">
-        <div className="container">
-          <div className="stats-grid">
-            {stats.map((stat, index) => (
-              <div className="stat-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <h3>{stat.value}</h3>
-                <p>{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Export Solutions */}
       <section className="ex-offer-section">

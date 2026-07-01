@@ -438,7 +438,7 @@
 
 @media (max-width: 768px) {
   .page-title {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
   }
   .ex-offer-grid, .advantage-grid, .partners-grid, .docs-grid {
     grid-template-columns: 1fr;

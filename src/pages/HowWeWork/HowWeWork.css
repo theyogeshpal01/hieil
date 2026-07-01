@@ -12,7 +12,7 @@
 }
 
 .how-we-work-page {
-  font-family: 'Inter', 'Outfit', sans-serif;
+  font-family: var(--font-sans);
   color: var(--hww-dark);
   background-color: #15110F;
   overflow-x: hidden;
@@ -48,7 +48,7 @@
 }
 
 .page-title {
-  font-family: 'Times New Roman', serif;
+  font-family: var(--font-serif);
   font-size: 3.5rem;
   font-weight: 400;
   color: #ffffff;
@@ -194,7 +194,7 @@
 .process-subtitle {
   color: var(--hww-primary);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   display: block;
@@ -202,8 +202,9 @@
 }
 
 .process-title {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 600;
   margin-bottom: 15px;
   color: var(--hww-dark);
 }
@@ -250,7 +251,7 @@
 
 .workflow-title {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 60px;
 }
@@ -444,17 +445,17 @@
   }
   
   .hww-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 }
 
 @media (max-width: 768px) {
   .hww-hero {
-    padding: 100px 20px 80px;
+    padding: 120px 20px 60px;
   }
   
   .hww-title {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
   }
   
   .process-features {

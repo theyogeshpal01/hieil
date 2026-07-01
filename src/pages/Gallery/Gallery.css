@@ -46,7 +46,7 @@
 }
 
 .filter-title {
-  font-size: 1.2rem;
+  font-size: 3.5rem;
   font-weight: 600;
   margin-bottom: 20px;
   padding-bottom: 15px;
@@ -193,7 +193,7 @@
 
 .shared-moments-section .subtitle {
   font-family: var(--font-serif);
-  font-size: 2.2rem;
+  font-size: 1.1rem;
   color: #ffffff;
   margin-bottom: 15px;
   font-weight: 400;

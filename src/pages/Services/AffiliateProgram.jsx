@@ -36,7 +36,7 @@ const AffiliateProgram = () => {
         <div className="container">
           <div className="page-header" data-aos="fade-up">
             <span className="ap-tag">Service Directory</span>
-            <h1 className="page-title">Earn with HIEIL Partner Program</h1>
+            <h1 className="page-title">Earn with HIEIL Partner <span style={{ color: 'var(--color-brand-base)' }}>Program</span></h1>
             <p className="page-subtitle">
               Join our exclusive affiliate program and turn your network into a revenue stream. We offer competitive commissions, dedicated support, and high-converting marketing materials to help you succeed in promoting our premium handcrafted categories.
             </p>

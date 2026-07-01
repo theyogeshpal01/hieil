@@ -27,8 +27,8 @@ const About = () => {
               <span>HIEIL CRAFTSMANSHIP</span>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6 font-serif tracking-wide">
-              A Few Words <br />
-              <span className="text-[#c8956c]">About Us</span>
+              A FEW WORDS <br />
+              <span className="text-[#c8956c]">ABOUT US</span>
             </h1>
             <p className="text-lg text-white mb-6 leading-relaxed">
               HIEIL is committed to preserving the rich heritage of Indian craftsmanship by connecting skilled artisans to global markets. We work directly with artisan communities, ensuring fair wages, transparency, and sustainable growth.
@@ -82,8 +82,8 @@ const About = () => {
               <span>WHO WE ARE</span>
             </div>
           <h3 className="text-3xl md:text-5xl font-serif font-bold text-white mb-8">Crafting Excellence, <span style={{ color: 'var(--color-brand-base)' }}>Empowering Artisans</span></h3>
-          <p className="text-lg text-[#b5aaa0] leading-relaxed mb-6">
-            We are a Jaipur-based handicraft export firm led by Jogendra Singh, with over 2+ years of dedicated industry experience and a team of 800 highly skilled artisans. Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers.
+          <p className="text-lg font-medium text-[#b5aaa0] leading-relaxed mb-6">
+            We are a Jaipur-based handicraft export firm led by Jogendra Singh, with over 2+ years of dedicated industry experience and a team of 500+ highly skilled artisans. Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers.
           </p>
           <p className="text-lg text-[#b5aaa0] leading-relaxed mb-6">
             Through strict quality assurance, ethical sourcing, and innovative design, we deliver authentic, handcrafted categories that reflect the heritage and craftsmanship of our region. By partnering with us, you support sustainable artisan communities and gain access to exquisite, one-of-a-kind creations that elevate your product offerings.
@@ -137,7 +137,7 @@ const About = () => {
               </div>
               <div className="relative z-10">
                 <div className="flex items-center gap-5 mb-6">
-                  <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop" alt="Jogendra Singh" className="w-20 h-20 object-cover rounded-none" />
+                  <img src="/founder.jpg" alt="Jogendra Singh" className="w-20 h-20 object-cover rounded-none" />
                   <div>
                     <h4 className="text-2xl font-bold text-white">Jogendra Singh</h4>
                     <p className="text-[#c8956c] font-medium text-sm">Founder & Director</p>
@@ -164,7 +164,7 @@ const About = () => {
               </div>
               <div className="relative z-10">
                 <div className="flex items-center gap-5 mb-6">
-                  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop" alt="Renu Kumari" className="w-20 h-20 object-cover rounded-none" />
+                  <img src="/ceo.jpg" alt="Renu Kumari" className="w-20 h-20 object-cover rounded-none" />
                   <div>
                     <h4 className="text-2xl font-bold text-white">Renu Kumari</h4>
                     <p className="text-[#c8956c] font-medium text-sm">Chief Executive Officer</p>

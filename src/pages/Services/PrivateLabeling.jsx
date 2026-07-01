@@ -125,26 +125,12 @@ const PrivateLabeling = () => {
             border: '1px solid #4a3e35', color: '#c8956c', fontSize: '0.75rem', 
             fontWeight: '600', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '30px'
           }}>Service Directory</span>
-          <h1 className="page-title">Private Labeling & OEM</h1>
+          <h1 className="page-title">Private Labeling <span style={{ color: 'var(--color-brand-base)' }}>& OEM</span></h1>
           <p className="page-subtitle">
             End-to-end private label services. Manufacture high-quality products under your brand name with complete customization options, bespoke packaging, and retail-ready solutions.
           </p>
         </div>
       </div>
-
-      {/* Stats Section */}
-      <section className="pl-stats-section">
-        <div className="container">
-          <div className="stats-grid">
-            {stats.map((stat, index) => (
-              <div className="stat-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <h3>{stat.value}</h3>
-                <p>{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Comprehensive Branding Solutions */}
       <section className="pl-offer-section">

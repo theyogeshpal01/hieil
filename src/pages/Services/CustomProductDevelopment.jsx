@@ -11,7 +11,7 @@ const CustomProductDevelopment = () => {
   const advantages = [
     { title: 'Market Uniqueness', icon: <Star size={24} />, desc: 'Get categories that are unique to your market and help you stand out from competitors with exclusive designs.' },
     { title: 'Brand Alignment', icon: <Target size={24} />, desc: 'Every product perfectly matches your brand identity, values, and target audience preferences.' },
-    { title: 'International Standards', desc: 'categories designed to meet international quality standards and market-specific regulations.' },
+    { title: 'International Standards', icon: <Globe size={24} />, desc: 'categories designed to meet international quality standards and market-specific regulations.' },
     { title: 'Exclusive Collections', icon: <ShieldCheck size={24} />, desc: 'Create proprietary product lines that can\'t be replicated by competitors, giving you market exclusivity.' },
     { title: 'Timely Delivery', icon: <Clock size={24} />, desc: 'Efficient production timelines that ensure your categories reach the market when you need them.' },
     { title: 'Ongoing Support', icon: <HeartHandshake size={24} />, desc: 'Continuous consultation and support throughout the development process and beyond launch.' },

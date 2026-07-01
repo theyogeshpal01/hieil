@@ -2,15 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
+@theme {
   --color-brand-base: #c8956c;
   --color-brand-accent: #c8956c;
   --color-brand-accent-dark: #917751;
   --color-brand-dark: #c8956c;
   --color-brand-white: #15110F;
   --color-brand-gray: #b5aaa0;
-  --font-serif: "Cinzel", serif;
-  --font-sans: "Inter", sans-serif;
+  --font-serif: Cinzel, serif;
+  --font-sans: Inter, sans-serif;
+}
+
+:root {
+  --font-serif: Cinzel, serif;
+  --font-sans: Inter, sans-serif;
 }
 
 @layer base {

@@ -22,9 +22,9 @@ const WhyChooseUs = () => {
   return (
     <div className="min-h-screen bg-[#1C1713]">
       {/* Hero Section */}
-      <section className="relative bg-[#1C1713] text-white py-20 md:py-32 px-6 md:px-12 lg:px-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80')] bg-cover bg-center"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1C1713] via-[#1C1713]/80 to-transparent"></div>
+      <section className="relative py-20 px-6 md:px-12 lg:px-24 border-b border-[#2c241c] overflow-hidden">
+        <div className="absolute inset-0 bg-[#15110F]"></div>
+        <div className="absolute top-0 left-0 w-64 h-64 bg-[#c8956c]/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/3"></div>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent">
             <span>WHY CHOOSE US</span>
@@ -44,7 +44,7 @@ const WhyChooseUs = () => {
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-[#c8956c] mb-1">100%</div>
-              <div className="text-sm text-[#b5aaa0] font-medium">On-Time Delivery</div>
+              <div className="text-sm text-[#b5aaa0] font-medium">Reliable</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-[#c8956c] mb-1">50+</div>

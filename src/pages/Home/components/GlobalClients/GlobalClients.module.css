@@ -37,7 +37,7 @@
 
 .title {
   font-family: var(--font-serif);
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 500;
   color: #ffffff;
   line-height: 1.15;
@@ -46,7 +46,7 @@
 
 .subtitle {
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: #888888;
   line-height: 1.75;
   margin: 0;
@@ -249,7 +249,7 @@
   }
 
   .title {
-    font-size: 2.2rem;
+    font-size: 3.5rem;
   }
 
   .subtitle {

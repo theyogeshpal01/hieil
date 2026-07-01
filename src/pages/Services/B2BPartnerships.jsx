@@ -31,7 +31,7 @@ const B2BPartnerships = () => {
   }, []);
 
   const stats = [
-    { value: '200+', label: 'Active Partners' },
+    { value: '20+', label: 'Active Partners' },
     { value: '2+', label: 'Years Experience' },
     { value: '98%', label: 'Partnership Retention' },
     { value: '50+', label: 'Countries Served' }
@@ -90,7 +90,7 @@ const B2BPartnerships = () => {
     { title: 'Growth Acceleration', icon: <TrendingUp size={24} />, desc: 'Leverage our expertise and resources to accelerate your market expansion and product development.' },
     { title: 'Supply Chain Security', icon: <ShieldCheck size={24} />, desc: 'Ensure business continuity with reliable supply chain management and risk mitigation strategies.' },
     { title: 'Innovation Partnership', icon: <Lightbulb size={24} />, desc: 'Collaborate on new product development and market innovations that keep you ahead of competitors.' },
-    { title: 'Global Reach', desc: 'Access international markets with our export expertise and global logistics capabilities.' },
+    { title: 'Global Reach', icon: <Globe size={24} />, desc: 'Access international markets with our export expertise and global logistics capabilities.' },
     { title: 'Quality Assurance', icon: <CheckCircle size={24} />, desc: 'Maintain product excellence with our rigorous quality control processes and international certifications.' },
     { title: '100% Transparency', icon: <Search size={24} />, desc: 'Complete visibility into pricing, documentation, and tracking for total peace of mind.' },
     { title: 'No Corruption Policy', icon: <Scale size={24} />, desc: 'Ethical business practices with zero tolerance for corruption across all global operations.' }

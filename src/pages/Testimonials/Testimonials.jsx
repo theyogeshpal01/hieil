@@ -24,7 +24,7 @@ const Testimonials = () => {
       <section className="testimonials-hero">
         <div className="testimonials-hero-content" data-aos="fade-up">
           <span className="testimonials-tag">Testimonials</span>
-          <h1 className="testimonials-title">What Our Customers Say</h1>
+          <h1 className="testimonials-title">What Our Customers <span style={{ color: 'var(--color-brand-base)' }}>Say</span></h1>
           <p className="testimonials-subtitle">
             Discover why thousands of customers trust HIEIL for their handicraft needs. Read genuine testimonials from homeowners, interior designers, and businesses who have transformed their spaces with our premium handmade categories and exceptional services.
           </p>
@@ -63,7 +63,7 @@ const Testimonials = () => {
             <div className="testimonial-author-wrapper">
               <div className="author-line"></div>
               <div className="testimonial-author">
-                <h4>Sakura</h4>
+                {/* Name removed per request */}
                 <p>Business Man , Japan , Tokyo</p>
               </div>
             </div>

@@ -33,7 +33,7 @@
 .testimonials-hero {
   background: radial-gradient(circle at center, #1C1713 0%, #15110F 100%);
   color: white;
-  padding: 150px 20px 100px;
+  padding: 120px 20px 60px;
   text-align: center;
   position: relative;
   border-bottom: 1px solid #2c241c;
@@ -62,7 +62,7 @@
 
 .testimonials-title {
   font-family: var(--font-serif);
-  font-size: 4.5rem;
+  font-size: 3.5rem;
   font-weight: 400;
   margin-bottom: 24px;
   line-height: 1.1;
@@ -384,7 +384,7 @@
 
 @media (max-width: 768px) {
   .testimonials-title {
-    font-size: 2.8rem;
+    font-size: 3.5rem;
   }
   .featured-testimonial-card {
     padding: 40px 20px;

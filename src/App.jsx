@@ -25,6 +25,7 @@ import Gallery from './pages/Gallery/Gallery';
 import Testimonials from './pages/Testimonials/Testimonials';
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService/TermsOfService';
+import LegalInfo from './pages/LegalInfo/LegalInfo';
 import Breadcrumb from './components/common/Breadcrumb/Breadcrumb';
 
 import AOS from 'aos';
@@ -83,6 +84,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/legal-info" element={<LegalInfo />} />
         </Routes>
         
         <Footer />

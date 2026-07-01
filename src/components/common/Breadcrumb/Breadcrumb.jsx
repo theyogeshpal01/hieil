@@ -17,12 +17,28 @@ const Breadcrumb = ({ items }) => {
       currentUrl += `/${path}`;
       const isLast = index === paths.length - 1;
       
+      // Map of specific path segments to their full names
+      const customLabels = {
+        'custom': 'Custom Product Development',
+        'wholesale': 'Bulk Wholesale Supply',
+        'export': 'Export Logistics',
+        'quality': 'Quality Assurance',
+        'private-labeling': 'Private Labeling',
+        'b2b': 'B2B Partnerships',
+        'affiliate': 'Affiliate Program',
+        'us': 'Us',
+        'why-choose-us': 'Why Choose Us',
+        'how-we-work': 'How We Work',
+        'legal-info': 'Legal Info'
+      };
+
       // Basic formatting for standard paths
       let label = path.replace(/-/g, ' ');
       label = label.charAt(0).toUpperCase() + label.slice(1);
       
-      if (path.toLowerCase() === 'us') label = 'Us';
-      if (path.toLowerCase() === 'b2b') label = 'B2B';
+      if (customLabels[path.toLowerCase()]) {
+        label = customLabels[path.toLowerCase()];
+      }
       
       return {
         label,

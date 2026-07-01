@@ -162,7 +162,7 @@
 
 /* Advantage Section */
 .cs-advantage-section {
-  padding: 100px 0;
+  padding: 140px 0;
   background: radial-gradient(circle at center, #1C1713 0%, #15110F 100%);
 }
 
@@ -412,7 +412,7 @@
 
 @media (max-width: 768px) {
   .page-title {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
   }
   .offer-grid, .custom-offer-grid, .advantage-grid, .partners-grid {
     grid-template-columns: 1fr;

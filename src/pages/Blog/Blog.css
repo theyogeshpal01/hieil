@@ -28,7 +28,7 @@
 }
 
 .section-subtitle {
-  font-size: 15.2px;
+  font-size: 1.1rem;
   color: var(--hww-primary);
   margin-top: 30px;
   font-weight: 600;
@@ -37,7 +37,7 @@
 /* Hero Section */
 .blog-hero {
   color: white;
-  padding: 40px 20px 60px;
+  padding: 120px 20px 60px;
   text-align: center;
   position: relative;
 }
@@ -344,7 +344,6 @@
   font-family: var(--font-serif);
   font-size: 2.5rem;
   margin-bottom: 15px;
-  color: #c8956c;
 }
 
 .newsletter-content p {
@@ -438,10 +437,10 @@
 
 @media (max-width: 768px) {
   .blog-title {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
   }
   .blog-hero {
-    padding: 120px 20px 80px;
+    padding: 120px 20px 60px;
   }
   .topics-header {
     flex-direction: column;

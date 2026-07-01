@@ -84,7 +84,7 @@ const QualityAssurance = () => {
             border: '1px solid #4a3e35', color: '#c8956c', fontSize: '0.75rem', 
             fontWeight: '600', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '30px'
           }}>Service Directory</span>
-          <h1 className="page-title">Quality Assurance</h1>
+          <h1 className="page-title">Quality <span style={{ color: 'var(--color-brand-base)' }}>Assurance</span></h1>
           <p className="page-subtitle">
             Uncompromising standards and rigorous testing protocols to ensure every single product meets the highest global benchmarks. We protect your brand reputation with flawless execution.
           </p>

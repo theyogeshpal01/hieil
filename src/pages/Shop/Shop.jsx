@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ChevronDown, ChevronUp, Grid, List, Star } from 'lucide-react';
+import { Grid, List, Columns, LayoutGrid, Star } from 'lucide-react';
 import styles from './Shop.module.css';
 
 import { categories } from "../../data/products";
 
 // Mock filters matching Image 1 categories
 const FILTERS = [
-  {
-    id: 'availability',
-    title: 'AVAILABILITY',
-    options: ['In stock (5)', 'Out of stock (0)']
-  },
   {
     id: 'categories',
     title: 'categories',
@@ -73,8 +68,9 @@ const Shop = () => {
   // Determine initial category from URL
   const initialCategory = categoryId ? categoryMap[categoryId] || 'All categories' : 'All categories';
 
+  const [columns, setColumns] = useState(4);
+
   const [openSections, setOpenSections] = useState({
-    availability: true,
     categories: true,
     artisan: true,
     material: true,
@@ -86,7 +82,6 @@ const Shop = () => {
     categories: [initialCategory],
     material: [],
     artisan: [],
-    availability: [],
     price: []
   });
 
@@ -115,7 +110,6 @@ const Shop = () => {
       categories: ['All categories'],
       material: [],
       artisan: [],
-      availability: [],
       price: []
     });
   };
@@ -156,98 +150,55 @@ const Shop = () => {
       <div className={styles.pageHeader}>
         <h1 className={styles.pageTitle}>
           {initialCategory.toUpperCase() === 'ALL CATEGORIES' ? (
-            <>ALL <span style={{ color: 'var(--color-brand-base)' }}>CATEGORIES</span></>
+            <span style={{ color: 'var(--color-brand-base)' }}>ALL CATEGORIES</span>
           ) : (
-            initialCategory.toUpperCase()
+            <span style={{ color: 'var(--color-brand-base)' }}>{initialCategory.toUpperCase()}</span>
           )}
         </h1>
       </div>
 
       <div className={styles.mainLayout}>
-        {/* Sidebar */}
-        <aside className={styles.sidebar}>
-          <div className={styles.filterHeader}>
-            <h3>FILTER:</h3>
-            <button className={styles.clearAllBtn} onClick={handleClearAll}>Clear All</button>
-          </div>
-
-          {FILTERS.map((section) => (
-            <div key={section.id} className={styles.filterSection}>
+        {/* Horizontal Category Nav */}
+        <div className={styles.categoryNav}>
+          <h3 className={styles.filterHeading}>Filter By Category</h3>
+          <div className={styles.categoryList}>
+            {FILTERS[0].options.map(opt => (
               <button 
-                className={styles.filterSectionHeader}
-                onClick={() => toggleSection(section.id)}
+                key={opt}
+                className={`${styles.categoryBtn} ${(selectedFilters.categories || []).includes(opt) ? styles.active : ''}`}
+                onClick={() => setSelectedFilters(prev => ({...prev, categories: [opt]}))}
               >
-                {section.title}
-                {openSections[section.id] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                {opt}
               </button>
-              
-              {openSections[section.id] && (
-                <div className={styles.filterContent}>
-                  {section.options.map((opt, idx) => (
-                    <label key={idx} className={styles.checkboxLabel}>
-                      <input 
-                        type="checkbox" 
-                        checked={(selectedFilters[section.id] || []).includes(opt)}
-                        onChange={() => handleFilterChange(section.id, opt)}
-                      /> 
-                      {opt}
-                    </label>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
 
-          {/* Color Section */}
-          <div className={styles.filterSection}>
-            <button 
-              className={styles.filterSectionHeader}
-              onClick={() => toggleSection('colors')}
-            >
-              COLOR
-              {openSections['colors'] ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+        {/* Collections Header */}
+        <div className={styles.collectionsHeader}>
+          <h2 className={styles.collectionsTitle}>All Collections</h2>
+          <p className={styles.collectionsSubtitle}>Showing {filteredcategories.length} handcrafted items</p>
+        </div>
+
+        {/* View Controls */}
+        <div className={styles.viewControlsWrapper}>
+          <div className={styles.viewIcons}>
+            <button className={`${styles.viewIconBtn} ${columns === 1 ? styles.active : ''}`} onClick={() => setColumns(1)}>
+              <List size={20} />
             </button>
-            
-            {openSections['colors'] && (
-              <div className={styles.colorSwatches}>
-                {COLORS.map((color, idx) => (
-                  <div 
-                    key={idx} 
-                    className={styles.colorSwatch} 
-                    style={{ backgroundColor: color }}
-                  ></div>
-                ))}
-              </div>
-            )}
+            <button className={`${styles.viewIconBtn} ${columns === 2 ? styles.active : ''}`} onClick={() => setColumns(2)}>
+              <Columns size={20} />
+            </button>
+            <button className={`${styles.viewIconBtn} ${columns === 3 ? styles.active : ''}`} onClick={() => setColumns(3)}>
+              <Grid size={20} />
+            </button>
+            <button className={`${styles.viewIconBtn} ${columns === 4 ? styles.active : ''}`} onClick={() => setColumns(4)}>
+              <LayoutGrid size={20} />
+            </button>
           </div>
-        </aside>
+        </div>
 
-        {/* Content Area */}
-        <div className={styles.contentArea}>
-          <div className={styles.topBar}>
-            <div className={styles.resultsCount}>
-              Showing {filteredcategories.length} results
-            </div>
-            
-            <div className={styles.sortControls}>
-              <div>
-                Sort by: 
-                <select className={styles.sortSelect} defaultValue="best">
-                  <option value="best">Best selling</option>
-                  <option value="price-asc">Price, low to high</option>
-                  <option value="price-desc">Price, high to low</option>
-                  <option value="new">Date, new to old</option>
-                </select>
-              </div>
-              <div className={styles.productCount}>{filteredcategories.length} categories</div>
-              <div className={styles.viewIcons}>
-                <Grid size={18} className={`${styles.viewIcon} ${styles.active}`} />
-                <List size={18} className={styles.viewIcon} />
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.productGrid}>
+        <div className={`${styles.productGrid} ${styles[`grid${columns}Col`]}`}>
             {filteredcategories.length === 0 ? (
               <div style={{ padding: '2rem 0', color: '#666' }}>No categories found matching your filters.</div>
             ) : (
@@ -281,7 +232,6 @@ const Shop = () => {
               ))
             )}
           </div>
-        </div>
       </div>
     </div>
   );

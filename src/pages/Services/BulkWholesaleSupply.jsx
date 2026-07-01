@@ -42,22 +42,6 @@ const BulkWholesaleSupply = () => {
 
   return (
     <div className="wholesale-page">
-      
-
-      {/* Stats Section */}
-      <section className="ws-stats-section">
-        <div className="container">
-          <div className="stats-grid">
-            {stats.map((stat, index) => (
-              <div className="stat-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <h3>{stat.value}</h3>
-                <p>{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* What We Offer */}
       <section className="ws-offer-section">
         <div className="container">

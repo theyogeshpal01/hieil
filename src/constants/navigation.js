@@ -2,7 +2,7 @@ export const HEADER_LINKS = [
   { label: 'HOME', href: '/' },
   { 
     label: 'ABOUT', 
-    href: '/about', 
+    href: '/about/us', 
     hasDropdown: true,
     dropdownItems: [
       { label: 'About Us', href: '/about/us' },
@@ -10,7 +10,7 @@ export const HEADER_LINKS = [
       { label: 'How We Work', href: '/about/how-we-work' },
     ]
   },
-  { label: 'PRODUCT', href: '/products' },
+  { label: 'SHOP', href: '/shop' },
   { 
     label: 'SERVICES', 
     href: '/services', 
@@ -33,7 +33,7 @@ export const HEADER_LINKS = [
 
 export const FOOTER_LINKS = {
   explore: [
-    { label: 'Our Story & Vision', href: '/about' },
+    { label: 'Our Story & Vision', href: '/about/us' },
     { label: 'Why Choose HIEIL?', href: '/about/why-choose-us' },
     { label: 'Got Questions? (FAQs)', href: '/#faq' },
     { label: 'What\'s Trending', href: '/products' },
@@ -54,6 +54,7 @@ export const FOOTER_LINKS = {
   policies: [
     { label: 'Privacy Matters', href: '/privacy-policy' },
     { label: 'Terms & Conditions', href: '/terms-of-service' },
+    { label: 'Legal Info', href: '/legal-info' },
   ],
 };
 

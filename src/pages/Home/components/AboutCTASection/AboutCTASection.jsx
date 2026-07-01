@@ -5,7 +5,7 @@ import styles from './AboutCTASection.module.css';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 
 const features = [
-  { label: 'Global Shipping' },
+  { icon: <Globe size={16} strokeWidth={1.5} />, label: 'Global Shipping' },
   { icon: <Award size={16} strokeWidth={1.5} />, label: 'Premium Quality' },
   { icon: <ShieldCheck size={16} strokeWidth={1.5} />, label: 'Quality Assured' },
   { icon: <Leaf size={16} strokeWidth={1.5} />, label: 'Expert Support' },
@@ -28,7 +28,7 @@ const AboutCTASection = () => {
           
           <div className={styles.textContent}>
             <p>
-              HIEIL (Hind Import Export International) is a Jaipur-based handicraft export firm led by Jogendra Singh, with over 2+ years of dedicated industry experience. Our team of 800 highly skilled artisans carries forward centuries of tradition.
+              HIEIL (Hind Import Export International) is a Jaipur-based handicraft export firm led by Jogendra Singh, with over 2+ years of dedicated industry experience. Our team of 500+ highly skilled artisans carries forward centuries of tradition.
             </p>
             <p>
               Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers. Every piece tells a story — of culture, legacy, and passion.
@@ -51,13 +51,14 @@ const AboutCTASection = () => {
 
         <div className={styles.rightCol} ref={rightRef} style={{opacity:0,transform:'translateX(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
           <div className={styles.mediaFrame}>
-            <iframe 
-              src="https://drive.google.com/file/d/1Z8MaOaJT7RUiKwoGwBnSfP5RS8pCbm2g/preview?autoplay=1&mute=1" 
+            <video 
+              src="/about-video.mp4" 
               className={styles.video} 
-              allow="autoplay" 
-              frameBorder="0"
-              title="HIEIL About Video"
-            ></iframe>
+              autoPlay 
+              muted 
+              loop
+              playsInline
+            ></video>
           </div>
         </div>
       </div>

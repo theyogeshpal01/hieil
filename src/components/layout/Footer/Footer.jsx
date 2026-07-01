@@ -76,7 +76,7 @@ const Footer = () => {
           <div className={styles.contactRow} style={{ marginBottom: '24px', alignItems: 'flex-start' }}>
             <MapPin size={16} className={styles.contactIcon} style={{ marginTop: '4px' }} />
             <a href="https://maps.google.com/?q=Hind+Import+Export+International+OPC+Pvt.+Ltd.,+Jaipur,+Rajasthan" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', lineHeight: '1.5', color: 'inherit', textDecoration: 'none' }}>
-              <strong style={{ color: '#fff' }}>Registered Office</strong><br/>
+              <strong style={{ color: 'var(--color-brand-base)', fontWeight: '600', letterSpacing: '0.5px' }}>Registered Office</strong><br/>
               Hind Import Export International OPC Pvt. Ltd.<br/>
               Jaipur, Rajasthan – 302 001, India
             </a>
@@ -95,6 +95,7 @@ const Footer = () => {
         <div className={styles.bottomLinks}>
           <Link to="/privacy-policy">Privacy Policy</Link>
           <Link to="/terms-of-service">Terms of Service</Link>
+          <Link to="/legal-info">Legal Info</Link>
         </div>
       </div>
     </footer>

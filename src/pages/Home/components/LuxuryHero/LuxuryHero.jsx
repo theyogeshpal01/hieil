@@ -7,7 +7,7 @@ const LuxuryHero = () => {
     <section className={styles.luxuryHero}>
       <div className={styles.heroContent}>
         <div className={styles.overline}>
-          <span>THE NEW COLLECTION &mdash; 2025</span>
+          <span>INSPIRED BY TRADITION</span>
         </div>
         <h1 className={styles.title}>
           Where Art<br />

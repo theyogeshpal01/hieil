@@ -15,9 +15,9 @@
   margin-bottom: 24px;
   background-color: transparent;
 }
-.title { font-family: var(--font-serif); font-size: 2.8rem; color: #ffffff; margin: 0 0 1rem 0; text-transform: uppercase; }
+.title { font-family: var(--font-serif); font-size: 3.5rem; color: #ffffff; margin: 0 0 1rem 0; text-transform: uppercase; }
 .highlight { color: #c8956c; }
-.subtitle { font-family: var(--font-sans); font-size: 0.95rem; color: #b5aaa0; max-width: 600px; margin: 0 auto; }
+.subtitle { font-family: var(--font-sans); font-size: 1.1rem; color: #b5aaa0; max-width: 600px; margin: 0 auto; }
 .categoriesGrid { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; gap: 1.5rem; }
 .col { flex: 1; display: flex; flex-direction: column; gap: 1.5rem; }
 

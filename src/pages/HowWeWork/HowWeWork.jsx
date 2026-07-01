@@ -69,7 +69,7 @@ const HowWeWork = () => {
         <div className="container">
           <div className="page-header" data-aos="fade-up">
             <span className="hww-tag">Service Directory</span>
-            <h1 className="page-title">How We Work</h1>
+            <h1 className="page-title">How We <span style={{ color: 'var(--hww-primary)' }}>Work</span></h1>
             <p className="page-subtitle">
               Experience our dedicated approach to handcrafted excellence through these six simple steps. From initial consultation to global delivery, we ensure complete transparency and premium quality at every stage.
             </p>

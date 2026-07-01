@@ -41,7 +41,7 @@ const Blog = () => {
       {/* Hero Section */}
       <section className="blog-hero">
         <div className="blog-hero-content" data-aos="fade-up">
-          <h1 className="blog-title">Hieil Insights</h1>
+          <h1 className="blog-title">Hieil <span style={{ color: 'var(--color-brand-base)' }}>Insights</span></h1>
           <div className="blog-search-bar">
             <input type="text" placeholder="Search Topics..." />
             <button className="search-btn"><Search size={20} /></button>
