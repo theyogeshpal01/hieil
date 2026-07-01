@@ -1,6 +1,5 @@
 import React from 'react';
 import { Users } from 'lucide-react';
-import styles from './MeetOurArtisans.module.css';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 
 const artisans = [
@@ -26,31 +25,31 @@ const MeetOurArtisans = () => {
   const headerRef = useScrollAnimation();
   const gridRef = useScrollAnimation();
   return (
-    <section className={styles.section}>
-      <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-        <h2 className={styles.title}>MEET <span style={{ color: 'var(--color-brand-base)' }}>OUR ARTISANS</span></h2>
-        <p className={styles.subtitle}>The Hands Behind Our Crafts</p>
+    <section className="py-12 px-8 bg-[#15110F] max-w-[1400px] mx-auto">
+      <div className="text-center mb-16" ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
+        <h2 className="text-3xl md:text-5xl font-serif font-normal text-white mb-2 uppercase tracking-[1.5px] max-md:text-[3.5rem]">MEET <span style={{ color: 'var(--color-brand-base)' }}>OUR ARTISANS</span></h2>
+        <p className="font-sans text-[1.1rem] font-normal text-[#888888]">The Hands Behind Our Crafts</p>
       </div>
 
-      <div className={styles.grid} ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(450px,1fr))] max-md:grid-cols-1 gap-12 max-w-[1300px] mx-auto mb-14" ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
         {artisans.map((artisan) => (
-          <div key={artisan.id} className={styles.card}>
-            <div className={styles.imageContainer}>
-              <img src={artisan.image} alt={artisan.name} className={styles.image} onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+          <div key={artisan.id} className="bg-[#15110F] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col group">
+            <div className="w-full h-[340px] overflow-hidden">
+              <img src={artisan.image} alt={artisan.name} className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
             </div>
             
-            <div className={styles.content}>
-              <h3 className={styles.category}>{artisan.category}</h3>
-              <h4 className={styles.name}>{artisan.name}</h4>
-              <p className={styles.desc}>{artisan.desc1}</p>
-              <p className={styles.desc}>{artisan.desc2}</p>
+            <div className="p-10 max-md:p-6">
+              <h3 className="font-serif text-[1.15rem] font-semibold text-white mb-2 uppercase tracking-[1px]">{artisan.category}</h3>
+              <h4 className="font-sans text-base font-semibold text-[#c8956c] mb-6">{artisan.name}</h4>
+              <p className="font-sans text-[0.95rem] text-[#6c757d] leading-[1.7] mb-5">{artisan.desc1}</p>
+              <p className="font-sans text-[0.95rem] text-[#6c757d] leading-[1.7] mb-0">{artisan.desc2}</p>
             </div>
           </div>
         ))}
       </div>
       
-      <div className={styles.btnContainer}>
-        <button className={styles.actionBtn}>
+      <div className="flex justify-center">
+        <button className="bg-[var(--color-brand-dark)] text-white border-none rounded-md py-4 px-8 font-sans text-base font-semibold cursor-pointer flex items-center gap-2 transition-all duration-200 ease-in-out shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:bg-[#0c5650] hover:-translate-y-0.5">
           <Users size={18} strokeWidth={2} />
           Show More Artisans
         </button>

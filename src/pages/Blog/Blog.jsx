@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './Blog.css';
 import { Search, Mail } from 'lucide-react';
 
 const Blog = () => {
@@ -37,28 +36,28 @@ const Blog = () => {
   ];
 
   return (
-    <div className="blog-page">
+    <div className="font-sans text-[var(--hww-dark)] bg-[#15110F] overflow-x-hidden">
       {/* Hero Section */}
-      <section className="blog-hero">
-        <div className="blog-hero-content" data-aos="fade-up">
-          <h1 className="blog-title">Hieil <span style={{ color: 'var(--color-brand-base)' }}>Insights</span></h1>
-          <div className="blog-search-bar">
-            <input type="text" placeholder="Search Topics..." />
-            <button className="search-btn"><Search size={20} /></button>
+      <section className="text-white pt-[120px] px-5 pb-[60px] text-center relative">
+        <div className="max-w-[800px] mx-auto relative z-10" data-aos="fade-up">
+          <h1 className="font-serif text-[3.5rem] font-normal text-white mb-[30px] leading-[1.2]">Hieil <span className="text-[var(--color-brand-base)]">Insights</span></h1>
+          <div className="flex max-w-[500px] mx-auto bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#4a3e35] rounded-[30px] p-[5px_5px_5px_25px] transition-all duration-300 focus-within:border-[#c8956c] focus-within:shadow-[0_0_20px_rgba(194,163,115,0.1)] flex-col md:flex-row gap-[15px] md:gap-0 bg-transparent md:bg-[rgba(28,23,19,0.6)] rounded-none md:rounded-[30px] p-0 md:p-[5px_5px_5px_25px] border-none md:border md:border-[#4a3e35]">
+            <input type="text" placeholder="Search Topics..." className="flex-grow border-none outline-none text-[1rem] text-white bg-[rgba(28,23,19,0.6)] md:bg-transparent rounded-[30px] md:rounded-none p-[15px_25px] md:p-0 w-full md:w-auto border md:border-none border-[#4a3e35]" />
+            <button className="bg-[#c8956c] md:bg-transparent border border-[#c8956c] md:border-none text-[#15110F] md:text-[#c8956c] p-[15px_30px] md:p-[10px_15px] flex items-center justify-center rounded-[25px] md:rounded-full transition-all duration-300 cursor-pointer w-full md:w-auto uppercase tracking-[2px] font-semibold md:font-normal text-[12px] md:text-[inherit] hover:bg-transparent hover:text-[#c8956c] md:hover:bg-[rgba(194,163,115,0.1)] md:hover:text-[#e6c89c]"><Search size={20} className="hidden md:block" /><span className="md:hidden">Search</span></button>
           </div>
         </div>
       </section>
 
       {/* Topics Section */}
-      <section className="blog-topics-section">
-        <div className="container">
-          <div className="topics-header" data-aos="fade-up">
-            <h3>Explore Topics:</h3>
-            <div className="topics-list">
+      <section className="py-[60px] bg-[#15110F]">
+        <div className="container mx-auto">
+          <div className="flex items-center gap-[20px] mb-[30px] flex-wrap md:flex-row flex-col md:items-center items-start" data-aos="fade-up">
+            <h3 className="text-[1.2rem] text-white font-semibold m-0">Explore Topics:</h3>
+            <div className="flex gap-[15px] flex-wrap">
               {topics.map((topic, index) => (
                 <button 
                   key={index} 
-                  className={`topic-btn ${activeTab === topic ? 'active' : ''}`}
+                  className={`bg-transparent border border-[#4a3e35] text-[#c8956c] p-[10px_25px] text-[12px] tracking-[2px] uppercase transition-all duration-300 font-medium cursor-pointer rounded-[30px] hover:bg-[rgba(194,163,115,0.1)] hover:text-[#c8956c] hover:border-[#c8956c] hover:shadow-[0_0_15px_rgba(194,163,115,0.2)] ${activeTab === topic ? 'bg-[rgba(194,163,115,0.1)] !text-[#c8956c] border-[#c8956c] shadow-[0_0_15px_rgba(194,163,115,0.2)]' : ''}`}
                   onClick={() => setActiveTab(topic)}
                 >
                   {topic}
@@ -67,43 +66,43 @@ const Blog = () => {
             </div>
           </div>
 
-          <div className="sub-topics-list" data-aos="fade-up" data-aos-delay="100">
+          <div className="flex gap-[15px] mb-[40px] flex-wrap" data-aos="fade-up" data-aos-delay="100">
             {subTopics.map((sub, index) => (
-              <button key={index} className="sub-topic-btn">{sub}</button>
+              <button key={index} className="bg-transparent border-none text-[#8c8279] p-[8px_15px] text-[13px] tracking-[1px] uppercase transition-all duration-300 font-medium cursor-pointer relative hover:text-[#c8956c]">{sub}</button>
             ))}
           </div>
 
-          <div className="blog-content-area" data-aos="fade-in" data-aos-delay="200">
-            <div className="empty-state">
-              <p>No Articles Found In This Collection.</p>
+          <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] rounded-[20px] p-[100px_20px] text-center border border-[#2c241c]" data-aos="fade-in" data-aos-delay="200">
+            <div className="">
+              <p className="text-[#b5aaa0] text-[1.2rem] font-normal tracking-[1px]">No Articles Found In This Collection.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* Artisans Section */}
-      <section className="blog-artisans-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Meet <br /> <span style={{ color: 'var(--color-brand-base)' }}>Our Artisans</span></h2>
-            <p className="subtitle">Authentic videos showcasing the skill, dedication, and stories behind our master craftsmen.</p>
-            <h3 className="section-subtitle mt-4">The Hands Behind Our Crafts</h3>
+      <section className="py-[80px] bg-[#15110F]">
+        <div className="container mx-auto">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px]">Meet <br /> <span className="text-[var(--color-brand-base)]">Our Artisans</span></h2>
+            <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.6] max-w-[600px] mx-auto">Authentic videos showcasing the skill, dedication, and stories behind our master craftsmen.</p>
+            <h3 className="text-[1.1rem] text-[var(--hww-primary)] mt-[30px] font-semibold">The Hands Behind Our Crafts</h3>
           </div>
 
-          <div className="artisans-grid">
+          <div className="flex flex-col gap-[60px] mt-[50px]">
             {artisans.map((artisan, index) => (
-              <div className="artisan-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="artisan-video-placeholder">
+              <div className="flex flex-col lg:flex-row bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] overflow-hidden transition-all duration-400 hover:border-[#4a3e35] hover:-translate-y-[5px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] group" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="flex-[0_0_45%] relative min-h-[300px] lg:min-h-[400px] overflow-hidden bg-[#3e332a]">
                   {/* Using an image to showcase the artisan */}
-                  <img src={artisan.image} alt={artisan.name} className="artisan-thumbnail" />
-                  <span className="artisan-tag">Artisan Work</span>
+                  <img src={artisan.image} alt={artisan.name} className="w-full h-full object-cover absolute top-0 left-0 transition-transform duration-400 opacity-80 group-hover:scale-105" />
+                  <span className="absolute top-[20px] left-[20px] bg-[var(--hww-primary)] text-white p-[6px_15px] rounded-[20px] text-[0.8rem] font-semibold tracking-[1px] uppercase">Artisan Work</span>
                 </div>
-                <div className="artisan-info">
-                  <span className="artisan-craft">{artisan.craft}</span>
-                  <h3>{artisan.name}</h3>
-                  <div className="artisan-desc">
+                <div className="p-[30px_20px] lg:p-[50px_40px] flex-1">
+                  <span className="text-[var(--hww-primary)] font-semibold text-[1rem] mb-[10px] block">{artisan.craft}</span>
+                  <h3 className="font-serif text-[1.6rem] lg:text-[2.2rem] text-white mb-[25px]">{artisan.name}</h3>
+                  <div className="">
                     {artisan.desc.split('\n\n').map((para, i) => (
-                      <p key={i}>{para}</p>
+                      <p className="text-[#b5aaa0] leading-[1.8] mb-[15px] text-[1rem] last:mb-0" key={i}>{para}</p>
                     ))}
                   </div>
                 </div>
@@ -114,20 +113,20 @@ const Blog = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="blog-newsletter-section">
-        <div className="container">
-          <div className="newsletter-box" data-aos="zoom-in">
-            <div className="newsletter-content">
-              <h2>Get <br /> <span style={{ color: 'var(--color-brand-base)' }}>Importer-Focused Insights</span></h2>
-              <p>Subscribe to receive exclusive guides, market intelligence, and early access to new artisan collections curated for international buyers.</p>
+      <section className="pt-[80px] pb-[120px] bg-[#15110F]">
+        <div className="container mx-auto">
+          <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#c8956c] rounded-[30px] p-[40px_20px] lg:p-[60px] flex flex-col lg:flex-row items-center justify-between gap-[40px] text-white shadow-[0_10px_40px_rgba(194,163,115,0.05)] text-center lg:text-left" data-aos="zoom-in">
+            <div className="flex-1">
+              <h2 className="font-serif text-[2.5rem] mb-[15px]">Get <br /> <span className="text-[var(--color-brand-base)]">Importer-Focused Insights</span></h2>
+              <p className="text-[1.05rem] text-[#b5aaa0] leading-[1.7] max-w-[500px] mx-auto lg:mx-0">Subscribe to receive exclusive guides, market intelligence, and early access to new artisan collections curated for international buyers.</p>
             </div>
-            <div className="newsletter-form">
-              <div className="input-group">
-                <Mail size={20} className="mail-icon" />
-                <input type="email" placeholder="Enter your business email" />
-                <button type="button">Subscribe</button>
+            <div className="flex-1 w-full lg:w-[450px] lg:max-w-[500px] max-w-[500px]">
+              <div className="flex flex-col lg:flex-row items-center bg-transparent lg:bg-[rgba(21,17,15,0.8)] border-none lg:border lg:border-[#4a3e35] rounded-none lg:rounded-[30px] p-0 lg:p-[5px_7px] mb-[15px] transition-all duration-300 focus-within:border-[#c8956c] gap-[15px] lg:gap-0">
+                <Mail size={20} className="text-[#8c8279] ml-[20px] hidden lg:block" />
+                <input type="email" placeholder="Enter your business email" className="flex-grow border-none outline-none p-[15px_25px] lg:p-[15px] text-[1rem] text-white bg-[rgba(21,17,15,0.8)] lg:bg-transparent w-full lg:w-auto rounded-[30px] lg:rounded-none border lg:border-none border-[#4a3e35]" />
+                <button type="button" className="bg-[#c8956c] border border-[#c8956c] text-[#15110F] rounded-[25px] p-[15px_30px] text-[12px] tracking-[2px] uppercase transition-all duration-300 font-semibold cursor-pointer w-full lg:w-auto hover:bg-transparent hover:text-[#c8956c]">Subscribe</button>
               </div>
-              <p className="privacy-text">We respect your privacy. Unsubscribe anytime.</p>
+              <p className="text-[0.85rem] opacity-70 text-center">We respect your privacy. Unsubscribe anytime.</p>
             </div>
           </div>
         </div>

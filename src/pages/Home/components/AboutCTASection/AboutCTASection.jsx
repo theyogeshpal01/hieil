@@ -1,7 +1,6 @@
 import React from 'react';
 import { ShieldCheck, Award, Globe, Leaf, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import styles from './AboutCTASection.module.css';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 
 const features = [
@@ -16,44 +15,44 @@ const AboutCTASection = () => {
   const rightRef = useScrollAnimation();
 
   return (
-    <section className={styles.section}>
-      <div className={styles.container}>
-        <div className={styles.leftCol} ref={leftRef} style={{opacity:0,transform:'translateX(-40px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-          <div className={styles.eyebrowContainer}>
+    <section className="w-full bg-[#15110F] py-20 px-8">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div className="flex flex-col items-start" ref={leftRef} style={{opacity:0,transform:'translateX(-40px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
+          <div className="font-['Inter','Outfit',sans-serif] text-xs tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-6 bg-transparent">
               <span>ABOUT HIEIL</span>
             </div>
-          <h2 className={styles.title}>
-            Handcrafted categories, <br className={styles.hideMobile} />Inspired By <span className={styles.highlight}>India</span>
+          <h2 className="text-3xl md:text-5xl font-serif font-normal text-white leading-[1.2] m-0 mb-8 uppercase">
+            Handcrafted categories, <br className="max-sm:hidden" />Inspired By <span className="text-[#c8956c]">India</span>
           </h2>
           
-          <div className={styles.textContent}>
-            <p>
+          <div className="flex flex-col gap-6 mb-10">
+            <p className="font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8] m-0">
               HIEIL (Hind Import Export International) is a Jaipur-based handicraft export firm led by Jogendra Singh, with over 2+ years of dedicated industry experience. Our team of 500+ highly skilled artisans carries forward centuries of tradition.
             </p>
-            <p>
+            <p className="font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8] m-0">
               Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers. Every piece tells a story — of culture, legacy, and passion.
             </p>
           </div>
 
-          <div className={styles.featuresGrid}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-12">
             {features.map((f, i) => (
-              <div key={i} className={styles.featureItem}>
-                <span className={styles.featureIcon}>{f.icon}</span>
-                <span className={styles.featureLabel}>{f.label}</span>
+              <div key={i} className="flex items-center gap-3 py-4 px-5 border border-[#2c241c] rounded bg-white/[0.02]">
+                <span className="text-[#c8956c] flex items-center justify-center">{f.icon}</span>
+                <span className="font-sans text-[0.85rem] text-[#e0e0e0]">{f.label}</span>
               </div>
             ))}
           </div>
 
-          <Link to="/about/us" className={styles.learnMoreLink}>
+          <Link to="/about/us" className="inline-flex items-center gap-2 font-sans text-[0.8rem] font-semibold tracking-[1px] text-[#c8956c] no-underline uppercase transition-opacity duration-200 hover:opacity-80">
             LEARN MORE ABOUT US <ArrowRight size={15} />
           </Link>
         </div>
 
-        <div className={styles.rightCol} ref={rightRef} style={{opacity:0,transform:'translateX(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
-          <div className={styles.mediaFrame}>
+        <div className="relative" ref={rightRef} style={{opacity:0,transform:'translateX(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
+          <div className="relative w-full aspect-[4/3] p-6 border border-[#2c241c] before:content-[''] before:absolute before:w-[30px] before:h-[30px] before:border before:border-[#c8956c] before:top-[-1px] before:left-[-1px] before:border-r-0 before:border-b-0 after:content-[''] after:absolute after:w-[30px] after:h-[30px] after:border after:border-[#c8956c] after:bottom-[-1px] after:right-[-1px] after:border-l-0 after:border-t-0">
             <video 
               src="https://drive.google.com/file/d/1Z8MaOaJT7RUiKwoGwBnSfP5RS8pCbm2g/view?usp=drive_link" 
-              className={styles.video} 
+              className="w-full h-full object-cover rounded-sm" 
               autoPlay 
               muted 
               loop

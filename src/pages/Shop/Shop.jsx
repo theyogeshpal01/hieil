@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp, Grid, List, Star } from 'lucide-react';
-import styles from './Shop.module.css';
 
 import { categories } from "../../data/products";
 
@@ -151,30 +150,30 @@ const Shop = () => {
   });
 
   return (
-    <div className={styles.pageWrapper}>
+    <div className="bg-[#15110F] min-h-screen font-sans text-white">
       {/* Header Banner */}
-      <div className={styles.pageHeader}>
-        <h1 className={styles.pageTitle}>
+      <div className="bg-[#15110F] p-[4rem_2rem] text-center">
+        <h1 className="text-3xl md:text-5xl font-serif font-normal text-white m-0 mb-[0.5rem] uppercase tracking-[1.5px]">
           {initialCategory.toUpperCase() === 'ALL CATEGORIES' ? (
-            <>ALL <span style={{ color: 'var(--color-brand-base)' }}>CATEGORIES</span></>
+            <>ALL <span className="text-[var(--color-brand-base)]">CATEGORIES</span></>
           ) : (
             initialCategory.toUpperCase()
           )}
         </h1>
       </div>
 
-      <div className={styles.mainLayout}>
+      <div className="max-w-[1400px] mx-auto p-[3rem_2rem] flex flex-col md:flex-row gap-[3.5rem]">
         {/* Sidebar */}
-        <aside className={styles.sidebar}>
-          <div className={styles.filterHeader}>
-            <h3>FILTER:</h3>
-            <button className={styles.clearAllBtn} onClick={handleClearAll}>Clear All</button>
+        <aside className="w-full md:w-[280px] shrink-0 sticky top-[2rem] max-h-[calc(100vh-4rem)] overflow-y-auto p-[25px] bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] scrollbar-thin scrollbar-thumb-[#e0e0e0] scrollbar-track-[#15110F] hover:scrollbar-thumb-[#c8956c]">
+          <div className="flex justify-between items-center mb-[1.5rem] border-b border-[#2c241c] pb-[1rem]">
+            <h3 className="font-serif text-[0.9rem] font-semibold text-white m-0 uppercase tracking-[1px]">FILTER:</h3>
+            <button className="bg-transparent border-none font-sans text-[0.8rem] text-[#c8956c] cursor-pointer p-0" onClick={handleClearAll}>Clear All</button>
           </div>
 
           {FILTERS.map((section) => (
-            <div key={section.id} className={styles.filterSection}>
+            <div key={section.id} className="border-b border-[#2c241c] py-[1.25rem]">
               <button 
-                className={styles.filterSectionHeader}
+                className="flex justify-between items-center cursor-pointer bg-transparent border-none w-full p-0 font-serif text-[0.85rem] font-semibold text-white uppercase tracking-[0.5px]"
                 onClick={() => toggleSection(section.id)}
               >
                 {section.title}
@@ -182,14 +181,18 @@ const Shop = () => {
               </button>
               
               {openSections[section.id] && (
-                <div className={styles.filterContent}>
+                <div className="mt-[1rem] flex flex-col gap-[0.75rem]">
                   {section.options.map((opt, idx) => (
-                    <label key={idx} className={styles.checkboxLabel}>
-                      <input 
-                        type="checkbox" 
-                        checked={(selectedFilters[section.id] || []).includes(opt)}
-                        onChange={() => handleFilterChange(section.id, opt)}
-                      /> 
+                    <label key={idx} className="flex items-center gap-[0.8rem] font-sans text-[0.85rem] text-[#b5aaa0] cursor-pointer transition-colors duration-300 hover:text-white group">
+                      <div className="relative flex items-center">
+                        <input 
+                          type="checkbox" 
+                          className="appearance-none w-[16px] h-[16px] border border-[#4a3e35] rounded-[4px] bg-transparent cursor-pointer transition-all duration-300 checked:bg-[#c8956c] checked:border-[#c8956c] peer"
+                          checked={(selectedFilters[section.id] || []).includes(opt)}
+                          onChange={() => handleFilterChange(section.id, opt)}
+                        />
+                        <span className="absolute left-[2px] top-[1px] text-[10px] text-[#15110F] opacity-0 peer-checked:opacity-100 pointer-events-none">✔</span>
+                      </div>
                       {opt}
                     </label>
                   ))}
@@ -199,9 +202,9 @@ const Shop = () => {
           ))}
 
           {/* Color Section */}
-          <div className={styles.filterSection}>
+          <div className="border-b border-[#2c241c] py-[1.25rem]">
             <button 
-              className={styles.filterSectionHeader}
+              className="flex justify-between items-center cursor-pointer bg-transparent border-none w-full p-0 font-serif text-[0.85rem] font-semibold text-white uppercase tracking-[0.5px]"
               onClick={() => toggleSection('colors')}
             >
               COLOR
@@ -209,11 +212,11 @@ const Shop = () => {
             </button>
             
             {openSections['colors'] && (
-              <div className={styles.colorSwatches}>
+              <div className="flex flex-wrap gap-[0.8rem] mt-[1rem]">
                 {COLORS.map((color, idx) => (
                   <div 
                     key={idx} 
-                    className={styles.colorSwatch} 
+                    className="w-[24px] h-[24px] rounded-full border border-[#4a3e35] cursor-pointer transition-all duration-300 hover:scale-115 hover:shadow-[0_0_10px_rgba(194,163,115,0.4)] hover:border-[#c8956c]" 
                     style={{ backgroundColor: color }}
                   ></div>
                 ))}
@@ -223,59 +226,58 @@ const Shop = () => {
         </aside>
 
         {/* Content Area */}
-        <div className={styles.contentArea}>
-          <div className={styles.topBar}>
-            <div className={styles.resultsCount}>
+        <div className="flex-1">
+          <div className="flex justify-between items-center mb-[2rem] font-sans text-[0.85rem] text-[#b5aaa0] border-b border-[#2c241c] pb-[1rem]">
+            <div className="">
               Showing {filteredcategories.length} results
             </div>
             
-            <div className={styles.sortControls}>
+            <div className="flex items-center gap-[1.5rem]">
               <div>
                 Sort by: 
-                <select className={styles.sortSelect} defaultValue="best">
-                  <option value="best">Best selling</option>
-                  <option value="price-asc">Price, low to high</option>
-                  <option value="price-desc">Price, high to low</option>
-                  <option value="new">Date, new to old</option>
+                <select className="border-none font-sans text-[0.85rem] text-white cursor-pointer bg-transparent outline-none font-medium ml-2" defaultValue="best">
+                  <option value="best" className="text-black">Best selling</option>
+                  <option value="price-asc" className="text-black">Price, low to high</option>
+                  <option value="price-desc" className="text-black">Price, high to low</option>
+                  <option value="new" className="text-black">Date, new to old</option>
                 </select>
               </div>
-              <div className={styles.productCount}>{filteredcategories.length} categories</div>
-              <div className={styles.viewIcons}>
-                <Grid size={18} className={`${styles.viewIcon} ${styles.active}`} />
-                <List size={18} className={styles.viewIcon} />
+              <div className="text-white font-medium hidden sm:block">{filteredcategories.length} categories</div>
+              <div className="flex gap-[0.5rem] text-[#c8956c]">
+                <Grid size={18} className="cursor-pointer text-[#c8956c]" />
+                <List size={18} className="cursor-pointer text-[#888888]" />
               </div>
             </div>
           </div>
 
-          <div className={styles.productGrid}>
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-[2.5rem]">
             {filteredcategories.length === 0 ? (
-              <div style={{ padding: '2rem 0', color: '#666' }}>No categories found matching your filters.</div>
+              <div className="py-[2rem] text-[#666]">No categories found matching your filters.</div>
             ) : (
               filteredcategories.map((product) => (
-                <div key={product.id} className={styles.productCard}>
-                <div className={styles.imageBox}>
-                  {/* Mocking the badge logic from Image 3 */}
-                  <span className={styles.badge}>{product.id % 2 === 0 ? '-19%' : '-5%'}</span>
+                <div key={product.id} className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] p-[20px] transition-all duration-400 flex flex-col relative h-full hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] hover:-translate-y-[5px] group">
+                <div className="rounded-[12px] bg-[#15110F] relative w-full h-[260px] flex items-center justify-center mb-[1rem] overflow-hidden">
+                  <span className="absolute top-[1rem] left-[1rem] bg-[#c8956c] text-[#000000] font-sans text-[0.7rem] font-semibold py-[0.25rem] px-[0.5rem] tracking-[0.5px] z-10 rounded-[4px]">{product.id % 2 === 0 ? '-19%' : '-5%'}</span>
                   
-                  <Link to={`/product/${product.id}`} style={{ display: 'flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
-                    <img src={product.image} alt={product.name} className={styles.productImage} />
+                  <Link to={`/product/${product.id}`} className="flex w-full h-full items-center justify-center">
+                    <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-400 group-hover:scale-105" />
                   </Link>
                 </div>
                 
-                <h4 className={styles.brandName}>{product.brand || 'CLAY CANVAS'}</h4>
-                <Link to={`/product/${product.id}`}>
-                  <h3 className={styles.productTitle}>{product.name} - Handcrafted Premium Decor</h3>
+                <h4 className="font-sans text-[0.65rem] font-semibold text-[#888888] uppercase tracking-[1.5px] m-0 mb-[0.4rem]">{product.brand || 'CLAY CANVAS'}</h4>
+                <Link to={`/product/${product.id}`} className="no-underline group-hover:text-[#c8956c] transition-colors">
+                  <h3 className="font-serif text-[1.05rem] font-medium text-white m-0 mb-[0.5rem] whitespace-nowrap overflow-hidden text-ellipsis group-hover:text-[#c8956c]">{product.name} - Handcrafted Premium Decor</h3>
                 </Link>
                 
-                <div className={styles.stars}>
+                <div className="flex gap-[2px] mb-[0.6rem]">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={14} fill={i < product.rating ? '#cccccc' : 'none'} stroke={i < product.rating ? '#cccccc' : '#dddddd'} />
                   ))}
                 </div>
                 
-                <div className={styles.hoverActions}>
-                  <Link to={`/product/${product.id}`} className={styles.actionBtnOutline}>Details</Link>
-                  <Link to={`/product/${product.id}/enquiry`} className={styles.actionBtnPrimary}>Enquiry</Link>
+                <div className="flex gap-[0.5rem] mt-[0.5rem] opacity-0 translate-y-[10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+                  <Link to={`/product/${product.id}`} className="flex-1 p-[0.5rem] text-center border border-[#c8956c] text-[#c8956c] bg-transparent font-sans text-[0.8rem] font-semibold uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-[#c8956c] hover:text-[#15110F] hover:shadow-[0_5px_15px_rgba(194,163,115,0.3)]">Details</Link>
+                  <Link to={`/product/${product.id}/enquiry`} className="flex-1 p-[0.5rem] text-center border border-[#c8956c] bg-[#c8956c] text-[#15110F] font-sans text-[0.8rem] font-semibold uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-transparent hover:text-[#c8956c] hover:shadow-[0_5px_15px_rgba(194,163,115,0.3)]">Enquiry</Link>
                 </div>
               </div>
               ))

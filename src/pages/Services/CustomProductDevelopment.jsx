@@ -41,7 +41,7 @@ const CustomProductDevelopment = () => {
         <div className="container">
           <div className="page-header" data-aos="fade-up">
             <span className="cs-tag">Service Directory</span>
-            <h1 className="page-title">Custom Product <span style={{ color: 'var(--color-brand-base)' }}>Development</span></h1>
+            <h1 className="text-3xl md:text-5xl font-serif font-normal text-white">Custom Product <span style={{ color: 'var(--color-brand-base)' }}>Development</span></h1>
             <p className="page-subtitle">
               Every market has unique demands. That's why we offer specialized custom product development services designed to meet your specific business needs. From concept to completion, we create categories that perfectly align with your brand identity.
             </p>
@@ -68,10 +68,10 @@ const CustomProductDevelopment = () => {
       </section>
 
       {/* Competitive Advantage */}
-      <section className="cs-advantage-section">
+      <section className="cs-advantage-section py-10">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Your <br /> <span style={{ color: 'var(--color-brand-base)' }}>Competitive Advantage</span></h2>
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white'>Your <br /> <span style={{ color: 'var(--color-brand-base)' }}>Competitive Advantage</span></h2>
             <p>Why Choose Custom Product Development?</p>
           </div>
           <div className="advantage-grid">
@@ -92,7 +92,7 @@ const CustomProductDevelopment = () => {
       <section className="cs-categories-section">
         <div className="container" data-aos="fade-up">
           <div className="section-header">
-            <h2>Product <br /> <span style={{ color: 'var(--color-brand-base)' }}>categories</span></h2>
+            <h2 className='text-3xl md:text-5xl font-serif font-normal text-white'>Product <span style={{ color: 'var(--color-brand-base)' }}>categories</span></h2>
             <p>Custom Development Across Multiple categories</p>
           </div>
           <div className="empty-state">
@@ -106,7 +106,7 @@ const CustomProductDevelopment = () => {
       <section className="cs-process-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Our <br /> <span style={{ color: 'var(--color-brand-base)' }}>Development Process</span></h2>
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white'>Our <br /> <span style={{ color: 'var(--color-brand-base)' }}>Development Process</span></h2>
             <p>From Concept to Market-Ready categories</p>
           </div>
           <div className="process-timeline">
@@ -127,7 +127,7 @@ const CustomProductDevelopment = () => {
       <section className="cs-partners-section">
         <div className="container">
           <div className="section-header" data-aos="fade-up">
-            <h2>Why Partner <br /> <span style={{ color: 'var(--color-brand-base)' }}>With Us?</span></h2>
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white'>Why Partner <br /> <span style={{ color: 'var(--color-brand-base)' }}>With Us?</span></h2>
           </div>
           <div className="partners-grid">
             {partners.map((partner, index) => (
@@ -144,7 +144,7 @@ const CustomProductDevelopment = () => {
       {/* CTA Section */}
       <section className="cs-cta-section" data-aos="zoom-in">
         <div className="cs-cta-inner">
-          <h2>Ready To Develop <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Unique Product Line</span>?</h2>
+          <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white'>Ready To Develop <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Unique Product Line</span>?</h2>
           <p>Let's collaborate to create categories that set your brand apart in the marketplace. Our expert team is ready to bring your vision to life with custom solutions tailored to your specific needs.</p>
           <Link to="/contact" className="cs-btn">Start Your Custom Project</Link>
         </div>

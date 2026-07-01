@@ -65,7 +65,7 @@ const WhyChooseUs = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>GLOBAL STANDARDS, LOCAL CRAFT</span>
             </div>
-            <h3 className="text-3xl md:text-4xl font-serif font-normal text-white mb-6">Where Tradition Meets <span className="text-[#c8956c]">Excellence</span></h3>
+            <h3 className="text-3xl md:text-5xl font-serif font-normal text-white mb-6">Where Tradition Meets <span className="text-[#c8956c]">Excellence</span></h3>
             <p className="text-[15.2px] text-[#b5aaa0] leading-relaxed mb-6">
               <strong className="text-white">Authentic Craftsmanship Meets Modern Excellence.</strong> Every product is handmade by skilled artisans and passes through strict quality control and export compliance checks. From design to packaging, we ensure that each piece meets international quality expectations while preserving the authentic touch of traditional Indian craftsmanship.
             </p>
@@ -120,7 +120,7 @@ const WhyChooseUs = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent">
               <span>OUR TRUST FACTORS</span>
             </div>
-            <h3 className="text-3xl md:text-4xl font-serif font-normal text-white">Why Businesses Worldwide <span className="text-[#c8956c]">Trust Us</span></h3>
+            <h3 className="text-3xl md:text-5xl font-serif font-normal text-white">Why Businesses Worldwide <span className="text-[#c8956c]">Trust Us</span></h3>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
@@ -149,7 +149,7 @@ const WhyChooseUs = () => {
               <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>END-TO-END EXPORT SOLUTIONS</span>
             </div>
-              <h3 className="text-3xl md:text-4xl font-serif font-normal">Making Importing from India <span className="text-[#c8956c]">Simple and Secure</span></h3>
+              <h3 className="text-3xl md:text-5xl font-serif font-normal text-white ">Making Importing from India <span className="text-[#c8956c]">Simple and Secure</span></h3>
             </div>
             <p className="text-[#b5aaa0] max-w-md">
               Comprehensive services designed to streamline your sourcing process from conception to delivery.
@@ -185,7 +185,7 @@ const WhyChooseUs = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>BY INTERNATIONAL BUYERS</span>
             </div>
-            <h3 className="text-3xl font-serif font-normal text-white mb-8">Growing Global Presence Across <span className="text-[#c8956c]">Continents</span></h3>
+            <h3 className="text-3xl md:text-5xl font-serif font-normal text-white mb-8">Growing Global Presence Across <span className="text-[#c8956c]">Continents</span></h3>
             <div className="space-y-6">
               {[
                 { region: 'United States', desc: 'Strong partnerships with retailers and distributors across major US cities and states.' },
@@ -209,7 +209,7 @@ const WhyChooseUs = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>OUR VALUED CLIENTS</span>
             </div>
-            <h3 className="text-3xl font-serif font-normal text-white mb-8">Trusted by Industry Leaders <span className="text-[#c8956c]">Worldwide</span></h3>
+            <h3 className="text-3xl md:text-5xl font-serif font-normal text-white mb-8">Trusted by Industry Leaders <span className="text-[#c8956c]">Worldwide</span></h3>
             <div className="grid sm:grid-cols-2 gap-6">
               {[
                 { title: 'Retailers', desc: 'Boutique stores, chain retailers, and specialty shops worldwide trust our quality and reliability.' },
@@ -235,7 +235,7 @@ const WhyChooseUs = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>YOUR SUCCESS PARTNER</span>
             </div>
-            <h3 className="text-3xl md:text-4xl font-serif font-normal text-white">Why Choose Us as Your <span className="text-[#c8956c]">Export Partner</span></h3>
+            <h3 className="text-3xl md:text-5xl font-serif font-normal text-white">Why Choose Us as Your <span className="text-[#c8956c]">Export Partner</span></h3>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -282,7 +282,7 @@ const WhyChooseUs = () => {
           <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
             <span>THE HIEIL DIFFERENCE</span>
           </div>
-          <h3 className="text-3xl md:text-4xl font-serif font-normal mb-12">Setting Standards in <span className="text-[#c8956c]">Export Excellence</span></h3>
+          <h3 className="text-3xl md:text-5xl font-serif font-normal text-white mb-12">Setting Standards in <span className="text-[#c8956c]">Export Excellence</span></h3>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { title: 'Heritage & Experience', desc: '2+ years of expertise combining traditional craftsmanship with modern practices.' },

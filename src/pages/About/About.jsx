@@ -100,7 +100,7 @@ const About = () => {
           <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>OUR IMPACT</span>
             </div>
-          <h3 className="text-3xl md:text-4xl font-serif font-normal">Crafting change through innovation,<br/><span className="text-[#c8956c]">sustainability & empowerment.</span></h3>
+          <h3 className="text-3xl md:text-5xl font-serif font-normal text-white">Crafting change through innovation,<br/><span className="text-[#c8956c]">sustainability & empowerment.</span></h3>
         </div>
         <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
@@ -223,7 +223,7 @@ const About = () => {
             <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent mx-auto">
               <span>OUR VALUES</span>
             </div>
-            <h3 className="text-3xl md:text-4xl font-serif font-normal">The Principles That <span className="text-[#c8956c]">Guide Us</span></h3>
+            <h3 className="text-3xl md:text-5xl font-serif font-normal text-white">The Principles That <span className="text-[#c8956c]">Guide Us</span></h3>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -252,7 +252,7 @@ const About = () => {
       {/* CTA Section */}
       <section className="py-16 px-6 md:px-12 bg-[#15110F]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-normal text-white mb-4">Ready To Experience <br /> <span className="text-[#c8956c]">Hieil Craftsmanship</span>?</h2>
+          <h2 className="text-3xl md:text-5xl font-serif font-normal text-white mb-4">Ready To Experience <br /> <span className="text-[#c8956c]">Hieil Craftsmanship</span>?</h2>
           <p className="text-lg text-[#b5aaa0] mb-8 max-w-2xl mx-auto">
             Join thousands of satisfied customers worldwide who have transformed their spaces with our authentic, handcrafted pieces. Discover the perfect blend of traditional artistry and contemporary design.
           </p>

@@ -1,30 +1,29 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import styles from './Footer.module.css';
 import { FOOTER_LINKS, SOCIAL_LINKS } from '../../../constants/navigation';
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
+    <footer className="bg-[#110e0c] text-[#b5aaa0] font-sans pt-[80px] pb-[30px] px-[60px] max-lg:px-[40px] max-lg:pt-[60px] max-md:px-[20px] max-md:pt-[40px] max-md:pb-[20px] border-t border-white/5">
+      <div className="flex justify-between gap-10 flex-wrap mb-[60px] max-w-[1400px] mx-auto max-lg:gap-[30px] max-md:flex-col max-md:gap-[40px]">
         {/* Column 1: Store Info */}
-        <div className={styles.column}>
-          <Link to="/" className={styles.logoContainer}>
-            <svg viewBox="0 0 24 24" className={styles.logoIcon}>
+        <div className="flex-1 min-w-[220px] max-md:w-full">
+          <Link to="/" className="flex items-center gap-4 mb-6 no-underline">
+            <svg viewBox="0 0 24 24" className="w-9 h-9 stroke-[#c8956c] stroke-1 fill-none">
               <polygon points="12 2 20.66 7 20.66 17 12 22 3.34 17 3.34 7" />
               <polygon points="12 5 18.06 8.5 18.06 15.5 12 19 5.94 15.5 5.94 8.5" />
               <circle cx="12" cy="12" r="1.5" stroke="none" fill="#c8956c" />
             </svg>
-            <span className={styles.logoText}>HIEIL</span>
+            <span className="text-[20px] tracking-[4px] font-light text-white font-serif">HIEIL</span>
           </Link>
-          <p className={styles.storeInfoText}>
+          <p className="text-[13px] leading-[1.8] mb-6 max-w-[280px] max-md:max-w-full text-[#b5aaa0]">
             Since 2024, HIEIL has been redefining shopping with premium categories.
             Every item is designed to add style, comfort, and innovation.
           </p>
-          <div className={styles.socialLinks}>
+          <div className="flex gap-3">
             {SOCIAL_LINKS.map((link) => (
-              <a key={link.platform} href={link.href} target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label={link.platform}>
+              <a key={link.platform} href={link.href} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-9 h-9 border border-white/10 text-[#b5aaa0] no-underline transition-all duration-300 hover:text-[#c8956c] hover:border-[#c8956c]" aria-label={link.platform}>
                 {link.platform === 'facebook' && <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>}
                 {link.platform === 'instagram' && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>}
                 {link.platform === 'youtube' && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>}
@@ -37,65 +36,65 @@ const Footer = () => {
         </div>
 
         {/* Column 2: Services */}
-        <div className={styles.column}>
-          <h3 className={styles.columnTitle}>SERVICES</h3>
-          <ul className={styles.linkList}>
+        <div className="flex-1 min-w-[220px] max-md:w-full">
+          <h3 className="text-[#c8956c] text-[11px] tracking-[2px] mb-7 uppercase font-medium">SERVICES</h3>
+          <ul className="list-none p-0 flex flex-col gap-4">
             {FOOTER_LINKS.explore.map((link) => (
-              <li key={link.label}><Link to={link.href}>{link.label}</Link></li>
+              <li key={link.label}><Link to={link.href} className="text-[#b5aaa0] no-underline text-[13px] transition-colors duration-300 hover:text-[#c8956c]">{link.label}</Link></li>
             ))}
             {FOOTER_LINKS.categories.slice(0, 2).map((link) => (
-              <li key={link.label}><Link to={link.href}>{link.label}</Link></li>
+              <li key={link.label}><Link to={link.href} className="text-[#b5aaa0] no-underline text-[13px] transition-colors duration-300 hover:text-[#c8956c]">{link.label}</Link></li>
             ))}
           </ul>
         </div>
 
         {/* Column 3: Quick Links */}
-        <div className={styles.column}>
-          <h3 className={styles.columnTitle}>QUICK LINKS</h3>
-          <ul className={styles.linkList}>
+        <div className="flex-1 min-w-[220px] max-md:w-full">
+          <h3 className="text-[#c8956c] text-[11px] tracking-[2px] mb-7 uppercase font-medium">QUICK LINKS</h3>
+          <ul className="list-none p-0 flex flex-col gap-4">
             {FOOTER_LINKS.policies.map((link) => (
-              <li key={link.label}><Link to={link.href}>{link.label}</Link></li>
+              <li key={link.label}><Link to={link.href} className="text-[#b5aaa0] no-underline text-[13px] transition-colors duration-300 hover:text-[#c8956c]">{link.label}</Link></li>
             ))}
             {FOOTER_LINKS.care.map((link) => (
-              <li key={link.label}><Link to={link.href}>{link.label}</Link></li>
+              <li key={link.label}><Link to={link.href} className="text-[#b5aaa0] no-underline text-[13px] transition-colors duration-300 hover:text-[#c8956c]">{link.label}</Link></li>
             ))}
           </ul>
         </div>
 
         {/* Column 4: Newsletter & Contact */}
-        <div className={styles.column}>
-          <h3 className={styles.columnTitle}>CONTACT</h3>
-          <div className={styles.contactRow}>
-            <Mail size={16} className={styles.contactIcon} />
-            <a href="mailto:indiaexport@hieil.com" style={{ color: 'inherit', textDecoration: 'none' }}>indiaexport@hieil.com</a>
+        <div className="flex-1 min-w-[220px] max-md:w-full">
+          <h3 className="text-[#c8956c] text-[11px] tracking-[2px] mb-7 uppercase font-medium">CONTACT</h3>
+          <div className="flex items-center gap-3 text-[13px] mb-4 text-[#b5aaa0]">
+            <Mail size={16} className="text-[#c8956c]" />
+            <a href="mailto:indiaexport@hieil.com" className="text-inherit no-underline">indiaexport@hieil.com</a>
           </div>
-          <div className={styles.contactRow} style={{ marginBottom: '24px' }}>
-            <Phone size={16} className={styles.contactIcon} />
-            <a href="tel:+919050001972" style={{ color: 'inherit', textDecoration: 'none' }}>+91 9050001972</a>
+          <div className="flex items-center gap-3 text-[13px] mb-6 text-[#b5aaa0]">
+            <Phone size={16} className="text-[#c8956c]" />
+            <a href="tel:+919050001972" className="text-inherit no-underline">+91 9050001972</a>
           </div>
-          <div className={styles.contactRow} style={{ marginBottom: '24px', alignItems: 'flex-start' }}>
-            <MapPin size={16} className={styles.contactIcon} style={{ marginTop: '4px' }} />
-            <a href="https://maps.google.com/?q=Hind+Import+Export+International+OPC+Pvt.+Ltd.,+Jaipur,+Rajasthan" target="_blank" rel="noopener noreferrer" style={{ fontSize: '0.85rem', lineHeight: '1.5', color: 'inherit', textDecoration: 'none' }}>
-              <strong style={{ color: 'var(--color-brand-base)', fontWeight: '600', letterSpacing: '0.5px' }}>Registered Office</strong><br/>
+          <div className="flex items-start gap-3 text-[13px] mb-6 text-[#b5aaa0]">
+            <MapPin size={16} className="text-[#c8956c] mt-1" />
+            <a href="https://maps.google.com/?q=Hind+Import+Export+International+OPC+Pvt.+Ltd.,+Jaipur,+Rajasthan" target="_blank" rel="noopener noreferrer" className="text-[13.6px] leading-[1.5] text-inherit no-underline">
+              <strong className="text-[var(--color-brand-base)] font-semibold tracking-[0.5px]">Registered Office</strong><br/>
               Hind Import Export International OPC Pvt. Ltd.<br/>
-              Jaipur, Rajasthan – 302 001, India
+              Jaipur, Rajasthan &mdash; 302 001, India
             </a>
           </div>
           
-          <p className={styles.newsletterText}>Subscribe to get news about special discounts.</p>
-          <form className={styles.subscribeForm} onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="Email Address" className={styles.emailInput} required />
-            <button type="submit" className={styles.subscribeBtn}>SUBSCRIBE</button>
+          <p className="text-[13px] leading-[1.8] mb-5 text-[#b5aaa0]">Subscribe to get news about special discounts.</p>
+          <form className="flex gap-0" onSubmit={(e) => e.preventDefault()}>
+            <input type="email" placeholder="Email Address" className="bg-transparent border border-white/10 p-3 text-white text-[13px] w-full outline-none border-r-0 focus:border-[#c8956c]" required />
+            <button type="submit" className="bg-[#c8956c] text-[#110e0c] border border-[#c8956c] px-5 font-medium text-[11px] tracking-[1px] cursor-pointer transition-all duration-300 hover:bg-[#d4af37] hover:border-[#d4af37]">SUBSCRIBE</button>
           </form>
         </div>
       </div>
 
-      <div className={styles.bottomBar}>
-        <p>© 2024 HIEIL — Hind Import Export International OPC Pvt. Ltd. All rights reserved.</p>
-        <div className={styles.bottomLinks}>
-          <Link to="/privacy-policy">Privacy Policy</Link>
-          <Link to="/terms-of-service">Terms of Service</Link>
-          <Link to="/legal-info">Legal Info</Link>
+      <div className="border-t border-white/5 pt-6 flex justify-between items-center text-[11px] text-[#5c554e] max-w-[1400px] mx-auto max-md:flex-col max-md:gap-5 max-md:items-start">
+        <p>&copy; 2024 HIEIL &mdash; Hind Import Export International OPC Pvt. Ltd. All rights reserved.</p>
+        <div className="flex gap-6 max-md:flex-wrap max-md:gap-4">
+          <Link to="/privacy-policy" className="text-[#5c554e] no-underline transition-colors duration-300 hover:text-[#c8956c]">Privacy Policy</Link>
+          <Link to="/terms-of-service" className="text-[#5c554e] no-underline transition-colors duration-300 hover:text-[#c8956c]">Terms of Service</Link>
+          <Link to="/legal-info" className="text-[#5c554e] no-underline transition-colors duration-300 hover:text-[#c8956c]">Legal Info</Link>
         </div>
       </div>
     </footer>

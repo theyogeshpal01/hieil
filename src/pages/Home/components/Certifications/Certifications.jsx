@@ -1,6 +1,5 @@
 import React from 'react';
 import { ShieldCheck, BadgeCheck, FileCheck2, Landmark } from 'lucide-react';
-import styles from './Certifications.module.css';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 
 const certifications = [
@@ -38,33 +37,33 @@ const Certifications = () => {
   const headerRef = useScrollAnimation();
   const cardsRef = useScrollAnimation();
   return (
-    <section className={styles.section}>
-      <div className={styles.container}>
+    <section className="py-12 px-8 bg-[#15110F]">
+      <div className="max-w-[1200px] mx-auto">
 
-        <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-          <div className={styles.eyebrowContainer}>
+        <div className="text-center mb-16" ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
+          <div className="font-['Inter','Outfit',sans-serif] text-xs tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-6 bg-transparent">
               <span>TRUST & TRANSPARENCY</span>
             </div>
-          <h2 className={styles.title}>Our Certifications <br /> <span style={{ color: 'var(--color-brand-base)' }}>& Accreditations</span></h2>
-          <p className={styles.subtitle}>
+          <h2 className="text-3xl md:text-5xl font-serif font-normal text-white m-0 mb-4 leading-[1.2] max-sm:text-[3.5rem]">Our Certifications <br /> <span style={{ color: 'var(--color-brand-base)' }}>& Accreditations</span></h2>
+          <p className="font-sans text-[1.1rem] text-[#b5aaa0] leading-[1.7] max-w-[600px] mx-auto m-0">
             Recognized for excellence in quality and authentic Indian handicraft exports — verified, compliant, and trusted worldwide.
           </p>
         </div>
 
-        <div className={styles.scrollContainer} ref={cardsRef} style={{opacity:0,transition:'opacity 0.7s ease,transition-delay:0.15s'}}>
-          <div className={styles.scrollTrack}>
+        <div className="w-full overflow-hidden" style={{maskImage:'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',WebkitMaskImage:'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',opacity:0,transition:'opacity 0.7s ease,transition-delay:0.15s'}} ref={cardsRef}>
+          <div className="flex gap-6 w-max animate-[scroll_20s_linear_infinite] hover:[animation-play-state:paused]">
             {[...certifications, ...certifications].map((cert, i) => (
-              <div key={i} className={styles.card}>
-              <div className={styles.cardInner}>
-                <span className={styles.number}>{cert.id}</span>
-                <div className={styles.iconBox}>{cert.icon}</div>
-                <div className={styles.badge}>{cert.subtitle}</div>
-                <h3 className={styles.certTitle}>{cert.title}</h3>
-                <p className={styles.certDesc}>{cert.desc}</p>
+              <div key={i} className="group bg-[#15110F] border border-[#2c241c] rounded-none overflow-hidden flex flex-col w-[280px] shrink-0 transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:border-[var(--color-brand-base)]">
+              <div className="py-10 px-7 pb-6 flex-1 relative">
+                <span className="absolute top-6 right-7 font-serif text-[4rem] font-bold text-[rgba(200,149,108,0.15)] leading-none pointer-events-none transition-colors duration-300 ease-in-out group-hover:text-[rgba(200,149,108,0.3)]">{cert.id}</span>
+                <div className="w-[48px] h-[48px] rounded-full bg-transparent border border-[rgba(200,149,108,0.3)] text-[var(--color-brand-base)] flex items-center justify-center mb-6 transition-colors duration-300 ease-in-out group-hover:bg-[rgba(200,149,108,0.1)]">{cert.icon}</div>
+                <div className="inline-block font-sans text-[0.7rem] font-semibold tracking-[1.5px] uppercase text-white bg-[var(--color-brand-base)] border border-[var(--color-brand-base)] rounded-none py-1 px-3 mb-3">{cert.subtitle}</div>
+                <h3 className="font-serif text-[1.25rem] font-bold uppercase tracking-[1px] text-white mb-3 leading-[1.3]">{cert.title}</h3>
+                <p className="text-[15.2px] text-[#b5aaa0] leading-[1.6] m-0 font-sans">{cert.desc}</p>
               </div>
-              <div className={styles.cardFooter}>
-                <button className={styles.viewBtn}>View Certificate</button>
-                <button className={styles.downloadBtn}>Download</button>
+              <div className="flex gap-3 py-5 px-7 border-t border-[#f0f0f0]">
+                <button className="flex-1 py-2.5 font-sans text-[0.78rem] font-semibold rounded-lg cursor-pointer transition-all duration-200 ease-in-out tracking-[0.3px] bg-[var(--color-brand-base)] text-black border border-[var(--color-brand-base)] hover:bg-[var(--color-brand-accent-dark)] hover:border-[var(--color-brand-accent-dark)]">View Certificate</button>
+                <button className="flex-1 py-2.5 font-sans text-[0.78rem] font-semibold rounded-lg cursor-pointer transition-all duration-200 ease-in-out tracking-[0.3px] bg-transparent text-[var(--color-brand-base)] border border-[var(--color-brand-base)] hover:bg-[#15110F] hover:text-[var(--color-brand-base)]">Download</button>
               </div>
             </div>
           ))}

@@ -1,24 +1,23 @@
 import React from 'react';
 import { Globe2 } from 'lucide-react';
-import styles from './LuxuryHero.module.css';
 
 const LuxuryHero = () => {
   return (
-    <section className={styles.luxuryHero}>
-      <div className={styles.heroContent}>
-        <div className={styles.overline}>
+    <section className="bg-[#15110F] text-white py-20 px-5 flex items-center justify-center text-center font-serif">
+      <div className="max-w-[800px] flex flex-col items-center">
+        <div className="font-sans text-[0.75rem] tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-[30px]">
           <span>INSPIRED BY TRADITION</span>
         </div>
-        <h1 className={styles.title}>
+        <h1 className="font-serif text-7xl font-normal leading-[1.2] m-0 mb-[25px] text-white max-md:text-[3.5rem]">
           Where Art<br />
-          Meets <span className={styles.italic}>Elegance</span>
+          Meets <span className="italic font-serif font-light text-[var(--color-brand-dark)]">Elegance</span>
         </h1>
-        <p className={styles.subtitle}>
+        <p className="text-[1.1rem] italic text-[#b5aaa0] mb-[50px] font-light">
           Crafted for those who understand the language of luxury
         </p>
-        <div className={styles.btnGroup}>
-          <button className={styles.btnPrimary}>EXPLORE COLLECTION</button>
-          <button className={styles.btnSecondary}>Request Quote</button>
+        <div className="flex gap-5 justify-center max-md:flex-col max-md:w-full">
+          <button className="bg-transparent border border-[#4a3e35] text-[#c8956c] py-3 px-7 text-[12px] tracking-[2px] uppercase transition-all duration-300 font-medium cursor-pointer hover:border-[#c8956c] hover:bg-[#c2a3730d] hover:text-[#c8956c]">EXPLORE COLLECTION</button>
+          <button className="bg-transparent border border-[#4a3e35] text-[#c8956c] py-3 px-7 text-[12px] tracking-[2px] uppercase transition-all duration-300 font-medium cursor-pointer hover:border-[#c8956c] hover:bg-[#c2a3730d] hover:text-[#c8956c]">Request Quote</button>
         </div>
       </div>
     </section>

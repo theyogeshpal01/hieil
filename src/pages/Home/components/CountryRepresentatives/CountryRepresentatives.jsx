@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import styles from './CountryRepresentatives.module.css';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 
 const representatives = [
@@ -43,30 +42,30 @@ const CountryRepresentatives = () => {
   const currentRep = representatives[currentIndex];
 
   return (
-    <section className={styles.section}>
-      <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-        <h2 className={styles.title}>COUNTRY <span style={{ color: 'var(--color-brand-base)' }}>REPRESENTATIVE</span></h2>
-        <p className={styles.subtitle}>Building Trust Across Borders</p>
+    <section className="py-12 px-8 bg-[#15110F] flex flex-col items-center">
+      <div className="text-center mb-14" ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
+        <h2 className="text-3xl md:text-5xl font-serif font-normal text-white mb-2 uppercase tracking-[1.5px]">COUNTRY <span style={{ color: 'var(--color-brand-base)' }}>REPRESENTATIVE</span></h2>
+        <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0]">Building Trust Across Borders</p>
       </div>
 
-      <div className={styles.sliderContainer} ref={sliderRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
-        <button className={`${styles.navBtn} ${styles.prevBtn}`} onClick={prevSlide} aria-label="Previous">
+      <div className="relative max-w-[1100px] w-full flex items-center justify-center" ref={sliderRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
+        <button className="absolute top-1/2 -translate-y-1/2 w-[45px] h-[45px] rounded-full bg-white/5 border border-white/20 text-white flex items-center justify-center cursor-pointer z-10 transition-all duration-200 ease-in-out shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:bg-[var(--color-brand-base)] hover:border-[var(--color-brand-base)] hover:text-[#15110F] active:-translate-y-1/2 active:scale-95 -left-5 max-md:-left-2.5" onClick={prevSlide} aria-label="Previous">
           <ChevronLeft size={24} />
         </button>
 
-        <div className={styles.card}>
-          <div className={styles.imageWrapper}>
-            <img src={currentRep.image} alt={currentRep.name} className={styles.image} onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+        <div className="bg-[#15110F] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)] flex w-full p-12 gap-12 min-h-[380px] items-center max-md:flex-col max-md:p-8 max-md:gap-8 max-md:text-center">
+          <div className="flex-none w-[300px] h-[300px] rounded-xl overflow-hidden bg-[#15110F] max-md:w-[250px] max-md:h-[250px] max-md:mx-auto">
+            <img src={currentRep.image} alt={currentRep.name} className="w-full h-full object-cover" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
           </div>
           
-          <div className={styles.content}>
-            <h3 className={styles.name}>{currentRep.name}</h3>
-            <h4 className={styles.jobTitle}>{currentRep.title}</h4>
-            <p className={styles.description}>{currentRep.desc}</p>
+          <div className="flex-1 flex flex-col">
+            <h3 className="font-serif text-[1.6rem] font-medium text-white mb-4 uppercase tracking-[1.5px]">{currentRep.name}</h3>
+            <h4 className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-6">{currentRep.title}</h4>
+            <p className="font-sans text-[15.2px] text-[#b5aaa0] leading-[1.8] m-0">{currentRep.desc}</p>
           </div>
         </div>
 
-        <button className={`${styles.navBtn} ${styles.nextBtn}`} onClick={nextSlide} aria-label="Next">
+        <button className="absolute top-1/2 -translate-y-1/2 w-[45px] h-[45px] rounded-full bg-white/5 border border-white/20 text-white flex items-center justify-center cursor-pointer z-10 transition-all duration-200 ease-in-out shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:bg-[var(--color-brand-base)] hover:border-[var(--color-brand-base)] hover:text-[#15110F] active:-translate-y-1/2 active:scale-95 -right-5 max-md:-right-2.5" onClick={nextSlide} aria-label="Next">
           <ChevronRight size={24} />
         </button>
       </div>

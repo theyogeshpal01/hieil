@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './FeaturedProducts.module.css';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 import { categories } from '../../../../data/products';
 
@@ -8,28 +7,28 @@ const Featuredcategories = () => {
   const headerRef = useScrollAnimation();
   const gridRef = useScrollAnimation();
   return (
-    <section className={styles.section}>
-      <div className={styles.container}>
-        <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-          <div className={styles.headerLeft}>
-            <div className={styles.eyebrowContainer}>
+    <section className="w-full bg-[#15110F] py-20 px-8 border-t border-[#2c241c]">
+      <div className="max-w-[1200px] mx-auto">
+        <div className="flex justify-between items-end mb-14 border-b border-[#2c241c] pb-6 max-lg:flex-col max-lg:items-start max-lg:gap-4" ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
+          <div className="flex-1">
+            <div className="font-['Inter','Outfit',sans-serif] text-xs tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-6 bg-transparent">
               <span>FEATURED</span>
             </div>
-            <h2 className={styles.title}>FEATURED <span className={styles.highlight}>CATEGORIES</span></h2>
+            <h2 className="text-3xl md:text-5xl font-serif font-normal text-white m-0 uppercase leading-none max-sm:text-[3.5rem]">FEATURED <span className="text-[#c8956c]">CATEGORIES</span></h2>
           </div>
-          <div className={styles.headerRight}>
-            <p className={styles.subtitle}>Discover authentic Indian artistry crafted by skilled artisans</p>
+          <div className="flex-1 text-right max-lg:text-left w-full">
+            <p className="font-sans text-[1.1rem] text-[#b5aaa0] m-0 max-w-[400px] ml-auto max-lg:ml-0">Discover authentic Indian artistry crafted by skilled artisans</p>
           </div>
         </div>
-        <div className={styles.grid} ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
           {categories.slice(0, 4).map((product) => (
-            <div key={product.id} className={styles.card}>
-              <Link to={/product/ + product.id} className={styles.cardLink}>
-                <div className={styles.imageWrapper}>
-                  <img src={product.image} alt={product.name} className={styles.image} onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
-                  <div className={styles.overlay}>
-                    <span className={styles.tag}>{product.brand || 'ARTISAN'}</span>
-                    <h3 className={styles.productName}>{product.name}</h3>
+            <div key={product.id} className="relative overflow-hidden rounded aspect-[3/4] group">
+              <Link to={'/product/' + product.id} className="block w-full h-full no-underline">
+                <div className="w-full h-full relative">
+                  <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-[600ms] ease-in-out group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+                  <div className="absolute bottom-0 left-0 right-0 pt-8 px-5 pb-5 bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-transparent flex flex-col">
+                    <span className="font-sans text-[0.65rem] tracking-[2px] text-[#c8956c] mb-1.5 uppercase">{product.brand || 'ARTISAN'}</span>
+                    <h3 className="font-serif text-[1.1rem] text-white m-0 uppercase">{product.name}</h3>
                   </div>
                 </div>
               </Link>

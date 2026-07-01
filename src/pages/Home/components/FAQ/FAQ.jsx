@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
-import styles from './FAQ.module.css';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 
 const faqs = [
@@ -24,43 +23,43 @@ const FAQ = () => {
   };
 
   return (
-    <section className={styles.section}>
-      <div className={styles.container}>
-        <div className={styles.header} ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-          <h2 className={styles.title}>FREQUENTLY <span style={{ color: 'var(--color-brand-base)' }}>ASKED QUESTIONS</span></h2>
-          <p className={styles.subtitle}>Find answers to common questions about our categories and services</p>
+    <section className="py-12 px-8 bg-[#15110F]">
+      <div className="max-w-[1000px] mx-auto">
+        <div className="text-center mb-10" ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
+          <h2 className="text-3xl md:text-5xl font-serif font-normal text-white uppercase tracking-[1.5px] m-0 mb-3">FREQUENTLY <span style={{ color: 'var(--color-brand-base)' }}>ASKED QUESTIONS</span></h2>
+          <p className="font-sans text-[1.1rem] text-[#b5aaa0] m-0">Find answers to common questions about our categories and services</p>
         </div>
 
-        <div className={styles.categoryTab}>
-          <h3 className={styles.categoryTitle}>INFORMATION</h3>
-          <div className={styles.underline}></div>
+        <div className="flex flex-col items-center mb-12">
+          <h3 className="font-serif text-[1.1rem] font-medium text-white uppercase tracking-[2px] m-0 mb-2">INFORMATION</h3>
+          <div className="w-[60px] h-[2px] bg-[#c07a5d]"></div>
         </div>
 
-        <div className={styles.grid} ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-8 mb-14 items-start" ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
           {faqs.map((faq) => (
             <div 
               key={faq.id} 
-              className={`${styles.card} ${openId === faq.id ? styles.open : ''}`}
+              className={`group bg-[#15110F] rounded shadow-[0_4px_20px_rgba(0,0,0,0.5)] overflow-hidden cursor-pointer border transition-all duration-200 ease-in-out ${openId === faq.id ? 'border-[#c07a5d] shadow-[0_4px_20px_rgba(0,0,0,0.5)]' : 'border-transparent hover:border-[#c07a5d] hover:shadow-[0_4px_20px_rgba(0,0,0,0.5)]'}`}
               onClick={() => toggleFaq(faq.id)}
             >
-              <div className={styles.questionArea}>
-                <h4 className={styles.question}>{faq.question}</h4>
-                <div className={styles.icon}>
+              <div className="py-5 px-6 flex justify-between items-center bg-[#15110F]">
+                <h4 className="font-serif text-[0.95rem] font-semibold text-[#b5aaa0] uppercase tracking-[1px] m-0">{faq.question}</h4>
+                <div className="text-[#c07a5d] flex items-center justify-center">
                   {openId === faq.id ? <Minus size={18} /> : <Plus size={18} />}
                 </div>
               </div>
               
-              <div className={styles.answerArea} style={{ maxHeight: openId === faq.id ? '200px' : '0' }}>
-                <p className={styles.answer}>{faq.answer}</p>
+              <div className={`overflow-hidden transition-[max-height,padding] duration-400 ease-in-out bg-[#15110F] border-t ${openId === faq.id ? 'border-[#2c241c] py-5 px-6' : 'border-transparent px-6'}`} style={{ maxHeight: openId === faq.id ? '200px' : '0' }}>
+                <p className="font-sans text-[0.9rem] text-[#b5aaa0] leading-[1.6] m-0">{faq.answer}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className={styles.buttonContainer}>
-          <div className={styles.lineStyle}></div>
-          <button className={styles.showMoreBtn}>Show More Questions</button>
-          <div className={styles.lineStyle}></div>
+        <div className="flex items-center justify-center max-w-[400px] mx-auto">
+          <div className="flex-1 h-[1px] bg-[#2c241c]"></div>
+          <button className="bg-[#c8956c] text-black font-sans text-[0.9rem] font-medium border-none py-3 px-8 rounded cursor-pointer relative z-10 transition-colors duration-200 ease-in-out hover:bg-[#917751]">Show More Questions</button>
+          <div className="flex-1 h-[1px] bg-[#2c241c]"></div>
         </div>
       </div>
     </section>

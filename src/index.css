@@ -89,3 +89,20 @@ section:nth-of-type(odd) {
 section:nth-of-type(even) {
   background-color: #1C1713 !important;
 }
+
+
+/* Global Section Title added to ensure 100% uniformity */
+.global-section-title {
+  font-family: var(--font-serif) !important;
+  font-size: 3.5rem !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  letter-spacing: normal !important;
+  margin-bottom: 25px !important;
+}
+@media (max-width: 768px) {
+  .global-section-title {
+    font-size: 2.5rem !important;
+  }
+}
