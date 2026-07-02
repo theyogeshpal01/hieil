@@ -50,7 +50,7 @@ const Blog = () => {
 
       {/* Topics Section */}
       <section className="py-[60px] bg-[#15110F]">
-        <div className="container mx-auto">
+        <div className="max-w-[1200px] mx-auto px-5">
           <div className="flex items-center gap-[20px] mb-[30px] flex-wrap md:flex-row flex-col md:items-center items-start" data-aos="fade-up">
             <h3 className="text-[1.2rem] text-white font-semibold m-0">Explore Topics:</h3>
             <div className="flex gap-[15px] flex-wrap">
@@ -82,11 +82,11 @@ const Blog = () => {
 
       {/* Artisans Section */}
       <section className="py-[80px] bg-[#15110F]">
-        <div className="container mx-auto">
+        <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px]">Meet <br /> <span className="text-[var(--color-brand-base)]">Our Artisans</span></h2>
             <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.6] max-w-[600px] mx-auto">Authentic videos showcasing the skill, dedication, and stories behind our master craftsmen.</p>
-            <h3 className="text-[1.1rem] text-[var(--hww-primary)] mt-[30px] font-semibold">The Hands Behind Our Crafts</h3>
+            <h3 className="text-[1.1rem] text-[var(--color-brand-base)] mt-[30px] font-semibold">The Hands Behind Our Crafts</h3>
           </div>
 
           <div className="flex flex-col gap-[60px] mt-[50px]">
@@ -95,10 +95,10 @@ const Blog = () => {
                 <div className="flex-[0_0_45%] relative min-h-[300px] lg:min-h-[400px] overflow-hidden bg-[#3e332a]">
                   {/* Using an image to showcase the artisan */}
                   <img src={artisan.image} alt={artisan.name} className="w-full h-full object-cover absolute top-0 left-0 transition-transform duration-400 opacity-80 group-hover:scale-105" />
-                  <span className="absolute top-[20px] left-[20px] bg-[var(--hww-primary)] text-white p-[6px_15px] rounded-[20px] text-[0.8rem] font-semibold tracking-[1px] uppercase">Artisan Work</span>
+                  <span className="absolute top-[20px] left-[20px] bg-[var(--color-brand-base)] text-white p-[6px_15px] rounded-[20px] text-[0.8rem] font-semibold tracking-[1px] uppercase">Artisan Work</span>
                 </div>
                 <div className="p-[30px_20px] lg:p-[50px_40px] flex-1">
-                  <span className="text-[var(--hww-primary)] font-semibold text-[1rem] mb-[10px] block">{artisan.craft}</span>
+                  <span className="text-[#c8956c] font-normal text-[1rem] mb-[10px] block">{artisan.craft}</span>
                   <h3 className="font-serif text-[1.6rem] lg:text-[2.2rem] text-white mb-[25px]">{artisan.name}</h3>
                   <div className="">
                     {artisan.desc.split('\n\n').map((para, i) => (
@@ -114,7 +114,7 @@ const Blog = () => {
 
       {/* Newsletter Section */}
       <section className="pt-[80px] pb-[120px] bg-[#15110F]">
-        <div className="container mx-auto">
+        <div className="max-w-[1200px] mx-auto px-5">
           <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#c8956c] rounded-[30px] p-[40px_20px] lg:p-[60px] flex flex-col lg:flex-row items-center justify-between gap-[40px] text-white shadow-[0_10px_40px_rgba(194,163,115,0.05)] text-center lg:text-left" data-aos="zoom-in">
             <div className="flex-1">
               <h2 className="font-serif text-[2.5rem] mb-[15px]">Get <br /> <span className="text-[var(--color-brand-base)]">Importer-Focused Insights</span></h2>

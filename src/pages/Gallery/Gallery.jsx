@@ -100,7 +100,7 @@ const Gallery = () => {
       </section>
 
       <section className="py-[60px]">
-        <div className="container mx-auto">
+        <div className="max-w-[1200px] mx-auto px-5">
           <div className="flex flex-col lg:flex-row gap-10 items-start">
             
             {/* Sidebar Filters */}
@@ -110,7 +110,7 @@ const Gallery = () => {
                 {categories.map((category, index) => (
                   <li key={index} className="lg:mb-[10px] m-0">
                     <button 
-                      className={`w-full text-left bg-transparent border border-[#4a3e35] text-white py-[12px] px-[28px] lg:py-[10px] lg:px-[20px] text-[12px] tracking-[2px] uppercase transition-all duration-300 font-medium cursor-pointer lg:rounded-[30px] rounded-none hover:bg-[rgba(194,163,115,0.1)] hover:border-[#c8956c] hover:shadow-[0_0_15px_rgba(194,163,115,0.2)] hover:text-[#c8956c] ${activeCategory === category ? 'bg-[#c8956c] !text-[#15110F] border-[#c8956c] font-semibold shadow-[0_0_15px_rgba(194,163,115,0.3)]' : ''}`}
+                      className={`w-full text-left bg-transparent border border-[#4a3e35] !text-white py-[12px] px-[28px] lg:py-[10px] lg:px-[20px] text-[12px] tracking-[2px] uppercase transition-all duration-300 font-medium cursor-pointer lg:rounded-[30px] rounded-none hover:bg-[rgba(194,163,115,0.1)] hover:border-[#c8956c] hover:shadow-[0_0_15px_rgba(194,163,115,0.2)] hover:!text-[#c8956c] ${activeCategory === category ? 'bg-[#c8956c] !text-[#15110F] border-[#c8956c] font-semibold shadow-[0_0_15px_rgba(194,163,115,0.3)]' : ''}`}
                       onClick={() => setActiveCategory(category)}
                     >
                       {category}
@@ -148,7 +148,7 @@ const Gallery = () => {
 
       {/* User Shared Moments */}
       <section className="pt-[80px] px-0 pb-[120px] bg-[#15110F]">
-        <div className="container mx-auto">
+        <div className="max-w-[1200px] mx-auto px-5">
           <div className="mb-[40px] text-center">
             <h2 className="font-serif text-[2.5rem] font-normal m-0 text-white">User <br /> <span className="text-[var(--color-brand-base)]">Shared Moments</span></h2>
             <p className="font-serif text-[1.1rem] text-white mb-[15px] font-normal mt-4">Real Stories Shared by Our Global Community</p>

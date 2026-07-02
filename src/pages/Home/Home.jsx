@@ -12,11 +12,10 @@ import SecurePaymentOptions from './components/SecurePaymentOptions/SecurePaymen
 import Certifications from './components/Certifications/Certifications';
 import GlobalClients from './components/GlobalClients/GlobalClients';
 import FAQ from './components/FAQ/FAQ';
-import styles from './Home.module.css';
 
 const Home = () => {
   return (
-    <main className={styles.homeContainer}>
+    <main className="w-full overflow-x-hidden bg-[#15110F]">
       <LuxuryHero />
       
       <AboutCTASection />

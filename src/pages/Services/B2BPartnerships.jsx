@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './B2BPartnerships.css';
 import { Link } from 'react-router-dom';
 import { 
   Building2, 
@@ -117,17 +116,16 @@ const B2BPartnerships = () => {
   ];
 
   return (
-    <div className="b2b-page">
+    <div className="font-sans text-white bg-[#15110F] overflow-x-hidden pt-[50px]">
       
-
       {/* Stats Section */}
-      <section className="b2b-stats-section" style={{ paddingBottom: '80px' }}>
-        <div className="container">
-          <div className="stats-grid">
+      <section className="pb-[80px]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {stats.map((stat, index) => (
-              <div className="stat-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <h3>{stat.value}</h3>
-                <p>{stat.label}</p>
+              <div className="bg-transparent border border-[#2c241c] p-[30px] flex flex-col text-center transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(255,255,255,0.02)]" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <h3 className="font-serif text-[2.5rem] font-bold text-white mb-2">{stat.value}</h3>
+                <p className="text-[#8c8279] text-[0.95rem] m-0 uppercase tracking-[1px]">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -135,21 +133,21 @@ const B2BPartnerships = () => {
       </section>
 
       {/* Our Partnership Network */}
-      <section className="b2b-offer-section">
-        <div className="container">
-          <div className="page-header" data-aos="fade-up">
-            <span className="b2b-tag">Service Directory</span>
-            <h1 className="page-title">Global B2B Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Opportunities</span></h1>
-            <p className="page-subtitle">
+      <section className="py-10 pb-20 bg-[#15110F] border-b border-[#2c241c]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[80px] pt-[40px]" data-aos="fade-up">
+            <span className="font-sans text-[0.75rem] tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-[30px] bg-transparent">Service Directory</span>
+            <h1 className="font-serif text-[3.5rem] font-normal text-white mb-6 uppercase tracking-[1px] max-md:text-[3.5rem] max-sm:text-[2.5rem]">Global B2B Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Opportunities</span></h1>
+            <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[800px] mx-auto">
               We specialize in forging strong, long-lasting business relationships across the globe. Whether you're a wholesaler, retailer, or distributor, our B2B partnership programs are designed to provide you with exclusive categories, reliable supply chains, and dedicated support to scale your business.
             </p>
           </div>
-          <div className="offer-grid">
+          <div className="grid grid-cols-2 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {networks.map((network, index) => (
-              <div className="offer-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="offer-icon">{network.icon}</div>
-                <h3>{network.title}</h3>
-                <p>{network.desc}</p>
+              <div className="bg-[#15110F] border border-[#2c241c] p-10 text-left transition-all duration-400 ease-in-out hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] hover:-translate-y-[5px] group" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="w-[48px] h-[48px] mb-6 flex items-center justify-center bg-transparent border border-[rgba(200,149,108,0.3)] text-[#c8956c] rounded-full transition-colors duration-400 ease-in-out group-hover:bg-[rgba(200,149,108,0.1)]">{network.icon}</div>
+                <h3 className="font-serif text-[1.25rem] font-bold text-white mb-3 uppercase tracking-[1px]">{network.title}</h3>
+                <p className="text-[#b5aaa0] leading-[1.6] text-[15.2px] m-0">{network.desc}</p>
               </div>
             ))}
           </div>
@@ -157,28 +155,28 @@ const B2BPartnerships = () => {
       </section>
 
       {/* Partnership Models */}
-      <section className="b2b-models-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Models</span></h2>
-            <p>Tailored Solutions for Your Business</p>
+      <section className="py-[100px] bg-[#15110F]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Models</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Tailored Solutions for Your Business</p>
           </div>
-          <div className="models-grid">
+          <div className="grid grid-cols-3 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {partnershipModels.map((model, index) => (
-              <div className="offer-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="model-header">
-                  <div className="offer-icon">{model.icon}</div>
-                  <span className="model-tag">PARTNERSHIP</span>
+              <div className="bg-[#15110F] border border-[#2c241c] p-10 text-left transition-all duration-400 ease-in-out hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] hover:-translate-y-[5px] group flex flex-col" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="flex justify-between items-center mb-5">
+                  <div className="w-[48px] h-[48px] mb-0 flex items-center justify-center bg-transparent border border-[rgba(200,149,108,0.3)] text-[#c8956c] rounded-full transition-colors duration-400 ease-in-out group-hover:bg-[rgba(200,149,108,0.1)]">{model.icon}</div>
+                  <span className="bg-[rgba(200,149,108,0.1)] text-[#c8956c] py-1 px-3 text-[0.75rem] font-semibold rounded-full border border-[rgba(200,149,108,0.3)]">PARTNERSHIP</span>
                 </div>
-                <h3>{model.title}</h3>
-                <h4>{model.subtitle}</h4>
-                <p>{model.desc}</p>
-                <ul className="model-features">
+                <h3 className="font-serif text-[1.25rem] font-bold text-white mb-3 uppercase tracking-[1px]">{model.title}</h3>
+                <h4 className="font-sans text-[#c8956c] text-[0.95rem] mb-[15px] uppercase tracking-[1px]">{model.subtitle}</h4>
+                <p className="text-[#b5aaa0] leading-[1.6] text-[15.2px] m-0">{model.desc}</p>
+                <ul className="list-none p-0 my-[25px]">
                   {model.features.map((feature, i) => (
-                    <li key={i}><CheckCircle size={16} /> {feature}</li>
+                    <li className="text-[#b5aaa0] text-[0.95rem] mb-3 flex items-center gap-[10px]" key={i}><CheckCircle size={16} className="text-[#c8956c] shrink-0" /> {feature}</li>
                   ))}
                 </ul>
-                <Link to="/contact" className="b2b-btn-outline">{model.btnText}</Link>
+                <Link to="/contact" className="inline-block w-full text-center py-3 px-6 border border-[#c8956c] text-[#c8956c] no-underline text-[0.9rem] font-semibold tracking-[1px] uppercase transition-all duration-300 ease-in-out rounded-full mt-auto hover:bg-[#c8956c] hover:text-[#15110F]">{model.btnText}</Link>
               </div>
             ))}
           </div>
@@ -186,19 +184,19 @@ const B2BPartnerships = () => {
       </section>
 
       {/* Your Partnership Advantage */}
-      <section className="b2b-advantage-section py-10">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Your <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnership Advantage</span></h2>
-            <p>A Reliable Export Partner Invested in Your Success</p>
+      <section className="py-[100px] bg-[radial-gradient(circle_at_center,#1C1713_0%,#15110F_100%)]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Your <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnership Advantage</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">A Reliable Export Partner Invested in Your Success</p>
           </div>
-          <div className="advantage-grid">
+          <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {advantages.map((item, index) => (
-              <div className="adv-item" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="adv-icon">{item.icon}</div>
-                <div className="adv-content">
-                  <h4>{item.title}</h4>
-                  <p>{item.desc}</p>
+              <div className="bg-transparent border border-[#2c241c] p-[30px] flex flex-col transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(255,255,255,0.02)]" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="text-[#c8956c] mb-5">{item.icon}</div>
+                <div>
+                  <h4 className="font-sans text-[1.1rem] text-white mb-3 uppercase tracking-[1px]">{item.title}</h4>
+                  <p className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -207,19 +205,19 @@ const B2BPartnerships = () => {
       </section>
 
       {/* Flexible Partnership Terms */}
-      <section className="b2b-terms-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2 className="">Flexible <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnership Terms</span></h2>
-            <p>Designed for Your Business Needs</p>
+      <section className="py-[100px] bg-[radial-gradient(circle_at_center,#1C1713_0%,#15110F_100%)]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Flexible <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnership Terms</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Designed for Your Business Needs</p>
           </div>
-          <div className="advantage-grid">
+          <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {flexibleTerms.map((item, index) => (
-              <div className="adv-item" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="adv-icon">{item.icon}</div>
-                <div className="adv-content">
-                  <h4>{item.title}</h4>
-                  <p>{item.desc}</p>
+              <div className="bg-transparent border border-[#2c241c] p-[30px] flex flex-col transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(255,255,255,0.02)]" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="text-[#c8956c] mb-5">{item.icon}</div>
+                <div>
+                  <h4 className="font-sans text-[1.1rem] text-white mb-3 uppercase tracking-[1px]">{item.title}</h4>
+                  <p className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -228,19 +226,19 @@ const B2BPartnerships = () => {
       </section>
 
       {/* Why Partner With Us */}
-      <section className="b2b-reasons-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2 className="">Why Partner <br /> <span style={{ color: 'var(--color-brand-base)' }}>With Us</span></h2>
-            <p>Building Success Together</p>
+      <section className="py-[100px] bg-[#15110F]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Why Partner <br /> <span style={{ color: 'var(--color-brand-base)' }}>With Us</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Building Success Together</p>
           </div>
-          <div className="advantage-grid">
+          <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {reasons.map((adv, index) => (
-              <div className="adv-item" key={index} data-aos="fade-up" data-aos-delay={index * 50}>
-                <div className="adv-icon">{adv.icon}</div>
-                <div className="adv-content">
-                  <h4>{adv.title}</h4>
-                  <p>{adv.desc}</p>
+              <div className="bg-transparent border border-[#2c241c] p-[30px] flex flex-col transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(255,255,255,0.02)]" key={index} data-aos="fade-up" data-aos-delay={index * 50}>
+                <div className="text-[#c8956c] mb-5">{adv.icon}</div>
+                <div>
+                  <h4 className="font-sans text-[1.1rem] text-white mb-3 uppercase tracking-[1px]">{adv.title}</h4>
+                  <p className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0">{adv.desc}</p>
                 </div>
               </div>
             ))}
@@ -249,19 +247,19 @@ const B2BPartnerships = () => {
       </section>
 
       {/* Successful Partnerships */}
-      <section className="b2b-testimonials-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Successful <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnerships</span></h2>
-            <p>Stories of Growth and Collaboration</p>
+      <section className="py-[100px] bg-[radial-gradient(circle_at_center,#1C1713_0%,#15110F_100%)]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Successful <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnerships</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Stories of Growth and Collaboration</p>
           </div>
-          <div className="b2b-testimonials-grid">
+          <div className="grid grid-cols-3 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {testimonials.map((testimonial, index) => (
-              <div className="adv-item" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="adv-icon">{testimonial.icon}</div>
-                <div className="adv-content">
-                  <p className="testimonial-desc">{testimonial.desc}</p>
-                  <h4>{testimonial.title}</h4>
+              <div className="bg-transparent border border-[#2c241c] p-[30px] flex flex-col transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(255,255,255,0.02)]" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="text-[#c8956c] mb-5">{testimonial.icon}</div>
+                <div>
+                  <p className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0 mb-4">{testimonial.desc}</p>
+                  <h4 className="font-sans text-[1.1rem] text-white mb-3 uppercase tracking-[1px]">{testimonial.title}</h4>
                 </div>
               </div>
             ))}
@@ -270,19 +268,19 @@ const B2BPartnerships = () => {
       </section>
 
       {/* Process Section */}
-      <section className="b2b-process-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Journey</span></h2>
-            <p>Building Our Relationship Step by Step</p>
+      <section className="py-[100px] bg-[#1C1713]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Journey</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Building Our Relationship Step by Step</p>
           </div>
-          <div className="process-timeline">
+          <div className="flex justify-between relative max-w-[1000px] mx-auto max-md:flex-col max-md:gap-10 before:content-[''] before:absolute before:top-[40px] before:left-0 before:right-0 before:h-[1px] before:bg-[#2c241c] before:z-10 max-md:before:hidden">
             {processSteps.map((step, index) => (
-              <div className="timeline-step" key={index} data-aos="fade-left" data-aos-delay={index * 100}>
-                <div className="timeline-number">{step.num}</div>
-                <div className="timeline-content">
-                  <h4>{step.title}</h4>
-                  <p>{step.desc}</p>
+              <div className="flex-1 text-center relative z-20 px-[15px] group max-md:flex max-md:text-left max-md:items-center max-md:gap-5" key={index} data-aos="fade-left" data-aos-delay={index * 100}>
+                <div className="w-[80px] h-[80px] mx-auto mb-[30px] bg-[#15110F] border border-[#c8956c] text-[#c8956c] flex items-center justify-center font-serif text-[2rem] transition-all duration-400 ease-in-out group-hover:bg-[#c8956c] group-hover:text-[#15110F] group-hover:shadow-[0_0_30px_rgba(194,163,115,0.2)] max-md:m-0 max-md:shrink-0 max-md:w-[60px] max-md:h-[60px] max-md:text-[1.5rem]">{step.num}</div>
+                <div>
+                  <h4 className="font-serif text-[1.5rem] text-white mb-[15px]">{step.title}</h4>
+                  <p className="text-[#b5aaa0] text-[0.95rem] leading-[1.6]">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -291,26 +289,26 @@ const B2BPartnerships = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="b2b-cta-section" data-aos="zoom-in">
-        <div className="b2b-cta-inner">
-          <h2>Looking For A Trusted <br /> <span style={{ color: 'var(--color-brand-base)' }}>Handicraft Exporter</span>?</h2>
-          <p>Let's build a partnership that grows your business and creates lasting value. With our flexible solutions, dedicated support, and commitment to your success, we're more than just a supplier — we're your strategic partner in global expansion.</p>
-          <Link to="/contact" className="b2b-btn">Let's Build a Partnership</Link>
+      <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
+        <div className="max-w-[800px] mx-auto">
+          <h2 className="font-serif text-[3rem] text-white mb-5 font-normal max-md:text-[2.2rem]">Looking For A Trusted <br /> <span style={{ color: 'var(--color-brand-base)' }}>Handicraft Exporter</span>?</h2>
+          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Let's build a partnership that grows your business and creates lasting value. With our flexible solutions, dedicated support, and commitment to your success, we're more than just a supplier — we're your strategic partner in global expansion.</p>
+          <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c] rounded-none">Let's Build a Partnership</Link>
         </div>
       </section>
 
       {/* Why Businesses Choose Our Partnership */}
-      <section className="b2b-partners-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Why Businesses <br /> <span style={{ color: 'var(--color-brand-base)' }}>Choose Our Partnership</span></h2>
+      <section className="py-[100px] bg-[#15110F]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Why Businesses <br /> <span style={{ color: 'var(--color-brand-base)' }}>Choose Our Partnership</span></h2>
           </div>
-          <div className="partners-grid">
+          <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {partners.map((partner, index) => (
-              <div className="partner-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="partner-icon">{partner.icon}</div>
-                <h4>{partner.title}</h4>
-                <p>{partner.desc}</p>
+              <div className="p-[40px_30px] text-center bg-transparent border border-[#2c241c] transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(28,23,19,0.4)]" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="text-[#c8956c] mb-[25px] flex justify-center">{partner.icon}</div>
+                <h4 className="font-sans text-[1.1rem] text-white mb-[15px] uppercase tracking-[1px]">{partner.title}</h4>
+                <p className="text-[#8c8279] text-[0.95rem] leading-[1.6]">{partner.desc}</p>
               </div>
             ))}
           </div>

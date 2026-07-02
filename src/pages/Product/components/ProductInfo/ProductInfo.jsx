@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, Heart, GitCompare, ChevronDown, ChevronUp, Share, Minus, Plus, Truck, Shirt, Ruler, Mail, MessageCircle, Fingerprint, Globe, Leaf, Shield } from 'lucide-react';
-import styles from './ProductInfo.module.css';
 
 const defaultAccordionData = [
   {
@@ -10,8 +9,8 @@ const defaultAccordionData = [
     icon: Truck,
     content: (
       <>
-        <p>Free shipping and returns available on all orders!</p>
-        <p>We ship all US domestic orders within 5-10 <strong>business days</strong></p>
+        <p className="m-0 mb-4 last:mb-0">Free shipping and returns available on all orders!</p>
+        <p className="m-0 mb-4 last:mb-0">We ship all US domestic orders within 5-10 <strong>business days</strong></p>
       </>
     )
   },
@@ -20,7 +19,7 @@ const defaultAccordionData = [
     title: 'Materials',
     icon: Shirt,
     content: (
-      <p>The item with the Committed label has a lower environmental impact because it was made with sustainable materials or methods. We are committed to creating items that combine sustainability with style. Made with recycled cashmere and industrial by-categories.</p>
+      <p className="m-0 mb-4 last:mb-0">The item with the Committed label has a lower environmental impact because it was made with sustainable materials or methods. We are committed to creating items that combine sustainability with style. Made with recycled cashmere and industrial by-categories.</p>
     )
   },
   {
@@ -29,33 +28,33 @@ const defaultAccordionData = [
     icon: Ruler,
     content: (
       <>
-        <p>Finding the perfect fit is essential for a comfortable and flattering wardrobe. To assist you in selecting the right size, we've compiled comprehensive size guides for both men's and women's clothing. Please refer to the following information to ensure a perfect fit every time.</p>
-        <p><strong>Men's Clothing Size Guide Table:</strong></p>
-        <div className={styles.tableWrapper}>
-          <table className={styles.sizeTable}>
+        <p className="m-0 mb-4 last:mb-0">Finding the perfect fit is essential for a comfortable and flattering wardrobe. To assist you in selecting the right size, we've compiled comprehensive size guides for both men's and women's clothing. Please refer to the following information to ensure a perfect fit every time.</p>
+        <p className="m-0 mb-4 last:mb-0"><strong>Men's Clothing Size Guide Table:</strong></p>
+        <div className="w-full overflow-x-auto my-6">
+          <table className="w-full border-collapse text-center font-serif text-[0.8rem] text-[#b5aaa0]">
             <thead>
-              <tr>
-                <th>Size</th>
-                <th>Chest (inches)</th>
-                <th>Waist (inches)</th>
-                <th>Hips (inches)</th>
-                <th>Neck (inches)</th>
-                <th>Sleeve Length (inches)</th>
-                <th>Inseam (inches)</th>
+              <tr className="max-sm:border-b max-sm:border-[#2c241c] last:max-sm:border-none">
+                <th className="bg-[#15110F] font-semibold py-4 px-2 border-b-2 border-white max-sm:block max-sm:w-full max-sm:border-none max-sm:bg-transparent max-sm:pb-1">Size</th>
+                <th className="bg-[#15110F] font-semibold py-4 px-2 border-b-2 border-white max-sm:block max-sm:w-full max-sm:border-none max-sm:bg-transparent max-sm:pb-1">Chest (inches)</th>
+                <th className="bg-[#15110F] font-semibold py-4 px-2 border-b-2 border-white max-sm:block max-sm:w-full max-sm:border-none max-sm:bg-transparent max-sm:pb-1">Waist (inches)</th>
+                <th className="bg-[#15110F] font-semibold py-4 px-2 border-b-2 border-white max-sm:block max-sm:w-full max-sm:border-none max-sm:bg-transparent max-sm:pb-1">Hips (inches)</th>
+                <th className="bg-[#15110F] font-semibold py-4 px-2 border-b-2 border-white max-sm:block max-sm:w-full max-sm:border-none max-sm:bg-transparent max-sm:pb-1">Neck (inches)</th>
+                <th className="bg-[#15110F] font-semibold py-4 px-2 border-b-2 border-white max-sm:block max-sm:w-full max-sm:border-none max-sm:bg-transparent max-sm:pb-1">Sleeve Length (inches)</th>
+                <th className="bg-[#15110F] font-semibold py-4 px-2 border-b-2 border-white max-sm:block max-sm:w-full max-sm:border-none max-sm:bg-transparent max-sm:pb-1">Inseam (inches)</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>XS</td><td>34-36</td><td>28-30</td><td>34-36</td><td>14.5-15</td><td>32-33</td><td>30-32</td></tr>
-              <tr><td>S</td><td>36-38</td><td>30-32</td><td>36-38</td><td>15-15.5</td><td>33-34</td><td>30-32</td></tr>
-              <tr><td>M</td><td>38-40</td><td>32-34</td><td>38-40</td><td>15.5-16</td><td>34-35</td><td>32-33</td></tr>
-              <tr><td>L</td><td>40-42</td><td>34-36</td><td>40-42</td><td>16-16.5</td><td>35-36</td><td>33-34</td></tr>
-              <tr><td>XL</td><td>42-44</td><td>36-38</td><td>42-44</td><td>16.5-17</td><td>36-37</td><td>34-35</td></tr>
-              <tr><td>XXL</td><td>44-46</td><td>38-40</td><td>44-46</td><td>17-17.5</td><td>37-38</td><td>35-36</td></tr>
-              <tr><td>XXXL</td><td>46-48</td><td>40-42</td><td>46-48</td><td>17.5-18</td><td>38-39</td><td>36-37</td></tr>
+              <tr className="max-sm:border-b max-sm:border-[#2c241c] last:max-sm:border-none"><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">XS</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">34-36</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">28-30</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">34-36</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">14.5-15</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">32-33</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">30-32</td></tr>
+              <tr className="max-sm:border-b max-sm:border-[#2c241c] last:max-sm:border-none"><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">S</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">36-38</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">30-32</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">36-38</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">15-15.5</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">33-34</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">30-32</td></tr>
+              <tr className="max-sm:border-b max-sm:border-[#2c241c] last:max-sm:border-none"><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">M</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">38-40</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">32-34</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">38-40</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">15.5-16</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">34-35</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">32-33</td></tr>
+              <tr className="max-sm:border-b max-sm:border-[#2c241c] last:max-sm:border-none"><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">L</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">40-42</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">34-36</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">40-42</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">16-16.5</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">35-36</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">33-34</td></tr>
+              <tr className="max-sm:border-b max-sm:border-[#2c241c] last:max-sm:border-none"><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">XL</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">42-44</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">36-38</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">42-44</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">16.5-17</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">36-37</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">34-35</td></tr>
+              <tr className="max-sm:border-b max-sm:border-[#2c241c] last:max-sm:border-none"><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">XXL</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">44-46</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">38-40</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">44-46</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">17-17.5</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">37-38</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">35-36</td></tr>
+              <tr className="max-sm:border-b max-sm:border-[#2c241c] last:max-sm:border-none"><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">XXXL</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">46-48</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">40-42</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">46-48</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">17.5-18</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">38-39</td><td className="py-4 px-2 border-b-2 border-white bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0">36-37</td></tr>
             </tbody>
           </table>
         </div>
-        <p>Please note that sizes may vary slightly between brands and styles. It's always best to refer to the specific size chart provided by the manufacturer or retailer for the most accurate sizing information.</p>
+        <p className="m-0 mb-4 last:mb-0">Please note that sizes may vary slightly between brands and styles. It's always best to refer to the specific size chart provided by the manufacturer or retailer for the most accurate sizing information.</p>
       </>
     )
   },
@@ -64,7 +63,7 @@ const defaultAccordionData = [
     title: 'Care Instructions',
     icon: Heart,
     content: (
-      <p>We advise routinely dusting your items with a gentle cleanser to preserve its look. Periodically, it may need to be softly wet with a mild detergent solution.</p>
+      <p className="m-0 mb-4 last:mb-0">We advise routinely dusting your items with a gentle cleanser to preserve its look. Periodically, it may need to be softly wet with a mild detergent solution.</p>
     )
   }
 ];
@@ -85,13 +84,13 @@ const ProductInfo = ({ product }) => {
       title: 'Specifications',
       icon: Ruler,
       content: (
-        <div className={styles.specificationsBox}>
-          <table className={styles.specTable}>
+        <div className="bg-[#15110F] rounded">
+          <table className="w-full border-collapse text-left">
             <tbody>
-              {Object.entries(product.specifications).map(([key, value]) => (
-                <tr key={key}>
-                  <th>{key}</th>
-                  <td>{value}</td>
+              {Object.entries(product.specifications).map(([key, value], idx, arr) => (
+                <tr key={key} className="max-sm:border-b max-sm:border-[#2c241c] last:max-sm:border-none">
+                  <th className={`py-3 px-4 font-medium text-white w-[40%] bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:bg-transparent max-sm:pb-1 ${idx === arr.length - 1 ? '' : 'border-b border-[#2c241c]'}`}>{key}</th>
+                  <td className={`py-3 px-4 text-[#b5aaa0] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0 ${idx === arr.length - 1 ? '' : 'border-b border-[#2c241c]'}`}>{value}</td>
                 </tr>
               ))}
             </tbody>
@@ -108,52 +107,52 @@ const ProductInfo = ({ product }) => {
   }
 
   return (
-    <div className={styles.infoWrapper}>
-      <h1 className={styles.title}>{product.name}</h1>
+    <div className="flex flex-col gap-5 font-sans text-[#b5aaa0]">
+      <h1 className="font-serif text-[3.5rem] text-white font-medium m-0 leading-[1.3]">{product.name}</h1>
       
-      <div className={styles.priceContainer}>
+      <div className="flex items-center gap-4">
         {product.priceOnRequest ? (
-          <span className={styles.newPrice}>Price on Request</span>
+          <span className="text-[#c07a5d] text-[1.4rem] font-semibold">Price on Request</span>
         ) : (
           <>
-            {product.oldPrice && <span className={styles.oldPrice}>${product.oldPrice.toFixed(2)}</span>}
-            <span className={styles.newPrice}>${product.price.toFixed(2)}</span>
-            <span className={styles.badge}>SOLD OUT</span>
+            {product.oldPrice && <span className="line-through text-[#999999] text-[1.1rem]">${product.oldPrice.toFixed(2)}</span>}
+            <span className="text-[#c07a5d] text-[1.4rem] font-semibold">${product.price.toFixed(2)}</span>
+            <span className="border border-[#c07a5d] text-[#c07a5d] text-[0.65rem] font-bold py-1 px-2 uppercase tracking-[1px]">SOLD OUT</span>
           </>
         )}
       </div>
 
-      <p className={styles.description}>{product.description}</p>
+      <p className="text-[0.95rem] leading-[1.6] text-[#b5aaa0] m-0">{product.description}</p>
 
-      <div className={styles.viewingNow}>
+      <div className="flex items-center gap-2 text-[0.9rem] font-medium text-white">
         <Eye size={16} />
         <span>16 people are viewing this right now</span>
       </div>
 
-      <div className={styles.availability}>
-        <span className={styles.metaLabel}>Availability:</span>
-        <span className={styles.outOfStock}>
-          <span className={styles.dot}></span> Out of stock
+      <div className="flex items-center gap-2 text-[0.9rem]">
+        <span className="font-semibold text-white">Availability:</span>
+        <span className="flex items-center gap-[0.35rem] text-[#888888]">
+          <span className="w-[6px] h-[6px] bg-[#cccccc] rounded-full"></span> Out of stock
         </span>
       </div>
 
       {/* Options */}
-      <div className={styles.optionsGroup}>
-        <span className={styles.optionLabel}>Material</span>
-        <div className={styles.materialOptions}>
-          <button className={styles.materialBtn} disabled>Standard</button>
-          <button className={styles.materialBtn} disabled>Premium</button>
-          <button className={styles.materialBtn} disabled>Elite</button>
+      <div className="flex flex-col gap-3">
+        <span className="text-[0.9rem] font-semibold text-white">Material</span>
+        <div className="flex gap-2">
+          <button className="bg-transparent border border-[#2c241c] py-2 px-4 font-sans text-[0.85rem] text-[#999999] cursor-not-allowed relative after:content-[''] after:absolute after:top-1/2 after:left-[10%] after:right-[10%] after:h-[1px] after:bg-[#999999] after:-rotate-10" disabled>Standard</button>
+          <button className="bg-transparent border border-[#2c241c] py-2 px-4 font-sans text-[0.85rem] text-[#999999] cursor-not-allowed relative after:content-[''] after:absolute after:top-1/2 after:left-[10%] after:right-[10%] after:h-[1px] after:bg-[#999999] after:-rotate-10" disabled>Premium</button>
+          <button className="bg-transparent border border-[#2c241c] py-2 px-4 font-sans text-[0.85rem] text-[#999999] cursor-not-allowed relative after:content-[''] after:absolute after:top-1/2 after:left-[10%] after:right-[10%] after:h-[1px] after:bg-[#999999] after:-rotate-10" disabled>Elite</button>
         </div>
       </div>
 
-      <div className={styles.optionsGroup}>
-        <span className={styles.optionLabel}>Color</span>
-        <div className={styles.colorOptions}>
+      <div className="flex flex-col gap-3">
+        <span className="text-[0.9rem] font-semibold text-white">Color</span>
+        <div className="flex gap-2">
           {product.colors && product.colors.map((color, idx) => (
              <button 
                key={idx}
-               className={`${styles.colorBtn} ${selectedColor === color ? styles.active : ''}`}
+               className={`w-6 h-6 rounded-full border-2 border-transparent cursor-pointer p-0 ${selectedColor === color ? 'shadow-[0_0_0_2px_#ffffff,0_0_0_4px_#cccccc]' : ''}`}
                style={{ backgroundColor: color }}
                onClick={() => setSelectedColor(color)}
                aria-label={`Color ${color}`}
@@ -162,33 +161,33 @@ const ProductInfo = ({ product }) => {
         </div>
       </div>
 
-      <div className={styles.optionsGroup}>
-        <span className={styles.optionLabel}>Set Quantity</span>
-        <div className={styles.actionRow}>
-          <div className={styles.quantitySelector}>
-            <button onClick={() => setQuantity(Math.max(1, quantity - 1))}><Minus size={14}/></button>
-            <input type="number" value={quantity} readOnly />
-            <button onClick={() => setQuantity(quantity + 1)}><Plus size={14}/></button>
+      <div className="flex flex-col gap-3">
+        <span className="text-[0.9rem] font-semibold text-white">Set Quantity</span>
+        <div className="flex gap-4 h-[44px] max-sm:flex-col max-sm:h-auto max-sm:gap-2">
+          <div className="flex border border-[#2c241c] w-[120px] max-sm:w-full max-sm:h-[44px]">
+            <button className="bg-transparent border-none w-[35px] flex items-center justify-center cursor-pointer text-[#b5aaa0]" onClick={() => setQuantity(Math.max(1, quantity - 1))}><Minus size={14}/></button>
+            <input className="flex-1 w-full border-none text-center font-sans text-[1rem] outline-none bg-transparent text-[#b5aaa0]" type="number" value={quantity} readOnly />
+            <button className="bg-transparent border-none w-[35px] flex items-center justify-center cursor-pointer text-[#b5aaa0]" onClick={() => setQuantity(quantity + 1)}><Plus size={14}/></button>
           </div>
           {product.priceOnRequest ? null : (
-            <button className={styles.addToCartBtn} disabled>SOLD OUT</button>
+            <button className="flex-1 bg-[#e8a598] text-white border-none font-sans font-semibold tracking-[1px] cursor-not-allowed max-sm:w-full" disabled>SOLD OUT</button>
           )}
         </div>
         {product.priceOnRequest ? (
-          <div className={styles.inquiryButtonsRow}>
-            <button className={styles.quoteBtn} onClick={() => navigate(`/product/${product.id}/enquiry`)}>
+          <div className="flex gap-4 mt-4 max-sm:flex-col max-sm:gap-2">
+            <button className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded bg-[#c2957b] text-white font-sans font-semibold text-[0.9rem] cursor-pointer transition-opacity duration-200 hover:opacity-90" onClick={() => navigate(`/product/${product.id}/enquiry`)}>
               <Mail size={16} /> REQUEST QUOTE
             </button>
-            <button className={styles.whatsappBtn}><MessageCircle size={16} /> WHATSAPP INQUIRY</button>
+            <button className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded bg-[#25d366] text-white font-sans font-semibold text-[0.9rem] cursor-pointer transition-opacity duration-200 hover:opacity-90"><MessageCircle size={16} /> WHATSAPP INQUIRY</button>
           </div>
         ) : (
-          <button className={styles.buyNowBtn}>BUY IT NOW</button>
+          <button className="h-[44px] bg-[#15110F] border border-[#222222] text-white font-sans font-semibold tracking-[1px] cursor-pointer transition-colors duration-200 hover:bg-white hover:text-black max-sm:w-full mt-4">BUY IT NOW</button>
         )}
       </div>
 
       {/* Badges Section */}
       {product.badges && (
-        <div className={styles.badgesBox}>
+        <div className="flex justify-between items-center border border-[#f0e6d2] rounded-lg py-6 px-8 mt-6 bg-[#15110F] max-sm:flex-col max-sm:items-start max-sm:gap-4 max-sm:py-4 max-sm:px-6">
           {product.badges.map((badge, idx) => {
             let Icon = Shield;
             if (badge === 'Authentic') Icon = Fingerprint;
@@ -197,9 +196,9 @@ const ProductInfo = ({ product }) => {
             if (badge === 'Secure') Icon = Shield;
 
             return (
-              <div key={idx} className={styles.badgeItem}>
-                <Icon size={24} className={styles.badgeIcon} />
-                <span className={styles.badgeText}>{badge}</span>
+              <div key={idx} className="flex flex-col items-center gap-2 max-sm:flex-row max-sm:gap-4">
+                <Icon size={24} className="text-[#8f6a50]" />
+                <span className="font-sans text-[0.85rem] font-semibold text-[#b5aaa0]">{badge}</span>
               </div>
             );
           })}
@@ -207,28 +206,28 @@ const ProductInfo = ({ product }) => {
       )}
 
       {/* Meta Links */}
-      <div className={styles.actionLinks}>
-        <button><Heart size={16} /> Wishlist</button>
-        <button><GitCompare size={16} /> Compare</button>
+      <div className="flex gap-6 mt-2">
+        <button className="bg-transparent border-none flex items-center gap-[0.4rem] font-sans text-[0.9rem] text-[#b5aaa0] cursor-pointer p-0 hover:text-[#c07a5d]"><Heart size={16} /> Wishlist</button>
+        <button className="bg-transparent border-none flex items-center gap-[0.4rem] font-sans text-[0.9rem] text-[#b5aaa0] cursor-pointer p-0 hover:text-[#c07a5d]"><GitCompare size={16} /> Compare</button>
       </div>
 
       {/* Accordions (Now includes Specifications) */}
-      <div className={styles.accordions}>
+      <div className="flex flex-col mt-4">
         {accordionsToRender.map((tab) => (
-          <div key={tab.id} className={`${styles.accordionWrapper} ${openAccordion === tab.id ? styles.open : ''}`}>
+          <div key={tab.id} className="mb-2 group">
             <div 
-              className={styles.accordionHeader} 
+              className="flex items-center justify-between p-4 px-5 bg-[#15110F] cursor-pointer transition-colors duration-200" 
               onClick={() => setOpenAccordion(openAccordion === tab.id ? null : tab.id)}
             >
-              <div className={styles.accordionTitle}>
+              <div className="flex items-center gap-3 text-[0.9rem] font-medium text-white">
                 {tab.icon && typeof tab.icon === 'function' ? <tab.icon size={16} /> : null}
                 <span>{tab.title}</span>
               </div>
-              {openAccordion === tab.id ? <ChevronUp size={16} className={styles.chevron} /> : <ChevronDown size={16} className={styles.chevron} />}
+              {openAccordion === tab.id ? <ChevronUp size={16} className="text-[#b5aaa0]" /> : <ChevronDown size={16} className="text-[#b5aaa0]" />}
             </div>
             
-            <div className={styles.accordionContent}>
-              <div className={styles.accordionContentInner}>
+            <div className={`overflow-hidden transition-all duration-400 ease-in-out ${openAccordion === tab.id ? 'max-h-[2000px]' : 'max-h-0'}`}>
+              <div className="py-6 px-2 text-[0.85rem] leading-[1.6] text-[#b5aaa0]">
                 {tab.content}
               </div>
             </div>
@@ -238,17 +237,17 @@ const ProductInfo = ({ product }) => {
 
       {/* Tags Section */}
       {product.tags && (
-        <div className={styles.productTagsWrapper}>
-          <span className={styles.tagsTitle}>Trending Tags:</span>
-          <div className={styles.tagsContainer}>
+        <div className="mt-6 flex flex-col gap-2">
+          <span className="text-[0.85rem] font-semibold text-white">Trending Tags:</span>
+          <div className="flex flex-wrap gap-2">
             {product.tags.map((tag, idx) => (
-              <span key={idx} className={styles.pillTag}>{tag}</span>
+              <span key={idx} className="bg-[#15110F] text-[#b5aaa0] py-[0.4rem] px-4 rounded-full text-[0.75rem] font-medium cursor-pointer transition-colors duration-200 hover:bg-[#c2957b] hover:text-white">{tag}</span>
             ))}
           </div>
         </div>
       )}
 
-      <button className={styles.shareBtn} onClick={() => {
+      <button className="bg-transparent border-none flex items-center gap-2 font-sans text-[0.85rem] font-semibold text-white cursor-pointer mt-4 w-fit p-0" onClick={() => {
         const shareData = {
           title: product.name,
           text: `Check out this amazing product: ${product.name}`,

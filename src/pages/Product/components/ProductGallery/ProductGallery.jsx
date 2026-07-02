@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
-import styles from './ProductGallery.module.css';
 
 const ProductGallery = ({ product }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -42,33 +41,33 @@ const ProductGallery = ({ product }) => {
   };
 
   return (
-    <div className={styles.galleryWrapper}>
+    <div className="flex gap-6 h-[600px] max-sm:flex-col-reverse max-sm:h-auto">
       {/* Thumbnails Sidebar */}
-      <div className={styles.thumbnailsColumn}>
-        <button className={styles.navButton} aria-label="Previous image">
+      <div className="flex flex-col items-center w-[80px] shrink-0 max-sm:w-full max-sm:flex-row max-sm:h-[80px]">
+        <button className="bg-transparent border-none cursor-pointer text-white p-2 flex items-center justify-center transition-colors duration-200 hover:text-[#c07a5d] max-sm:-rotate-90" aria-label="Previous image">
           <ChevronUp size={20} />
         </button>
         
-        <div className={styles.thumbnailsContainer}>
+        <div className="flex flex-col gap-4 flex-1 overflow-hidden py-2 max-sm:flex-row max-sm:px-2 max-sm:py-0">
           {images.map((img, index) => (
             <div 
               key={index} 
-              className={`${styles.thumbnail} ${index === activeIndex ? styles.active : ''}`}
+              className={`w-[70px] h-[80px] border rounded cursor-pointer overflow-hidden transition-all duration-200 bg-[#15110F] p-1 ${index === activeIndex ? 'border-[#c07a5d]' : 'border-transparent'}`}
               onClick={() => setActiveIndex(index)}
             >
-              <img src={img} alt={`Thumbnail ${index + 1}`} onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+              <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover rounded-[2px]" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
             </div>
           ))}
         </div>
         
-        <button className={styles.navButton} aria-label="Next image">
+        <button className="bg-transparent border-none cursor-pointer text-white p-2 flex items-center justify-center transition-colors duration-200 hover:text-[#c07a5d] max-sm:-rotate-90" aria-label="Next image">
           <ChevronDown size={20} />
         </button>
       </div>
 
       {/* Main Image Display */}
       <div 
-        className={styles.mainImageContainer}
+        className="flex-1 bg-[#15110F] flex items-center justify-center relative cursor-crosshair max-sm:h-[400px]"
         onMouseEnter={() => setIsZooming(true)}
         onMouseLeave={() => setIsZooming(false)}
         onMouseMove={handleMouseMove}
@@ -77,13 +76,13 @@ const ProductGallery = ({ product }) => {
           ref={imgRef}
           src={images[activeIndex]} 
           alt="Main product view" 
-          className={styles.mainImage} 
+          className="max-w-full max-h-full object-contain" 
           onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} 
         />
         
         {isZooming && (
           <div 
-            className={styles.zoomLens}
+            className="absolute w-[100px] h-[100px] border border-[#d2691e] bg-white/40 pointer-events-none"
             style={{ left: `${lensPos.x}px`, top: `${lensPos.y}px` }}
           />
         )}
@@ -92,7 +91,7 @@ const ProductGallery = ({ product }) => {
       {/* Zoom Result Pane */}
       {isZooming && (
         <div 
-          className={styles.zoomResult}
+          className="absolute left-[105%] top-0 w-[500px] h-[600px] border border-[#2c241c] bg-[#15110F] bg-no-repeat bg-[size:250%] z-[100] shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
           style={{
             backgroundImage: `url(${images[activeIndex]})`,
             backgroundPosition: `${bgPos.x} ${bgPos.y}`

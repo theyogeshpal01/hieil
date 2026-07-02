@@ -40,7 +40,7 @@ const AboutCTASection = () => {
           
           <div className="flex flex-col gap-6 mb-10">
             <p className="font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8] m-0">
-              HIEIL (Hind Import Export International) is a Jaipur-based handicraft export firm led by Jogendra Singh, with over 2+ years of dedicated industry experience. Our team of 500+ highly skilled artisans carries forward centuries of tradition.
+              HIEIL (Hind Import Export International) is a Jaipur-based handicraft export firm lead by Jogendra Singh, with over 2+ years of dedicated industry experience. Our team of 500+ highly skilled artisans carries forward centuries of tradition.
             </p>
             <p className="font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8] m-0">
               Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers. Every piece tells a story — of culture, legacy, and passion.

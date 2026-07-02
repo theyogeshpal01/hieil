@@ -27,7 +27,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="font-sans text-[var(--hww-dark)] bg-[#15110F] overflow-x-hidden">
+    <div className="font-sans text-white bg-[#15110F] overflow-x-hidden">
       {/* Hero Section */}
       <section className="bg-[radial-gradient(circle_at_center,#1C1713_0%,#15110F_100%)] text-white pt-[120px] px-5 pb-[60px] text-center relative">
         <div className="max-w-[800px] mx-auto relative z-10" data-aos="fade-up">
@@ -41,27 +41,27 @@ const Contact = () => {
 
       {/* Quick Contacts */}
       <section className="py-[20px] pb-[60px] bg-[#15110F]">
-        <div className="container mx-auto">
+        <div className="max-w-[1200px] mx-auto px-5">
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[30px]">
             <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] p-10 rounded-[20px] text-center border border-[#2c241c] transition-all duration-400 hover:-translate-y-[5px] hover:border-[#4a3e35] hover:shadow-[0_10px_40px_rgba(0,0,0,0.4)] group" data-aos="fade-up" data-aos-delay="0">
               <div className="w-[70px] h-[70px] bg-[rgba(194,163,115,0.1)] text-[#c8956c] rounded-full flex items-center justify-center mx-auto mb-5 transition-all duration-300 group-hover:bg-[#c8956c] group-hover:text-[#15110F]"><Phone size={32} /></div>
               <h3 className="font-serif text-[1.8rem] mb-[10px] text-white font-normal">Call Us</h3>
               <p className="text-[#b5aaa0] mb-[15px] text-[0.95rem]">Speak directly with our experts</p>
-              <span className="text-[1.2rem] font-semibold text-[#c8956c]">+91 9050001972</span>
+              <span className="text-[1.2rem] font-normal text-[#c8956c]">+91 9050001972</span>
             </div>
             
             <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] p-10 rounded-[20px] text-center border border-[#2c241c] transition-all duration-400 hover:-translate-y-[5px] hover:border-[#4a3e35] hover:shadow-[0_10px_40px_rgba(0,0,0,0.4)] group" data-aos="fade-up" data-aos-delay="100">
               <div className="w-[70px] h-[70px] bg-[rgba(194,163,115,0.1)] text-[#c8956c] rounded-full flex items-center justify-center mx-auto mb-5 transition-all duration-300 group-hover:bg-[#c8956c] group-hover:text-[#15110F]"><Mail size={32} /></div>
               <h3 className="font-serif text-[1.8rem] mb-[10px] text-white font-normal">Email Us</h3>
               <p className="text-[#b5aaa0] mb-[15px] text-[0.95rem]">Send us your queries</p>
-              <span className="text-[1.2rem] font-semibold text-[#c8956c]">indiaexport@hieil.com</span>
+              <span className="text-[1.2rem] font-normal text-[#c8956c]">indiaexport@hieil.com</span>
             </div>
             
             <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] p-10 rounded-[20px] text-center border border-[#2c241c] transition-all duration-400 hover:-translate-y-[5px] hover:border-[#4a3e35] hover:shadow-[0_10px_40px_rgba(0,0,0,0.4)] group" data-aos="fade-up" data-aos-delay="200">
               <div className="w-[70px] h-[70px] bg-[rgba(194,163,115,0.1)] text-[#c8956c] rounded-full flex items-center justify-center mx-auto mb-5 transition-all duration-300 group-hover:bg-[#c8956c] group-hover:text-[#15110F]"><MessageCircle size={32} /></div>
               <h3 className="font-serif text-[1.8rem] mb-[10px] text-white font-normal">Whatsapp</h3>
               <p className="text-[#b5aaa0] mb-[15px] text-[0.95rem]">Quick chat support</p>
-              <span className="text-[1.2rem] font-semibold text-[#c8956c]">+91 9050001972</span>
+              <span className="text-[1.2rem] font-normal text-[#c8956c]">+91 9050001972</span>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@ const Contact = () => {
 
       {/* Main Content Area (Form & Sidebar) */}
       <section className="py-[40px] pb-[80px] bg-[#15110F]">
-        <div className="container mx-auto">
+        <div className="max-w-[1200px] mx-auto px-5">
           <div className="flex flex-col xl:flex-row gap-10 items-start">
             
             {/* Form Section */}
@@ -200,7 +200,7 @@ const Contact = () => {
 
       {/* Office Locations */}
       <section className="py-[80px] bg-[#15110F] border-t border-[#f0f0f0] border-opacity-10">
-        <div className="container mx-auto">
+        <div className="max-w-[1200px] mx-auto px-5">
           <div className="mb-[50px] text-center" data-aos="fade-up">
             <p className="text-[#c8956c] font-semibold tracking-[2px] uppercase mb-[10px] text-[0.8rem]">Our Office Locations</p>
             <h2 className="font-serif text-[2.8rem] font-normal text-white text-center m-0">Visit Us at Any <br /> <span className="text-[var(--color-brand-base)]">of Our Convenient Locations</span></h2>
@@ -248,7 +248,7 @@ const Contact = () => {
 
       {/* FAQ & Support Layout */}
       <section className="py-[80px] bg-[#15110F]">
-        <div className="container mx-auto">
+        <div className="max-w-[1200px] mx-auto px-5">
           <div className="flex flex-col xl:flex-row gap-[60px] items-start">
             
             {/* FAQs */}

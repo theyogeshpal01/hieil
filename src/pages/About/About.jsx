@@ -30,10 +30,10 @@ const About = () => {
               A FEW WORDS <br />
               <span className="text-[#c8956c]">ABOUT US</span>
             </h1>
-            <p className="text-lg text-white mb-6 leading-relaxed">
+            <p className="text-lg text-[#b5aaa0] mb-6 leading-relaxed">
               HIEIL is committed to preserving the rich heritage of Indian craftsmanship by connecting skilled artisans to global markets. We work directly with artisan communities, ensuring fair wages, transparency, and sustainable growth.
             </p>
-            <p className="text-lg text-white mb-8 leading-relaxed">
+            <p className="text-lg text-[#b5aaa0] mb-8 leading-relaxed">
               With every handcrafted creation, we strive to tell a story — a story of culture, legacy, and passion, making each piece a true representation of India's traditional artistry.
             </p>
             <div className="flex flex-wrap gap-4">

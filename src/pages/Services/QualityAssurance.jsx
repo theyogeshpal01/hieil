@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './QualityAssurance.css';
 import { Link } from 'react-router-dom';
 import { 
   ShieldCheck, 
@@ -74,31 +73,27 @@ const QualityAssurance = () => {
   ];
 
   return (
-    <div className="qa-page">
+    <div className="font-sans text-white bg-[#15110F] overflow-x-hidden pt-[50px]">
       
       {/* Page Header */}
-      <div className="container" style={{ marginTop: '40px' }}>
-        <div className="page-header" data-aos="fade-up">
-          <span className="qa-tag" style={{
-            display: 'inline-block', padding: '6px 16px', background: 'transparent', 
-            border: '1px solid #4a3e35', color: '#c8956c', fontSize: '0.75rem', 
-            fontWeight: '600', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '30px'
-          }}>Service Directory</span>
-          <h1 className="page-title">Quality <span style={{ color: 'var(--color-brand-base)' }}>Assurance</span></h1>
-          <p className="page-subtitle">
+      <div className="max-w-[1200px] mx-auto px-5 mt-[40px]">
+        <div className="text-center mb-[80px] pt-[40px]" data-aos="fade-up">
+          <span className="font-sans text-[0.75rem] tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-[30px] bg-transparent">Service Directory</span>
+          <h1 className="font-serif text-[3.5rem] font-normal text-white mb-6 uppercase tracking-[1px] max-md:text-[3.5rem] max-sm:text-[2.5rem]">Quality <span style={{ color: 'var(--color-brand-base)' }}>Assurance</span></h1>
+          <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[800px] mx-auto">
             Uncompromising standards and rigorous testing protocols to ensure every single product meets the highest global benchmarks. We protect your brand reputation with flawless execution.
           </p>
         </div>
       </div>
 
       {/* Stats Section */}
-      <section className="qa-stats-section">
-        <div className="container">
-          <div className="stats-grid">
+      <section className="pb-[60px] bg-[#15110F]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="grid grid-cols-4 max-[992px]:grid-cols-2 max-[576px]:grid-cols-1 gap-[30px] max-[992px]:gap-0 bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] p-[40px]">
             {stats.map((stat, index) => (
-              <div className="stat-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <h3>{stat.value}</h3>
-                <p>{stat.label}</p>
+              <div className="text-center border-r border-[#2c241c] last:border-r-0 max-[992px]:border-r-0 max-[992px]:border-b max-[992px]:border-[#2c241c] max-[992px]:py-[30px] max-[992px]:px-0 max-[992px]:even:border-l max-[992px]:even:border-[#2c241c] max-[576px]:border-l-0 max-[576px]:border-b max-[576px]:border-[#2c241c] max-[576px]:last:border-b-0" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <h3 className="font-serif text-[2.5rem] color-[#c8956c] text-[#c8956c] mb-[15px] font-normal">{stat.value}</h3>
+                <p className="text-white font-sans text-[0.8rem] uppercase tracking-[1px] m-0">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -106,18 +101,18 @@ const QualityAssurance = () => {
       </section>
 
       {/* Quality Standards */}
-      <section className="qa-offer-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Our <br /> <span style={{ color: 'var(--color-brand-base)' }}>Quality Framework</span></h2>
-            <p>Comprehensive Quality Management</p>
+      <section className="py-[40px] pb-[80px] bg-[#15110F] border-b border-[#2c241c]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Our <br /> <span style={{ color: 'var(--color-brand-base)' }}>Quality Framework</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Comprehensive Quality Management</p>
           </div>
-          <div className="offer-grid">
+          <div className="grid grid-cols-2 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {standards.map((standard, index) => (
-              <div className="offer-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="offer-icon">{standard.icon}</div>
-                <h3>{standard.title}</h3>
-                <p>{standard.desc}</p>
+              <div className="bg-[#15110F] border border-[#2c241c] p-[40px] text-left transition-all duration-400 ease-in-out hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] hover:-translate-y-1.5 group rounded-none" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="w-[48px] h-[48px] mb-6 flex items-center justify-center bg-transparent border border-[rgba(200,149,108,0.3)] text-[#c8956c] rounded-full transition-colors duration-400 ease-in-out group-hover:bg-[rgba(200,149,108,0.1)]">{standard.icon}</div>
+                <h3 className="font-serif text-[1.25rem] font-bold text-white mb-3 uppercase tracking-[1px]">{standard.title}</h3>
+                <p className="text-[#b5aaa0] leading-[1.6] text-[15.2px] m-0">{standard.desc}</p>
               </div>
             ))}
           </div>
@@ -125,19 +120,19 @@ const QualityAssurance = () => {
       </section>
 
       {/* Detailed Checks */}
-      <section className="qa-advantage-section" style={{ borderTop: '1px solid #2c241c', paddingTop: '80px', paddingBottom: '120px' }}>
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Detailed <br /> <span style={{ color: 'var(--color-brand-base)' }}>Quality Checks</span></h2>
-            <p>Rigorous Testing Protocols</p>
+      <section className="py-[80px] pb-[120px] bg-[radial-gradient(circle_at_center,#1C1713_0%,#15110F_100%)] border-t border-[#2c241c]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Detailed <br /> <span style={{ color: 'var(--color-brand-base)' }}>Quality Checks</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Rigorous Testing Protocols</p>
           </div>
-          <div className="advantage-grid grid-3">
+          <div className="grid grid-cols-3 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {qualityChecks.map((check, index) => (
-              <div className="adv-item" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="adv-icon">{check.icon}</div>
+              <div className="bg-transparent border border-[#2c241c] p-[30px] flex flex-col transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(255,255,255,0.02)]" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="text-[#c8956c] mb-5">{check.icon}</div>
                 <div className="adv-content">
-                  <h4>{check.title}</h4>
-                  <p>{check.desc}</p>
+                  <h4 className="font-sans text-[1.1rem] text-white mb-3 uppercase tracking-[1px]">{check.title}</h4>
+                  <p className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0">{check.desc}</p>
                 </div>
               </div>
             ))}
@@ -146,19 +141,19 @@ const QualityAssurance = () => {
       </section>
 
       {/* Process Section */}
-      <section className="qa-process-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Quality <br /> <span style={{ color: 'var(--color-brand-base)' }}>Control Process</span></h2>
-            <p>Four Steps to Perfection</p>
+      <section className="py-[100px] bg-[#1C1713]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Quality <br /> <span style={{ color: 'var(--color-brand-base)' }}>Control Process</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Four Steps to Perfection</p>
           </div>
-          <div className="process-timeline">
+          <div className="flex justify-between relative max-w-[1000px] mx-auto max-md:flex-col max-md:gap-10 before:content-[''] before:absolute before:top-[40px] before:left-0 before:right-0 before:h-[1px] before:bg-[#2c241c] before:z-10 max-md:before:hidden">
             {processSteps.map((step, index) => (
-              <div className="timeline-step" key={index} data-aos="fade-left" data-aos-delay={index * 100}>
-                <div className="timeline-number">{step.num}</div>
-                <div className="timeline-content">
-                  <h4>{step.title}</h4>
-                  <p>{step.desc}</p>
+              <div className="flex-1 text-center relative z-20 px-[15px] group max-md:flex max-md:text-left max-md:items-center max-md:gap-5" key={index} data-aos="fade-left" data-aos-delay={index * 100}>
+                <div className="w-[80px] h-[80px] mx-auto mb-[30px] bg-[#15110F] border border-[#c8956c] text-[#c8956c] flex items-center justify-center font-serif text-[2rem] transition-all duration-400 ease-in-out group-hover:bg-[#c8956c] group-hover:text-[#15110F] group-hover:shadow-[0_0_30px_rgba(194,163,115,0.2)] max-md:m-0 max-md:shrink-0 max-md:w-[60px] max-md:h-[60px] max-md:text-[1.5rem]">{step.num}</div>
+                <div>
+                  <h4 className="font-serif text-[1.5rem] text-white mb-[15px]">{step.title}</h4>
+                  <p className="text-[#b5aaa0] text-[0.95rem] leading-[1.6] m-0">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -167,19 +162,19 @@ const QualityAssurance = () => {
       </section>
 
       {/* Business Advantage */}
-      <section className="qa-advantage-section" style={{ paddingTop: '180px', paddingBottom: '120px' }}>
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>The <br /> <span style={{ color: 'var(--color-brand-base)' }}>QA Advantage</span></h2>
-            <p>Why Our Quality Assurance Matters</p>
+      <section className="py-[180px] pb-[120px] bg-[radial-gradient(circle_at_center,#1C1713_0%,#15110F_100%)]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>The <br /> <span style={{ color: 'var(--color-brand-base)' }}>QA Advantage</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Why Our Quality Assurance Matters</p>
           </div>
-          <div className="advantage-grid">
+          <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {advantages.map((adv, index) => (
-              <div className="adv-item" key={index} data-aos="fade-up" data-aos-delay={index * 50}>
-                <div className="adv-icon">{adv.icon}</div>
-                <div className="adv-content">
-                  <h4>{adv.title}</h4>
-                  <p>{adv.desc}</p>
+              <div className="bg-transparent border border-[#2c241c] p-[30px] flex flex-col transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(255,255,255,0.02)]" key={index} data-aos="fade-up" data-aos-delay={index * 50}>
+                <div className="text-[#c8956c] mb-5">{adv.icon}</div>
+                <div>
+                  <h4 className="font-sans text-[1.1rem] text-white mb-3 uppercase tracking-[1px]">{adv.title}</h4>
+                  <p className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0">{adv.desc}</p>
                 </div>
               </div>
             ))}
@@ -188,26 +183,26 @@ const QualityAssurance = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="qa-cta-section" data-aos="zoom-in">
-        <div className="qa-cta-inner">
-          <h2>Experience <br /> <span style={{ color: 'var(--color-brand-base)' }}>Premium Quality</span></h2>
-          <p>Partner with us and experience the peace of mind that comes with reliable, top-tier quality assurance. We protect your brand reputation by delivering categories that speak of excellence.</p>
-          <Link to="/contact" className="qa-btn">Discuss Your Requirements</Link>
+      <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
+        <div className="max-w-[800px] mx-auto">
+          <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Experience <br /> <span style={{ color: 'var(--color-brand-base)' }}>Premium Quality</span></h2>
+          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Partner with us and experience the peace of mind that comes with reliable, top-tier quality assurance. We protect your brand reputation by delivering categories that speak of excellence.</p>
+          <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Discuss Your Requirements</Link>
         </div>
       </section>
 
       {/* Why Partners Choose Us */}
-      <section className="qa-partners-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Why Partners <br /> <span style={{ color: 'var(--color-brand-base)' }}>Trust Our Quality</span></h2>
+      <section className="py-[100px] bg-[#15110F]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Why Partners <br /> <span style={{ color: 'var(--color-brand-base)' }}>Trust Our Quality</span></h2>
           </div>
-          <div className="partners-grid">
+          <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {partners.map((partner, index) => (
-              <div className="partner-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="partner-icon">{partner.icon}</div>
-                <h4>{partner.title}</h4>
-                <p>{partner.desc}</p>
+              <div className="p-[40px_30px] text-center bg-transparent border border-[#2c241c] transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(28,23,19,0.4)]" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="text-[#c8956c] mb-[25px] flex justify-center">{partner.icon}</div>
+                <h4 className="font-sans text-[1.1rem] text-white mb-[15px] uppercase tracking-[1px]">{partner.title}</h4>
+                <p className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0">{partner.desc}</p>
               </div>
             ))}
           </div>

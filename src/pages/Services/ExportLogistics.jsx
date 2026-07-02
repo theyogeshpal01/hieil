@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './ExportLogistics.css';
 import { Link } from 'react-router-dom';
 import { 
   Globe, 
@@ -80,37 +79,33 @@ const ExportLogistics = () => {
   ];
 
   return (
-    <div className="export-page">
+    <div className="font-sans text-white bg-[#15110F] overflow-x-hidden pt-[50px]">
       
       {/* Page Header */}
-      <div className="container" style={{ marginTop: '40px' }}>
-        <div className="page-header" data-aos="fade-up">
-          <span className="ex-tag" style={{
-            display: 'inline-block', padding: '6px 16px', background: 'transparent', 
-            border: '1px solid #4a3e35', color: '#c8956c', fontSize: '0.75rem', 
-            fontWeight: '600', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '30px'
-          }}>Service Directory</span>
-          <h1 className="page-title">Global Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>& Logistics</span></h1>
-          <p className="page-subtitle">
+      <div className="max-w-[1200px] mx-auto px-5 mt-[40px]">
+        <div className="text-center mb-[80px] pt-[40px]" data-aos="fade-up">
+          <span className="font-sans text-[0.75rem] tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-[30px] bg-transparent">Service Directory</span>
+          <h1 className="font-serif text-[3.5rem] font-normal text-white mb-6 uppercase tracking-[1px] max-md:text-[3.5rem] max-sm:text-[2.5rem]">Global Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>& Logistics</span></h1>
+          <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[800px] mx-auto">
             Seamlessly taking your products to international markets. We handle everything from rigorous quality assurance and export packaging to complex customs documentation and global delivery networks.
           </p>
         </div>
       </div>
 
       {/* Export Solutions */}
-      <section className="ex-offer-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>Solutions</span></h2>
-            <p>Complete Export Management</p>
+      <section className="py-[80px] pb-[100px] bg-[radial-gradient(circle_at_center_top,rgba(28,23,19,1)_0%,#15110F_100%)] border-b border-[#2c241c]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Export <span style={{ color: 'var(--color-brand-base)' }}>Solutions</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Complete Export Management</p>
           </div>
-          <div className="ex-offer-grid">
+          <div className="grid grid-cols-4 gap-5 max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
             {solutions.map((solution, index) => (
-              <div className="offer-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="offer-index">0{index + 1}</div>
-                <div className="offer-icon">{solution.icon}</div>
-                <h3>{solution.title}</h3>
-                <p>{solution.desc}</p>
+              <div className="relative bg-gradient-to-br from-[rgba(35,28,24,0.8)] to-[rgba(20,15,12,0.9)] backdrop-blur-[12px] border border-[rgba(194,163,115,0.1)] p-[30px] text-center transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] h-full flex flex-col overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:border-[rgba(194,163,115,0.3)] hover:shadow-[0_15px_40px_rgba(194,163,115,0.08)] hover:-translate-y-2 hover:bg-gradient-to-br hover:from-[rgba(40,32,28,0.9)] hover:to-[rgba(20,15,12,0.95)] group before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:h-[2px] before:bg-gradient-to-r before:from-transparent before:via-[#c8956c] before:to-transparent before:opacity-0 before:transition-opacity before:duration-400 before:ease-in-out group-hover:before:opacity-100" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="absolute -top-2.5 -right-2.5 font-serif text-[6rem] text-[rgba(194,163,115,0.03)] font-bold pointer-events-none z-0 transition-all duration-400 ease-in-out group-hover:text-[rgba(194,163,115,0.06)] group-hover:scale-105">0{index + 1}</div>
+                <div className="w-[48px] h-[48px] mb-6 flex items-center justify-center bg-transparent border border-[rgba(200,149,108,0.3)] text-[#c8956c] rounded-full transition-all duration-400 ease-in-out relative z-10 mx-auto group-hover:bg-[rgba(194,163,115,0.15)] group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(194,163,115,0.2)]">{solution.icon}</div>
+                <h3 className="font-serif text-[1.25rem] font-bold uppercase tracking-[1px] text-white mb-3 relative z-10 transition-colors duration-300 ease-in-out group-hover:text-[#c8956c]">{solution.title}</h3>
+                <p className="text-[#b5aaa0] leading-[1.6] text-[15.2px] m-0 relative z-10">{solution.desc}</p>
               </div>
             ))}
           </div>
@@ -118,19 +113,19 @@ const ExportLogistics = () => {
       </section>
 
       {/* Export Documentation */}
-      <section className="ex-advantage-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>Documentation</span></h2>
-            <p>Complete Paperwork Handling</p>
+      <section className="py-[100px] bg-[radial-gradient(circle_at_center,#1C1713_0%,#15110F_100%)]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>Documentation</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Complete Paperwork Handling</p>
           </div>
-          <div className="docs-grid">
+          <div className="grid grid-cols-3 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {documents.map((doc, index) => (
-              <div className="adv-item" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="adv-icon">{doc.icon}</div>
+              <div className="bg-transparent border border-[#2c241c] p-[30px] flex flex-col transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(255,255,255,0.02)]" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="text-[#c8956c] mb-5">{doc.icon}</div>
                 <div className="adv-content">
-                  <h4>{doc.title}</h4>
-                  <p>{doc.desc}</p>
+                  <h4 className="font-sans text-[1.1rem] text-white mb-3 uppercase tracking-[1px]">{doc.title}</h4>
+                  <p className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0">{doc.desc}</p>
                 </div>
               </div>
             ))}
@@ -139,17 +134,17 @@ const ExportLogistics = () => {
       </section>
 
       {/* Global Delivery Network */}
-      <section className="ex-partners-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Global <br /> <span style={{ color: 'var(--color-brand-base)' }}>Delivery Network</span></h2>
-            <p>Serving Customers Worldwide</p>
+      <section className="py-[100px] bg-[#15110F]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Global <br /> <span style={{ color: 'var(--color-brand-base)' }}>Delivery Network</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Serving Customers Worldwide</p>
           </div>
-          <div className="partners-grid">
+          <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {deliveryNetworks.map((network, index) => (
-              <div className="partner-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <h4>{network.title}</h4>
-                <p>{network.desc}</p>
+              <div className="p-[40px_30px] text-left bg-transparent border border-[#2c241c] transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(28,23,19,0.4)]" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <h4 className="font-sans text-[1.1rem] text-white mb-[15px] uppercase tracking-[1px]">{network.title}</h4>
+                <p className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0">{network.desc}</p>
               </div>
             ))}
           </div>
@@ -157,19 +152,19 @@ const ExportLogistics = () => {
       </section>
 
       {/* Why Choose Our Export Services */}
-      <section className="ex-advantage-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Why Choose <br /> <span style={{ color: 'var(--color-brand-base)' }}>Our Export Services</span></h2>
-            <p>Professional Export Management</p>
+      <section className="py-[100px] bg-[radial-gradient(circle_at_center,#1C1713_0%,#15110F_100%)]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Why Choose <br /> <span style={{ color: 'var(--color-brand-base)' }}>Our Export Services</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Professional Export Management</p>
           </div>
-          <div className="advantage-grid">
+          <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {advantages.map((adv, index) => (
-              <div className="adv-item" key={index} data-aos="fade-up" data-aos-delay={index * 50}>
-                <div className="adv-icon">{adv.icon}</div>
+              <div className="bg-transparent border border-[#2c241c] p-[30px] flex flex-col transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(255,255,255,0.02)]" key={index} data-aos="fade-up" data-aos-delay={index * 50}>
+                <div className="text-[#c8956c] mb-5">{adv.icon}</div>
                 <div className="adv-content">
-                  <h4>{adv.title}</h4>
-                  <p>{adv.desc}</p>
+                  <h4 className="font-sans text-[1.1rem] text-white mb-3 uppercase tracking-[1px]">{adv.title}</h4>
+                  <p className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0">{adv.desc}</p>
                 </div>
               </div>
             ))}
@@ -178,19 +173,19 @@ const ExportLogistics = () => {
       </section>
 
       {/* Export Process */}
-      <section className="ex-process-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>Process</span></h2>
-            <p>Four Steps to Global Markets</p>
+      <section className="py-[100px] bg-[#1C1713]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Export <span style={{ color: 'var(--color-brand-base)' }}>Process</span></h2>
+            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Four Steps to Global Markets</p>
           </div>
-          <div className="process-timeline">
+          <div className="flex justify-between relative max-w-[1000px] mx-auto max-md:flex-col max-md:gap-10 before:content-[''] before:absolute before:top-[40px] before:left-0 before:right-0 before:h-[1px] before:bg-[#2c241c] before:z-10 max-md:before:hidden">
             {processSteps.map((step, index) => (
-              <div className="timeline-step" key={index} data-aos="fade-left" data-aos-delay={index * 100}>
-                <div className="timeline-number">{step.num}</div>
-                <div className="timeline-content">
-                  <h4>{step.title}</h4>
-                  <p>{step.desc}</p>
+              <div className="flex-1 text-center relative z-20 px-[15px] group max-md:flex max-md:text-left max-md:items-center max-md:gap-5" key={index} data-aos="fade-left" data-aos-delay={index * 100}>
+                <div className="w-[80px] h-[80px] mx-auto mb-[30px] bg-[#15110F] border border-[#c8956c] text-[#c8956c] flex items-center justify-center font-serif text-[2rem] transition-all duration-400 ease-in-out group-hover:bg-[#c8956c] group-hover:text-[#15110F] group-hover:shadow-[0_0_30px_rgba(194,163,115,0.2)] max-md:m-0 max-md:shrink-0 max-md:w-[60px] max-md:h-[60px] max-md:text-[1.5rem]">{step.num}</div>
+                <div>
+                  <h4 className="font-serif text-[1.5rem] text-white mb-[15px]">{step.title}</h4>
+                  <p className="text-[#b5aaa0] text-[0.95rem] leading-[1.6] m-0">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -199,26 +194,26 @@ const ExportLogistics = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="ex-cta-section" data-aos="zoom-in">
-        <div className="ex-cta-inner">
-          <h2>Ready To Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>Globally</span>?</h2>
-          <p>Experience professional export services with our comprehensive documentation and quality assurance. Focus on growing your business while we handle all the export procedures and international compliance. Get your personalized export quote today!</p>
-          <Link to="/contact" className="ex-btn">Get Export Quote</Link>
+      <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
+        <div className="max-w-[800px] mx-auto">
+          <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Ready To Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>Globally</span>?</h2>
+          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Experience professional export services with our comprehensive documentation and quality assurance. Focus on growing your business while we handle all the export procedures and international compliance. Get your personalized export quote today!</p>
+          <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Get Export Quote</Link>
         </div>
       </section>
 
       {/* Why Choose Our Export Services (Bottom) */}
-      <section className="ex-partners-section">
-        <div className="container">
-          <div className="section-header" data-aos="fade-up">
-            <h2>Why Choose <br /> <span style={{ color: 'var(--color-brand-base)' }}>Our Export Services</span></h2>
+      <section className="py-[100px] bg-[#15110F]">
+        <div className="max-w-[1200px] mx-auto px-5">
+          <div className="text-center mb-[60px]" data-aos="fade-up">
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Why Choose <br /> <span style={{ color: 'var(--color-brand-base)' }}>Our Export Services</span></h2>
           </div>
-          <div className="partners-grid">
+          <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {partners.map((partner, index) => (
-              <div className="partner-card" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
-                <div className="partner-icon">{partner.icon}</div>
-                <h4>{partner.title}</h4>
-                <p>{partner.desc}</p>
+              <div className="p-[40px_30px] text-left bg-transparent border border-[#2c241c] transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(28,23,19,0.4)]" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+                <div className="text-[#c8956c] mb-[25px] flex justify-center">{partner.icon}</div>
+                <h4 className="font-sans text-[1.1rem] text-white mb-[15px] uppercase tracking-[1px]">{partner.title}</h4>
+                <p className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0">{partner.desc}</p>
               </div>
             ))}
           </div>

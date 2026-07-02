@@ -25,18 +25,33 @@
     padding: 0;
   }
   
+  body {
+    font-family: var(--font-sans);
+    background-color: #15110F;
+    color: #ffffff;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
   p {
     font-size: 15.2px !important;
   }
-}
 
-body {
-  font-family: var(--font-sans);
-  background-color: #15110F;
-  color: #ffffff;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  h2 {
+    font-family: var(--font-serif) !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+    font-size: 1.875rem !important; /* text-3xl */
+    line-height: 2.25rem !important;
+  }
+
+  @media (min-width: 768px) {
+    h2 {
+      font-size: 3rem !important; /* text-5xl */
+      line-height: 3.75rem !important; /* /15 */
+    }
+  }
 }
 
 #root {
@@ -45,7 +60,7 @@ body {
   min-height: 100vh;
 }
 
-/* â”€â”€ Scroll Animations â”€â”€ */
+/* Scroll Animations */
 .fadeUp { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .fadeUp.visible { opacity: 1; transform: translateY(0); }
 .fadeIn { opacity: 0; transition: opacity 0.7s ease; }
@@ -75,12 +90,6 @@ button { text-transform: uppercase !important; }
 button { font-weight: normal !important; }
 
 
-
-.showMoreBtn, .btnPrimary, .subscribeBtn, .addToCartBtn, .actionBtnPrimary { color: #000000 !important; }
-
-
-
-button[class*="bg-[#c8956c]"], a[class*="bg-[#c8956c]"] { color: #000000 !important; }
 
 /* Alternate Section Backgrounds */
 section:nth-of-type(odd) {
