@@ -2,12 +2,12 @@ import React from 'react';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 
 const categories = [
-  { id: 1, name: 'BLUE POTTERY', tag: '200+ DESIGNS', image: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=500&auto=format&fit=crop', description: 'GI tagged authentic Jaipur Blue Pottery with intricate floral designs.' },
-  { id: 2, name: 'METAL CRAFTS', tag: '350+ DESIGNS', image: 'https://images.unsplash.com/photo-1577908976451-c67be8f9b940?q=80&w=500&auto=format&fit=crop', description: 'Exquisite handcrafted metal artistry bringing timeless elegance to your spaces.' },
-  { id: 3, name: 'STONE PRODUCTS', tag: '400+ DESIGNS', image: 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8dd?q=80&w=500&auto=format&fit=crop', description: 'Finely carved stone products reflecting the true heritage of Indian artisans.' },
-  { id: 4, name: 'WOODEN CRAFTS', tag: '250+ DESIGNS', image: 'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=80&w=500&auto=format&fit=crop', description: 'Premium Sheesham woodware showcasing intricate traditional carvings.' },
-  { id: 5, name: 'LUXURY CLOCKS', tag: '150+ DESIGNS', image: 'https://images.unsplash.com/photo-1508013861974-9f6347ce682c?q=80&w=500&auto=format&fit=crop', description: 'Vintage and modern luxury clocks crafted with ultimate precision.' },
-  { id: 6, name: 'HOME DECOR', tag: '280+ DESIGNS', image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=500&auto=format&fit=crop', description: 'A curated collection of artifacts to effortlessly elevate your living spaces.' }
+  { id: 1, name: 'BLUE POTTERY', tag: '200+ DESIGNS', image: '/carousel1.png', description: 'GI tagged authentic Jaipur Blue Pottery with intricate floral designs.' },
+  { id: 2, name: 'METAL CRAFTS', tag: '350+ DESIGNS', image: '/carousel2.png', description: 'Exquisite handcrafted metal artistry bringing timeless elegance to your spaces.' },
+  { id: 3, name: 'STONE PRODUCTS', tag: '400+ DESIGNS', image: '/carousel3.png', description: 'Finely carved stone products reflecting the true heritage of Indian artisans.' },
+  { id: 4, name: 'WOODEN CRAFTS', tag: '250+ DESIGNS', image: '/carousel4.png', description: 'Premium Sheesham woodware showcasing intricate traditional carvings.' },
+  { id: 5, name: 'LUXURY CLOCKS', tag: '150+ DESIGNS', image: '/carousel5.png', description: 'Vintage and modern luxury clocks crafted with ultimate precision.' },
+  { id: 6, name: 'HOME DECOR', tag: '280+ DESIGNS', image: '/jaipur.jpeg', description: 'A curated collection of artifacts to effortlessly elevate your living spaces.' }
 ];
 
 const ShopBycategories = () => {

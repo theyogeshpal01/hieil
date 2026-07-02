@@ -125,13 +125,13 @@ const QualityAssurance = () => {
       </section>
 
       {/* Detailed Checks */}
-      <section className="qa-advantage-section" style={{ borderTop: '1px solid #2c241c' }}>
+      <section className="qa-advantage-section" style={{ borderTop: '1px solid #2c241c', paddingTop: '80px', paddingBottom: '120px' }}>
         <div className="container">
           <div className="section-header" data-aos="fade-up">
             <h2>Detailed <br /> <span style={{ color: 'var(--color-brand-base)' }}>Quality Checks</span></h2>
             <p>Rigorous Testing Protocols</p>
           </div>
-          <div className="advantage-grid">
+          <div className="advantage-grid grid-3">
             {qualityChecks.map((check, index) => (
               <div className="adv-item" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                 <div className="adv-icon">{check.icon}</div>
@@ -167,7 +167,7 @@ const QualityAssurance = () => {
       </section>
 
       {/* Business Advantage */}
-      <section className="qa-advantage-section">
+      <section className="qa-advantage-section" style={{ paddingTop: '180px', paddingBottom: '120px' }}>
         <div className="container">
           <div className="section-header" data-aos="fade-up">
             <h2>The <br /> <span style={{ color: 'var(--color-brand-base)' }}>QA Advantage</span></h2>

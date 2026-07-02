@@ -28,16 +28,26 @@ const representatives = [
 
 const CountryRepresentatives = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const headerRef = useScrollAnimation();
   const sliderRef = useScrollAnimation();
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === representatives.length - 1 ? 0 : prevIndex + 1));
+  const handleSlideChange = (direction) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    
+    setTimeout(() => {
+      if (direction === 'next') {
+        setCurrentIndex((prevIndex) => (prevIndex === representatives.length - 1 ? 0 : prevIndex + 1));
+      } else {
+        setCurrentIndex((prevIndex) => (prevIndex === 0 ? representatives.length - 1 : prevIndex - 1));
+      }
+      setIsAnimating(false);
+    }, 300);
   };
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? representatives.length - 1 : prevIndex - 1));
-  };
+  const nextSlide = () => handleSlideChange('next');
+  const prevSlide = () => handleSlideChange('prev');
 
   const currentRep = representatives[currentIndex];
 
@@ -53,15 +63,17 @@ const CountryRepresentatives = () => {
           <ChevronLeft size={24} />
         </button>
 
-        <div className="bg-[#15110F] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)] flex w-full p-12 gap-12 min-h-[380px] items-center max-md:flex-col max-md:p-8 max-md:gap-8 max-md:text-center">
-          <div className="flex-none w-[300px] h-[300px] rounded-xl overflow-hidden bg-[#15110F] max-md:w-[250px] max-md:h-[250px] max-md:mx-auto">
-            <img src={currentRep.image} alt={currentRep.name} className="w-full h-full object-cover" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
-          </div>
-          
-          <div className="flex-1 flex flex-col">
-            <h3 className="font-serif text-[1.6rem] font-medium text-white mb-4 uppercase tracking-[1.5px]">{currentRep.name}</h3>
-            <h4 className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-6">{currentRep.title}</h4>
-            <p className="font-sans text-[15.2px] text-[#b5aaa0] leading-[1.8] m-0">{currentRep.desc}</p>
+        <div className="bg-[#15110F] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)] flex w-full p-12 gap-12 h-[420px] items-center max-md:h-[650px] max-md:p-8 max-md:text-center">
+          <div className={`w-full flex items-center gap-12 max-md:flex-col max-md:gap-8 transition-opacity duration-300 ease-in-out ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
+            <div className="flex-none w-[300px] h-[300px] rounded-xl overflow-hidden bg-[#15110F] max-md:w-[250px] max-md:h-[250px] max-md:mx-auto">
+              <img src={currentRep.image} alt={currentRep.name} className="w-full h-full object-cover" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+            </div>
+            
+            <div className="flex-1 flex flex-col">
+              <h3 className="font-serif text-[1.6rem] font-medium text-white mb-4 uppercase tracking-[1.5px]">{currentRep.name}</h3>
+              <h4 className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-6">{currentRep.title}</h4>
+              <p className="font-sans text-[15.2px] text-[#b5aaa0] leading-[1.8] m-0">{currentRep.desc}</p>
+            </div>
           </div>
         </div>
 

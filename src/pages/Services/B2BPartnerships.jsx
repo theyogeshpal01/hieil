@@ -121,7 +121,7 @@ const B2BPartnerships = () => {
       
 
       {/* Stats Section */}
-      <section className="b2b-stats-section">
+      <section className="b2b-stats-section" style={{ paddingBottom: '80px' }}>
         <div className="container">
           <div className="stats-grid">
             {stats.map((stat, index) => (

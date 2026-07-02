@@ -23,7 +23,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="py-12 px-8 bg-[#15110F]">
+    <section id="faq" className="py-12 px-8 bg-[#15110F]">
       <div className="max-w-[1000px] mx-auto">
         <div className="text-center mb-10" ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
           <h2 className="text-3xl md:text-5xl font-serif font-normal text-white uppercase tracking-[1.5px] m-0 mb-3">FREQUENTLY <span style={{ color: 'var(--color-brand-base)' }}>ASKED QUESTIONS</span></h2>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { ShieldCheck, Award, Globe, Leaf, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
@@ -13,6 +13,19 @@ const features = [
 const AboutCTASection = () => {
   const leftRef = useScrollAnimation();
   const rightRef = useScrollAnimation();
+  const [showControls, setShowControls] = useState(false);
+  const videoRef = useRef(null);
+
+  const handleVideoClick = () => {
+    if (!showControls) {
+      setShowControls(true);
+      if (videoRef.current) {
+        // When clicked, we might want to unmute it, but the user explicitly asked to "mute it". 
+        // We will keep it muted initially, and give controls on click.
+        videoRef.current.muted = false;
+      }
+    }
+  };
 
   return (
     <section className="w-full bg-[#15110F] py-20 px-8">
@@ -51,12 +64,15 @@ const AboutCTASection = () => {
         <div className="relative" ref={rightRef} style={{opacity:0,transform:'translateX(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
           <div className="relative w-full aspect-[4/3] p-6 border border-[#2c241c] before:content-[''] before:absolute before:w-[30px] before:h-[30px] before:border before:border-[#c8956c] before:top-[-1px] before:left-[-1px] before:border-r-0 before:border-b-0 after:content-[''] after:absolute after:w-[30px] after:h-[30px] after:border after:border-[#c8956c] after:bottom-[-1px] after:right-[-1px] after:border-l-0 after:border-t-0">
             <video 
+              ref={videoRef}
               src="https://drive.google.com/file/d/1Z8MaOaJT7RUiKwoGwBnSfP5RS8pCbm2g/view?usp=drive_link" 
-              className="w-full h-full object-cover rounded-sm" 
-              autoPlay 
-              muted 
-              loop
+              className="w-full h-full object-cover rounded-sm cursor-pointer" 
+              autoPlay={!showControls}
+              muted={true}
+              loop={!showControls}
               playsInline
+              controls={showControls}
+              onClick={handleVideoClick}
             ></video>
           </div>
         </div>

@@ -10,7 +10,7 @@ export const HEADER_LINKS = [
       { label: 'How We Work', href: '/about/how-we-work' },
     ]
   },
-  { label: 'SHOP', href: '/shop' },
+  { label: 'PRODUCTS', href: '/shop' },
   { 
     label: 'SERVICES', 
     href: '/services/custom', 
@@ -63,6 +63,5 @@ export const SOCIAL_LINKS = [
   { platform: 'x', href: 'https://twitter.com/hieil' },
   { platform: 'instagram', href: 'https://www.instagram.com/hieilofficial/' },
   { platform: 'pinterest', href: 'https://in.pinterest.com/hieilofficial/' },
-  { platform: 'youtube', href: 'https://youtube.com/c/hieil' },
   { platform: 'linkedin', href: 'https://www.linkedin.com/company/hieilofficial' },
 ];

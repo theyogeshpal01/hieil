@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { FOOTER_LINKS, SOCIAL_LINKS } from '../../../constants/navigation';
@@ -10,12 +10,8 @@ const Footer = () => {
         {/* Column 1: Store Info */}
         <div className="flex-1 min-w-[220px] max-md:w-full">
           <Link to="/" className="flex items-center gap-4 mb-6 no-underline">
-            <svg viewBox="0 0 24 24" className="w-9 h-9 stroke-[#c8956c] stroke-1 fill-none">
-              <polygon points="12 2 20.66 7 20.66 17 12 22 3.34 17 3.34 7" />
-              <polygon points="12 5 18.06 8.5 18.06 15.5 12 19 5.94 15.5 5.94 8.5" />
-              <circle cx="12" cy="12" r="1.5" stroke="none" fill="#c8956c" />
-            </svg>
-            <span className="text-[20px] tracking-[4px] font-light text-white font-serif">HIEIL</span>
+            <img src="/logo.png" alt="HIEIL Logo" className="w-9 h-9 stroke-[#c8956c] stroke-1 fill-none" />
+            <span className="text-[20px] font-normal text-white">HIEIL</span>
           </Link>
           <p className="text-[13px] leading-[1.8] mb-6 max-w-[280px] max-md:max-w-full text-[#b5aaa0]">
             Since 2024, HIEIL has been redefining shopping with premium categories.
@@ -75,7 +71,7 @@ const Footer = () => {
           <div className="flex items-start gap-3 text-[13px] mb-6 text-[#b5aaa0]">
             <MapPin size={16} className="text-[#c8956c] mt-1" />
             <a href="https://maps.google.com/?q=Hind+Import+Export+International+OPC+Pvt.+Ltd.,+Jaipur,+Rajasthan" target="_blank" rel="noopener noreferrer" className="text-[13.6px] leading-[1.5] text-inherit no-underline">
-              <strong className="text-[var(--color-brand-base)] font-semibold tracking-[0.5px]">Registered Office</strong><br/>
+              <span className="font-normal text-white">Registered Office</span><br/>
               Hind Import Export International OPC Pvt. Ltd.<br/>
               Jaipur, Rajasthan &mdash; 302 001, India
             </a>
