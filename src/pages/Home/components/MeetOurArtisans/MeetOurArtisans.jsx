@@ -49,7 +49,7 @@ const MeetOurArtisans = () => {
       </div>
       
       <div className="flex justify-center">
-        <button className="bg-[#c8956c] text-[#15110F] border border-[#c8956c] rounded-md py-4 px-8 font-sans text-base font-semibold cursor-pointer flex items-center gap-2 transition-all duration-300 ease-in-out shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:bg-transparent hover:text-[#c8956c] hover:-translate-y-0.5">
+        <button className="bg-[#c8956c] text-[#15110F] border border-[#c8956c] rounded-md py-4 px-8 font-sans text-base font-semibold cursor-pointer flex items-center gap-2 transition-all duration-300 ease-in-out shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:opacity-85 hover:-translate-y-0.5">
           <Users size={18} strokeWidth={2} />
           Show More Artisans
         </button>
