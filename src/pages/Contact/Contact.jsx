@@ -277,7 +277,7 @@ const Contact = () => {
             </div>
 
             {/* Support Details */}
-            <div className="flex-[2] flex flex-col gap-[30px] w-full xl:flex-row" data-aos="fade-left">
+            <div className="flex-[2] flex flex-col gap-[30px] w-full" data-aos="fade-left">
               <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] p-[40px] rounded-[20px] border border-[#2c241c] flex-1">
                 <h3 className="font-serif flex items-center gap-[12px] text-[1.8rem] mb-[25px] font-normal text-white"><Clock size={24} className="text-[#c8956c]" /> Business Hours</h3>
                 <ul className="list-none p-0 m-0 flex flex-col gap-[15px]">

@@ -181,7 +181,7 @@ const PrivateLabeling = () => {
       </section>
 
       {/* Packaging Solutions */}
-      <section className="pl-advantage-section">
+      <section className="pl-advantage-section" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
         <div className="container">
           <div className="section-header" data-aos="fade-up">
             <h2>Packaging <br /> <span style={{ color: 'var(--color-brand-base)' }}>Solutions</span></h2>
@@ -202,7 +202,7 @@ const PrivateLabeling = () => {
       </section>
 
       {/* Brand Identity Services */}
-      <section className="pl-advantage-section">
+      <section className="pl-advantage-section" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
         <div className="container">
           <div className="section-header" data-aos="fade-up">
             <h2>Brand <br /> <span style={{ color: 'var(--color-brand-base)' }}>Identity Services</span></h2>
@@ -223,7 +223,7 @@ const PrivateLabeling = () => {
       </section>
 
       {/* Your Brand Growth Advantage */}
-      <section className="pl-advantage-section">
+      <section className="pl-advantage-section" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
         <div className="container">
           <div className="section-header" data-aos="fade-up">
             <h2>Your Brand <br /> <span style={{ color: 'var(--color-brand-base)' }}>Growth Advantage</span></h2>
