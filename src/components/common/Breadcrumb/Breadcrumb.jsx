@@ -5,16 +5,30 @@ import { ChevronRight } from 'lucide-react';
 const Breadcrumb = ({ items }) => {
   const location = useLocation();
 
-  // If no items provided, attempt to auto-generate based on path
   const breadcrumbItems = items || (() => {
     const paths = location.pathname.split('/').filter(p => p);
     
     if (paths.length === 0) return [];
 
     let currentUrl = '';
-    const generated = paths.map((path, index) => {
-      currentUrl += `/${path}`;
-      const isLast = index === paths.length - 1;
+    const processedPaths = [];
+    for (let i = 0; i < paths.length; i++) {
+      if (paths[i] === 'about' && paths[i+1] === 'us') {
+        processedPaths.push('about/us');
+        i++;
+      } else {
+        processedPaths.push(paths[i]);
+      }
+    }
+
+    const generated = processedPaths.map((path, index) => {
+      if (path === 'about/us') {
+         currentUrl = '/about/us';
+      } else {
+         currentUrl += `/${path}`;
+      }
+      
+      const isLast = index === processedPaths.length - 1;
       
       // Map of specific path segments to their full names
       const customLabels = {
@@ -25,13 +39,12 @@ const Breadcrumb = ({ items }) => {
         'private-labeling': 'Private Labeling',
         'b2b': 'B2B Partnerships',
         'affiliate': 'Affiliate Program',
-        'us': 'Us',
+        'about/us': 'About Us',
         'why-choose-us': 'Why Choose Us',
         'how-we-work': 'How We Work',
         'legal-info': 'Legal Info'
       };
 
-      // Basic formatting for standard paths
       let label = path.replace(/-/g, ' ');
       label = label.charAt(0).toUpperCase() + label.slice(1);
       

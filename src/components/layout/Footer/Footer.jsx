@@ -36,7 +36,13 @@ const Footer = () => {
           <h3 className="text-[#c8956c] text-[11px] tracking-[2px] mb-7 uppercase font-medium">SERVICES</h3>
           <ul className="list-none p-0 flex flex-col gap-4">
             {FOOTER_LINKS.explore.map((link) => (
-              <li key={link.label}><Link to={link.href} className="text-[#b5aaa0] no-underline text-[13px] transition-colors duration-300 hover:text-[#c8956c]">{link.label}</Link></li>
+              <li key={link.label}>
+                {link.href.includes('#') ? (
+                  <a href={link.href} className="text-[#b5aaa0] no-underline text-[13px] transition-colors duration-300 hover:text-[#c8956c]">{link.label}</a>
+                ) : (
+                  <Link to={link.href} className="text-[#b5aaa0] no-underline text-[13px] transition-colors duration-300 hover:text-[#c8956c]">{link.label}</Link>
+                )}
+              </li>
             ))}
             {FOOTER_LINKS.categories.slice(0, 2).map((link) => (
               <li key={link.label}><Link to={link.href} className="text-[#b5aaa0] no-underline text-[13px] transition-colors duration-300 hover:text-[#c8956c]">{link.label}</Link></li>
@@ -70,8 +76,8 @@ const Footer = () => {
           </div>
           <div className="flex items-start gap-3 text-[13px] mb-6 text-[#b5aaa0]">
             <MapPin size={16} className="text-[#c8956c] mt-1" />
-            <a href="https://maps.google.com/?q=Hind+Import+Export+International+OPC+Pvt.+Ltd.,+Jaipur,+Rajasthan" target="_blank" rel="noopener noreferrer" className="text-[13.6px] leading-[1.5] text-inherit no-underline">
-              <span className="font-normal text-white">Registered Office</span><br/>
+            <a href="https://maps.google.com/?q=Hind+Import+Export+International+OPC+Pvt.+Ltd.,+Jaipur,+Rajasthan" target="_blank" rel="noopener noreferrer" className="text-inherit no-underline">
+              Registered Office<br/>
               Hind Import Export International OPC Pvt. Ltd.<br/>
               Jaipur, Rajasthan &mdash; 302 001, India
             </a>
