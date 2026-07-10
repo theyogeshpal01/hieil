@@ -106,11 +106,11 @@ const Gallery = () => {
             {/* Sidebar Filters */}
             <aside className="w-full lg:flex-none lg:w-[300px] bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] p-[30px] rounded-[20px] border border-[#2c241c] static lg:sticky lg:top-[100px]">
               <h3 className="text-[20px] font-semibold mb-5 pb-[15px] border-b border-[#2c241c] text-white">Filter By Category</h3>
-              <ul className="list-none p-0 m-0 flex flex-wrap lg:block gap-[10px]">
+              <ul className="list-none p-0 m-0 flex max-lg:overflow-x-auto max-lg:flex-nowrap lg:block gap-[10px] max-lg:pb-3 max-lg:scrollbar-hide">
                 {categories.map((category, index) => (
-                  <li key={index} className="lg:mb-[10px] m-0">
+                  <li key={index} className="lg:mb-[10px] m-0 max-lg:shrink-0">
                     <button 
-                      className={`w-full text-left bg-transparent border border-[#4a3e35] !text-white py-[12px] px-[28px] lg:py-[10px] lg:px-[20px] text-[12px] tracking-[2px] uppercase transition-all duration-300 font-medium cursor-pointer lg:rounded-[30px] rounded-none hover:bg-[rgba(194,163,115,0.1)] hover:border-[#c8956c] hover:shadow-[0_0_15px_rgba(194,163,115,0.2)] hover:!text-[#c8956c] ${activeCategory === category ? 'bg-[#c8956c] !text-[#15110F] border-[#c8956c] font-semibold shadow-[0_0_15px_rgba(194,163,115,0.3)]' : ''}`}
+                      className={`max-lg:whitespace-nowrap lg:w-full text-left bg-transparent border border-[#4a3e35] !text-white py-[12px] px-[28px] lg:py-[10px] lg:px-[20px] text-[12px] tracking-[2px] uppercase transition-all duration-300 font-medium cursor-pointer rounded-[30px] hover:bg-[rgba(194,163,115,0.1)] hover:border-[#c8956c] hover:shadow-[0_0_15px_rgba(194,163,115,0.2)] hover:!text-[#c8956c] ${activeCategory === category ? 'bg-[#c8956c] !text-[#15110F] border-[#c8956c] font-semibold shadow-[0_0_15px_rgba(194,163,115,0.3)]' : ''}`}
                       onClick={() => setActiveCategory(category)}
                     >
                       {category}

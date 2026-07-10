@@ -50,10 +50,10 @@ const Certifications = () => {
           </p>
         </div>
 
-        <div className="w-full overflow-hidden" style={{maskImage:'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',WebkitMaskImage:'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',opacity:0,transition:'opacity 0.7s ease,transition-delay:0.15s'}} ref={cardsRef}>
-          <div className="flex gap-6 w-max animate-[scroll_20s_linear_infinite] hover:[animation-play-state:paused]">
+        <div className="w-full overflow-hidden max-lg:overflow-x-auto max-lg:scrollbar-hide max-lg:snap-x max-lg:snap-mandatory" style={{maskImage:'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',WebkitMaskImage:'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',opacity:0,transition:'opacity 0.7s ease,transition-delay:0.15s'}} ref={cardsRef}>
+          <div className="flex gap-6 w-max lg:animate-[scroll_20s_linear_infinite] hover:[animation-play-state:paused] max-lg:pb-4 max-lg:px-4">
             {[...certifications, ...certifications].map((cert, i) => (
-              <div key={i} className="group bg-[#15110F] border border-[#2c241c] rounded-none overflow-hidden flex flex-col w-[280px] shrink-0 transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:border-[var(--color-brand-base)]">
+              <div key={i} className="group max-lg:snap-center max-lg:snap-always bg-[#15110F] border border-[#2c241c] rounded-none overflow-hidden flex flex-col w-[280px] shrink-0 transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:border-[var(--color-brand-base)]">
               <div className="py-10 px-7 pb-6 flex-1 relative">
                 <span className="absolute top-6 right-7 font-serif text-[4rem] font-bold text-[rgba(200,149,108,0.15)] leading-none pointer-events-none transition-colors duration-300 ease-in-out group-hover:text-[rgba(200,149,108,0.3)]">{cert.id}</span>
                 <div className="w-[48px] h-[48px] rounded-full bg-transparent border border-[rgba(200,149,108,0.3)] text-[var(--color-brand-base)] flex items-center justify-center mb-6 transition-colors duration-300 ease-in-out group-hover:bg-[rgba(200,149,108,0.1)]">{cert.icon}</div>
