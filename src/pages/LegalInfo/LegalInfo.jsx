@@ -76,7 +76,7 @@ const LegalInfo = () => {
           <div className="inline-flex items-center gap-3 px-6 py-2 border border-[#c8956c] text-[#c8956c] rounded-full text-[0.75rem] font-sans tracking-[4px] uppercase mb-6 bg-transparent">
             <span>LEGAL & COMPLIANCE</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold font-[Cinzel] mb-6">
+          <h1 className="text-5xl md:text-6xl font-normal leading-tight font-[Cinzel] tracking-wide mb-6">
             Legal <span className="text-[#c8956c]">Info</span>
           </h1>
           <p className="text-[#b5aaa0] text-lg max-w-2xl mx-auto leading-relaxed font-[Inter]">
@@ -101,7 +101,7 @@ const LegalInfo = () => {
                 <div className="w-12 h-12 rounded-none bg-[#1C1713] border border-[#2c241c] flex items-center justify-center text-[#c8956c]">
                   {section.icon}
                 </div>
-                <h2 className="text-2xl font-[Cinzel] font-bold text-white">{section.title}</h2>
+                <h2 className="text-2xl font-[Cinzel] font-normal text-white">{section.title}</h2>
               </div>
               <div className="text-[#b5aaa0] leading-relaxed text-[15.2px] font-[Inter]">
                 {section.content}
