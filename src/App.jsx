@@ -15,6 +15,7 @@ import Shop from './pages/Shop/Shop';
 import HowWeWork from './pages/HowWeWork/HowWeWork';
 import CustomProductDevelopment from './pages/Services/CustomProductDevelopment';
 import BulkWholesaleSupply from './pages/Services/BulkWholesaleSupply';
+import PartnershipForm from './pages/Services/PartnershipForm';
 import ExportLogistics from './pages/Services/ExportLogistics';
 import QualityAssurance from './pages/Services/QualityAssurance';
 import PrivateLabeling from './pages/Services/PrivateLabeling';
@@ -83,6 +84,7 @@ function App() {
           <Route path="/product/:id/enquiry" element={<Enquiry />} />
           <Route path="/services/custom" element={<CustomProductDevelopment />} />
           <Route path="/services/wholesale" element={<BulkWholesaleSupply />} />
+          <Route path="/services/wholesale/partnership-form" element={<PartnershipForm />} />
           <Route path="/services/export" element={<ExportLogistics />} />
           <Route path="/services/quality" element={<QualityAssurance />} />
           <Route path="/services/private-labeling" element={<PrivateLabeling />} />

@@ -7,11 +7,6 @@ import { categories } from "../../data/products";
 // Mock filters matching Image 1 categories
 const FILTERS = [
   {
-    id: 'availability',
-    title: 'AVAILABILITY',
-    options: ['In stock (5)', 'Out of stock (0)']
-  },
-  {
     id: 'categories',
     title: 'categories',
     options: [

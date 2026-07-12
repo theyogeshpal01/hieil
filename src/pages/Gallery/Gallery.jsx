@@ -5,6 +5,17 @@ const Gallery = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const getImageForCategory = (category) => {
+    switch(category) {
+      case 'HANDCRAFTED BLUE POTTERY': return '/cat-bluepottery.jpg';
+      case 'HANDCRAFTED LUXURY CLOCK': return '/cat-clock.jpg';
+      case 'HANDCRAFTED MATEL categories': return '/cat-metal.jpg';
+      case 'HANDCRAFTED STONE categories': return '/cat-stone.jpg';
+      case 'HANDCRAFTED WOODEN categories': return '/cat-wood.jpg';
+      default: return '/jaipur.jpeg';
+    }
+  };
+
   const [activeCategory, setActiveCategory] = useState('All categories');
 
   const categories = [
@@ -127,15 +138,16 @@ const Gallery = () => {
                 <p className="text-[#b5aaa0] m-0 text-[1rem]">Showing {filteredItems.length} handcrafted items</p>
               </div>
 
-              <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-[25px]">
+              <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-[30px]">
                 {filteredItems.map((item) => (
-                  <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] rounded-[20px] overflow-hidden border border-[#2c241c] transition-all duration-400 hover:-translate-y-[5px] hover:border-[#4a3e35] hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)]" key={item.id}>
-                    <div className="bg-[rgba(21,17,15,0.8)] border-b border-[#2c241c] h-[250px] flex items-center justify-center relative">
-                      <span className="text-[rgba(139,90,43,0.4)] font-bold text-[1.2rem] text-center p-5">{item.title.toUpperCase()}</span>
+                  <div className="bg-[#1C1713] rounded-[10px] overflow-hidden group hover:-translate-y-2 transition-transform duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-pointer" key={item.id}>
+                    <div className="h-[280px] w-full overflow-hidden relative">
+                      <img src={getImageForCategory(item.category)} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#15110F] via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300"></div>
                     </div>
-                    <div className="p-5 text-center">
-                      <h4 className="text-[1.1rem] mb-[5px] text-white font-semibold">{item.title}</h4>
-                      <p className="text-[0.85rem] text-[#c8956c] m-0 tracking-[0.5px]">{item.category}</p>
+                    <div className="p-6 bg-[#1C1713] relative z-10 border-t border-[#c8956c]/20">
+                      <h4 className="text-[1.2rem] mb-2 text-white font-serif uppercase tracking-[1px]">{item.title}</h4>
+                      <p className="text-[0.8rem] text-[#c8956c] m-0 tracking-[1px] uppercase font-medium">{item.category}</p>
                     </div>
                   </div>
                 ))}

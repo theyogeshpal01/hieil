@@ -45,9 +45,9 @@ const GlobalClients = () => {
             <div className="font-sans text-xs tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-6 bg-transparent">
               <span>OUR GLOBAL PRESENCE</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-serif font-normal text-white leading-[1.15] m-0 mb-5 global-section-title max-[900px]:text-[3.5rem]">Trusted By Global<br /><span style={{ color: 'var(--color-brand-base)' }}>Clients & Partners</span></h2>
-            <p className="font-sans text-[1.1rem] text-[#888888] leading-[1.75] m-0 max-w-full min-[900px]:max-w-[420px]">
-              Over 2+ years of excellence in exporting authentic Indian handicrafts \u2014 maintaining the highest standards of quality and reliability worldwide.
+            <h2 className="text-[2.5rem] md:text-[3.5rem] font-serif font-normal text-white leading-[1.2] m-0 mb-5 text-left">Trusted By Global<br /><span style={{ color: 'var(--color-brand-base)' }}>Clients & Partners</span></h2>
+            <p className="text-[#b5aaa0] text-lg leading-relaxed m-0 max-w-full min-[900px]:max-w-[440px] text-justify sm:text-left">
+              Over 2+ years of excellence in exporting authentic Indian handicrafts &mdash; maintaining the highest standards of quality and reliability worldwide.
             </p>
           </div>
 

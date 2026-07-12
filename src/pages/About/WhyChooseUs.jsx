@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   ShieldCheck, 
   Globe, 
@@ -14,8 +15,14 @@ import {
   Building,
   Target,
   FileText,
-  HeartHandshake,
-  Download
+  Download,
+  Store,
+  Warehouse,
+  Palette,
+  ThumbsUp,
+  Wrench,
+  Headset,
+  HeartHandshake
 } from 'lucide-react';
 
 const WhyChooseUs = () => {
@@ -100,7 +107,7 @@ const WhyChooseUs = () => {
             </div>
           </div>
           <div className="relative h-full min-h-[400px] rounded-none overflow-hidden shadow-none">
-             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&q=80')] bg-cover bg-center"></div>
+             <div className="absolute inset-0 bg-[url('/craftsmanship.png')] bg-cover bg-center"></div>
              <div className="absolute inset-0 bg-gradient-to-t from-[#1C1713]/80 to-transparent"></div>
              <div className="absolute bottom-8 left-8 right-8 text-white">
                 <div className="flex items-center gap-3 mb-2">
@@ -212,13 +219,13 @@ const WhyChooseUs = () => {
             <h3 className="text-3xl md:text-5xl font-serif font-normal text-white mb-8">Trusted by Industry Leaders <span className="text-[#c8956c]">Worldwide</span></h3>
             <div className="grid sm:grid-cols-2 gap-6">
               {[
-                { title: 'Retailers', desc: 'Boutique stores, chain retailers, and specialty shops worldwide trust our quality and reliability.' },
-                { title: 'Wholesalers', desc: 'Distribution partners relying on our consistent quality and scalable supply solutions.' },
-                { title: 'Interior Designers', desc: 'Creative professionals choosing our categories for their unique projects and client requirements.' },
-                { title: 'Hotel Chains', desc: 'Luxury and boutique hotels selecting our categories for their premium guest experiences.' },
+                { icon: Store, title: 'Retailers', desc: 'Boutique stores, chain retailers, and specialty shops worldwide trust our quality and reliability.' },
+                { icon: Warehouse, title: 'Wholesalers', desc: 'Distribution partners relying on our consistent quality and scalable supply solutions.' },
+                { icon: Palette, title: 'Interior Designers', desc: 'Creative professionals choosing our categories for their unique projects and client requirements.' },
+                { icon: Building, title: 'Hotel Chains', desc: 'Luxury and boutique hotels selecting our categories for their premium guest experiences.' },
               ].map((client, i) => (
                 <div key={i} className="bg-[#1C1713] p-6 rounded-none border border-[#1C1713]">
-                  <Building className="text-[#c8956c] mb-4" size={32} />
+                  <client.icon className="text-[#c8956c] mb-4" size={32} />
                   <h4 className="text-xl font-normal text-white mb-2">{client.title}</h4>
                   <p className="text-[#b5aaa0] text-sm leading-relaxed">{client.desc}</p>
                 </div>
@@ -240,15 +247,15 @@ const WhyChooseUs = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: 'Reliability', desc: 'Consistent quality and on-time delivery that you can depend on for your business operations.' },
-              { title: 'Craftsmanship', desc: 'Authentic handmade categories preserving traditional techniques with modern quality standards.' },
-              { title: 'Partnership Approach', desc: 'We work as your strategic partner, invested in your success and committed to your growth.' },
-              { title: 'Quality Assurance', desc: 'Rigorous quality control processes and international certifications for complete peace of mind.' },
-              { title: 'Flexible Solutions', desc: 'Customized services that adapt to your unique business needs and market requirements.' },
-              { title: 'Dedicated Support', desc: 'Personal account managers and 24/7 customer support for all your export needs.' },
+              { icon: ThumbsUp, title: 'Reliability', desc: 'Consistent quality and on-time delivery that you can depend on for your business operations.' },
+              { icon: Wrench, title: 'Craftsmanship', desc: 'Authentic handmade categories preserving traditional techniques with modern quality standards.' },
+              { icon: HeartHandshake, title: 'Partnership Approach', desc: 'We work as your strategic partner, invested in your success and committed to your growth.' },
+              { icon: ShieldCheck, title: 'Quality Assurance', desc: 'Rigorous quality control processes and international certifications for complete peace of mind.' },
+              { icon: Settings, title: 'Flexible Solutions', desc: 'Customized services that adapt to your unique business needs and market requirements.' },
+              { icon: Headset, title: 'Dedicated Support', desc: 'Personal account managers and 24/7 customer support for all your export needs.' },
             ].map((prop, i) => (
               <div key={i} className="bg-[#15110F] px-8 py-10 rounded-[4px] border border-[#2c241c] shadow-none flex flex-col items-start text-left transition-all duration-400 hover:border-[#4a3e35] hover:bg-white/5">
-                <CheckCircle2 className="text-[#c8956c] shrink-0 mb-6" size={24} />
+                <prop.icon className="text-[#c8956c] shrink-0 mb-6" size={24} />
                 <div>
                   <h4 className="font-serif text-[1.15rem] font-medium text-white mb-4 uppercase tracking-[1px]">{prop.title}</h4>
                   <p className="text-[#b5aaa0] text-[15.2px] leading-[1.8] m-0 font-sans">{prop.desc}</p>
@@ -310,12 +317,12 @@ const WhyChooseUs = () => {
             Work with us, and experience the perfect blend of Indian tradition and world-class business reliability. Join hundreds of satisfied clients worldwide who trust us for their handicraft sourcing needs.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button className="px-8 py-4 bg-[#1C1713] hover:bg-[#2c241c] text-white rounded-none font-semibold transition-all duration-300 shadow-none hover:shadow-none hover:-translate-y-1 flex items-center gap-2">
+            <Link to="/contact" className="px-8 py-4 bg-[#1C1713] hover:bg-[#2c241c] text-white rounded-none font-normal transition-all duration-300 shadow-none hover:shadow-none hover:-translate-y-1 flex items-center gap-2 no-underline">
               Request a Quote <ChevronRight size={20} />
-            </button>
-            <button className="px-8 py-4 bg-[#15110F] text-white border border-[#2c241c] hover:border-[#c8956c] hover:text-[#917751] rounded-none font-semibold transition-all duration-300 shadow-none flex items-center gap-2">
+            </Link>
+            <Link to="/products" className="px-8 py-4 bg-[#15110F] text-white border border-[#2c241c] hover:border-[#c8956c] hover:text-[#917751] rounded-none font-normal transition-all duration-300 shadow-none flex items-center gap-2 no-underline">
               <Download size={20} /> Download Our Catalogue
-            </button>
+            </Link>
           </div>
         </div>
       </section>

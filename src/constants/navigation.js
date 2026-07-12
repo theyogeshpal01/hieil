@@ -48,7 +48,7 @@ export const FOOTER_LINKS = {
   ],
   care: [
     { label: 'Customer Love & Reviews', href: '/testimonials' },
-    { label: 'Global Payments', href: '/services/wholesale' },
+    { label: 'Global Payments', href: '/#payment' },
     { label: 'Support', href: '/contact' },
   ],
   policies: [

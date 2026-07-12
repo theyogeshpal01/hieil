@@ -19,7 +19,8 @@ import {
   Search,
   CheckCircle,
   Lightbulb,
-  FileText
+  FileText,
+  Coins
 } from 'lucide-react';
 
 const PrivateLabeling = () => {
@@ -79,15 +80,15 @@ const PrivateLabeling = () => {
     { title: 'Brand Strategy', desc: 'Strategic guidance for brand positioning, target audience identification, and market entry planning.', icon: <Target size={32} /> },
     { title: 'Design Development', desc: 'Creative design services for logos, packaging, and marketing materials that reflect your brand essence.', icon: <PenTool size={32} /> },
     { title: 'Brand Guidelines', desc: 'Comprehensive brand manuals ensuring consistent application across all categories and markets.', icon: <FileText size={32} /> },
-    { title: 'Global Adaptation', desc: 'Localization services for different markets while maintaining core brand identity and values.'}
+    { title: 'Global Adaptation', desc: 'Localization services for different markets while maintaining core brand identity and values.', icon: <Globe size={32} /> }
   ];
 
   const advantages = [
     { title: 'Brand Equity Building', icon: <TrendingUp size={24} />, desc: 'Develop strong brand recognition and customer loyalty with exclusive, branded categories in the market.' },
     { title: 'Market Differentiation', icon: <Star size={24} />, desc: 'Stand out from competitors with unique branded categories that cannot be replicated by others.' },
-    { title: 'Higher Margins', icon: <TrendingUp size={24} />, desc: 'Command premium pricing and better profit margins with exclusive branded categories versus generic alternatives.' },
+    { title: 'Higher Margins', icon: <Coins size={24} />, desc: 'Command premium pricing and better profit margins with exclusive branded categories versus generic alternatives.' },
     { title: 'Brand Protection', icon: <ShieldCheck size={24} />, desc: 'Secure your market position with exclusive categories that competitors cannot easily copy or undercut.' },
-    { title: 'Global Expansion', desc: 'Scale your brand internationally with categories and packaging designed for global markets and compliance.' },
+    { title: 'Global Expansion', icon: <Globe size={24} />, desc: 'Scale your brand internationally with categories and packaging designed for global markets and compliance.' },
     { title: 'Customer Loyalty', icon: <HeartHandshake size={24} />, desc: 'Build lasting relationships with customers through consistent brand experience and product quality.' },
     { title: 'Ip Ownership Clarity', icon: <FileText size={24} />, desc: '100% Transparency on all design rights and intellectual property, ensuring you own your brand\'s future.' },
     { title: 'Ethical Branding Mission', icon: <Scale size={24} />, desc: 'A commitment to original creativity and ethical sourcing, with zero tolerance for design plagiarism or corruption.' }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Download, 
   Globe, 
@@ -37,9 +38,9 @@ const About = () => {
               With every handcrafted creation, we strive to tell a story — a story of culture, legacy, and passion, making each piece a true representation of India's traditional artistry.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="px-8 py-4 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-semibold transition-all duration-300 shadow-none  flex items-center gap-2">
+              <Link to="/contact" className="px-8 py-4 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-semibold transition-all duration-300 shadow-none flex items-center gap-2 no-underline">
                 Contact Us <ChevronRight size={20} />
-              </button>
+              </Link>
             </div>
           </div>
           <div className="hidden md:flex justify-center">
@@ -256,9 +257,9 @@ const About = () => {
           <p className="text-lg text-[#b5aaa0] mb-8 max-w-2xl mx-auto">
             Join thousands of satisfied customers worldwide who have transformed their spaces with our authentic, handcrafted pieces. Discover the perfect blend of traditional artistry and contemporary design.
           </p>
-          <button className="px-8 py-4 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-semibold transition-all duration-300 shadow-none hover:shadow-none hover:-translate-y-1">
+          <Link to="/contact" className="inline-block px-8 py-4 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-semibold transition-all duration-300 shadow-none hover:shadow-none hover:-translate-y-1 no-underline">
             Contact Us Today
-          </button>
+          </Link>
         </div>
       </section>
     </div>

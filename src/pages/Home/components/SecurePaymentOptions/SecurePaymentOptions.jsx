@@ -21,7 +21,7 @@ const SecurePaymentOptions = () => {
   const leftRef = useScrollAnimation();
   const rightRef = useScrollAnimation();
   return (
-    <section className="py-32 px-8 bg-[#15110F] relative overflow-hidden border-t border-[rgba(255,255,255,0.03)]">
+    <section id="payment" className="py-32 px-8 bg-[#15110F] relative overflow-hidden border-t border-[rgba(255,255,255,0.03)]">
       <div className="absolute -top-[20%] -left-[10%] w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(200,149,108,0.12)_0%,rgba(21,17,15,0)_70%)] rounded-full pointer-events-none z-0 max-lg:w-[400px] max-lg:h-[400px] max-lg:top-0 max-lg:left-1/2 max-lg:-translate-x-1/2"></div>
       <div className="max-w-[1250px] mx-auto grid grid-cols-[400px_1fr] max-lg:grid-cols-1 gap-24 max-lg:gap-16 items-center relative z-10">
 

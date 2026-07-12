@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { PackageOpen, TrendingUp, ShieldCheck, Target, Globe, Star, Clock, HeartHandshake, Search, Scale, Package, Users, Award, Box } from 'lucide-react';
+import { PackageOpen, TrendingUp, ShieldCheck, Target, Globe, Star, Clock, HeartHandshake, Search, Scale, Package, Users, Award, Box, ChevronRight } from 'lucide-react';
 
 const BulkWholesaleSupply = () => {
   useEffect(() => {
@@ -81,7 +81,7 @@ const BulkWholesaleSupply = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Wholesale <br /> <span style={{ color: 'var(--color-brand-base)' }}>Product categories</span></h2>
-            <p className="text-[1.1rem] text-white font-normal italic font-serif">Extensive Range for All Your Business Needs</p>
+            <p className="text-[1.1rem] text-white font-normal font-serif">Extensive Range for All Your Business Needs</p>
           </div>
           <div className="flex flex-col gap-10">
             {/* Category 1 */}
@@ -184,9 +184,9 @@ const BulkWholesaleSupply = () => {
       {/* CTA Section */}
       <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
         <div className="max-w-[800px] mx-auto">
-          <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Ready To Scale <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Business</span>?</h2>
+          <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5 text-center'>Are You Ready To Scale <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Business?</span></h2>
           <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Partner with us for reliable bulk wholesale supply that ensures steady inventory and consistent quality for your customers. Let's discuss how we can support your growth with our extensive product range and flexible wholesale solutions.</p>
-          <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Wholesale Partnership</Link>
+          <Link to="/services/wholesale/partnership-form" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Wholesale Partnership</Link>
         </div>
       </section>
 
