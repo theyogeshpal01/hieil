@@ -40,10 +40,17 @@ const AboutCTASection = () => {
           
           <div className="flex flex-col gap-6 mb-10">
             <p className="font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8] m-0">
-              HIEIL (Hind Import Export International) is a Jaipur-based handicraft export firm lead by Jogendra Singh, with over 2+ years of dedicated industry experience. Our team of 500+ highly skilled artisans carries forward centuries of tradition.
+              {/* HIEIL (Hind Import Export International) is a Jaipur-based handicraft export firm lead by Jogendra Singh, with over 2+ years of dedicated industry experience. Our team of 500+ highly skilled artisans carries forward centuries of tradition. */}
+              Hind Import Export International (OPC) Pvt.Ltd. is a company that is based in Jaipur. This company is run by Jogendra Singh. He has been doing this work for than two years.
+
             </p>
             <p className="font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8] m-0">
-              Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers. Every piece tells a story — of culture, legacy, and passion.
+              We have a team of artisans who are very good at what they do. There are than 500+ people in our team. They are keeping the traditions of India alive.
+            </p>
+            <p className="font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8] m-0">
+              {/* Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers. Every piece tells a story — of culture, legacy, and passion. */}
+              Our goal is to help the people who make handicrafts in India. We want to make their lives better. We also want to show the world how beautiful Indian art is. Every piece that we make has a story behind it. It is a story of our culture and the people who made it. Hind Import Export International (OPC) Pvt.Ltd. wants to share this story with people, over the world.
+
             </p>
           </div>
 

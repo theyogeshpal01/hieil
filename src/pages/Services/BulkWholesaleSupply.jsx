@@ -48,7 +48,7 @@ const BulkWholesaleSupply = () => {
             <span className="font-sans text-[0.75rem] tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-[30px] bg-transparent">Service Directory</span>
             <h1 className="text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-6">Scaling Your Business with Consistent <span style={{ color: 'var(--color-brand-base)' }}>Quality</span></h1>
             <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[800px] mx-auto">
-              We specialize in handling large-scale bulk orders while maintaining uncompromised quality consistency. With years of experience in wholesale distribution, we understand the unique demands of volume business and provide reliable supply chain solutions that keep your inventory stocked and your customers satisfied.
+              We do orders, lots of them and we make sure everything is good every time. We have been doing this for a time so we know what people need when they buy a lot of things. We help them get what they need when they need it so they have stuff in stock and their customers are happy. We are good, at getting things from one place to another. That helps our customers a lot. Big orders are what we do. We do them well. 
             </p>
           </div>
           <div className="grid grid-cols-2 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
@@ -92,7 +92,7 @@ const BulkWholesaleSupply = () => {
               </div>
               <div className="flex-[0_0_50%] p-[50px_40px] flex flex-col justify-center">
                 <h3 className="font-serif text-[2rem] text-white mb-5 font-normal">Handcrafted Blue Pottery categories</h3>
-                <p className="text-[#b5aaa0] leading-[1.8] mb-[30px]">Handcrafted Blue Pottery is a traditional art form known for its vibrant blue and turquoise designs. Crafted by skilled artisans using a unique blend of quartz, glass, and natural materials, these pieces include plates, bowls, tiles, and decorative items, reflecting rich heritage, fine craftsmanship, and timeless artistic beauty.</p>
+                <p className="text-[#b5aaa0] leading-[1.8] mb-[30px]">Handcrafted Blue Pottery is an old way of making things that people like because of the bright blue and turquoise patterns. People who are very good, at making things use mix of quartz, glass and things they find in nature to create these things. They make plates, bowls, tiles and things that look nice and these things show how rich our past is, how well they are made and how beautiful Handcrafted Blue Pottery is. Handcrafted Blue Pottery is something that people will always like because it is very pretty. </p>
                 <Link to="/contact" className="self-start inline-block py-3 px-[30px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)]">Request Catalog</Link>
               </div>
             </div>
@@ -105,7 +105,7 @@ const BulkWholesaleSupply = () => {
               </div>
               <div className="flex-[0_0_50%] p-[50px_40px] flex flex-col justify-center">
                 <h3 className="font-serif text-[2rem] text-white mb-5 font-normal">Handcrafted Metal categories</h3>
-                <p className="text-[#b5aaa0] leading-[1.8] mb-[30px]">Handcrafted metal categories are skillfully created by experienced artisans using high-quality metals such as brass, copper, iron, and aluminum. These items include decorative pieces, sculptures, utensils, and home dÃ©cor accessories. Each product reflects traditional craftsmanship, durability, and artistic elegance.</p>
+                <p className="text-[#b5aaa0] leading-[1.8] mb-[30px]">Handcrafted metal things are made by workers who know what they are doing. They use metals, like brass, copper, iron and aluminum to make these things. The handcrafted metal categories include things to look at, sculptures things you use to eat with and stuff to make your home look nice. Each handcrafted metal product shows that it was made with care will last a time and looks really nice. The handcrafted metal categories are special because of the way they are made how strong they are and how pretty the handcrafted metal things look. </p>
                 <Link to="/contact" className="self-start inline-block py-3 px-[30px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)]">Request Catalog</Link>
               </div>
             </div>
@@ -118,7 +118,12 @@ const BulkWholesaleSupply = () => {
               </div>
               <div className="flex-[0_0_50%] p-[50px_40px] flex flex-col justify-center">
                 <h3 className="font-serif text-[2rem] text-white mb-5 font-normal">Handcrafted Stone categories</h3>
-                <p className="text-[#b5aaa0] leading-[1.8] mb-[30px]">Handcrafted stone categories are beautifully carved by skilled artisans using natural stones such as marble, sandstone, and granite. These items include sculptures, tabletops, decorative pieces, and architectural elements. Each product reflects traditional craftsmanship, durability, and timeless elegance.</p>
+                <p className="text-[#b5aaa0] leading-[1.8] mb-[30px]">Handcrafted stone categories are really pretty because they are carved by artisans who use natural stones like marble, sandstone and granite. <br />
+                The handcrafted stone categories include things, like sculptures and tabletops and decorative pieces and architectural elements. <br />
+                Each handcrafted stone product is special because it shows craftsmanship and it is durable and it has a timeless elegance that people like. <br />
+                The handcrafted stone categories are made to last. They look nice for a very long time.
+
+                </p>
                 <Link to="/contact" className="self-start inline-block py-3 px-[30px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)]">Request Catalog</Link>
               </div>
             </div>
@@ -131,7 +136,13 @@ const BulkWholesaleSupply = () => {
               </div>
               <div className="flex-[0_0_50%] p-[50px_40px] flex flex-col justify-center">
                 <h3 className="font-serif text-[2rem] text-white mb-5 font-normal">Handcrafted Wooden categories</h3>
-                <p className="text-[#b5aaa0] leading-[1.8] mb-[30px]">Handcrafted wooden categories are carefully created by skilled artisans using high-quality natural wood. These categories include decorative items, furniture, kitchenware, and home dÃ©cor pieces. Each item reflects fine craftsmanship, traditional techniques, and natural beauty.</p>
+                <p className="text-[#b5aaa0] leading-[1.8] mb-[30px]">Handcrafted wooden categories are made with care by artisans. They use quality natural wood. <br />
+These categories include things, like items, furniture, kitchenware and home decor pieces made from wood. <br />
+Each wooden item shows craftsmanship. <br />
+It also shows techniques and the natural beauty of wood. <br />
+The artisans make sure every item is made with attention to detail. <br />
+They use wood to create beautiful things for the home.
+</p>
                 <Link to="/contact" className="self-start inline-block py-3 px-[30px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)]">Request Catalog</Link>
               </div>
             </div>
@@ -185,7 +196,7 @@ const BulkWholesaleSupply = () => {
       <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
         <div className="max-w-[800px] mx-auto">
           <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5 text-center'>Are You Ready To Scale <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Business?</span></h2>
-          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Partner with us for reliable bulk wholesale supply that ensures steady inventory and consistent quality for your customers. Let's discuss how we can support your growth with our extensive product range and flexible wholesale solutions.</p>
+          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">We want to work with you to make sure you have a supply of products for your customers. This means you will always have items in stock and they will always be of good quality. Let us talk about how we can help your business grow with the different products we offer and the different ways we can sell them to you in bulk. We have a lot of products. We are happy to work with you to find a wholesale solution that is right, for you and your customers. </p>
           <Link to="/services/wholesale/partnership-form" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Wholesale Partnership</Link>
         </div>
       </section>

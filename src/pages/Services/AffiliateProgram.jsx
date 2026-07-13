@@ -36,7 +36,7 @@ const AffiliateProgram = () => {
             <span className="font-sans text-[0.75rem] tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-[30px] bg-transparent">Service Directory</span>
             <h1 className="font-serif text-[3.5rem] font-normal text-white mb-6 uppercase tracking-[1px] max-md:text-[2.5rem]">Earn with HIEIL Partner <span style={{ color: 'var(--color-brand-base)' }}>Program</span></h1>
             <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[800px] mx-auto">
-              Join our exclusive affiliate program and turn your network into a revenue stream. We offer competitive commissions, dedicated support, and high-converting marketing materials to help you succeed in promoting our premium handcrafted categories.
+              Join our affiliate program. Make money from your network. We give you commissions help when you need it and marketing tools that work well. These tools help you sell our handcrafted products and earn money. Join our affiliate program. Make money from your network. We give you commissions help when you need it and marketing tools that work well. These tools help you sell our handcrafted products and earn money. 
             </p>
           </div>
           <div className="grid grid-cols-3 gap-[30px] max-md:grid-cols-1">
@@ -79,7 +79,8 @@ const AffiliateProgram = () => {
       <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
         <div className="max-w-[800px] mx-auto">
           <h2 className="font-serif text-[3rem] text-white mb-5 font-normal max-md:text-[2.2rem]">Ready To Start <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Journey</span>?</h2>
-          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Join hundreds of successful affiliates who are already earning with HIEIL. Start your partnership today and grow your earnings with a brand that people love.</p>
+          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Join affiliates who are already making money with HIEIL.They are successful. You can be too.Start your partnership today with HIEIL. Earn more.HIEIL is a brand that people really love.You can grow your earnings with them.
+</p>
           <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Register As An Affiliate</Link>
         </div>
       </section>

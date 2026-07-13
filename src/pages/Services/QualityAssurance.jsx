@@ -80,8 +80,22 @@ const QualityAssurance = () => {
         <div className="text-center mb-[80px] pt-[40px]" data-aos="fade-up">
           <span className="font-sans text-[0.75rem] tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-[30px] bg-transparent">Service Directory</span>
           <h1 className="font-serif text-[3.5rem] font-normal text-white mb-6 uppercase tracking-[1px] max-md:text-[3.5rem] max-sm:text-[2.5rem]">Quality <span style={{ color: 'var(--color-brand-base)' }}>Assurance</span></h1>
-          <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[800px] mx-auto">
-            Uncompromising standards and rigorous testing protocols to ensure every single product meets the highest global benchmarks. We protect your brand reputation with flawless execution.
+          <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[800px] mx-auto whitespace-pre-line">
+            Uncompromising standards and strict testing to ensure every product meets the global standards.
+
+We protect your brand reputation with execution.
+
+Our products are tested thoroughly.
+
+This way we ensure they are of the quality.
+
+We care about your brand image.
+
+So we do everything flawlessly.
+
+Every product meets benchmarks.
+
+Quality is our priority.
           </p>
         </div>
       </div>
@@ -186,7 +200,8 @@ const QualityAssurance = () => {
       <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
         <div className="max-w-[800px] mx-auto">
           <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Experience <br /> <span style={{ color: 'var(--color-brand-base)' }}>Premium Quality</span></h2>
-          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Partner with us and experience the peace of mind that comes with reliable, top-tier quality assurance. We protect your brand reputation by delivering categories that speak of excellence.</p>
+          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Partner with us. Feel secure, with our high-quality checks. We safeguard your brand image by providing top-notch products that show excellence. 
+</p>
           <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Discuss Your Requirements</Link>
         </div>
       </section>

@@ -12,42 +12,45 @@ const HowWeWork = () => {
       number: '01',
       title: 'Inquiry & Consultation',
       subtitle: 'Discovery',
-      description: 'Begin your journey with us by sharing your requirements. Our team of experts will guide you through our extensive collection and help you select the perfect handcrafted pieces for your specific needs.',
-      features: ['Detailed Consultation', 'Customization Options', 'Sample Requests', 'Timeline Planning'],
+      description: `Start your journey with us. Tell us what you are looking for. Our team of experts will show you all the things we have and help you pick the perfect handcrafted pieces that are just right, for you.\n\nWe can do a lot of things to help you, such as:`,
+      features: ['Consultation', 'Customization Options', 'Sample Requests', 'Timeline Planning'],
     },
     {
       number: '02',
       title: 'Detailed Quotation',
       subtitle: 'Estimation',
-      description: 'Receive a comprehensive quotation outlining all costs, including product pricing, customization charges, packaging, and shipping. We ensure complete transparency with no hidden fees.',
+      description: 'When you ask us for a price we will give you a list of all the costs. This includes how much the product is, any fees for making changes the cost of packaging and the cost of shipping. We want to be very clear about what you have to pay so you will not find any surprise fees.',
       features: ['Transparent Pricing', 'Shipping Estimations', 'Flexible Terms', 'Cost Optimization'],
+      postDescription: 'We think it is very important to be open, about the costs of the product. You will get an idea of what you are paying for. We can also work with you to find the way to pay and to reduce the costs.',
     },
     {
       number: '03',
       title: 'Approval & Secure Payment',
       subtitle: 'Confirmation',
-      description: 'Once you approve the quotation, we\'ll send a formal order confirmation. Secure payments can be made through multiple channels, ensuring your financial safety at every step.',
-      features: ['Secure Transactions', 'Multiple Channels', 'Order Verification', 'Digital Receipts'],
+      description: 'Once you say yes to the quotation we will send you an order confirmation. You can make payments through many channels and we make sure your money is safe every step of the way.',
+      features: ['Secure Transactions', 'Many Payment Options', 'Check Your Order', 'Get Digital Receipts'],
     },
     {
       number: '04',
       title: 'Artisan Production',
       subtitle: 'Crafting',
-      description: 'Our skilled artisans begin crafting your order using traditional techniques passed down through generations. We maintain regular updates and maintain strict quality control.',
+      description: "We have people who're very good at making things and they start working on your order using methods that have been used for a very long time. We keep you informed, about what's happening with your order and we make sure that everything is made to a high standard.",
       features: ['Expert Craftsmanship', 'Quality Control', 'Progress Updates', 'Material Sourcing'],
+      postDescription: 'Our artisans are people who make things with their hands and they are very careful when they are working on your order. They use techniques that have been used by our company for a long time. We also make sure that we get the materials for your order.',
     },
     {
       number: '05',
       title: 'Secure Packaging',
       subtitle: 'Protection',
-      description: 'Each piece is carefully packaged using premium, eco-friendly materials to ensure it reaches you in perfect condition. We follow international standards for safe transport.',
+      description: 'We make sure to pack each piece well using good materials that are safe for the earth. This way the piece will get to you in shape. We do things the way everyone else does, around the world to keep things safe while they are being moved.',
       features: ['Custom Crating', 'Eco-Friendly Materials', 'Impact Resistance', 'Final Inspection'],
+      postDescription: 'We use Custom Crating and Eco-Friendly Materials to keep each piece safe. We also make sure it can handle bumps and knocks with Impact Resistance. Then we do a Final Inspection to double check everything is okay.',
     },
     {
       number: '06',
       title: 'Global Shipping & Delivery',
       subtitle: 'Logistics',
-      description: 'We partner with reliable logistics providers for timely worldwide delivery. Track your order in real-time and receive support for customs and documentation.',
+      description: 'We work with shipping companies to get things to you on time all around the world. You can see where your order is, at any moment. We help you with customs and paperwork.',
       features: ['Global Delivery', 'Real-time Tracking', 'Customs Support', 'Safe Handover'],
     }
   ];
@@ -88,7 +91,7 @@ const HowWeWork = () => {
                   <div className="relative z-10">
                     <span className="text-[#c8956c] font-semibold text-[1.1rem] uppercase tracking-[1.5px] block mb-2.5">{step.subtitle}</span>
                     <h3 className="font-serif text-[2rem] font-semibold mb-[15px] text-white">{step.title}</h3>
-                    <p className="text-[#b5aaa0] leading-[1.7] mb-[25px] text-[1rem]">{step.description}</p>
+                    <p className="text-[#b5aaa0] leading-[1.7] mb-[25px] text-[1rem] whitespace-pre-line">{step.description}</p>
                     <ul className="list-none p-0 m-0 grid grid-cols-2 gap-3 max-md:grid-cols-1">
                       {step.features.map((feature, i) => (
                         <li key={i} className="flex items-center text-[0.9rem] text-[#b5aaa0] font-medium">
@@ -97,6 +100,9 @@ const HowWeWork = () => {
                         </li>
                       ))}
                     </ul>
+                    {step.postDescription && (
+                      <p className="text-[#b5aaa0] leading-[1.7] mt-[25px] text-[1rem] whitespace-pre-line">{step.postDescription}</p>
+                    )}
                   </div>
                 </div>
                 {/* Dot */}

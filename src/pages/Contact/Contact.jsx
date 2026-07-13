@@ -34,7 +34,8 @@ const Contact = () => {
           <span className="inline-block py-[6px] px-4 bg-transparent border border-[#4a3e35] text-[#c8956c] text-xs font-semibold tracking-[3px] uppercase mb-[30px] rounded-[50px]">Contact Us</span>
           <h1 className="font-serif text-[3.5rem] font-normal mb-6 leading-[1.2] text-white">Get In Touch With <span className="text-[var(--color-brand-base)]">Us</span></h1>
           <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.6] max-w-[700px] mx-auto">
-            We'd love to hear from you! Whether you have questions about our categories, need assistance with your order, want to discuss a custom project, or just want to learn more about our handicrafts, our team is here to help. Reach out to us through any of the following methods.
+            We want to hear from you. If you have questions about our categories or you need help with your order our team is here to help you. You can also talk to us about a custom project, for handicrafts. You can learn more about our handicrafts. Our team is here to help you with our handicrafts. You can reach out to us through any of the following methods. 
+
           </p>
         </div>
       </section>

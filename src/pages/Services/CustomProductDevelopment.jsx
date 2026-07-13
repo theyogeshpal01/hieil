@@ -42,7 +42,7 @@ const CustomProductDevelopment = () => {
             <span className="font-sans text-[0.75rem] tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-[30px] bg-transparent">Service Directory</span>
             <h1 className="text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-6">Custom Product <span style={{ color: 'var(--color-brand-base)' }}>Development</span></h1>
             <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[800px] mx-auto">
-              Every market has unique demands. That's why we offer specialized custom product development services designed to meet your specific business needs. From concept to completion, we create categories that perfectly align with your brand identity.
+              Every market is different.That's why we offer custom product development services that fit your business needs.We create product categories that match your brand.We do this from start, to finish.
             </p>
           </div>
           

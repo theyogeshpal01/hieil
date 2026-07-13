@@ -25,7 +25,8 @@ const Testimonials = () => {
           <span className="inline-block py-1.5 px-4 bg-transparent border border-[#4a3e35] text-[#c8956c] text-[0.75rem] font-semibold tracking-[3px] uppercase mb-[30px] rounded-[50px]">Testimonials</span>
           <h1 className="font-serif text-[3.5rem] font-normal mb-6 leading-[1.1] text-white max-md:text-[3.5rem] uppercase tracking-[1px]">What Our Customers <span style={{ color: 'var(--color-brand-base)' }}>Say</span></h1>
           <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[700px] mx-auto">
-            Discover why thousands of customers trust HIEIL for their handicraft needs. Read genuine testimonials from homeowners, interior designers, and businesses who have transformed their spaces with our premium handmade categories and exceptional services.
+            Discover why thousands of customers trust HIEIL for their handicraft needs.They have helped homeowners, interior designers and businesses.These customers have transformed their spaces with HIEIL handmade products and great services.Many customers have shared their feedback.Homeowners and businesses read these testimonials to know more, about HIEIL.They see how HIEIL handmade categories and services are exceptional.HIEILs customers are very happy with their handicraft needs met.They trust HIEIL for all their handicraft requirements.
+
           </p>
         </div>
       </section>
@@ -56,14 +57,18 @@ const Testimonials = () => {
               <Star size={24} fill="currentColor" />
               <Star size={24} fill="currentColor" />
             </div>
-            <p className="font-serif text-[1.5rem] text-white leading-[1.6] italic font-light mb-[40px] relative z-1 max-md:text-[1.4rem]">
-              "I recently purchased a beautiful handicraft from Hieil Company, and I am deeply impressed by the skill involved. In Japan, we deeply respect the 'Takumi' (artisan) spirit, and I see that same dedication in Hieil’s categories. The balance of tradition and quality is excellent. It is a wonderful addition to my collection in Tokyo."
+            <p className="font-serif text-[1.5rem] text-white leading-[1.6] italic font-light mb-[40px] relative z-1 max-md:text-[1.4rem] whitespace-pre-line">
+              "I bought a nice handicraft from Hieil Company and I am very impressed by the skill that went into making it. In Japan we have a lot of respect for the people who make things with their hands what we call the Takumi spirit. I can see that Hieil Company has the kind of dedication to making good things.
+
+The way they mix ideas with high quality is very good.
+
+I am happy to have this handicraft in my collection, in Tokyo."
             </p>
             <div className="flex flex-col items-center">
               <div className="w-[40px] h-[2px] bg-[#c8956c] mb-[20px]"></div>
               <div className="testimonial-author">
                 {/* Name removed per request */}
-                <p className="text-[#b5aaa0] text-[0.9rem] tracking-[1px] m-0">Business Man , Japan , Tokyo</p>
+                <p className="text-[#b5aaa0] text-[0.9rem] tracking-[1px] m-0">I live in Tokyo, Japan and I work as a Businessman.</p>
               </div>
             </div>
           </div>

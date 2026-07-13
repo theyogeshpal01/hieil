@@ -139,7 +139,8 @@ const B2BPartnerships = () => {
             <span className="font-sans text-[0.75rem] tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-[30px] bg-transparent">Service Directory</span>
             <h1 className="font-serif text-[3.5rem] font-normal text-white mb-6 uppercase tracking-[1px] max-md:text-[3.5rem] max-sm:text-[2.5rem]">Global B2B Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Opportunities</span></h1>
             <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[800px] mx-auto">
-              We specialize in forging strong, long-lasting business relationships across the globe. Whether you're a wholesaler, retailer, or distributor, our B2B partnership programs are designed to provide you with exclusive categories, reliable supply chains, and dedicated support to scale your business.
+              We help people make business friendships that last a long time all around the world. If you sell things in amounts or in stores or if you help get things from one place to another our business to business partnership programs are made just for you. These programs give you kinds of products that others do not have ways to get things to you that you can count on and people who will help you whenever you need it so your business can get bigger. Our B2B partnership programs are really good, at doing this. 
+
             </p>
           </div>
           <div className="grid grid-cols-2 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
@@ -292,7 +293,7 @@ const B2BPartnerships = () => {
       <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
         <div className="max-w-[800px] mx-auto">
           <h2 className="font-serif text-[3rem] text-white mb-5 font-normal max-md:text-[2.2rem]">Looking For A Trusted <br /> <span style={{ color: 'var(--color-brand-base)' }}>Handicraft Exporter</span>?</h2>
-          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Let's build a partnership that grows your business and creates lasting value. With our flexible solutions, dedicated support, and commitment to your success, we're more than just a supplier — we're your strategic partner in global expansion.</p>
+          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">We want to work with you to make your business bigger and better. Our company has solutions that can be changed to fit your needs, people who will help you. We really want you to succeed. This means we are not a company that sells you things we are a company that helps you grow all around the world. We are your partner when you want to expand. .</p>
           <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c] rounded-none">Let's Build a Partnership</Link>
         </div>
       </section>

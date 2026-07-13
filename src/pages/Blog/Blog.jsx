@@ -24,13 +24,13 @@ const Blog = () => {
     {
       name: 'Surajmal & team',
       craft: 'Handcrafted Wooden categories',
-      desc: 'Surajmal is a skilled artisan known for his expertise in crafting high-quality handcrafted wooden categories. With years of experience in traditional woodworking, he combines time-honored techniques with creative design to produce unique and elegant wooden handicrafts.\n\nHis craftsmanship reflects patience, precision, and a deep respect for natural materials. Each wooden piece created by Surajmal is carefully shaped, carved, and finished by hand, ensuring durability, beauty, and authenticity. His work often features traditional patterns and artistic detailing that represent the rich heritage of Indian handicrafts.',
+      desc: 'Surajmal is a craftsman. He is good at making quality wooden items by hand. Surajmal has been working with wood for years. He uses techniques and adds his own creative ideas. This way he makes handicrafts that are both unique and beautiful.\n\nHis work shows that he is very patient and precise. Surajmal also respects the materials he uses. He makes each piece with his own hands. He shapes, carves and finishes each piece carefully. This makes sure that the piece will last long and look good. Surajmals work often has designs, on it. These designs show the history of Indian handicrafts.\n\nHis wooden categories are handcrafted.Surajmal makes handicrafts.Surajmals handicrafts are wooden.He crafts handicrafts.Surajmals work is handicrafts.His handicrafts are categories.',
       image: '/artisan1.png', 
     },
     {
       name: 'Ahmad Ali & team',
       craft: 'Handcrafted Blue Pottery',
-      desc: 'Ahmad Ali is a skilled artisan specializing in the traditional art of handcrafted Blue Pottery, a craft deeply rooted in the rich cultural heritage of Rajasthan. With years of experience and dedication to this unique ceramic art form, he has mastered the intricate techniques of shaping, glazing, and decorating exquisite blue pottery pieces.\n\nHis work reflects the beauty of traditional craftsmanship combined with artistic precision. Each piece created by Ahmad Ali carries distinctive patterns, vibrant blue hues, and detailed hand-painted designs that represent the timeless elegance of Rajasthani heritage.',
+      desc: 'Ahmad Ali is a good artist who makes Blue Pottery by hand. This kind of work is very special to the people of Rajasthan. He has been doing this for a time and is really good at it. Ahmad Ali can make all sorts of things like bowls and plates. He is very careful when he is making Pottery.\n\nAhmad Alis Blue Pottery is very pretty. He makes each piece of Blue Pottery with his hands. Each one is different. Has its own special patterns and colors. The blue color is very nice. The designs are painted by hand. This is what makes Blue Pottery, from Rajasthan so famous. Ahmad Alis Blue Pottery is an example of the traditional crafts of Rajasthan.',
       image: '/artisan2.png',
     }
   ];

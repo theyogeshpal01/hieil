@@ -41,7 +41,7 @@ const WhyChooseUs = () => {
             <span className="text-[#c8956c]">Partners in Your Success</span>
           </h1>
           <p className="text-[15.2px] text-white mb-10 leading-relaxed max-w-3xl mx-auto">
-            At HIEIL, we are more than just exporters — we are partners in your success. Based in Jaipur, India's hub of heritage and craftsmanship, we bring together traditional artistry and modern business standards to deliver authentic handicrafts trusted worldwide. Experience the perfect blend of Indian tradition and world-class business reliability.
+            At HIEIL we are not just people who send things to countries we are people who help you do well. We are based in Jaipur, a city in India that's very good at making nice things. We combine the ways of making things with new ways of doing business. This way we can give you Indian handicrafts that people all over the world trust. When you work with us you get the things, about India and the reliability of a big company. 
           </p>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto border-t border-white/10 pt-10">
@@ -74,7 +74,10 @@ const WhyChooseUs = () => {
             </div>
             <h3 className="text-3xl md:text-5xl font-serif font-normal text-white mb-6">Where Tradition Meets <span className="text-[#c8956c]">Excellence</span></h3>
             <p className="text-[15.2px] text-[#b5aaa0] leading-relaxed mb-6">
-              <strong className="text-white">Authentic Craftsmanship Meets Modern Excellence.</strong> Every product is handmade by skilled artisans and passes through strict quality control and export compliance checks. From design to packaging, we ensure that each piece meets international quality expectations while preserving the authentic touch of traditional Indian craftsmanship.
+              People who make things with their hands are really good at what they do. They make every product by hand. Then these products go through a lot of checks to make sure they are good enough to be sold.
+            </p>
+            <p className="text-[15.2px] text-[#b5aaa0] leading-relaxed mb-6">
+              We check everything from when we first think of a design to when we put the product in a box to be sent out. We want to be sure that every single thing we make is as good as anything you can find in countries. At the time we want our products to still look and feel like they were made in India, where people have been making things with their hands for a very long time. Authentic Craftsmanship is what we are trying to keep alive. Authentic Craftsmanship is very important, to us.
             </p>
             <div className="space-y-6 mt-8">
               <div className="flex gap-4 items-start">
@@ -107,14 +110,14 @@ const WhyChooseUs = () => {
             </div>
           </div>
           <div className="relative h-full min-h-[400px] rounded-none overflow-hidden shadow-none">
-             <div className="absolute inset-0 bg-[url('/craftsmanship.png')] bg-cover bg-center"></div>
+             <div className="absolute inset-0 bg-[url('/traditionmeets.jpeg')] bg-cover bg-center"></div>
              <div className="absolute inset-0 bg-gradient-to-t from-[#1C1713]/80 to-transparent"></div>
              <div className="absolute bottom-8 left-8 right-8 text-white">
                 <div className="flex items-center gap-3 mb-2">
                   <Award className="text-[#c8956c]" size={32} />
                   <span className="text-2xl font-serif font-normal">100% Quality Assured</span>
                 </div>
-                <p className="text-[#2c241c]">Tested and verified for international markets.</p>
+                <p className="text-white">Tested and verified for international markets.</p>
              </div>
           </div>
         </div>

@@ -123,7 +123,8 @@ const PrivateLabeling = () => {
           <span className="font-sans text-[0.75rem] tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-[30px] bg-transparent">Service Directory</span>
           <h1 className="font-serif text-[3.5rem] font-normal text-white mb-6 uppercase tracking-[1px] max-md:text-[3.5rem] max-sm:text-[2.5rem]">Private Labeling <span style={{ color: 'var(--color-brand-base)' }}>& OEM</span></h1>
           <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[800px] mx-auto">
-            End-to-end private label services. Manufacture high-quality products under your brand name with complete customization options, bespoke packaging, and retail-ready solutions.
+           We do label services from start to finish. You can make products with your own brand name on them. We let you customize everything make boxes and get things ready to sell in stores. This way you get products that're just what you want, with your name, on them and they are ready to sell. 
+
           </p>
         </div>
       </section>
@@ -285,7 +286,7 @@ const PrivateLabeling = () => {
       <section className="py-[120px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
         <div className="max-w-[800px] mx-auto">
           <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Ready To Build <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Brand</span>?</h2>
-          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Partner with us to create exclusive branded categories that stand out in the global marketplace. From white-label manufacturing to customized packaging and retail-ready solutions, we provide everything you need to grow your brand globally with exclusive, high-quality categories.</p>
+          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">We want you to work with us to make groups of products that have your name on them. These products will really stand out when people see them. We can make products for you and put your name on the boxes. We can also get these products ready to sell in stores. This way you can sell your products around the world and make your brand very well known, with these special products that are really good quality. </p>
           <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Your Brand Journey</Link>
         </div>
       </section>

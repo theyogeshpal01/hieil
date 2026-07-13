@@ -7,21 +7,24 @@ const representatives = [
     id: 1,
     name: 'Narendra Singh',
     title: 'French Language Expert/International Liaison Officer',
-    desc: 'Narendra Singh is a distinguished French Language Expert and professional translator with extensive experience in linguistic services, international communication, and cross-cultural collaboration. With deep expertise in the French language and global linguistic standards, he has dedicated his career to facilitating accurate, professional, and culturally sensitive translations.',
+    desc: 'French Language Expert/International Liaison Officer ,Narendra Singh is a French Language Expert. He is also a translator.He has a lot of experience in language services.His work helps people communicate across countries and cultures.He knows the language very well.He also knows global language standards.Narendra has made a career of helping people translate text.His translations are accurate and professional.They are also sensitive, to cultures.',
+    // desc: 'Narendra Singh is a distinguished French Language Expert and professional translator with extensive experience in linguistic services, international communication, and cross-cultural collaboration. With deep expertise in the French language and global linguistic standards, he has dedicated his career to facilitating accurate, professional, and culturally sensitive translations.',
     image: '/narendra.jpeg'
   },
   {
     id: 2,
     name: 'Mr. Harsh Vijay',
     title: 'Head of Design & Development',
-    desc: 'Mr. Harsh Vijay serves as the Head of Design & Development, bringing creativity, innovation, and a strong design vision to the organization. With a keen eye for detail and a deep understanding of traditional craftsmanship and modern design trends, he plays a vital role in shaping unique and market-ready product collections. In his role, Harsh Vijay leads the design and development process, working closely with artisans and production teams to transform creative concepts into high-quality handcrafted categories. His focus is on blending traditional artistry with contemporary aesthetics to create designs that appeal to both domestic and international markets.',
+    desc: 'Head of Design & Development Mr. Harsh Vijay is the Head of Design & Development. He brings creativity and innovation to the organization.He has a design vision.With an eye for detail he understands traditional craftsmanship and modern design trends.Harsh Vijay plays a role in creating unique product collections that are ready for the market.In his role Harsh Vijay leads design and development.He works closely with artisans and production teams.They transform concepts into high-quality handcrafted products.His focus is on mixing artistry with modern aesthetics.This helps create designs that appeal to both international markets.Harsh Vijay and his team make sure products are of quality.The designs are a mix of modern styles.This makes them attractive, to customers everywhere.',
+    // desc: 'Mr. Harsh Vijay serves as the Head of Design & Development, bringing creativity, innovation, and a strong design vision to the organization. With a keen eye for detail and a deep understanding of traditional craftsmanship and modern design trends, he plays a vital role in shaping unique and market-ready product collections. In his role, Harsh Vijay leads the design and development process, working closely with artisans and production teams to transform creative concepts into high-quality handcrafted categories. His focus is on blending traditional artistry with contemporary aesthetics to create designs that appeal to both domestic and international markets.',
     image: '/harsh.png'
   },
   {
     id: 3,
     name: 'Mr. Rahoul Chouhan',
     title: 'Strategic Country Advisor',
-    desc: 'Rahoul Chouhan is a dynamic and visionary leader known for his dedication, strategic thinking, and commitment to excellence. With a strong passion for innovation and growth, he brings a forward-thinking approach to leadership, focusing on building sustainable business relationships and delivering high-quality results.',
+    desc: 'Mr. Rahoul Chauhan.Strategic Country Advisor.Rahoul Chauhan is a leader. He is known for working and thinking ahead. He wants to make businesses grow and do well.He leads by example. Makes sure things are done properly. Rahoul Chauhan builds relationships that last. He gets results and makes sure they are of high quality.Rahoul Chauhan is good, at planning. Thinks about the future. He likes to try things.',
+    // desc: 'Rahoul Chouhan is a dynamic and visionary leader known for his dedication, strategic thinking, and commitment to excellence. With a strong passion for innovation and growth, he brings a forward-thinking approach to leadership, focusing on building sustainable business relationships and delivering high-quality results.',
     image: '/rahoul.png'
   }
 ];

@@ -87,7 +87,8 @@ const ExportLogistics = () => {
           <span className="font-sans text-[0.75rem] tracking-[4px] uppercase text-[#c8956c] border border-[#c8956c] rounded-full py-2 px-6 inline-flex items-center gap-3 mb-[30px] bg-transparent">Service Directory</span>
           <h1 className="font-serif text-[3.5rem] font-normal text-white mb-6 uppercase tracking-[1px] max-md:text-[3.5rem] max-sm:text-[2.5rem]">Global Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>& Logistics</span></h1>
           <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[800px] mx-auto">
-            Seamlessly taking your products to international markets. We handle everything from rigorous quality assurance and export packaging to complex customs documentation and global delivery networks.
+          We help you sell your products in countries. Our team takes care of making sure your products are quality and packaged well for shipping. We also do all the paperwork for customs. Get your products to people all around the world. We handle your products every step of the way from quality checks, to getting them delivered to markets. 
+
           </p>
         </div>
       </div>
@@ -197,7 +198,9 @@ const ExportLogistics = () => {
       <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
         <div className="max-w-[800px] mx-auto">
           <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Ready To Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>Globally</span>?</h2>
-          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Experience professional export services with our comprehensive documentation and quality assurance. Focus on growing your business while we handle all the export procedures and international compliance. Get your personalized export quote today!</p>
+          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">When you work with us you get help with sending things to other countries. We take care of all the paperwork. Make sure everything is okay. This way you can focus on making your business bigger. We do all the work for export. Make sure we follow all the rules, in other countries. You can get a quote for your export needs today.</p>
+          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">We handle all the export procedures so you do not have to worry about them. You can just think about growing your business. We will take care of the rest. Our export services are complete. We make sure everything is of good quality.</p>
+          <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Get your personalized export quote from us today. Let us help you with your export needs.</p>
           <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Get Export Quote</Link>
         </div>
       </section>

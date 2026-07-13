@@ -32,10 +32,15 @@ const About = () => {
               <span className="text-[#c8956c]">ABOUT US</span>
             </h1>
             <p className="text-lg text-[#b5aaa0] mb-6 leading-relaxed">
-              HIEIL is committed to preserving the rich heritage of Indian craftsmanship by connecting skilled artisans to global markets. We work directly with artisan communities, ensuring fair wages, transparency, and sustainable growth.
+              HIEIL wants to keep the ways of Indian craftsmanship alive. We do this by helping skilled artisans sell their work to people around the world.
+              {/* HIEIL is committed to preserving the rich heritage of Indian craftsmanship by connecting skilled artisans to global markets. We work directly with artisan communities, ensuring fair wages, transparency, and sustainable growth. */}
             </p>
             <p className="text-lg text-[#b5aaa0] mb-8 leading-relaxed">
-              With every handcrafted creation, we strive to tell a story — a story of culture, legacy, and passion, making each piece a true representation of India's traditional artistry.
+              We work directly with the people who make these things so they get a price for what they do. This way everyone knows what is going on. We can all grow together in a good way.
+            </p>
+            <p className="text-lg text-[#b5aaa0] mb-8 leading-relaxed">
+              {/* With every handcrafted creation, we strive to tell a story — a story of culture, legacy, and passion, making each piece a true representation of India's traditional artistry. */}
+              When we make something with our hands we are trying to tell a story. This story is about the culture and history of India and the love that people put into making these things. Each thing we make is an example of the traditional art of India. We make each piece so it shows what India is, about.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link to="/contact" className="px-8 py-4 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-semibold transition-all duration-300 shadow-none flex items-center gap-2 no-underline">
@@ -84,13 +89,18 @@ const About = () => {
             </div>
           <h3 className="text-3xl md:text-5xl font-serif font-normal text-white mb-8">Crafting Excellence, <span style={{ color: 'var(--color-brand-base)' }}>Empowering Artisans</span></h3>
           <p className="text-lg font-medium text-[#b5aaa0] leading-relaxed mb-6">
-            We are a Jaipur-based handicraft export firm led by Jogendra Singh, with over 2+ years of dedicated industry experience and a team of 500+ highly skilled artisans. Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers.
+            {/* We are a Jaipur-based handicraft export firm led by Jogendra Singh, with over 2+ years of dedicated industry experience and a team of 500+ highly skilled artisans. Our mission is to empower traditional Indian craftsmen, enhance their livelihoods, and introduce the rich cultural artistry of India to discerning international buyers. */}
+            We are a company from Jaipur that exports handicrafts. Our leader is Jogendra Singh. He has been working in this field for than two years. We have a team of skilled artisans over 500 people.
           </p>
           <p className="text-lg text-[#b5aaa0] leading-relaxed mb-6">
-            Through strict quality assurance, ethical sourcing, and innovative design, we deliver authentic, handcrafted categories that reflect the heritage and craftsmanship of our region. By partnering with us, you support sustainable artisan communities and gain access to exquisite, one-of-a-kind creations that elevate your product offerings.
+            {/* Through strict quality assurance, ethical sourcing, and innovative design, we deliver authentic, handcrafted categories that reflect the heritage and craftsmanship of our region. By partnering with us, you support sustainable artisan communities and gain access to exquisite, one-of-a-kind creations that elevate your product offerings. */}
+            Our goal is to help craftsmen and improve their lives. We want to show the world the art from India. We want to sell our products to people in countries who appreciate good art.
+          </p>
+          <p className="text-lg text-[#b5aaa0] leading-relaxed mb-6">
+            We make sure our products are of quality. We get our materials from sources and design our products in a new way. This way we can make handicrafts that show the skills of our artisans. If you work with us you will be helping our artisans and their communities. You will also get unique products that will make your business better.
           </p>
           <p className="text-lg font-medium text-white mt-8">
-            We invite you to experience the unique value, trust, and reliability our organization brings to the global handicraft market.
+            We want you to see what our company can do for you. We are a company and we want to sell our handicrafts to people all, over the world.
           </p>
         </div>
       </section>
@@ -145,8 +155,18 @@ const About = () => {
                   </div>
                 </div>
                 <div className="space-y-4 text-[#b5aaa0] leading-relaxed mb-8">
-                  <p>Jogendra Singh is the Founder and Director of Hind Import Export International (OPC) Private Limited, bringing over seven years of distinguished experience in the Indian handicraft export industry. With a deep appreciation for India's artistic legacy, he established the company to present handcrafted excellence as a symbol of timeless luxury on the global stage.</p>
-                  <p>Rooted in heritage yet driven by contemporary vision, he collaborates closely with master artisans to preserve authenticity while elevating craftsmanship to international standards. His leadership is guided by a commitment to refined quality, ethical sourcing, and sustainable artisan empowerment.</p>
+                  <p>
+                    Jogendra Singh is the Founder and Director of Hind Import Export International (OPC) Private Limited. He has than seven years of experience, in exporting Indian handicrafts.
+                  </p>
+                  <p>
+                    He loves Indias art and culture. He started the company to show the worlds handmade products as a sign of luxury.
+                  </p>
+                  <p>
+                    He works with artisans to keep traditional methods alive. At the time he helps them make their products meet international standards.
+                  </p>
+                  <p>
+                    Jogendra Singh focuses on quality fair business practices and helping artisans sustainably.
+                  </p>
                 </div>
                 <ul className="flex flex-wrap gap-2">
                   {['Visionary Leader', 'Artisan Advocate', 'Global Strategist'].map((tag, i) => (
@@ -172,8 +192,18 @@ const About = () => {
                   </div>
                 </div>
                 <div className="space-y-4 text-[#b5aaa0] leading-relaxed mb-8">
-                  <p>Renu Kumari is the Chief Executive Officer, embodying refined leadership and a contemporary global outlook. With a deep commitment to excellence, she steers the company's operations with precision, ensuring that every expression of Indian craftsmanship meets the highest international luxury standards.</p>
-                  <p>Guided by a philosophy of understated elegance and uncompromising quality, she oversees strategic execution, global partnerships, and brand refinement. Her leadership bridges heritage artistry with modern business sophistication, transforming handcrafted traditions into curated luxury experiences.</p>
+                  <p>Renu Kumari is the Chief Executive Officer. She leads with a vision and a global perspective.</p>
+                  <p>She is very committed to doing things. She makes sure that all Indian handmade products meet the luxury standards in the world.</p>
+                  <p>
+                    She believes in elegant style and high quality. She is in charge of making strategies working with partners and improving the brand.
+                  </p>
+                  <p>
+                    Her leadership combines craftsmanship with modern business skills. She turns traditions, into special luxury experiences.
+                  </p>
+                  <p>
+                    Renu Kumari does all this with precision.
+                  </p>
+                  <p>She ensures that every product is of quality.</p>
                 </div>
                 <ul className="flex flex-wrap gap-2">
                   {['Strategic Leader', 'Luxury Curator', 'Global Partner'].map((tag, i) => (
@@ -255,7 +285,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-serif font-normal text-white mb-4">Ready To Experience <br /> <span className="text-[#c8956c]">Hieil Craftsmanship</span>?</h2>
           <p className="text-lg text-[#b5aaa0] mb-8 max-w-2xl mx-auto">
-            Join thousands of satisfied customers worldwide who have transformed their spaces with our authentic, handcrafted pieces. Discover the perfect blend of traditional artistry and contemporary design.
+            People around the world are really happy with the things we make. Thousands of customers have changed their homes with our handcrafted pieces. You can find the mix of old style art and modern design, with our handcrafted pieces. Our handcrafted pieces are made with artistry and contemporary design. 
           </p>
           <Link to="/contact" className="inline-block px-8 py-4 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-semibold transition-all duration-300 shadow-none hover:shadow-none hover:-translate-y-1 no-underline">
             Contact Us Today
