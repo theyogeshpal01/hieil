@@ -117,7 +117,7 @@ const Shop = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Fetch products from backend
-    axios.get('http://localhost:3000/api/products')
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/products`)
       .then(res => {
         if (res.data && res.data.length > 0) {
           setCategories(res.data);

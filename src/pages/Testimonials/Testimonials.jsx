@@ -8,7 +8,7 @@ const Testimonials = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    axios.get('http://localhost:3000/api/testimonials')
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/testimonials`)
       .then(res => setTestimonials(res.data))
       .catch(err => console.error(err));
   }, []);

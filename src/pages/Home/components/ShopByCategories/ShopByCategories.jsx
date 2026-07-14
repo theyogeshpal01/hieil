@@ -8,7 +8,7 @@ const ShopBycategories = () => {
   const gridRef = useScrollAnimation();
   
   useEffect(() => {
-    axios.get('http://localhost:3000/api/categories')
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/categories`)
       .then(res => {
         if (res.data && res.data.length > 0) {
           setCategories(res.data);

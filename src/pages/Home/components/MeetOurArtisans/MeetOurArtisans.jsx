@@ -10,7 +10,7 @@ const MeetOurArtisans = () => {
 
   useEffect(() => {
     // Fetch artisans from backend
-    axios.get('http://localhost:3000/api/artisans')
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/artisans`)
       .then(res => {
         if (res.data && res.data.length > 0) {
           setArtisans(res.data);

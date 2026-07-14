@@ -9,12 +9,12 @@ const Blog = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Fetch blogs
-    axios.get('http://localhost:3000/api/blogs')
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/blogs`)
       .then(res => setBlogs(res.data))
       .catch(err => console.error(err));
       
     // Fetch artisans
-    axios.get('http://localhost:3000/api/artisans')
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/artisans`)
       .then(res => setArtisans(res.data))
       .catch(err => console.error(err));
   }, []);
