@@ -38,11 +38,11 @@ const Product = () => {
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-2 gap-16 max-[900px]:grid-cols-1 max-[900px]:gap-12">
             {/* Left Column: Image Gallery */}
-            <div ref={galleryRef} style={{opacity:0,transform:'translateX(-40px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
+            <div ref={galleryRef} className="relative z-20" style={{opacity:0,transform:'translateX(-40px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
               <ProductGallery product={product} />
             </div>
             
-            <div ref={infoRef} style={{opacity:0,transform:'translateX(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
+            <div ref={infoRef} className="relative z-10" style={{opacity:0,transform:'translateX(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
               <ProductInfo product={product} />
             </div>
           </div>

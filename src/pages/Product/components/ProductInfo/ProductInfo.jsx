@@ -175,7 +175,7 @@ const ProductInfo = ({ product }) => {
         </div>
         {product.priceOnRequest ? (
           <div className="flex gap-4 mt-4 max-sm:flex-col max-sm:gap-2">
-            <button className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded bg-[#c2957b] text-white font-sans font-semibold text-[0.9rem] cursor-pointer transition-opacity duration-200 hover:opacity-90" onClick={() => navigate(`/product/${product.id}/enquiry`)}>
+            <button className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded bg-[var(--color-brand-base)] text-black font-sans font-semibold text-[0.9rem] cursor-pointer transition-opacity duration-200 hover:opacity-90" onClick={() => navigate(`/product/${product.id}/enquiry`)}>
               <Mail size={16} /> REQUEST QUOTE
             </button>
             <button className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded bg-[#25d366] text-white font-sans font-semibold text-[0.9rem] cursor-pointer transition-opacity duration-200 hover:opacity-90"><MessageCircle size={16} /> WHATSAPP INQUIRY</button>
@@ -241,7 +241,7 @@ const ProductInfo = ({ product }) => {
           <span className="text-[0.85rem] font-semibold text-white">Trending Tags:</span>
           <div className="flex flex-wrap gap-2">
             {product.tags.map((tag, idx) => (
-              <span key={idx} className="bg-[#15110F] text-[#b5aaa0] py-[0.4rem] px-4 rounded-full text-[0.75rem] font-medium cursor-pointer transition-colors duration-200 hover:bg-[#c2957b] hover:text-white">{tag}</span>
+              <span key={idx} className="bg-[#15110F] text-[#b5aaa0] py-[0.4rem] px-4 rounded-full text-[0.75rem] font-medium cursor-pointer transition-colors duration-200 hover:bg-[var(--color-brand-base)] hover:text-black">{tag}</span>
             ))}
           </div>
         </div>

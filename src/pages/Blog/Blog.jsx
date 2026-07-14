@@ -1,9 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Search, Mail } from 'lucide-react';
+import axios from 'axios';
 
 const Blog = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [artisans, setArtisans] = useState([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Fetch blogs
+    axios.get('http://localhost:3000/api/blogs')
+      .then(res => setBlogs(res.data))
+      .catch(err => console.error(err));
+      
+    // Fetch artisans
+    axios.get('http://localhost:3000/api/artisans')
+      .then(res => setArtisans(res.data))
+      .catch(err => console.error(err));
   }, []);
 
   const [activeTab, setActiveTab] = useState('All Posts');
@@ -20,20 +33,6 @@ const Blog = () => {
     'Woven Stories'
   ];
 
-  const artisans = [
-    {
-      name: 'Surajmal & team',
-      craft: 'Handcrafted Wooden categories',
-      desc: 'Surajmal is a craftsman. He is good at making quality wooden items by hand. Surajmal has been working with wood for years. He uses techniques and adds his own creative ideas. This way he makes handicrafts that are both unique and beautiful.\n\nHis work shows that he is very patient and precise. Surajmal also respects the materials he uses. He makes each piece with his own hands. He shapes, carves and finishes each piece carefully. This makes sure that the piece will last long and look good. Surajmals work often has designs, on it. These designs show the history of Indian handicrafts.\n\nHis wooden categories are handcrafted.Surajmal makes handicrafts.Surajmals handicrafts are wooden.He crafts handicrafts.Surajmals work is handicrafts.His handicrafts are categories.',
-      image: '/artisan1.png', 
-    },
-    {
-      name: 'Ahmad Ali & team',
-      craft: 'Handcrafted Blue Pottery',
-      desc: 'Ahmad Ali is a good artist who makes Blue Pottery by hand. This kind of work is very special to the people of Rajasthan. He has been doing this for a time and is really good at it. Ahmad Ali can make all sorts of things like bowls and plates. He is very careful when he is making Pottery.\n\nAhmad Alis Blue Pottery is very pretty. He makes each piece of Blue Pottery with his hands. Each one is different. Has its own special patterns and colors. The blue color is very nice. The designs are painted by hand. This is what makes Blue Pottery, from Rajasthan so famous. Ahmad Alis Blue Pottery is an example of the traditional crafts of Rajasthan.',
-      image: '/artisan2.png',
-    }
-  ];
 
   return (
     <div className="font-sans text-[var(--hww-dark)] bg-[#15110F] overflow-x-hidden">
@@ -72,11 +71,28 @@ const Blog = () => {
             ))}
           </div>
 
-          <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] rounded-[20px] p-[100px_20px] text-center border border-[#2c241c]" data-aos="fade-in" data-aos-delay="200">
-            <div className="">
-              <p className="text-[#b5aaa0] text-[1.2rem] font-normal tracking-[1px]">No Articles Found In This Collection.</p>
+          {blogs.length === 0 ? (
+            <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] rounded-[20px] p-[100px_20px] text-center border border-[#2c241c]" data-aos="fade-in" data-aos-delay="200">
+              <div className="">
+                <p className="text-[#b5aaa0] text-[1.2rem] font-normal tracking-[1px]">No Articles Found In This Collection.</p>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-aos="fade-up" data-aos-delay="200">
+              {blogs.filter(b => activeTab === 'All Posts' || b.category === activeTab).map(blog => (
+                <div key={blog._id} className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] overflow-hidden transition-all duration-400 hover:border-[#4a3e35] hover:-translate-y-[5px]">
+                  <div className="h-[240px] overflow-hidden">
+                    <img src={blog.image || '/blog1.png'} alt={blog.title} className="w-full h-full object-cover transition-transform duration-400 hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="/blog2.png"; }} />
+                  </div>
+                  <div className="p-[25px]">
+                    <span className="text-[#c8956c] font-sans text-[0.7rem] tracking-[2px] uppercase mb-2 block">{blog.tag || blog.category}</span>
+                    <h4 className="font-serif text-[1.3rem] text-white mb-[15px]">{blog.title}</h4>
+                    <p className="text-[#b5aaa0] text-[0.95rem] leading-[1.6]">{blog.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -90,24 +106,26 @@ const Blog = () => {
           </div>
 
           <div className="flex flex-col gap-[60px] mt-[50px]">
-            {artisans.map((artisan, index) => (
+            {artisans.map((artisan, index) => {
+              const textParts = artisan.text ? artisan.text.split('\n\n') : [];
+              return (
               <div className="flex flex-col lg:flex-row bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] overflow-hidden transition-all duration-400 hover:border-[#4a3e35] hover:-translate-y-[5px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] group" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                 <div className="flex-[0_0_45%] relative min-h-[300px] lg:min-h-[400px] overflow-hidden bg-[#3e332a]">
                   {/* Using an image to showcase the artisan */}
-                  <img src={artisan.image} alt={artisan.name} className="w-full h-full object-cover absolute top-0 left-0 transition-transform duration-400 opacity-80 group-hover:scale-105" />
+                  <img src={artisan.preview || '/artisan1.png'} alt={artisan.title} className="w-full h-full object-cover absolute top-0 left-0 transition-transform duration-400 opacity-80 group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="/artisan2.png"; }} />
                   <span className="absolute top-[20px] left-[20px] bg-[var(--color-brand-base)] text-white p-[6px_15px] rounded-[20px] text-[0.8rem] font-semibold tracking-[1px] uppercase">Artisan Work</span>
                 </div>
                 <div className="p-[30px_20px] lg:p-[50px_40px] flex-1">
-                  <span className="text-[#c8956c] font-normal text-[1rem] mb-[10px] block">{artisan.craft}</span>
-                  <h3 className="font-serif text-[1.6rem] lg:text-[2.2rem] text-white mb-[25px]">{artisan.name}</h3>
+                  <span className="text-[#c8956c] font-normal text-[1rem] mb-[10px] block">{artisan.description}</span>
+                  <h3 className="font-serif text-[1.6rem] lg:text-[2.2rem] text-white mb-[25px]">{artisan.title}</h3>
                   <div className="">
-                    {artisan.desc.split('\n\n').map((para, i) => (
+                    {textParts.map((para, i) => (
                       <p className="text-[#b5aaa0] leading-[1.8] mb-[15px] text-[1rem] last:mb-0" key={i}>{para}</p>
                     ))}
                   </div>
                 </div>
               </div>
-            ))}
+            )})}
           </div>
         </div>
       </section>

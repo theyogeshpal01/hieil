@@ -38,7 +38,7 @@
     font-size: 15.2px !important;
   }
 
-  h2 {
+  h2:not(.swal2-title) {
     font-family: var(--font-serif) !important;
     font-weight: 400 !important;
     color: #ffffff !important;
@@ -47,7 +47,7 @@
   }
 
   @media (min-width: 768px) {
-    h2 {
+    h2:not(.swal2-title) {
       font-size: 3rem !important; /* text-5xl */
       line-height: 3.75rem !important; /* /15 */
     }

@@ -1,10 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Quote, Star, PenTool, Camera, CheckCircle } from 'lucide-react';
+import axios from 'axios';
 
 const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    axios.get('http://localhost:3000/api/testimonials')
+      .then(res => setTestimonials(res.data))
+      .catch(err => console.error(err));
   }, []);
 
   const stats = [
@@ -48,30 +54,25 @@ const Testimonials = () => {
       {/* Featured Testimonial */}
       <section className="py-[60px] pb-[100px] bg-[#15110F]">
         <div className="max-w-[1200px] mx-auto px-5">
-          <div className="max-w-[800px] mx-auto bg-[#1C1713] py-[60px] px-[80px] max-[992px]:px-[40px] max-md:py-[40px] max-md:px-[20px] border border-[#2c241c] text-center relative transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:shadow-[0_10px_50px_rgba(194,163,115,0.05)]" data-aos="zoom-in">
-            <Quote className="text-[#c8956c] opacity-[0.15] absolute top-[40px] left-[40px] max-md:hidden" size={80} />
-            <div className="text-[#c8956c] mb-[40px] flex justify-center gap-2">
-              <Star size={24} fill="currentColor" />
-              <Star size={24} fill="currentColor" />
-              <Star size={24} fill="currentColor" />
-              <Star size={24} fill="currentColor" />
-              <Star size={24} fill="currentColor" />
-            </div>
-            <p className="font-serif text-[1.5rem] text-white leading-[1.6] italic font-light mb-[40px] relative z-1 max-md:text-[1.4rem] whitespace-pre-line">
-              "I bought a nice handicraft from Hieil Company and I am very impressed by the skill that went into making it. In Japan we have a lot of respect for the people who make things with their hands what we call the Takumi spirit. I can see that Hieil Company has the kind of dedication to making good things.
-
-The way they mix ideas with high quality is very good.
-
-I am happy to have this handicraft in my collection, in Tokyo."
-            </p>
-            <div className="flex flex-col items-center">
-              <div className="w-[40px] h-[2px] bg-[#c8956c] mb-[20px]"></div>
-              <div className="testimonial-author">
-                {/* Name removed per request */}
-                <p className="text-[#b5aaa0] text-[0.9rem] tracking-[1px] m-0">I live in Tokyo, Japan and I work as a Businessman.</p>
+          {testimonials.map((testimonial, idx) => (
+            <div key={testimonial._id || idx} className="max-w-[800px] mx-auto bg-[#1C1713] py-[60px] px-[80px] max-[992px]:px-[40px] max-md:py-[40px] max-md:px-[20px] border border-[#2c241c] text-center relative transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:shadow-[0_10px_50px_rgba(194,163,115,0.05)] mb-[40px]" data-aos="zoom-in">
+              <Quote className="text-[#c8956c] opacity-[0.15] absolute top-[40px] left-[40px] max-md:hidden" size={80} />
+              <div className="text-[#c8956c] mb-[40px] flex justify-center gap-2">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={24} fill={i < (testimonial.rating || 5) ? "currentColor" : "none"} stroke={i < (testimonial.rating || 5) ? "currentColor" : "#dddddd"} />
+                ))}
+              </div>
+              <p className="font-serif text-[1.5rem] text-white leading-[1.6] italic font-light mb-[40px] relative z-1 max-md:text-[1.4rem] whitespace-pre-line">
+                "{testimonial.message}"
+              </p>
+              <div className="flex flex-col items-center">
+                <div className="w-[40px] h-[2px] bg-[#c8956c] mb-[20px]"></div>
+                <div className="testimonial-author">
+                  <p className="text-[#b5aaa0] text-[0.9rem] tracking-[1px] m-0">I live in {testimonial.city}, and I work as a {testimonial.userDesignation}.</p>
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 

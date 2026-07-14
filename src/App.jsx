@@ -56,6 +56,20 @@ function ScrollToTop() {
   return null;
 }
 
+import AdminApp from './admin/AdminApp';
+import { Outlet } from 'react-router-dom';
+
+function MainLayout() {
+  return (
+    <>
+      <Header />
+      <Breadcrumb />
+      <Outlet />
+      <Footer />
+    </>
+  );
+}
+
 function App() {
   useEffect(() => {
     AOS.init({
@@ -69,37 +83,39 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className="app-container">
-        <Header />
-        <Breadcrumb />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about/us" element={<About />} />
-          <Route path="/about/why-choose-us" element={<WhyChooseUs />} />
-          <Route path="/about/how-we-work" element={<HowWeWork />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/products" element={<Shop />} />
-          <Route path="/products/:categoryId" element={<Shop />} />
-          <Route path="/product/:id" element={<Product />} />
-          <Route path="/product/:id/enquiry" element={<Enquiry />} />
-          <Route path="/services/custom" element={<CustomProductDevelopment />} />
-          <Route path="/services/wholesale" element={<BulkWholesaleSupply />} />
-          <Route path="/services/wholesale/partnership-form" element={<PartnershipForm />} />
-          <Route path="/services/export" element={<ExportLogistics />} />
-          <Route path="/services/quality" element={<QualityAssurance />} />
-          <Route path="/services/private-labeling" element={<PrivateLabeling />} />
-          <Route path="/services/b2b" element={<B2BPartnerships />} />
-          <Route path="/services/affiliate" element={<AffiliateProgram />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/testimonials" element={<Testimonials />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-of-service" element={<TermsOfService />} />
-          <Route path="/legal-info" element={<LegalInfo />} />
+          {/* Main Website Routes */}
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about/us" element={<About />} />
+            <Route path="/about/why-choose-us" element={<WhyChooseUs />} />
+            <Route path="/about/how-we-work" element={<HowWeWork />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/products" element={<Shop />} />
+            <Route path="/products/:categoryId" element={<Shop />} />
+            <Route path="/product/:id" element={<Product />} />
+            <Route path="/product/:id/enquiry" element={<Enquiry />} />
+            <Route path="/services/custom" element={<CustomProductDevelopment />} />
+            <Route path="/services/wholesale" element={<BulkWholesaleSupply />} />
+            <Route path="/services/wholesale/partnership-form" element={<PartnershipForm />} />
+            <Route path="/services/export" element={<ExportLogistics />} />
+            <Route path="/services/quality" element={<QualityAssurance />} />
+            <Route path="/services/private-labeling" element={<PrivateLabeling />} />
+            <Route path="/services/b2b" element={<B2BPartnerships />} />
+            <Route path="/services/affiliate" element={<AffiliateProgram />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/legal-info" element={<LegalInfo />} />
+          </Route>
+
+          {/* Admin Panel Route */}
+          <Route path="/admin/*" element={<AdminApp />} />
         </Routes>
-        
-        <Footer />
       </div>
     </Router>
   );

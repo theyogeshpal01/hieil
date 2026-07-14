@@ -1,0 +1,134 @@
+.data-table-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.data-table-header {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.table-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+}
+
+.title-icon {
+  margin-right: 10px;
+  color: #4a5568;
+}
+
+.add-btn {
+  background-color: #3182ce;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-btn svg {
+  margin-right: 6px;
+}
+
+.add-btn:hover {
+  background-color: #2b6cb0;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.data-table thead th {
+  background-color: #f8f9fa;
+  color: #4a5568;
+  padding: 15px 20px;
+  font-size: 15px;
+  font-weight: 700;
+  border: 1px solid #edf2f7;
+  white-space: nowrap;
+  min-width: 150px;
+}
+
+.data-table tbody td {
+  padding: 15px 20px;
+  font-size: 15px;
+  color: #4a5568;
+  border: 1px solid #edf2f7;
+  white-space: nowrap;
+  min-width: 150px;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f7fafc;
+}
+
+.action-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+  transition: opacity 0.2s;
+}
+
+.action-btn:hover {
+  opacity: 0.8;
+}
+
+.edit-btn {
+  background-color: #3b82f6; /* Blue */
+}
+
+.delete-btn {
+  background-color: #ef4444; /* Red */
+}
+
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+}
+
+.status-rejected { background-color: #e53e3e; }
+.status-pending { background-color: #d69e2e; }
+.status-active { background-color: #38a169; }
+
+.no-data {
+  text-align: center;
+  padding: 40px !important;
+  color: #a0aec0;
+}

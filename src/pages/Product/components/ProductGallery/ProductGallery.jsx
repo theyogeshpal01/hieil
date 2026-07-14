@@ -67,7 +67,7 @@ const ProductGallery = ({ product }) => {
 
       {/* Main Image Display */}
       <div 
-        className="flex-1 bg-[#15110F] flex items-center justify-center relative cursor-crosshair max-sm:h-[400px]"
+        className="flex-1 bg-[#15110F] flex items-center justify-center relative cursor-crosshair max-sm:h-[400px] overflow-hidden rounded"
         onMouseEnter={() => setIsZooming(true)}
         onMouseLeave={() => setIsZooming(false)}
         onMouseMove={handleMouseMove}
@@ -76,7 +76,7 @@ const ProductGallery = ({ product }) => {
           ref={imgRef}
           src={images[activeIndex]} 
           alt="Main product view" 
-          className="max-w-full max-h-full object-contain" 
+          className="w-full h-full object-cover" 
           onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} 
         />
         

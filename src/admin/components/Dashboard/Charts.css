@@ -1,0 +1,79 @@
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.chart-wrapper {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.chart-row {
+  display: flex;
+  gap: 24px;
+}
+
+.half-width {
+  flex: 1;
+}
+
+.chart-title {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.revenue-summary h2 {
+  margin: 0 0 20px 0;
+  font-size: 28px;
+  color: #2d3748;
+}
+
+.revenue-summary span {
+  font-size: 16px;
+  font-weight: 400;
+  color: #a0aec0;
+}
+
+.chart-inner {
+  width: 100%;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #718096;
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+@media (max-width: 1024px) {
+  .chart-row {
+    flex-direction: column;
+  }
+}

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp, Grid, List, Star } from 'lucide-react';
-
-import { categories } from "../../data/products";
+import axios from 'axios';
 
 // Mock filters matching Image 1 categories
 const FILTERS = [
@@ -63,6 +62,7 @@ const categoryMap = {
 
 const Shop = () => {
   const { categoryId } = useParams();
+  const [categories, setCategories] = useState([]);
   
   // Determine initial category from URL
   const initialCategory = categoryId ? categoryMap[categoryId] || 'All categories' : 'All categories';
@@ -116,28 +116,35 @@ const Shop = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Fetch products from backend
+    axios.get('http://localhost:3000/api/products')
+      .then(res => {
+        if (res.data && res.data.length > 0) {
+          setCategories(res.data);
+        }
+      })
+      .catch(err => console.error('Error fetching products:', err));
   }, []);
 
   // Filter categories based on selected states
   const filteredcategories = categories.filter(product => {
-    // Category Filter (Maps to product.brand in the mock data)
+    // Category Filter (Maps to product.category in the DB)
     if (selectedFilters.categories.length > 0 && !selectedFilters.categories.includes('All categories')) {
-      if (!selectedFilters.categories.includes(product.brand)) return false;
+      if (!selectedFilters.categories.includes(product.category)) return false;
     }
 
     // Material Filter
     if (selectedFilters.material.length > 0) {
-      // product.specifications.Material is e.g. "quartz stone powder"
+      // product.materials is e.g. "quartz stone powder"
       // Options are e.g. "Quartz stone powder"
-      const prodMat = product.specifications?.Material?.toLowerCase() || '';
+      const prodMat = product.materials?.toLowerCase() || '';
       const matchMat = selectedFilters.material.some(m => prodMat.includes(m.toLowerCase()));
       if (!matchMat) return false;
     }
 
-    // Artisan Region Filter
+    // Artisan Region Filter (Not present directly in product schema, but we can check if it exists in descriptions)
     if (selectedFilters.artisan.length > 0) {
-      const prodRegion = product.specifications?.['Artisan Origin']?.toUpperCase() || '';
-      const matchReg = selectedFilters.artisan.some(a => a.toUpperCase() === prodRegion);
+      const matchReg = selectedFilters.artisan.some(a => (product.description || '').toUpperCase().includes(a.toUpperCase()));
       if (!matchReg) return false;
     }
 
@@ -250,18 +257,18 @@ const Shop = () => {
               <div className="py-[2rem] text-[#666]">No categories found matching your filters.</div>
             ) : (
               filteredcategories.map((product) => (
-                <div key={product.id} className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] p-[20px] transition-all duration-400 flex flex-col relative h-full hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] hover:-translate-y-[5px] group">
+                <div key={product._id} className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] p-[20px] transition-all duration-400 flex flex-col relative h-full hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] hover:-translate-y-[5px] group">
                 <div className="rounded-[12px] bg-[#15110F] relative w-full h-[260px] flex items-center justify-center mb-[1rem] overflow-hidden">
-                  <span className="absolute top-[1rem] left-[1rem] bg-[#c8956c] text-[#000000] font-sans text-[0.7rem] font-semibold py-[0.25rem] px-[0.5rem] tracking-[0.5px] z-10 rounded-[4px]">{product.id % 2 === 0 ? '-19%' : '-5%'}</span>
+                  <span className="absolute top-[1rem] left-[1rem] bg-[#c8956c] text-[#000000] font-sans text-[0.7rem] font-semibold py-[0.25rem] px-[0.5rem] tracking-[0.5px] z-10 rounded-[4px]">{product.tag || '-5%'}</span>
                   
-                  <Link to={`/product/${product.id}`} className="flex w-full h-full items-center justify-center">
-                    <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-400 group-hover:scale-105" />
+                  <Link to={`/product/${product._id}`} className="flex w-full h-full items-center justify-center">
+                    <img src={product.mainImage || 'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?q=80&w=500&auto=format&fit=crop'} alt={product.productName} className="w-full h-full object-cover transition-transform duration-400 group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
                   </Link>
                 </div>
                 
-                <h4 className="font-sans text-[0.65rem] font-semibold text-[#888888] uppercase tracking-[1.5px] m-0 mb-[0.4rem]">{product.brand || 'CLAY CANVAS'}</h4>
-                <Link to={`/product/${product.id}`} className="no-underline group-hover:text-[#c8956c] transition-colors">
-                  <h3 className="font-serif text-[1.05rem] font-medium text-white m-0 mb-[0.5rem] whitespace-nowrap overflow-hidden text-ellipsis group-hover:text-[#c8956c]">{product.name} - Handcrafted Premium Decor</h3>
+                <h4 className="font-sans text-[0.65rem] font-semibold text-[#888888] uppercase tracking-[1.5px] m-0 mb-[0.4rem]">{product.category || 'CLAY CANVAS'}</h4>
+                <Link to={`/product/${product._id}`} className="no-underline group-hover:text-[#c8956c] transition-colors">
+                  <h3 className="font-serif text-[1.05rem] font-medium text-white m-0 mb-[0.5rem] whitespace-nowrap overflow-hidden text-ellipsis group-hover:text-[#c8956c]">{product.productName} - Handcrafted Premium Decor</h3>
                 </Link>
                 
                 <div className="flex gap-[2px] mb-[0.6rem]">
@@ -271,8 +278,8 @@ const Shop = () => {
                 </div>
                 
                 <div className="flex gap-[0.5rem] mt-[0.5rem] opacity-0 translate-y-[10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                  <Link to={`/product/${product.id}`} className="flex-1 p-[0.5rem] text-center border border-[#c8956c] text-[#c8956c] bg-transparent font-sans text-[0.8rem] font-semibold uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-[#c8956c] hover:text-[#15110F] hover:shadow-[0_5px_15px_rgba(194,163,115,0.3)]">Details</Link>
-                  <Link to={`/product/${product.id}/enquiry`} className="flex-1 p-[0.5rem] text-center border border-[#c8956c] bg-[#c8956c] text-[#15110F] font-sans text-[0.8rem] font-semibold uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-transparent hover:text-[#c8956c] hover:shadow-[0_5px_15px_rgba(194,163,115,0.3)]">Enquiry</Link>
+                  <Link to={`/product/${product._id}`} className="flex-1 p-[0.5rem] text-center border border-[#c8956c] text-[#c8956c] bg-transparent font-sans text-[0.8rem] font-semibold uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-[#c8956c] hover:text-[#15110F] hover:shadow-[0_5px_15px_rgba(194,163,115,0.3)]">Details</Link>
+                  <Link to={`/product/${product._id}/enquiry`} className="flex-1 p-[0.5rem] text-center border border-[#c8956c] bg-[#c8956c] text-[#15110F] font-sans text-[0.8rem] font-semibold uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-transparent hover:text-[#c8956c] hover:shadow-[0_5px_15px_rgba(194,163,115,0.3)]">Enquiry</Link>
                 </div>
               </div>
               ))

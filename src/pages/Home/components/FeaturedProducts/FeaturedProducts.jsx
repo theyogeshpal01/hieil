@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
-import { categories } from '../../../../data/products';
+import axios from 'axios';
 
 const Featuredcategories = () => {
+  const [products, setProducts] = useState([]);
   const headerRef = useScrollAnimation();
   const gridRef = useScrollAnimation();
+
+  useEffect(() => {
+    // Fetch products from backend
+    axios.get('http://localhost:3000/api/products')
+      .then(res => {
+        if (res.data && res.data.length > 0) {
+          setProducts(res.data);
+        }
+      })
+      .catch(err => console.error('Error fetching products:', err));
+  }, []);
+
   return (
     <section className="w-full bg-[#15110F] py-20 px-8 border-t border-[#2c241c]">
       <div className="max-w-[1200px] mx-auto">
@@ -21,14 +34,14 @@ const Featuredcategories = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
-          {categories.slice(0, 4).map((product) => (
-            <div key={product.id} className="relative overflow-hidden rounded aspect-[3/4] group">
-              <Link to={'/product/' + product.id} className="block w-full h-full no-underline">
+          {products.slice(0, 4).map((product) => (
+            <div key={product._id} className="relative overflow-hidden rounded aspect-[3/4] group">
+              <Link to={'/product/' + product._id} className="block w-full h-full no-underline">
                 <div className="w-full h-full relative">
-                  <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-[600ms] ease-in-out group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+                  <img src={product.mainImage || 'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?q=80&w=500&auto=format&fit=crop'} alt={product.productName} className="w-full h-full object-cover transition-transform duration-[600ms] ease-in-out group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
                   <div className="absolute bottom-0 left-0 right-0 pt-8 px-5 pb-5 bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-transparent flex flex-col">
-                    <span className="font-sans text-[0.65rem] tracking-[2px] text-[#c8956c] mb-1.5 uppercase">{product.brand || 'ARTISAN'}</span>
-                    <h3 className="font-serif text-[1.1rem] text-white m-0 uppercase">{product.name}</h3>
+                    <span className="font-sans text-[0.65rem] tracking-[2px] text-[#c8956c] mb-1.5 uppercase">{product.category || 'ARTISAN'}</span>
+                    <h3 className="font-serif text-[1.1rem] text-white m-0 uppercase">{product.productName}</h3>
                   </div>
                 </div>
               </Link>

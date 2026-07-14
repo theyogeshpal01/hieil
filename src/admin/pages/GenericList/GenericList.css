@@ -1,0 +1,342 @@
+.generic-list-page {
+  animation: fadeIn 0.4s ease-out;
+}
+
+.page-header {
+  margin-bottom: 20px;
+}
+
+.page-header h1 {
+  margin: 0 0 5px 0;
+  font-size: 24px;
+  color: #1a202c;
+  font-weight: 700;
+}
+
+.page-header p {
+  margin: 0;
+  color: #718096;
+  font-size: 14px;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #2d3748;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #4a5568;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  background-color: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+.form-group select option {
+  padding: 10px 14px;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #1f2937;
+  cursor: pointer;
+}
+
+.form-group select option:checked {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.form-group select:focus > option:checked {
+  background-color: #2563eb !important;
+  color: white !important;
+}
+
+.form-group input[type="file"] {
+  padding: 6px;
+  cursor: pointer;
+}
+
+.form-group input[type="file"]::file-selector-button {
+  margin-right: 15px;
+  padding: 6px 16px;
+  border: none;
+  background-color: #fbbf24;
+  color: #1a202c;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-size: 14px;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+  background-color: #d69e2e;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.modal-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancel-btn {
+  background-color: #edf2f7;
+  color: #4a5568;
+}
+
+.cancel-btn:hover {
+  background-color: #e2e8f0;
+}
+
+.save-btn {
+  background-color: #3182ce;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #2b6cb0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Form Page Styles matching Add Category screenshot */
+.generic-form-page {
+  animation: fadeIn 0.4s ease-out;
+  padding: 10px;
+}
+
+.form-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.form-page-header .header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-page-header .header-left h1 {
+  margin: 0;
+  font-size: 22px;
+  color: #1a202c;
+  font-weight: 700;
+  font-family: inherit;
+}
+
+.form-page-header .header-left p {
+  margin: 0;
+  color: #718096;
+  font-size: 14px;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: #718096;
+}
+
+.breadcrumb .home-icon {
+  color: #3182ce;
+}
+
+.back-btn {
+  background: white;
+  border: 1px solid #e2e8f0;
+  color: #3182ce;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.back-btn:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+.form-card {
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.form-card-title {
+  margin: 0;
+  padding: 20px 25px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2d3748;
+  border-bottom: 1px solid #e2e8f0;
+  text-transform: uppercase;
+  font-family: serif;
+}
+
+.form-card form {
+  padding: 25px;
+}
+
+.form-card .form-group {
+  margin-bottom: 25px;
+}
+
+.form-card .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #718096;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.form-card .form-group input,
+.form-card .form-group select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #4a5568;
+  transition: border-color 0.2s;
+}
+
+.form-card .form-group input::placeholder {
+  color: #a0aec0;
+}
+
+.form-card .form-group input:focus,
+.form-card .form-group select:focus {
+  outline: none;
+  border-color: #3182ce;
+}
+
+.form-actions {
+  margin-top: 30px;
+}
+
+.submit-btn {
+  background-color: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #2b6cb0;
+}
+
+.btn-icon {
+  font-size: 16px;
+}
+
+.permissions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  margin-top: 10px;
+}
+
+.permission-checkbox {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px !important;
+  color: #4a5568 !important;
+  cursor: pointer;
+  margin-bottom: 0 !important;
+  font-weight: 500 !important;
+}
+
+.permission-checkbox input[type="checkbox"] {
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #3182ce;
+}
