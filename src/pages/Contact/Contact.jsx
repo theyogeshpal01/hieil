@@ -18,6 +18,7 @@ const Contact = () => {
   }, []);
 
   const [openFaq, setOpenFaq] = useState(null);
+  const [formData, setFormData] = useState({ name: '', email: '', country: '', phone: '', subject: '', category: '', message: '' });
 
   const faqs = [
     { q: "What Is Your Response Time For Inquiries?", a: "We typically respond to all inquiries within 24 hours. For urgent matters, please use our 24/7 emergency line." },
@@ -78,15 +79,39 @@ const Contact = () => {
               <h2 className="font-serif text-[2.5rem] font-normal mb-[15px] text-white">Send Us <br /> <span className="text-[var(--color-brand-base)]">A Message</span></h2>
               <p className="text-[#b5aaa0] mb-[30px] text-[1.05rem]">Have a specific inquiry? Fill out the form below and our team will get back to you shortly.</p>
               
-              <form className="flex flex-col gap-[25px]">
+              <form className="flex flex-col gap-[25px]" onSubmit={async (e) => {
+                e.preventDefault();
+                try {
+                  const { default: axios } = await import('axios');
+                  const { default: Swal } = await import('sweetalert2');
+                  
+                  // Show loading
+                  Swal.fire({
+                    title: 'Sending...',
+                    text: 'Please wait while we send your message',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                      Swal.showLoading();
+                    }
+                  });
+
+                  await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/contact`, formData);
+                  
+                  Swal.fire('Success', 'Your message has been sent successfully. Our team will contact you soon.', 'success');
+                  // Reset form
+                  setFormData({ name: '', email: '', country: '', phone: '', subject: '', category: '', message: '' });
+                } catch (err) {
+                  import('sweetalert2').then(Swal => Swal.default.fire('Error', 'Failed to send message. Please try again.', 'error'));
+                }
+              }}>
                 <div className="flex flex-col md:flex-row gap-[25px]">
                   <div className="flex-1 flex flex-col">
                     <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Full Name *</label>
-                    <input className="w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]" type="text" placeholder="e.g. John Doe" />
+                    <input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]" type="text" placeholder="e.g. John Doe" />
                   </div>
                   <div className="flex-1 flex flex-col">
                     <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Email Address *</label>
-                    <input className="w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]" type="email" placeholder="john@example.com" />
+                    <input required value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} className="w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]" type="email" placeholder="john@example.com" />
                   </div>
                 </div>
 
@@ -94,12 +119,12 @@ const Contact = () => {
                   <div className="flex-1 flex flex-col">
                     <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Select Country *</label>
                     <div className="relative">
-                      <select className="appearance-none cursor-pointer w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]">
-                        <option>Search country...</option>
-                        <option>United States</option>
-                        <option>United Kingdom</option>
-                        <option>Australia</option>
-                        <option>India</option>
+                      <select required value={formData.country} onChange={e => setFormData({...formData, country: e.target.value})} className="appearance-none cursor-pointer w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]">
+                        <option value="">Search country...</option>
+                        <option value="United States">United States</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Australia">Australia</option>
+                        <option value="India">India</option>
                       </select>
                       <ChevronDown className="absolute right-[15px] top-[50%] -translate-y-1/2 text-[#8c8279] pointer-events-none" size={18} />
                     </div>
@@ -107,8 +132,8 @@ const Contact = () => {
                   <div className="flex-1 flex flex-col">
                     <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Phone Number *</label>
                     <div className="flex">
-                      <span className="bg-[rgba(21,17,15,0.8)] border border-[#4a3e35] border-r-0 p-[15px] rounded-l-[10px] text-[#b5aaa0] font-medium flex items-center">+00</span>
-                      <input className="w-full p-[15px] border border-[#4a3e35] rounded-r-[10px] rounded-l-none bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]" type="text" placeholder="000 000 0000" />
+                      <span className="bg-[rgba(21,17,15,0.8)] border border-[#4a3e35] border-r-0 p-[15px] rounded-l-[10px] text-[#b5aaa0] font-medium flex items-center">+</span>
+                      <input required value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full p-[15px] border border-[#4a3e35] rounded-r-[10px] rounded-l-none bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]" type="text" placeholder="000 000 0000" />
                     </div>
                   </div>
                 </div>
@@ -117,12 +142,12 @@ const Contact = () => {
                   <div className="flex-1 flex flex-col">
                     <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Subject *</label>
                     <div className="relative">
-                      <select className="appearance-none cursor-pointer w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]">
-                        <option>Select a subject</option>
-                        <option>Product Inquiry</option>
-                        <option>Order Status</option>
-                        <option>Custom Project</option>
-                        <option>Partnership</option>
+                      <select required value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})} className="appearance-none cursor-pointer w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]">
+                        <option value="">Select a subject</option>
+                        <option value="Product Inquiry">Product Inquiry</option>
+                        <option value="Order Status">Order Status</option>
+                        <option value="Custom Project">Custom Project</option>
+                        <option value="Partnership">Partnership</option>
                       </select>
                       <ChevronDown className="absolute right-[15px] top-[50%] -translate-y-1/2 text-[#8c8279] pointer-events-none" size={18} />
                     </div>
@@ -130,11 +155,11 @@ const Contact = () => {
                   <div className="flex-1 flex flex-col">
                     <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Inquiry Category *</label>
                     <div className="relative">
-                      <select className="appearance-none cursor-pointer w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]">
-                        <option>Select a category</option>
-                        <option>Wholesale</option>
-                        <option>Retail</option>
-                        <option>Support</option>
+                      <select required value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="appearance-none cursor-pointer w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]">
+                        <option value="">Select a category</option>
+                        <option value="Wholesale">Wholesale</option>
+                        <option value="Retail">Retail</option>
+                        <option value="Support">Support</option>
                       </select>
                       <ChevronDown className="absolute right-[15px] top-[50%] -translate-y-1/2 text-[#8c8279] pointer-events-none" size={18} />
                     </div>
@@ -143,10 +168,10 @@ const Contact = () => {
 
                 <div className="flex flex-col flex-1">
                   <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Your Message *</label>
-                  <textarea className="w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]" rows="5" placeholder="Write your message here..."></textarea>
+                  <textarea required value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]" rows="5" placeholder="Write your message here..."></textarea>
                 </div>
 
-                <button type="button" className="bg-[#c8956c] border border-[#c8956c] text-[#15110F] p-[15px_30px] text-[12px] font-medium tracking-[2px] uppercase cursor-pointer flex items-center justify-center gap-[10px] transition-all duration-300 w-full rounded-[6px] hover:bg-transparent hover:text-[#c8956c]">
+                <button type="submit" className="bg-[#c8956c] border border-[#c8956c] text-[#15110F] p-[15px_30px] text-[12px] font-medium tracking-[2px] uppercase cursor-pointer flex items-center justify-center gap-[10px] transition-all duration-300 w-full rounded-[6px] hover:bg-transparent hover:text-[#c8956c]">
                   SEND MESSAGE <Send size={18} />
                 </button>
               </form>

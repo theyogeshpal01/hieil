@@ -307,6 +307,15 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                         uploadData.append('file', file);
                         
                         try {
+                          Swal.fire({
+                            title: 'Uploading...',
+                            text: 'Please wait while the image is being uploaded',
+                            allowOutsideClick: false,
+                            didOpen: () => {
+                              Swal.showLoading();
+                            }
+                          });
+                          
                           const res = await api.post('/upload', uploadData, {
                             headers: { 'Content-Type': 'multipart/form-data' }
                           });
