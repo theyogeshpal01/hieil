@@ -21,9 +21,28 @@ const faqs = [
 ];
 
 const FAQ = () => {
+  const [faqsData, setFaqsData] = useState([]);
   const [openId, setOpenId] = useState(null);
   const headerRef = useScrollAnimation();
   const gridRef = useScrollAnimation();
+
+  React.useEffect(() => {
+    import('axios').then((axiosModule) => {
+      const axios = axiosModule.default;
+      axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/faqs`)
+        .then(res => {
+          if (res.data && res.data.length > 0) {
+            setFaqsData(res.data);
+          } else {
+            setFaqsData(faqs);
+          }
+        })
+        .catch(err => {
+          console.error('Error fetching FAQs:', err);
+          setFaqsData(faqs);
+        });
+    });
+  }, []);
 
   const toggleFaq = (id) => {
     setOpenId(openId === id ? null : id);
@@ -43,20 +62,20 @@ const FAQ = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-8 mb-14 items-start" ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
-          {faqs.map((faq) => (
+          {faqsData.map((faq, i) => (
             <div 
-              key={faq.id} 
-              className={`group bg-[#15110F] rounded shadow-[0_4px_20px_rgba(0,0,0,0.5)] overflow-hidden cursor-pointer border transition-all duration-200 ease-in-out ${openId === faq.id ? 'border-[#c07a5d] shadow-[0_4px_20px_rgba(0,0,0,0.5)]' : 'border-transparent hover:border-[#c07a5d] hover:shadow-[0_4px_20px_rgba(0,0,0,0.5)]'}`}
-              onClick={() => toggleFaq(faq.id)}
+              key={faq._id || faq.id || i} 
+              className={`group bg-[#15110F] rounded shadow-[0_4px_20px_rgba(0,0,0,0.5)] overflow-hidden cursor-pointer border transition-all duration-200 ease-in-out ${openId === (faq._id || faq.id || i) ? 'border-[#c07a5d] shadow-[0_4px_20px_rgba(0,0,0,0.5)]' : 'border-transparent hover:border-[#c07a5d] hover:shadow-[0_4px_20px_rgba(0,0,0,0.5)]'}`}
+              onClick={() => toggleFaq(faq._id || faq.id || i)}
             >
               <div className="py-5 px-6 flex justify-between items-center bg-[#15110F]">
                 <h4 className="font-serif text-[0.95rem] font-semibold text-[#b5aaa0] uppercase tracking-[1px] m-0">{faq.question}</h4>
                 <div className="text-[#c07a5d] flex items-center justify-center">
-                  {openId === faq.id ? <Minus size={18} /> : <Plus size={18} />}
+                  {openId === (faq._id || faq.id || i) ? <Minus size={18} /> : <Plus size={18} />}
                 </div>
               </div>
               
-              <div className={`overflow-hidden transition-[max-height,padding] duration-400 ease-in-out bg-[#15110F] border-t ${openId === faq.id ? 'border-[#2c241c] py-5 px-6' : 'border-transparent px-6'}`} style={{ maxHeight: openId === faq.id ? '500px' : '0' }}>
+              <div className={`overflow-hidden transition-[max-height,padding] duration-400 ease-in-out bg-[#15110F] border-t ${openId === (faq._id || faq.id || i) ? 'border-[#2c241c] py-5 px-6' : 'border-transparent px-6'}`} style={{ maxHeight: openId === (faq._id || faq.id || i) ? '500px' : '0' }}>
                 <p className="font-sans text-[0.9rem] text-[#b5aaa0] leading-[1.6] m-0 whitespace-pre-line">{faq.answer}</p>
               </div>
             </div>
