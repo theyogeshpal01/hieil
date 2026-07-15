@@ -14,12 +14,13 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
   const [loading, setLoading] = useState(false);
   const [dynamicCategories, setDynamicCategories] = useState([]);
   const [dynamicSubcategories, setDynamicSubcategories] = useState([]);
+  const [hasDynamicCategories, setHasDynamicCategories] = useState(false);
 
   useEffect(() => {
     const fetchDynamicCategories = async () => {
       try {
         let endpoint = null;
-        if (config.path === 'products' || config.path === 'subcategories' || config.path === 'product-cq') {
+        if (config.path === 'products' || config.path === 'subcategories' || config.path === 'product-cq' || config.path === 'custom-products') {
           endpoint = '/categories';
         } else if (config.path === 'blogs') {
           endpoint = '/blog-categories';
@@ -30,11 +31,16 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
         }
         
         if (endpoint) {
+          setHasDynamicCategories(true);
           const response = await api.get(endpoint);
           const data = Array.isArray(response.data) ? response.data : (response.data.data || []);
           if (data.length > 0) {
-            setDynamicCategories(data.map(c => c.name || c.categoryName || c.title).filter(Boolean));
+            setDynamicCategories(data.map(c => c.name || c.categoryName || c.title || c.category).filter(Boolean));
+          } else {
+            setDynamicCategories([]);
           }
+        } else {
+          setHasDynamicCategories(false);
         }
       } catch (err) {
         console.error("Failed to fetch dynamic categories", err);
@@ -276,7 +282,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                   >
                     <option value="">-- Select {col.label} --</option>
                     {(() => {
-                      if ((col.key === 'category' || col.key === 'categoryName') && dynamicCategories.length > 0) {
+                      if ((col.key === 'category' || col.key === 'categoryName') && hasDynamicCategories) {
                         return dynamicCategories;
                       }
                       if (col.key === 'subCategory' && dynamicSubcategories.length > 0) {
