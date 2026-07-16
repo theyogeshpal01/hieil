@@ -63,9 +63,11 @@ const categoryMap = {
 const Shop = () => {
   const { categoryId } = useParams();
   const [categories, setCategories] = useState([]);
+  const [categoriesList, setCategoriesList] = useState(['All categories']);
+  const [viewMode, setViewMode] = useState('grid');
   
   // Determine initial category from URL
-  const initialCategory = categoryId ? categoryMap[categoryId] || 'All categories' : 'All categories';
+  const initialCategory = categoryId ? (categoryMap[categoryId] || categoryId) : 'All categories';
 
   const [openSections, setOpenSections] = useState({
     availability: true,
@@ -83,6 +85,29 @@ const Shop = () => {
     availability: [],
     price: []
   });
+
+  // Fetch categories and products
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    // Fetch categories
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/categories`)
+      .then(res => {
+        if (res.data && res.data.length > 0) {
+          setCategoriesList(['All categories', ...res.data.map(cat => cat.name)]);
+        }
+      })
+      .catch(err => console.error("Error fetching categories:", err));
+
+    // Fetch products from backend
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/products`)
+      .then(res => {
+        if (res.data) {
+          setCategories(res.data);
+        }
+      })
+      .catch(err => console.error("Error fetching products:", err));
+  }, []);
 
   // Update selected categories if the URL changes
   useEffect(() => {
@@ -114,17 +139,14 @@ const Shop = () => {
     });
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    // Fetch products from backend
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/products`)
-      .then(res => {
-        if (res.data && res.data.length > 0) {
-          setCategories(res.data);
-        }
-      })
-      .catch(err => console.error('Error fetching products:', err));
-  }, []);
+  const dynamicFilters = [
+    {
+      id: 'categories',
+      title: 'categories',
+      options: categoriesList
+    },
+    ...FILTERS.slice(1)
+  ];
 
   // Filter categories based on selected states
   const filteredcategories = categories.filter(product => {
@@ -172,7 +194,7 @@ const Shop = () => {
             <button className="bg-transparent border-none font-sans text-[0.8rem] text-[#c8956c] cursor-pointer p-0" onClick={handleClearAll}>Clear All</button>
           </div>
 
-          {FILTERS.map((section) => (
+          {dynamicFilters.map((section) => (
             <div key={section.id} className="border-b border-[#2c241c] py-[1.25rem]">
               <button 
                 className="flex justify-between items-center cursor-pointer bg-transparent border-none w-full p-0 font-serif text-[0.85rem] font-semibold text-white uppercase tracking-[0.5px]"
@@ -245,20 +267,20 @@ const Shop = () => {
                 </select>
               </div>
               <div className="text-white font-medium hidden sm:block">{filteredcategories.length} categories</div>
-              <div className="flex gap-[0.5rem] text-[#c8956c]">
-                <Grid size={18} className="cursor-pointer text-[#c8956c]" />
-                <List size={18} className="cursor-pointer text-[#888888]" />
+              <div className="flex gap-[0.5rem]">
+                <Grid size={18} onClick={() => setViewMode('grid')} className={`cursor-pointer ${viewMode === 'grid' ? 'text-[#c8956c]' : 'text-[#888888] hover:text-[#c8956c]'}`} />
+                <List size={18} onClick={() => setViewMode('list')} className={`cursor-pointer ${viewMode === 'list' ? 'text-[#c8956c]' : 'text-[#888888] hover:text-[#c8956c]'}`} />
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-[2.5rem]">
+          <div className={viewMode === 'grid' ? "grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-[2.5rem]" : "flex flex-col gap-[1.5rem]"}>
             {filteredcategories.length === 0 ? (
               <div className="py-[2rem] text-[#666]">No categories found matching your filters.</div>
             ) : (
               filteredcategories.map((product) => (
-                <div key={product._id} className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] p-[20px] transition-all duration-400 flex flex-col relative h-full hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] hover:-translate-y-[5px] group">
-                <div className="rounded-[12px] bg-[#15110F] relative w-full h-[260px] flex items-center justify-center mb-[1rem] overflow-hidden">
+                <div key={product._id} className={`bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] p-[20px] transition-all duration-400 hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] group relative ${viewMode === 'list' ? 'flex flex-row gap-[1.5rem] items-center' : 'flex flex-col h-full hover:-translate-y-[5px]'}`}>
+                <div className={`rounded-[12px] bg-[#15110F] relative flex items-center justify-center overflow-hidden shrink-0 ${viewMode === 'list' ? 'w-[200px] h-[200px]' : 'w-full h-[260px] mb-[1rem]'}`}>
                   <span className="absolute top-[1rem] left-[1rem] bg-[#c8956c] text-[#000000] font-sans text-[0.7rem] font-semibold py-[0.25rem] px-[0.5rem] tracking-[0.5px] z-10 rounded-[4px]">{product.tag || '-5%'}</span>
                   
                   <Link to={`/product/${product._id}`} className="flex w-full h-full items-center justify-center">
@@ -266,20 +288,31 @@ const Shop = () => {
                   </Link>
                 </div>
                 
-                <h4 className="font-sans text-[0.65rem] font-semibold text-[#888888] uppercase tracking-[1.5px] m-0 mb-[0.4rem]">{product.category || 'CLAY CANVAS'}</h4>
-                <Link to={`/product/${product._id}`} className="no-underline group-hover:text-[#c8956c] transition-colors">
-                  <h3 className="font-serif text-[1.05rem] font-medium text-white m-0 mb-[0.5rem] whitespace-nowrap overflow-hidden text-ellipsis group-hover:text-[#c8956c]">{product.productName} - Handcrafted Premium Decor</h3>
-                </Link>
-                
-                <div className="flex gap-[2px] mb-[0.6rem]">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} fill={i < product.rating ? '#cccccc' : 'none'} stroke={i < product.rating ? '#cccccc' : '#dddddd'} />
-                  ))}
-                </div>
-                
-                <div className="flex gap-[0.5rem] mt-[0.5rem] opacity-0 translate-y-[10px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-                  <Link to={`/product/${product._id}`} className="flex-1 p-[0.5rem] text-center border border-[#c8956c] text-[#c8956c] bg-transparent font-sans text-[0.8rem] font-semibold uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-[#c8956c] hover:text-[#15110F] hover:shadow-[0_5px_15px_rgba(194,163,115,0.3)]">Details</Link>
-                  <Link to={`/product/${product._id}/enquiry`} className="flex-1 p-[0.5rem] text-center border border-[#c8956c] bg-[#c8956c] text-[#15110F] font-sans text-[0.8rem] font-semibold uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-transparent hover:text-[#c8956c] hover:shadow-[0_5px_15px_rgba(194,163,115,0.3)]">Enquiry</Link>
+                <div className={`flex flex-col ${viewMode === 'list' ? 'flex-1 py-[0.5rem]' : ''}`}>
+                  <h4 className="font-sans text-[0.65rem] font-semibold text-[#888888] uppercase tracking-[1.5px] m-0 mb-[0.4rem]">{product.subCategory || product.category || 'CLAY CANVAS'}</h4>
+                  <Link to={`/product/${product._id}`} className="no-underline group-hover:text-[#c8956c] transition-colors">
+                    <h3 className={`font-serif font-medium text-white m-0 mb-[0.5rem] group-hover:text-[#c8956c] ${viewMode === 'list' ? 'text-[1.3rem] line-clamp-1' : 'text-[1.05rem] whitespace-nowrap overflow-hidden text-ellipsis'}`}>{product.productName}</h3>
+                  </Link>
+                  
+                  <div className="flex gap-[2px] mb-[0.6rem]">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={14} fill={i < (product.rating || 5) ? '#cccccc' : 'none'} stroke={i < (product.rating || 5) ? '#cccccc' : '#dddddd'} />
+                    ))}
+                  </div>
+
+                  {viewMode === 'list' && (
+                    <p className="text-[0.85rem] text-[#b5aaa0] line-clamp-2 mb-[1rem] leading-[1.6]">
+                      {product.description || 'Premium handcrafted product tailored to elevate your living spaces with authentic Indian artistry.'}
+                    </p>
+                  )}
+                  
+                  <div className={`flex justify-between items-center ${viewMode === 'list' ? 'mt-[0.5rem]' : 'mt-auto'}`}>
+                    <span className="font-sans text-[1.15rem] font-semibold text-white">${Number(product.offerPrice || product.price || 0).toFixed(2)}</span>
+                    <div className="flex gap-[0.5rem]">
+                      <Link to={`/product/${product._id}`} className="p-[0.5rem_1rem] text-center border border-[#c8956c] text-[#c8956c] bg-transparent font-sans text-[0.8rem] font-normal uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-[#c8956c] hover:text-[#15110F]">Details</Link>
+                      <Link to={`/product/${product._id}/enquiry`} className="p-[0.5rem_1rem] text-center border border-[#c8956c] bg-[#c8956c] text-[#15110F] font-sans text-[0.8rem] font-normal uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-transparent hover:text-[#c8956c]">Enquiry</Link>
+                    </div>
+                  </div>
                 </div>
               </div>
               ))

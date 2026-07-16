@@ -18,7 +18,7 @@ const Contact = () => {
   }, []);
 
   const [openFaq, setOpenFaq] = useState(null);
-  const [formData, setFormData] = useState({ name: '', email: '', country: '', phone: '', subject: '', category: '', message: '' });
+  const [formData, setFormData] = useState({ fullName: '', email: '', country: '', phone: '', subject: '', category: '', message: '' });
 
   const faqs = [
     { q: "What Is Your Response Time For Inquiries?", a: "We typically respond to all inquiries within 24 hours. For urgent matters, please use our 24/7 emergency line." },
@@ -95,11 +95,11 @@ const Contact = () => {
                     }
                   });
 
-                  await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/contact`, formData);
+                  await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/contact`, formData);
                   
                   Swal.fire('Success', 'Your message has been sent successfully. Our team will contact you soon.', 'success');
                   // Reset form
-                  setFormData({ name: '', email: '', country: '', phone: '', subject: '', category: '', message: '' });
+                  setFormData({ fullName: '', email: '', country: '', phone: '', subject: '', category: '', message: '' });
                 } catch (err) {
                   import('sweetalert2').then(Swal => Swal.default.fire('Error', 'Failed to send message. Please try again.', 'error'));
                 }
@@ -107,7 +107,7 @@ const Contact = () => {
                 <div className="flex flex-col md:flex-row gap-[25px]">
                   <div className="flex-1 flex flex-col">
                     <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Full Name *</label>
-                    <input required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]" type="text" placeholder="e.g. John Doe" />
+                    <input required value={formData.fullName} onChange={e => setFormData({...formData, fullName: e.target.value})} className="w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]" type="text" placeholder="e.g. John Doe" />
                   </div>
                   <div className="flex-1 flex flex-col">
                     <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Email Address *</label>

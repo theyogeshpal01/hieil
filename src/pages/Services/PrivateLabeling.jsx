@@ -134,7 +134,7 @@ const PrivateLabeling = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Comprehensive <br /> <span style={{ color: 'var(--color-brand-base)' }}>Branding Solutions</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">End-to-End Private Label Services</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">End-to-End Private Label Services</p>
           </div>
           <div className="grid grid-cols-2 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {solutions.map((solution, index) => (
@@ -153,7 +153,7 @@ const PrivateLabeling = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Our <br /> <span style={{ color: 'var(--color-brand-base)' }}>Branding Services</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Complete Solutions for Brand Building</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Complete Solutions for Brand Building</p>
           </div>
           <div className="grid grid-cols-3 gap-[30px] max-[992px]:grid-cols-2 max-[768px]:grid-cols-1">
             {services.map((service, index) => (
@@ -182,7 +182,7 @@ const PrivateLabeling = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Packaging <br /> <span style={{ color: 'var(--color-brand-base)' }}>Solutions</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Customized for Your Brand Needs</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Customized for Your Brand Needs</p>
           </div>
           <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {packagingSolutions.map((item, index) => (
@@ -203,7 +203,7 @@ const PrivateLabeling = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Brand <br /> <span style={{ color: 'var(--color-brand-base)' }}>Identity Services</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Complete Brand Development Support</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Complete Brand Development Support</p>
           </div>
           <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {identityServices.map((item, index) => (
@@ -224,7 +224,7 @@ const PrivateLabeling = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Your Brand <br /> <span style={{ color: 'var(--color-brand-base)' }}>Growth Advantage</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Grow Your Brand Globally with Exclusive categories</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Grow Your Brand Globally with Exclusive categories</p>
           </div>
           <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {advantages.map((adv, index) => (
@@ -244,8 +244,8 @@ const PrivateLabeling = () => {
       <section className="py-[120px] bg-[#15110F]">
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
-            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Success <br /> <span style={{ color: 'var(--color-brand-base)' }}>Stories</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Brands We've Helped Build</p>
+            <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Success <span style={{ color: 'var(--color-brand-base)' }}>Stories</span></h2>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Brands We've Helped Build</p>
           </div>
           <div className="grid grid-cols-3 gap-[30px] max-[992px]:grid-cols-2 max-[768px]:grid-cols-1">
             {testimonials.map((testimonial, index) => (
@@ -266,7 +266,7 @@ const PrivateLabeling = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Brand <br /> <span style={{ color: 'var(--color-brand-base)' }}>Development Process</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Simple Steps to Launch Your Brand</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Simple Steps to Launch Your Brand</p>
           </div>
           <div className="flex justify-between relative max-w-[1000px] mx-auto max-md:flex-col max-md:gap-10 before:content-[''] before:absolute before:top-[40px] before:left-0 before:right-0 before:h-[1px] before:bg-[#2c241c] before:z-10 max-md:before:hidden">
             {processSteps.map((step, index) => (
@@ -285,7 +285,7 @@ const PrivateLabeling = () => {
       {/* CTA Section */}
       <section className="py-[120px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
         <div className="max-w-[800px] mx-auto">
-          <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Ready To Build <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Brand</span>?</h2>
+          <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Ready To Build <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Brand?</span></h2>
           <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">We want you to work with us to make groups of products that have your name on them. These products will really stand out when people see them. We can make products for you and put your name on the boxes. We can also get these products ready to sell in stores. This way you can sell your products around the world and make your brand very well known, with these special products that are really good quality. </p>
           <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Your Brand Journey</Link>
         </div>

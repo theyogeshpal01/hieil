@@ -144,8 +144,8 @@ const HowWeWork = () => {
             Join hundreds of satisfied clients worldwide who trust us for authentic Indian handicrafts. Let's create something beautiful together.
           </p>
           <div className="flex justify-center gap-5 flex-wrap max-sm:flex-col">
-            <Link to="/contact" className="px-[35px] py-[15px] rounded-[30px] text-[1rem] font-semibold no-underline inline-flex items-center justify-center bg-[#c8956c] text-[#15110F] border border-[#c8956c] shadow-[0_10px_20px_rgba(194,163,115,0.2)] transition-all duration-400 hover:bg-transparent hover:text-[#c8956c] hover:-translate-y-1 hover:shadow-[0_15px_25px_rgba(194,163,115,0.4)] max-sm:w-full">Start Your Inquiry</Link>
-            <Link to="/shop" className="px-[35px] py-[15px] rounded-[30px] text-[1rem] font-semibold no-underline inline-flex items-center justify-center bg-transparent text-[#c8956c] border border-[#c8956c] transition-all duration-400 hover:bg-[#c8956c] hover:text-[#15110F] hover:-translate-y-1 hover:shadow-[0_15px_25px_rgba(194,163,115,0.4)] max-sm:w-full">Browse Collection</Link>
+            <Link to="/contact" className="px-[35px] py-[15px] rounded-[30px] text-[1rem] font-normal no-underline inline-flex items-center justify-center bg-[#c8956c] text-[#15110F] border border-[#c8956c] shadow-[0_10px_20px_rgba(194,163,115,0.2)] transition-all duration-400 hover:bg-transparent hover:text-[#c8956c] hover:-translate-y-1 hover:shadow-[0_15px_25px_rgba(194,163,115,0.4)] max-sm:w-full">Start Your Inquiry</Link>
+            <Link to="/shop" className="px-[35px] py-[15px] rounded-[30px] text-[1rem] font-normal no-underline inline-flex items-center justify-center bg-transparent text-[#c8956c] border border-[#c8956c] transition-all duration-400 hover:bg-[#c8956c] hover:text-[#15110F] hover:-translate-y-1 hover:shadow-[0_15px_25px_rgba(194,163,115,0.4)] max-sm:w-full">Browse Collection</Link>
           </div>
         </div>
       </section>

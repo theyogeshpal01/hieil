@@ -1,27 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ProductGallery from './components/ProductGallery/ProductGallery';
 import ProductInfo from './components/ProductInfo/ProductInfo';
 import ProductDetailsTab from './components/ProductDetailsTab/ProductDetailsTab';
 import RelatedProducts from "./components/RelatedProducts/RelatedProducts";
-import { categories } from "../../data/products";
 import useScrollAnimation from '../../hooks/useScrollAnimation';
+import axios from 'axios';
 
 const Product = () => {
   const { id } = useParams();
   const galleryRef = useScrollAnimation();
   const infoRef = useScrollAnimation();
   
-  // Scroll to top when the ID changes (like when clicking a related product)
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // Scroll to top and fetch product when the ID changes
   useEffect(() => {
     window.scrollTo(0, 0);
+    setLoading(true);
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/products/${id}`)
+      .then(res => {
+        setProduct(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error fetching product:", err);
+        setLoading(false);
+      });
   }, [id]);
 
-  // Find product, fallback to the first product if not found just to ensure something renders
-  const product = categories.find(p => p.id === parseInt(id)) || categories[0];
+  if (loading) {
+    return <div className="min-h-screen bg-[#15110F] flex items-center justify-center text-white">Loading...</div>;
+  }
 
   if (!product) {
-    return <div style={{ padding: '100px', textAlign: 'center' }}>Product not found</div>;
+    return <div style={{ padding: '100px', textAlign: 'center', color: 'white' }}>Product not found</div>;
   }
 
   return (

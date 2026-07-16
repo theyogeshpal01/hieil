@@ -81,7 +81,7 @@ const BulkWholesaleSupply = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Wholesale <br /> <span style={{ color: 'var(--color-brand-base)' }}>Product categories</span></h2>
-            <p className="text-[1.1rem] text-white font-normal font-serif">Extensive Range for All Your Business Needs</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Extensive Range for All Your Business Needs</p>
           </div>
           <div className="flex flex-col gap-10">
             {/* Category 1 */}
@@ -155,7 +155,7 @@ They use wood to create beautiful things for the home.
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Your <span style={{ color: 'var(--color-brand-base)' }}>Business Advantage</span></h2>
-            <p className="text-[1.1rem] text-white font-normal italic font-serif">Why Partner with Us for Wholesale Supply?</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Why Partner with Us for Wholesale Supply?</p>
           </div>
           <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {advantages.map((adv, index) => (
@@ -176,7 +176,7 @@ They use wood to create beautiful things for the home.
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Simple <br /> <span style={{ color: 'var(--color-brand-base)' }}>Order Process</span></h2>
-            <p className="text-[1.1rem] text-white font-normal italic font-serif">Streamlined for Your Convenience</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Streamlined for Your Convenience</p>
           </div>
           <div className="flex justify-between relative max-w-[1000px] mx-auto max-md:flex-col max-md:gap-10 before:content-[''] before:absolute before:top-[40px] before:left-0 before:right-0 before:h-[1px] before:bg-[#2c241c] before:z-10 max-md:before:hidden">
             {processSteps.map((step, index) => (

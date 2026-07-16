@@ -29,7 +29,7 @@ const FAQ = () => {
   React.useEffect(() => {
     import('axios').then((axiosModule) => {
       const axios = axiosModule.default;
-      axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/faqs`)
+      axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/faqs`)
         .then(res => {
           if (res.data && res.data.length > 0) {
             setFaqsData(res.data);

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ShopBycategories = () => {
   const [categories, setCategories] = useState([]);
   const headerRef = useScrollAnimation();
   const gridRef = useScrollAnimation();
+  const navigate = useNavigate();
   
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/categories`)
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/categories`)
       .then(res => {
         if (res.data && res.data.length > 0) {
           setCategories(res.data);
@@ -20,7 +22,7 @@ const ShopBycategories = () => {
   const renderItem = (category) => {
     if (!category) return null;
     return (
-      <div key={category._id || category.id} className="relative overflow-hidden rounded cursor-pointer aspect-[3/4] border border-transparent transition-colors duration-400 ease-in-out group hover:border-[#c8956c]">
+      <div onClick={() => navigate(`/products/${encodeURIComponent(category.name)}`)} key={category._id || category.id} className="relative overflow-hidden rounded cursor-pointer aspect-[3/4] border border-transparent transition-colors duration-400 ease-in-out group hover:border-[#c8956c]">
         <img src={category.image || '/cat-bluepottery.jpg'} alt={category.name} className="w-full h-full object-cover transition-transform duration-600 ease-in-out group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
         <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-[linear-gradient(to_top,rgba(0,0,0,0.95)_0%,rgba(0,0,0,0.7)_40%,rgba(0,0,0,0)_100%)] flex flex-col justify-end p-8 pt-6 pointer-events-none">
           <div className="translate-y-[30px] transition-transform duration-400 ease-in-out group-hover:translate-y-0">
@@ -40,7 +42,7 @@ const ShopBycategories = () => {
               <span>OUR COLLECTION</span>
             </div>
         <h2 className="text-3xl md:text-5xl font-serif font-normal text-white m-0 mb-4 uppercase">SHOP BY <span className="text-[#c8956c]">CATEGORIES</span></h2>
-        <p className="font-sans text-[1.1rem] text-[#b5aaa0] max-w-[600px] mx-auto m-0">Explore our diverse range of authentic Indian handicrafts</p>
+        <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0]">Explore our diverse range of authentic Indian handicrafts</p>
       </div>
 
       <div className="max-w-[1200px] mx-auto flex justify-between gap-6 max-md:flex-wrap max-sm:flex-col" ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>

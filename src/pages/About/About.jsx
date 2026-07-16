@@ -43,7 +43,7 @@ const About = () => {
               When we make something with our hands we are trying to tell a story. This story is about the culture and history of India and the love that people put into making these things. Each thing we make is an example of the traditional art of India. We make each piece so it shows what India is, about.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/contact" className="px-8 py-4 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-semibold transition-all duration-300 shadow-none flex items-center gap-2 no-underline">
+              <Link to="/contact" className="px-8 py-4 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-normal transition-all duration-300 shadow-none flex items-center gap-2 no-underline">
                 Contact Us <ChevronRight size={20} />
               </Link>
             </div>
@@ -283,11 +283,11 @@ const About = () => {
       {/* CTA Section */}
       <section className="py-16 px-6 md:px-12 bg-[#15110F]">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-serif font-normal text-white mb-4">Ready To Experience <br /> <span className="text-[#c8956c]">Hieil Craftsmanship</span>?</h2>
+          <h2 className="text-3xl md:text-5xl font-serif font-normal text-white mb-4">Ready To Experience <br /> <span className="text-[#c8956c]">Hieil Craftsmanship?</span></h2>
           <p className="text-lg text-[#b5aaa0] mb-8 max-w-2xl mx-auto">
             People around the world are really happy with the things we make. Thousands of customers have changed their homes with our handcrafted pieces. You can find the mix of old style art and modern design, with our handcrafted pieces. Our handcrafted pieces are made with artistry and contemporary design. 
           </p>
-          <Link to="/contact" className="inline-block px-8 py-4 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-semibold transition-all duration-300 shadow-none hover:shadow-none hover:-translate-y-1 no-underline">
+          <Link to="/contact" className="inline-block px-8 py-4 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-normal transition-all duration-300 shadow-none hover:shadow-none hover:-translate-y-1 no-underline">
             Contact Us Today
           </Link>
         </div>

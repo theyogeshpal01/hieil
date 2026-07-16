@@ -12,7 +12,7 @@ const CountryRepresentatives = () => {
 
   useEffect(() => {
     // Fetch leaders from backend
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/leaders`)
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/leaders`)
       .then(res => {
         if (res.data && res.data.length > 0) {
           setRepresentatives(res.data);

@@ -160,7 +160,7 @@ const B2BPartnerships = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Models</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Tailored Solutions for Your Business</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Tailored Solutions for Your Business</p>
           </div>
           <div className="grid grid-cols-3 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {partnershipModels.map((model, index) => (
@@ -189,7 +189,7 @@ const B2BPartnerships = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Your <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnership Advantage</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">A Reliable Export Partner Invested in Your Success</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">A Reliable Export Partner Invested in Your Success</p>
           </div>
           <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {advantages.map((item, index) => (
@@ -210,7 +210,7 @@ const B2BPartnerships = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Flexible <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnership Terms</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Designed for Your Business Needs</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Designed for Your Business Needs</p>
           </div>
           <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {flexibleTerms.map((item, index) => (
@@ -231,7 +231,7 @@ const B2BPartnerships = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Why Partner <br /> <span style={{ color: 'var(--color-brand-base)' }}>With Us</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Building Success Together</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Building Success Together</p>
           </div>
           <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {reasons.map((adv, index) => (
@@ -252,7 +252,7 @@ const B2BPartnerships = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Successful <br /> <span style={{ color: 'var(--color-brand-base)' }}>Partnerships</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Stories of Growth and Collaboration</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Stories of Growth and Collaboration</p>
           </div>
           <div className="grid grid-cols-3 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {testimonials.map((testimonial, index) => (
@@ -273,7 +273,7 @@ const B2BPartnerships = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">Partnership <br /> <span style={{ color: 'var(--color-brand-base)' }}>Journey</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Building Our Relationship Step by Step</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Building Our Relationship Step by Step</p>
           </div>
           <div className="flex justify-between relative max-w-[1000px] mx-auto max-md:flex-col max-md:gap-10 before:content-[''] before:absolute before:top-[40px] before:left-0 before:right-0 before:h-[1px] before:bg-[#2c241c] before:z-10 max-md:before:hidden">
             {processSteps.map((step, index) => (

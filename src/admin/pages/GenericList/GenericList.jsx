@@ -289,7 +289,9 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                         const filtered = formData.category 
                           ? dynamicSubcategories.filter(s => s.category === formData.category) 
                           : dynamicSubcategories;
-                        return filtered.map(s => s.subcategoryName || s.name || s.title).filter(Boolean);
+                        // If no exact match (due to DB string mismatches), fallback to all subcategories
+                        const finalSubcategories = (filtered.length > 0 ? filtered : dynamicSubcategories);
+                        return finalSubcategories.map(s => s.subcategoryName || s.name || s.title).filter(Boolean);
                       }
                       return col.options || [];
                     })().map(opt => <option key={opt} value={opt}>{opt}</option>)}
@@ -357,7 +359,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                     value={formData[col.key] || ''} 
                     onChange={(e) => handleInputChange(e, col.key)}
                     required={col.required !== false}
-                    style={{width: '100%', minHeight: '150px', padding: '10px', border: '1px solid #e2e8f0', borderRadius: '4px', resize: 'vertical', fontFamily: 'inherit'}}
+                    style={{width: '100%', minHeight: '150px', padding: '10px', border: '1px solid #e2e8f0', borderRadius: '4px', resize: 'vertical', fontFamily: 'inherit', color: '#000'}}
                   />
                 ) : (
                   <input 
@@ -373,7 +375,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
             ))}
             </div>
             <div className="form-actions" style={{display: 'flex', justifyContent: 'flex-end', gap: '15px', marginTop: '20px', paddingTop: '20px', borderTop: '1px solid #e2e8f0'}}>
-              <button type="button" onClick={() => setIsModalOpen(false)} style={{padding: '10px 20px', background: 'white', border: '1px solid #cbd5e1', borderRadius: '4px', cursor: 'pointer', fontWeight: '500'}}>
+              <button type="button" onClick={() => setIsModalOpen(false)} style={{padding: '10px 20px', background: 'white', color: '#000', border: '1px solid #cbd5e1', borderRadius: '4px', cursor: 'pointer', fontWeight: '500'}}>
                 Cancel
               </button>
               <button type="submit" className="submit-btn" style={{padding: '10px 20px', backgroundColor: '#3b82f6', color: 'white', border: 'none', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer', fontWeight: '500'}}>

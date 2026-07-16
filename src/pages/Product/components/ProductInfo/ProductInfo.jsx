@@ -108,16 +108,16 @@ const ProductInfo = ({ product }) => {
 
   return (
     <div className="flex flex-col gap-5 font-sans text-[#b5aaa0]">
-      <h1 className="font-serif text-[3.5rem] text-white font-medium m-0 leading-[1.3]">{product.name}</h1>
+      <h1 className="font-serif text-[3.5rem] text-white font-medium m-0 leading-[1.3]">{product.productName || product.name}</h1>
       
       <div className="flex items-center gap-4">
         {product.priceOnRequest ? (
           <span className="text-[#c07a5d] text-[1.4rem] font-semibold">Price on Request</span>
         ) : (
           <>
-            {product.oldPrice && <span className="line-through text-[#999999] text-[1.1rem]">${product.oldPrice.toFixed(2)}</span>}
-            <span className="text-[#c07a5d] text-[1.4rem] font-semibold">${product.price.toFixed(2)}</span>
-            <span className="border border-[#c07a5d] text-[#c07a5d] text-[0.65rem] font-bold py-1 px-2 uppercase tracking-[1px]">SOLD OUT</span>
+            {(product.oldPrice || product.price) && <span className="line-through text-[#999999] text-[1.1rem]">${Number(product.oldPrice || product.price).toFixed(2)}</span>}
+            <span className="text-[#c07a5d] text-[1.4rem] font-semibold">${Number(product.offerPrice || product.price || 0).toFixed(2)}</span>
+            <span className="border border-[#c07a5d] text-[#c07a5d] text-[0.65rem] font-bold py-1 px-2 uppercase tracking-[1px]">AVAILABLE</span>
           </>
         )}
       </div>

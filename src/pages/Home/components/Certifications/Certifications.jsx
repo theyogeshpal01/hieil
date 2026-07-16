@@ -1,11 +1,13 @@
 import React from 'react';
-import { ShieldCheck, BadgeCheck, FileCheck2, Landmark } from 'lucide-react';
+import * as Icons from 'lucide-react';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
+
+const { ShieldCheck, BadgeCheck, FileCheck2, Landmark } = Icons;
 
 const certifications = [
   {
     id: '01',
-    icon: <FileCheck2 size={30} strokeWidth={1.5} />,
+    icon: 'FileCheck2',
     title: 'Importer Exporter Code',
     subtitle: 'IEC Certificate',
     desc: 'Officially registered with DGFT for international trade operations.',
@@ -41,7 +43,7 @@ const Certifications = () => {
   React.useEffect(() => {
     import('axios').then((axiosModule) => {
       const axios = axiosModule.default;
-      axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/certifications`)
+      axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/certifications`)
         .then(res => {
           if (res.data && res.data.length > 0) {
             setCerts(res.data);
@@ -86,7 +88,7 @@ const Certifications = () => {
         <div className="w-full overflow-hidden max-lg:overflow-x-auto max-lg:scrollbar-hide max-lg:snap-x max-lg:snap-mandatory" style={{maskImage:'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',WebkitMaskImage:'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',opacity:0,transition:'opacity 0.7s ease,transition-delay:0.15s'}} ref={cardsRef}>
           <div className="flex gap-6 w-max lg:animate-[scroll_20s_linear_infinite] hover:[animation-play-state:paused] max-lg:pb-4 max-lg:px-4">
             {[...certs, ...certs].map((cert, i) => {
-              const IconComp = cert.icon ? (require('lucide-react')[cert.icon] || ShieldCheck) : ShieldCheck;
+              const IconComp = cert.icon ? (Icons[cert.icon] || ShieldCheck) : ShieldCheck;
               return (
               <div key={i} className="group max-lg:snap-center max-lg:snap-always bg-[#15110F] border border-[#2c241c] rounded-none overflow-hidden flex flex-col w-[280px] shrink-0 transition-all duration-300 ease-in-out hover:-translate-y-1.5 hover:shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:border-[var(--color-brand-base)]">
               <div className="py-10 px-7 pb-6 flex-1 relative">

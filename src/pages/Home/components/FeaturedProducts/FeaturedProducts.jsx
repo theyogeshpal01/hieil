@@ -10,7 +10,7 @@ const Featuredcategories = () => {
 
   useEffect(() => {
     // Fetch products from backend
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/products`)
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/products`)
       .then(res => {
         if (res.data && res.data.length > 0) {
           setProducts(res.data);
@@ -30,7 +30,7 @@ const Featuredcategories = () => {
             <h2 className="text-3xl md:text-5xl font-serif font-normal text-white m-0 uppercase leading-none max-sm:text-[3.5rem]">FEATURED <span className="text-[#c8956c]">CATEGORIES</span></h2>
           </div>
           <div className="flex-1 text-right max-lg:text-left w-full">
-            <p className="font-sans text-[1.1rem] text-[#b5aaa0] m-0 max-w-[400px] ml-auto max-lg:ml-0">Discover authentic Indian artistry crafted by skilled artisans</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-5">Discover authentic Indian artistry crafted by skilled artisans</p>
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>

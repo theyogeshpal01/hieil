@@ -10,7 +10,7 @@ const MeetOurArtisans = () => {
 
   useEffect(() => {
     // Fetch artisans from backend
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/artisans`)
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/artisans`)
       .then(res => {
         if (res.data && res.data.length > 0) {
           setArtisans(res.data);
@@ -23,7 +23,7 @@ const MeetOurArtisans = () => {
     <section className="py-12 px-8 bg-[#15110F] max-w-[1400px] mx-auto">
       <div className="text-center mb-16" ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
         <h2 className="text-3xl md:text-5xl font-serif font-normal text-white mb-2 uppercase tracking-[1.5px] max-md:text-[3.5rem]">MEET <span style={{ color: 'var(--color-brand-base)' }}>OUR ARTISANS</span></h2>
-        <p className="font-sans text-[1.1rem] font-normal text-[#888888]">The Hands Behind Our Crafts</p>
+        <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0]">The Hands Behind Our Crafts</p>
       </div>
 
       <div className="grid grid-cols-[repeat(auto-fit,minmax(450px,1fr))] max-md:grid-cols-1 gap-12 max-w-[1300px] mx-auto mb-14" ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>

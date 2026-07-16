@@ -98,7 +98,7 @@ const ExportLogistics = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Export <span style={{ color: 'var(--color-brand-base)' }}>Solutions</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Complete Export Management</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Complete Export Management</p>
           </div>
           <div className="grid grid-cols-4 gap-5 max-[1024px]:grid-cols-2 max-[768px]:grid-cols-1">
             {solutions.map((solution, index) => (
@@ -118,7 +118,7 @@ const ExportLogistics = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>Documentation</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Complete Paperwork Handling</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Complete Paperwork Handling</p>
           </div>
           <div className="grid grid-cols-3 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {documents.map((doc, index) => (
@@ -139,7 +139,7 @@ const ExportLogistics = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Global <br /> <span style={{ color: 'var(--color-brand-base)' }}>Delivery Network</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Serving Customers Worldwide</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Serving Customers Worldwide</p>
           </div>
           <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {deliveryNetworks.map((network, index) => (
@@ -157,7 +157,7 @@ const ExportLogistics = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Why Choose <br /> <span style={{ color: 'var(--color-brand-base)' }}>Our Export Services</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Professional Export Management</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Professional Export Management</p>
           </div>
           <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {advantages.map((adv, index) => (
@@ -178,7 +178,7 @@ const ExportLogistics = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Export <span style={{ color: 'var(--color-brand-base)' }}>Process</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Four Steps to Global Markets</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Four Steps to Global Markets</p>
           </div>
           <div className="flex justify-between relative max-w-[1000px] mx-auto max-md:flex-col max-md:gap-10 before:content-[''] before:absolute before:top-[40px] before:left-0 before:right-0 before:h-[1px] before:bg-[#2c241c] before:z-10 max-md:before:hidden">
             {processSteps.map((step, index) => (
@@ -197,7 +197,7 @@ const ExportLogistics = () => {
       {/* CTA Section */}
       <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
         <div className="max-w-[800px] mx-auto">
-          <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Ready To Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>Globally</span>?</h2>
+          <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Ready To Export <br /> <span style={{ color: 'var(--color-brand-base)' }}>Globally?</span></h2>
           <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">When you work with us you get help with sending things to other countries. We take care of all the paperwork. Make sure everything is okay. This way you can focus on making your business bigger. We do all the work for export. Make sure we follow all the rules, in other countries. You can get a quote for your export needs today.</p>
           <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">We handle all the export procedures so you do not have to worry about them. You can just think about growing your business. We will take care of the rest. Our export services are complete. We make sure everything is of good quality.</p>
           <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Get your personalized export quote from us today. Let us help you with your export needs.</p>

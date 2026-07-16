@@ -119,7 +119,7 @@ Quality is our priority.
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Our <br /> <span style={{ color: 'var(--color-brand-base)' }}>Quality Framework</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Comprehensive Quality Management</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Comprehensive Quality Management</p>
           </div>
           <div className="grid grid-cols-2 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {standards.map((standard, index) => (
@@ -138,7 +138,7 @@ Quality is our priority.
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Detailed <br /> <span style={{ color: 'var(--color-brand-base)' }}>Quality Checks</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Rigorous Testing Protocols</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Rigorous Testing Protocols</p>
           </div>
           <div className="grid grid-cols-3 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {qualityChecks.map((check, index) => (
@@ -159,7 +159,7 @@ Quality is our priority.
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Quality <br /> <span style={{ color: 'var(--color-brand-base)' }}>Control Process</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Four Steps to Perfection</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Four Steps to Perfection</p>
           </div>
           <div className="flex justify-between relative max-w-[1000px] mx-auto max-md:flex-col max-md:gap-10 before:content-[''] before:absolute before:top-[40px] before:left-0 before:right-0 before:h-[1px] before:bg-[#2c241c] before:z-10 max-md:before:hidden">
             {processSteps.map((step, index) => (
@@ -180,7 +180,7 @@ Quality is our priority.
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>The <br /> <span style={{ color: 'var(--color-brand-base)' }}>QA Advantage</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Why Our Quality Assurance Matters</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Why Our Quality Assurance Matters</p>
           </div>
           <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {advantages.map((adv, index) => (

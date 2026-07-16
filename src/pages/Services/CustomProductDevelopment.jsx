@@ -71,7 +71,7 @@ const CustomProductDevelopment = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Your <br /> <span style={{ color: 'var(--color-brand-base)' }}>Competitive Advantage</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Why Choose Custom Product Development?</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Why Choose Custom Product Development?</p>
           </div>
           <div className="grid grid-cols-4 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
             {advantages.map((adv, index) => (
@@ -92,7 +92,7 @@ const CustomProductDevelopment = () => {
         <div className="max-w-[1200px] mx-auto px-5" data-aos="fade-up">
           <div className="text-center mb-[60px]">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Product <span style={{ color: 'var(--color-brand-base)' }}>categories</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Custom Development Across Multiple categories</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Custom Development Across Multiple categories</p>
           </div>
           <div className="text-center p-[60px] bg-[rgba(28,23,19,0.4)] border border-dashed border-[#4a3e35]">
             <Search size={48} className="text-[#c8956c] opacity-50 mb-5 inline-block" />
@@ -106,7 +106,7 @@ const CustomProductDevelopment = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Our <br /> <span style={{ color: 'var(--color-brand-base)' }}>Development Process</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">From Concept to Market-Ready categories</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">From Concept to Market-Ready categories</p>
           </div>
           <div className="flex justify-between relative max-w-[1000px] mx-auto max-md:flex-col max-md:gap-10 before:content-[''] before:absolute before:top-[40px] before:left-0 before:right-0 before:h-[1px] before:bg-[#2c241c] before:z-10 max-md:before:hidden">
             {processSteps.map((step, index) => (
@@ -143,7 +143,7 @@ const CustomProductDevelopment = () => {
       {/* CTA Section */}
       <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
         <div className="max-w-[800px] mx-auto">
-          <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Ready To Develop <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Unique Product Line</span>?</h2>
+          <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5'>Ready To Develop <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Unique Product Line?</span></h2>
           <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Let's collaborate to create categories that set your brand apart in the marketplace. Our expert team is ready to bring your vision to life with custom solutions tailored to your specific needs.</p>
           <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Your Custom Project</Link>
         </div>

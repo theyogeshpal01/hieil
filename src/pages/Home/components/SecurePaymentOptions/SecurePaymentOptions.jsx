@@ -33,11 +33,11 @@ const SecurePaymentOptions = () => {
             </div>
           </div>
           <h2 className="text-3xl md:text-5xl font-serif font-normal text-white leading-[1.1] m-0 mb-6 max-sm:text-[3.5rem]">
-            Secure <br />
-            <span className="text-[var(--color-brand-base)] italic">Payment</span><br />
+            Secure 
+            <span className="text-[var(--color-brand-base)] italic"> Payment</span><br />
             Options
           </h2>
-          <p className="font-sans text-[1.1rem] text-[#a0978e] leading-[1.7] m-0 mb-12">
+          <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">
             Experience hassle-free global transactions with our trusted, safe, and compliant payment gateways.
           </p>
           <div className="flex flex-row flex-wrap gap-6 max-md:flex-col">

@@ -1,21 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { categories } from '../../data/products';
 import { ChevronRight, ArrowLeft } from 'lucide-react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
+import axios from 'axios';
 
 const Enquiry = () => {
   const { id } = useParams();
   
-  // Find the product
-  const product = categories.find(p => p.id === parseInt(id));
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const headerRef = useScrollAnimation();
   const formRef = useScrollAnimation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/products/${id}`)
+      .then(res => {
+        setProduct(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Error fetching product:", err);
+        setLoading(false);
+      });
   }, [id]);
+
+  if (loading) {
+    return <div className="min-h-screen bg-[#15110F] flex items-center justify-center text-white">Loading...</div>;
+  }
 
   if (!product) {
     return (
@@ -42,23 +55,23 @@ const Enquiry = () => {
           <ChevronRight size={14} />
           <span>categories</span>
           <ChevronRight size={14} />
-          <Link to={`/product/${product.id}`}>{product.name}</Link>
+          <Link to={`/product/${product._id}`}>{product.productName}</Link>
           <ChevronRight size={14} />
           <span className="text-white font-semibold">Product Enquiry</span>
         </nav>
 
         <div className="bg-[#15110F] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)] p-12 max-w-[900px] mx-auto max-md:p-8">
           <div className="text-center mb-12" ref={headerRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-            <Link to={`/product/${product.id}`} className="inline-flex items-center gap-2 text-[#b5aaa0] no-underline font-semibold text-[0.9rem] mb-6 transition-colors duration-200 hover:text-[#8b6b55]"><ArrowLeft size={18} /> Back to Product</Link>
+            <Link to={`/product/${product._id}`} className="inline-flex items-center gap-2 text-[#b5aaa0] no-underline font-semibold text-[0.9rem] mb-6 transition-colors duration-200 hover:text-[#8b6b55]"><ArrowLeft size={18} /> Back to Product</Link>
             <h1 className="font-serif text-[2.5rem] text-white mb-4">Product Enquiry</h1>
             <p className="text-[#b5aaa0] max-w-[600px] mx-auto leading-relaxed">Looking for a specialized quote? Fill out the form below and our team will get back to you with custom pricing and details.</p>
             
             <div className="mt-10 flex flex-col items-center gap-4">
               <span className="text-[0.9rem] font-semibold text-[#8b6b55] uppercase tracking-[1px]">Inquiry Details For</span>
               <div className="flex items-center gap-6 bg-[#15110F] border border-[#2c241c] py-4 px-6 rounded-lg text-left">
-                <img src={product.image || product.gallery[0]} alt={product.name} className="w-20 h-20 object-contain rounded" />
+                <img src={product.mainImage || 'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?q=80&w=500&auto=format&fit=crop'} alt={product.productName} className="w-20 h-20 object-cover rounded" />
                 <div className="productCardInfo">
-                  <h3 className="font-serif text-white text-[1.2rem] mb-1">{product.name}</h3>
+                  <h3 className="font-serif text-white text-[1.2rem] mb-1">{product.productName}</h3>
                   <p className="text-[0.85rem] text-[#888888] m-0">SKU: {product.specifications ? product.specifications['SKU / Code'] : product.sku || 'N/A'}</p>
                 </div>
               </div>
