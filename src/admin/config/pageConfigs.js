@@ -204,18 +204,56 @@ export const pageConfigs = [
     path: 'testimonials', 
     title: 'Manage Testimonials', 
     columns: {
-      title: 'REVIEW SUBMISSIONS',
+      title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaIcons.FaStar, null), 'REVIEW SUBMISSIONS'),
       headers: [
         { key: 'id', label: 'ID' },
         { key: 'date', label: 'Date' },
-        { key: 'userDetails', label: 'User Details' },
-        { key: 'rating', label: 'Rating' },
-        { key: 'city', label: 'City' },
-        { key: 'message', label: 'Message' },
-        { key: 'status', label: 'Status' }
-      ]
+        { 
+          key: 'userDetails', 
+          label: 'User Details', 
+          render: (val, row) => React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '10px'}},
+            React.createElement('div', null,
+              React.createElement('div', {style: {fontWeight: 'bold', color: '#111827'}}, row.userName),
+              React.createElement('div', {style: {fontSize: '12px', color: '#6b7280'}}, row.userDesignation)
+            )
+          )
+        },
+        { 
+          key: 'rating', 
+          label: 'Rating',
+          render: (val) => React.createElement('div', {style: {color: '#facc15', fontSize: '16px'}}, '★'.repeat(Math.max(0, Math.min(5, Number(val) || 0))) + '☆'.repeat(Math.max(0, 5 - (Math.min(5, Number(val) || 0)))))
+        },
+        { 
+          key: 'city', 
+          label: 'City',
+          render: (val) => React.createElement('span', {style: {backgroundColor: '#06b6d4', color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', textTransform: 'uppercase'}}, val || '')
+        },
+        { key: 'message', label: 'Message', render: (val) => React.createElement('div', {style: {maxWidth: '500px', whiteSpace: 'normal', lineHeight: '1.5', color: '#4b5563', padding: '10px 0'}}, val || '') },
+        { 
+          key: 'status', 
+          label: 'Status',
+          type: 'select',
+          options: ['PENDING', 'APPROVED', 'REJECTED'],
+          render: (val) => React.createElement('span', {style: {backgroundColor: val === 'APPROVED' ? '#22c55e' : (val === 'REJECTED' ? '#ef4444' : '#eab308'), color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', textTransform: 'uppercase'}}, val || 'PENDING')
+        }
+      ],
+      hideDefaultActions: true,
+      actions: (row, { onUpdateRow, onDeleteRow }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
+        row.status !== 'APPROVED' && React.createElement('button', {
+          style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          onClick: () => onUpdateRow(row.id, 'status', 'APPROVED')
+        }, React.createElement(FaIcons.FaCheck, null)),
+        row.status !== 'REJECTED' && React.createElement('button', {
+          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          onClick: () => onUpdateRow(row.id, 'status', 'REJECTED')
+        }, React.createElement(FaIcons.FaTimes, null)),
+        React.createElement('button', {
+          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          onClick: () => onDeleteRow(row.id)
+        }, React.createElement(FaIcons.FaTrash, null))
+      )
     },
-    data: testimonialData
+    data: []
   },
   { 
       path: 'submissions/reviews', 
@@ -247,7 +285,7 @@ export const pageConfigs = [
             label: 'City',
             render: (val) => React.createElement('span', {style: {backgroundColor: '#06b6d4', color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', textTransform: 'uppercase'}}, val || '')
           },
-          { key: 'message', label: 'Message', render: (val) => React.createElement('div', {style: {maxWidth: '250px', whiteSpace: 'normal', lineHeight: '1.5', color: '#4b5563', padding: '10px 0'}}, val || '') },
+          { key: 'message', label: 'Message', render: (val) => React.createElement('div', {style: {maxWidth: '500px', whiteSpace: 'normal', lineHeight: '1.5', color: '#4b5563', padding: '10px 0'}}, val || '') },
           { 
             key: 'status', 
             label: 'Status',
@@ -260,11 +298,11 @@ export const pageConfigs = [
         actions: (row, { onUpdateRow }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
           row.status !== 'APPROVED' && React.createElement('button', {
             style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
-            onClick: () => onUpdateRow(row.id, { status: 'APPROVED' })
+            onClick: () => onUpdateRow(row.id, 'status', 'APPROVED')
           }, React.createElement(FaIcons.FaCheck, null)),
           row.status !== 'REJECTED' && React.createElement('button', {
             style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
-            onClick: () => onUpdateRow(row.id, { status: 'REJECTED' })
+            onClick: () => onUpdateRow(row.id, 'status', 'REJECTED')
           }, React.createElement(FaIcons.FaTimes, null))
         )
       },
@@ -306,11 +344,11 @@ export const pageConfigs = [
         actions: (row, { onUpdateRow }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
           row.status !== 'APPROVED' && React.createElement('button', {
             style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
-            onClick: () => onUpdateRow(row.id, { status: 'APPROVED' })
+            onClick: () => onUpdateRow(row.id, 'status', 'APPROVED')
           }, React.createElement(FaIcons.FaCheck, null)),
           row.status !== 'REJECTED' && React.createElement('button', {
             style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
-            onClick: () => onUpdateRow(row.id, { status: 'REJECTED' })
+            onClick: () => onUpdateRow(row.id, 'status', 'REJECTED')
           }, React.createElement(FaIcons.FaTimes, null))
         )
       },

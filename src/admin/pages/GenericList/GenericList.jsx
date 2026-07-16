@@ -233,9 +233,20 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
 
   const handleUpdateRow = (id, field, value) => {
     if (apiEndpoint) {
-      // Typically we'd call an API here, but for inline updates we'll just optimistically update the local state
-      // For a real production app, we would make a PUT request to update the specific field.
-      api.put(`${apiEndpoint}/${id}`, { [field]: value }).catch(err => console.error(err));
+      api.put(`${apiEndpoint}/${id}`, { [field]: value })
+        .then(() => {
+          Swal.fire({
+            title: 'Updated!',
+            text: 'Status has been updated successfully.',
+            icon: 'success',
+            timer: 1500,
+            showConfirmButton: false
+          });
+        })
+        .catch(err => {
+          console.error(err);
+          Swal.fire('Error', 'Failed to update status.', 'error');
+        });
     }
     setTableData(tableData.map(item => item.id === id ? { ...item, [field]: value } : item));
   };

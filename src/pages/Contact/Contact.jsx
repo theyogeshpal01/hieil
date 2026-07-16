@@ -20,6 +20,12 @@ const Contact = () => {
   const [openFaq, setOpenFaq] = useState(null);
   const [formData, setFormData] = useState({ fullName: '', email: '', country: '', phone: '', subject: '', category: '', message: '' });
 
+  const countryList = [
+    "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", 
+    "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Côte d'Ivoire", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Congo-Brazzaville)", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia (Czech Republic)", 
+    "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Holy See", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar (formerly Burma)", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine State", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+  ];
+
   const faqs = [
     { q: "What Is Your Response Time For Inquiries?", a: "We typically respond to all inquiries within 24 hours. For urgent matters, please use our 24/7 emergency line." },
     { q: "Do You Offer International Shipping?", a: "Yes, we offer seamless worldwide delivery with trusted logistics partners and transparent tracking." },
@@ -120,11 +126,10 @@ const Contact = () => {
                     <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Select Country *</label>
                     <div className="relative">
                       <select required value={formData.country} onChange={e => setFormData({...formData, country: e.target.value})} className="appearance-none cursor-pointer w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]">
-                        <option value="">Search country...</option>
-                        <option value="United States">United States</option>
-                        <option value="United Kingdom">United Kingdom</option>
-                        <option value="Australia">Australia</option>
-                        <option value="India">India</option>
+                        <option value="" className="bg-[#15110F] text-white">Search country...</option>
+                        {countryList.map((country) => (
+                          <option key={country} value={country} className="bg-[#15110F] text-white">{country}</option>
+                        ))}
                       </select>
                       <ChevronDown className="absolute right-[15px] top-[50%] -translate-y-1/2 text-[#8c8279] pointer-events-none" size={18} />
                     </div>
@@ -143,11 +148,11 @@ const Contact = () => {
                     <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Subject *</label>
                     <div className="relative">
                       <select required value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})} className="appearance-none cursor-pointer w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]">
-                        <option value="">Select a subject</option>
-                        <option value="Product Inquiry">Product Inquiry</option>
-                        <option value="Order Status">Order Status</option>
-                        <option value="Custom Project">Custom Project</option>
-                        <option value="Partnership">Partnership</option>
+                        <option value="" className="bg-[#15110F] text-white">Select a subject</option>
+                        <option value="Product Inquiry" className="bg-[#15110F] text-white">Product Inquiry</option>
+                        <option value="Order Status" className="bg-[#15110F] text-white">Order Status</option>
+                        <option value="Custom Project" className="bg-[#15110F] text-white">Custom Project</option>
+                        <option value="Partnership" className="bg-[#15110F] text-white">Partnership</option>
                       </select>
                       <ChevronDown className="absolute right-[15px] top-[50%] -translate-y-1/2 text-[#8c8279] pointer-events-none" size={18} />
                     </div>
@@ -156,10 +161,10 @@ const Contact = () => {
                     <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Inquiry Category *</label>
                     <div className="relative">
                       <select required value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="appearance-none cursor-pointer w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]">
-                        <option value="">Select a category</option>
-                        <option value="Wholesale">Wholesale</option>
-                        <option value="Retail">Retail</option>
-                        <option value="Support">Support</option>
+                        <option value="" className="bg-[#15110F] text-white">Select a category</option>
+                        <option value="Wholesale" className="bg-[#15110F] text-white">Wholesale</option>
+                        <option value="Retail" className="bg-[#15110F] text-white">Retail</option>
+                        <option value="Support" className="bg-[#15110F] text-white">Support</option>
                       </select>
                       <ChevronDown className="absolute right-[15px] top-[50%] -translate-y-1/2 text-[#8c8279] pointer-events-none" size={18} />
                     </div>

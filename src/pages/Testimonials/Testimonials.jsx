@@ -1,30 +1,106 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Quote, Star, PenTool, Camera, CheckCircle } from 'lucide-react';
+import { Quote, Star, PenTool, Camera, CheckCircle, X, Upload } from 'lucide-react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
+  
+  // Modal states
+  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [showPhotoModal, setShowPhotoModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const [reviewForm, setReviewForm] = useState({ userName: '', userDesignation: '', city: '', rating: 5, message: '' });
+  const [photoForm, setPhotoForm] = useState({ userName: '', userEmail: '' });
+  const [photoFiles, setPhotoFiles] = useState([]);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/testimonials`)
-      .then(res => setTestimonials(res.data))
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/testimonials`)
+      .then(res => {
+        // Filter out only APPROVED testimonials
+        const approved = res.data.filter(t => t.status === 'APPROVED');
+        setTestimonials(approved);
+      })
       .catch(err => console.error(err));
   }, []);
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/testimonials`, reviewForm);
+      setShowReviewModal(false);
+      setReviewForm({ userName: '', userDesignation: '', city: '', rating: 5, message: '' });
+      Swal.fire({
+        title: 'Thank You!',
+        text: 'Your review has been submitted successfully and is pending admin approval.',
+        icon: 'success',
+        background: '#1C1713',
+        color: '#fff',
+        confirmButtonColor: '#c8956c'
+      });
+    } catch (error) {
+      console.error(error);
+      Swal.fire('Error', 'Failed to submit review. Please try again.', 'error');
+    }
+    setIsSubmitting(false);
+  };
+
+  const handlePhotoSubmit = async (e) => {
+    e.preventDefault();
+    if (photoFiles.length === 0) {
+      return Swal.fire('Wait', 'Please select at least one photo to share.', 'warning');
+    }
+    setIsSubmitting(true);
+    try {
+      // Upload photos first
+      const uploadedUrls = [];
+      for (const file of photoFiles) {
+        const formData = new FormData();
+        formData.append('file', file);
+        const uploadRes = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/upload`, formData);
+        uploadedUrls.push(uploadRes.data.url);
+      }
+      
+      // Submit user moment
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/submissions/user-moments`, {
+        ...photoForm,
+        submittedPhotos: uploadedUrls
+      });
+      
+      setShowPhotoModal(false);
+      setPhotoForm({ userName: '', userEmail: '' });
+      setPhotoFiles([]);
+      Swal.fire({
+        title: 'Photos Shared!',
+        text: 'Thank you! Your photos have been submitted and are pending admin approval to appear in the gallery.',
+        icon: 'success',
+        background: '#1C1713',
+        color: '#fff',
+        confirmButtonColor: '#c8956c'
+      });
+    } catch (error) {
+      console.error(error);
+      Swal.fire('Error', 'Failed to upload photos. Please try again.', 'error');
+    }
+    setIsSubmitting(false);
+  };
 
   const stats = [
     { value: '100%', label: 'Customizations' },
     { value: '100%', label: 'On-Time Delivery' }
   ];
 
-  // Placeholder for brand logos
   const brands = [
     'Brand 1', 'Brand 2', 'Brand 3', 'Brand 4', 'Brand 5'
   ];
 
   return (
-    <div className="font-sans text-white bg-[#15110F] overflow-x-hidden">
+    <div className="font-sans text-white bg-[#15110F] overflow-x-hidden relative">
       {/* Hero Section */}
       <section className="bg-[radial-gradient(circle_at_center,#1C1713_0%,#15110F_100%)] text-white pt-[120px] px-5 pb-[100px] text-center relative border-b border-[#2c241c]">
         <div className="max-w-[800px] mx-auto relative z-[2]" data-aos="fade-up">
@@ -32,7 +108,6 @@ const Testimonials = () => {
           <h1 className="font-serif text-[3.5rem] font-normal mb-6 leading-[1.1] text-white max-md:text-[3.5rem] uppercase tracking-[1px]">What Our Customers <span style={{ color: 'var(--color-brand-base)' }}>Say</span></h1>
           <p className="text-[1.1rem] text-[#b5aaa0] leading-[1.8] max-w-[700px] mx-auto">
             Discover why thousands of customers trust HIEIL for their handicraft needs.They have helped homeowners, interior designers and businesses.These customers have transformed their spaces with HIEIL handmade products and great services.Many customers have shared their feedback.Homeowners and businesses read these testimonials to know more, about HIEIL.They see how HIEIL handmade categories and services are exceptional.HIEILs customers are very happy with their handicraft needs met.They trust HIEIL for all their handicraft requirements.
-
           </p>
         </div>
       </section>
@@ -54,25 +129,29 @@ const Testimonials = () => {
       {/* Featured Testimonial */}
       <section className="py-[60px] pb-[100px] bg-[#15110F]">
         <div className="max-w-[1200px] mx-auto px-5">
-          {testimonials.map((testimonial, idx) => (
-            <div key={testimonial._id || idx} className="max-w-[800px] mx-auto bg-[#1C1713] py-[60px] px-[80px] max-[992px]:px-[40px] max-md:py-[40px] max-md:px-[20px] border border-[#2c241c] text-center relative transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:shadow-[0_10px_50px_rgba(194,163,115,0.05)] mb-[40px]" data-aos="zoom-in">
-              <Quote className="text-[#c8956c] opacity-[0.15] absolute top-[40px] left-[40px] max-md:hidden" size={80} />
-              <div className="text-[#c8956c] mb-[40px] flex justify-center gap-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={24} fill={i < (testimonial.rating || 5) ? "currentColor" : "none"} stroke={i < (testimonial.rating || 5) ? "currentColor" : "#dddddd"} />
-                ))}
-              </div>
-              <p className="font-serif text-[1.5rem] text-white leading-[1.6] italic font-light mb-[40px] relative z-1 max-md:text-[1.4rem] whitespace-pre-line">
-                "{testimonial.message}"
-              </p>
-              <div className="flex flex-col items-center">
-                <div className="w-[40px] h-[2px] bg-[#c8956c] mb-[20px]"></div>
-                <div className="testimonial-author">
-                  <p className="text-[#b5aaa0] text-[0.9rem] tracking-[1px] m-0">I live in {testimonial.city}, and I work as a {testimonial.userDesignation}.</p>
+          {testimonials.length === 0 ? (
+            <p className="text-center text-[#b5aaa0] text-lg">No testimonials to show yet. Be the first to write one!</p>
+          ) : (
+            testimonials.map((testimonial, idx) => (
+              <div key={testimonial._id || idx} className="max-w-[800px] mx-auto bg-[#1C1713] py-[60px] px-[80px] max-[992px]:px-[40px] max-md:py-[40px] max-md:px-[20px] border border-[#2c241c] text-center relative transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:shadow-[0_10px_50px_rgba(194,163,115,0.05)] mb-[40px]" data-aos="zoom-in">
+                <Quote className="text-[#c8956c] opacity-[0.15] absolute top-[40px] left-[40px] max-md:hidden" size={80} />
+                <div className="text-[#c8956c] mb-[40px] flex justify-center gap-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={24} fill={i < (testimonial.rating || 5) ? "currentColor" : "none"} stroke={i < (testimonial.rating || 5) ? "currentColor" : "#dddddd"} />
+                  ))}
+                </div>
+                <p className="font-serif text-[1.5rem] text-white leading-[1.6] italic font-light mb-[40px] relative z-1 max-md:text-[1.4rem] whitespace-pre-line">
+                  "{testimonial.message}"
+                </p>
+                <div className="flex flex-col items-center">
+                  <div className="w-[40px] h-[2px] bg-[#c8956c] mb-[20px]"></div>
+                  <div className="testimonial-author">
+                    <p className="text-[#b5aaa0] text-[0.9rem] tracking-[1px] m-0">I live in {testimonial.city}, and I work as a {testimonial.userDesignation}.</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </section>
 
@@ -81,7 +160,7 @@ const Testimonials = () => {
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
             <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Trusted By <br /> <span style={{ color: 'var(--color-brand-base)' }}>Leading Brands</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Our clients include some of the most prestigious names in the industry</p>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Our clients include some of the most prestigious names in the industry</p>
           </div>
           <div className="flex justify-center flex-wrap gap-[30px]" data-aos="fade-up">
             {brands.map((brand, index) => (
@@ -100,7 +179,7 @@ const Testimonials = () => {
             {/* CTA 1: Create Success Story */}
             <div className="py-[60px] px-[50px] text-center flex flex-col items-center justify-center border border-[#2c241c] transition-all duration-400 ease-in-out hover:border-[#4a3e35] bg-gradient-to-br from-[#1C1713] to-[#15110F]" data-aos="fade-right">
               <CheckCircle className="mb-[25px] text-[#c8956c]" size={48} />
-              <h2 className="font-serif text-[2.5rem] text-white mb-[20px] font-normal">Ready To Create <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Success Story</span>?</h2>
+              <h2 className="font-serif text-[2.5rem] text-white mb-[20px] font-normal">Ready To Create <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Success Story?</span></h2>
               <p className="text-[1rem] text-[#b5aaa0] mb-[40px] leading-[1.8]">Join thousands of satisfied customers who have transformed their spaces with HIEIL handicrafts</p>
               <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Your Project</Link>
             </div>
@@ -110,13 +189,108 @@ const Testimonials = () => {
               <h2 className="font-serif text-[2.5rem] text-white mb-[20px] font-normal">Share <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Experience</span></h2>
               <p className="text-[#b5aaa0] text-[1rem] leading-[1.8] mb-[40px]">Loved our categories and services? We'd love to hear about your experience! Share your story and help others discover the quality and craftsmanship of HIEIL handicrafts.</p>
               <div className="flex gap-[15px] flex-wrap justify-center max-md:flex-col">
-                <button className="flex items-center gap-[10px] py-[12px] px-[25px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium text-[0.8rem] tracking-[2px] uppercase cursor-pointer transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c] max-md:w-full max-md:justify-center"><PenTool size={18} /> Write a Review</button>
-                <button className="flex items-center gap-[10px] py-[12px] px-[25px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium text-[0.8rem] tracking-[2px] uppercase cursor-pointer transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c] max-md:w-full max-md:justify-center"><Camera size={18} /> Share Photos</button>
+                <button onClick={() => setShowReviewModal(true)} className="flex items-center gap-[10px] py-[12px] px-[25px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium text-[0.8rem] tracking-[2px] uppercase cursor-pointer transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c] max-md:w-full max-md:justify-center"><PenTool size={18} /> Write a Review</button>
+                <button onClick={() => setShowPhotoModal(true)} className="flex items-center gap-[10px] py-[12px] px-[25px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium text-[0.8rem] tracking-[2px] uppercase cursor-pointer transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c] max-md:w-full max-md:justify-center"><Camera size={18} /> Share Photos</button>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Review Modal */}
+      {showReviewModal && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[1000] p-5 backdrop-blur-sm">
+          <div className="bg-[#1C1713] border border-[#2c241c] rounded-[20px] p-[40px] max-w-[600px] w-full relative max-h-[90vh] overflow-y-auto">
+            <button onClick={() => setShowReviewModal(false)} className="absolute top-[20px] right-[20px] text-[#b5aaa0] hover:text-[#c8956c] bg-transparent border-none cursor-pointer">
+              <X size={24} />
+            </button>
+            <h3 className="font-serif text-[2rem] text-white mb-[10px] uppercase">Write A Review</h3>
+            <p className="text-[#b5aaa0] mb-[30px] text-[0.9rem]">Share your experience with HIEIL handicrafts.</p>
+            
+            <form onSubmit={handleReviewSubmit} className="flex flex-col gap-[20px]">
+              <div className="grid grid-cols-2 gap-[20px] max-sm:grid-cols-1">
+                <div>
+                  <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Your Name *</label>
+                  <input required type="text" value={reviewForm.userName} onChange={e => setReviewForm({...reviewForm, userName: e.target.value})} className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c]" />
+                </div>
+                <div>
+                  <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Designation / Role *</label>
+                  <input required type="text" value={reviewForm.userDesignation} onChange={e => setReviewForm({...reviewForm, userDesignation: e.target.value})} placeholder="e.g. Homeowner, Architect" className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c]" />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-[20px] max-sm:grid-cols-1">
+                <div>
+                  <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">City *</label>
+                  <input required type="text" value={reviewForm.city} onChange={e => setReviewForm({...reviewForm, city: e.target.value})} className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c]" />
+                </div>
+                <div>
+                  <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Rating *</label>
+                  <select value={reviewForm.rating} onChange={e => setReviewForm({...reviewForm, rating: Number(e.target.value)})} className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c]">
+                    <option value="5">5 Stars - Excellent</option>
+                    <option value="4">4 Stars - Very Good</option>
+                    <option value="3">3 Stars - Good</option>
+                    <option value="2">2 Stars - Fair</option>
+                    <option value="1">1 Star - Poor</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Your Review *</label>
+                <textarea required rows="4" value={reviewForm.message} onChange={e => setReviewForm({...reviewForm, message: e.target.value})} className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c] resize-y"></textarea>
+              </div>
+              <button disabled={isSubmitting} type="submit" className="mt-[10px] w-full py-[15px] bg-[#c8956c] text-[#15110F] font-bold tracking-[2px] uppercase rounded-[8px] hover:bg-[#b8855c] transition-colors disabled:opacity-70">
+                {isSubmitting ? 'Submitting...' : 'Submit Review'}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Share Photos Modal */}
+      {showPhotoModal && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[1000] p-5 backdrop-blur-sm">
+          <div className="bg-[#1C1713] border border-[#2c241c] rounded-[20px] p-[40px] max-w-[600px] w-full relative max-h-[90vh] overflow-y-auto">
+            <button onClick={() => setShowPhotoModal(false)} className="absolute top-[20px] right-[20px] text-[#b5aaa0] hover:text-[#c8956c] bg-transparent border-none cursor-pointer">
+              <X size={24} />
+            </button>
+            <h3 className="font-serif text-[2rem] text-white mb-[10px] uppercase">Share Your Photos</h3>
+            <p className="text-[#b5aaa0] mb-[30px] text-[0.9rem]">Showcase how you've styled our products in your space.</p>
+            
+            <form onSubmit={handlePhotoSubmit} className="flex flex-col gap-[20px]">
+              <div>
+                <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Your Name *</label>
+                <input required type="text" value={photoForm.userName} onChange={e => setPhotoForm({...photoForm, userName: e.target.value})} className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c]" />
+              </div>
+              <div>
+                <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Email Address *</label>
+                <input required type="email" value={photoForm.userEmail} onChange={e => setPhotoForm({...photoForm, userEmail: e.target.value})} className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c]" />
+              </div>
+              <div>
+                <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Select Photos *</label>
+                <div 
+                  className="w-full p-[30px] border-2 border-dashed border-[#4a3e35] rounded-[8px] text-center cursor-pointer hover:border-[#c8956c] bg-[#15110F] transition-colors"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <Upload size={32} className="text-[#c8956c] mx-auto mb-[10px]" />
+                  <p className="text-[#b5aaa0] m-0 mb-[5px]">Click to browse files</p>
+                  <p className="text-[#8c8279] text-[0.8rem] m-0">You selected {photoFiles.length} file(s)</p>
+                </div>
+                <input 
+                  type="file" 
+                  multiple 
+                  accept="image/*" 
+                  className="hidden" 
+                  ref={fileInputRef} 
+                  onChange={e => setPhotoFiles(Array.from(e.target.files))} 
+                />
+              </div>
+              <button disabled={isSubmitting} type="submit" className="mt-[10px] w-full py-[15px] bg-[#c8956c] text-[#15110F] font-bold tracking-[2px] uppercase rounded-[8px] hover:bg-[#b8855c] transition-colors disabled:opacity-70">
+                {isSubmitting ? 'Uploading...' : 'Upload & Share'}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

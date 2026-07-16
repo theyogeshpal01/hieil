@@ -87,8 +87,8 @@ const BulkWholesaleSupply = () => {
             {/* Category 1 */}
             <div className="flex items-stretch bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] overflow-hidden transition-all duration-400 ease-in-out hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] max-[992px]:flex-col group" data-aos="fade-up">
               <div className="flex-[0_0_50%] relative overflow-hidden max-[992px]:min-h-[300px]">
-                <img src="/jaipur.jpeg" alt="Handcrafted Blue Pottery" className="w-full h-full object-cover transition-transform duration-600 ease-in-out group-hover:scale-105" />
-                <span className="absolute top-5 right-5 bg-[rgba(194,163,115,0.9)] text-[#15110F] py-1.5 px-3 rounded-[30px] font-semibold text-[0.85rem] uppercase tracking-[1px]">MOQ: 100 pcs</span>
+                <img src="/bluepottarycategory.png" alt="Handcrafted Blue Pottery" className="w-full h-full object-cover transition-transform duration-600 ease-in-out group-hover:scale-105" />
+                <span className="absolute top-5 right-5 bg-[#c8956c] text-[#15110F] py-1.5 px-3 rounded-[30px] font-normal text-[0.85rem] uppercase tracking-[1px]">MOQ: 100 pcs</span>
               </div>
               <div className="flex-[0_0_50%] p-[50px_40px] flex flex-col justify-center">
                 <h3 className="font-serif text-[2rem] text-white mb-5 font-normal">Handcrafted Blue Pottery categories</h3>
@@ -100,8 +100,8 @@ const BulkWholesaleSupply = () => {
             {/* Category 2 */}
             <div className="flex items-stretch bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] overflow-hidden transition-all duration-400 ease-in-out hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] max-[992px]:flex-col group" data-aos="fade-up">
               <div className="flex-[0_0_50%] relative overflow-hidden max-[992px]:min-h-[300px]">
-                <img src="/carousel4.png" alt="Handcrafted Metal categories" className="w-full h-full object-cover transition-transform duration-600 ease-in-out group-hover:scale-105" />
-                <span className="absolute top-5 right-5 bg-[rgba(194,163,115,0.9)] text-[#15110F] py-1.5 px-3 rounded-[30px] font-semibold text-[0.85rem] uppercase tracking-[1px]">MOQ: 100 pcs</span>
+                <img src="/metalcategory.png" alt="Handcrafted Metal categories" className="w-full h-full object-cover transition-transform duration-600 ease-in-out group-hover:scale-105" />
+                <span className="absolute top-5 right-5 bg-[#c8956c] text-[#15110F] py-1.5 px-3 rounded-[30px] font-normal text-[0.85rem] uppercase tracking-[1px]">MOQ: 100 pcs</span>
               </div>
               <div className="flex-[0_0_50%] p-[50px_40px] flex flex-col justify-center">
                 <h3 className="font-serif text-[2rem] text-white mb-5 font-normal">Handcrafted Metal categories</h3>
@@ -113,8 +113,8 @@ const BulkWholesaleSupply = () => {
             {/* Category 3 */}
             <div className="flex items-stretch bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] overflow-hidden transition-all duration-400 ease-in-out hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] max-[992px]:flex-col group" data-aos="fade-up">
               <div className="flex-[0_0_50%] relative overflow-hidden max-[992px]:min-h-[300px]">
-                <img src="/carousel2.png" alt="Handcrafted Stone categories" className="w-full h-full object-cover transition-transform duration-600 ease-in-out group-hover:scale-105" />
-                <span className="absolute top-5 right-5 bg-[rgba(194,163,115,0.9)] text-[#15110F] py-1.5 px-3 rounded-[30px] font-semibold text-[0.85rem] uppercase tracking-[1px]">MOQ: 100 pcs</span>
+                <img src="/stonecategory.png" alt="Handcrafted Stone categories" className="w-full h-full object-cover transition-transform duration-600 ease-in-out group-hover:scale-105" />
+                <span className="absolute top-5 right-5 bg-[#c8956c] text-[#15110F] py-1.5 px-3 rounded-[30px] font-normal text-[0.85rem] uppercase tracking-[1px]">MOQ: 100 pcs</span>
               </div>
               <div className="flex-[0_0_50%] p-[50px_40px] flex flex-col justify-center">
                 <h3 className="font-serif text-[2rem] text-white mb-5 font-normal">Handcrafted Stone categories</h3>
@@ -131,8 +131,8 @@ const BulkWholesaleSupply = () => {
             {/* Category 4 */}
             <div className="flex items-stretch bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] overflow-hidden transition-all duration-400 ease-in-out hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] max-[992px]:flex-col group" data-aos="fade-up">
               <div className="flex-[0_0_50%] relative overflow-hidden max-[992px]:min-h-[300px]">
-                <img src="/carousel1.png" alt="Handcrafted Wooden categories" className="w-full h-full object-cover transition-transform duration-600 ease-in-out group-hover:scale-105" />
-                <span className="absolute top-5 right-5 bg-[rgba(194,163,115,0.9)] text-[#15110F] py-1.5 px-3 rounded-[30px] font-semibold text-[0.85rem] uppercase tracking-[1px]">MOQ: 100 pcs</span>
+                <img src="/woodencategory.png" alt="Handcrafted Wooden categories" className="w-full h-full object-cover transition-transform duration-600 ease-in-out group-hover:scale-105" />
+                <span className="absolute top-5 right-5 bg-[#c8956c] text-[#15110F] py-1.5 px-3 rounded-[30px] font-normal text-[0.85rem] uppercase tracking-[1px]">MOQ: 100 pcs</span>
               </div>
               <div className="flex-[0_0_50%] p-[50px_40px] flex flex-col justify-center">
                 <h3 className="font-serif text-[2rem] text-white mb-5 font-normal">Handcrafted Wooden categories</h3>

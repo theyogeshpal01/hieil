@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Gallery = () => {
+  const [userMoments, setUserMoments] = useState([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    // Fetch approved user moments
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/submissions/user-moments`)
+      .then(res => {
+        const approved = res.data.filter(m => m.status === 'APPROVED');
+        setUserMoments(approved);
+      })
+      .catch(err => console.error(err));
   }, []);
 
   const getImageForCategory = (category) => {
@@ -110,51 +120,33 @@ const Gallery = () => {
         </div>
       </section>
 
-      <section className="py-[60px]">
-        <div className="max-w-[1200px] mx-auto px-5">
-          <div className="flex flex-col lg:flex-row gap-10 items-start">
-            
-            {/* Sidebar Filters */}
-            <aside className="w-full lg:flex-none lg:w-[300px] bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] p-[30px] rounded-[20px] border border-[#2c241c] static lg:sticky lg:top-[100px]">
-              <h3 className="text-[20px] font-semibold mb-5 pb-[15px] border-b border-[#2c241c] text-white">Filter By Category</h3>
-              <ul className="list-none p-0 m-0 flex max-lg:overflow-x-auto max-lg:flex-nowrap lg:block gap-[10px] max-lg:pb-3 max-lg:scrollbar-hide">
-                {categories.map((category, index) => (
-                  <li key={index} className="lg:mb-[10px] m-0 max-lg:shrink-0">
-                    <button 
-                      className={`max-lg:whitespace-nowrap lg:w-full text-left bg-transparent border border-[#4a3e35] !text-white py-[12px] px-[28px] lg:py-[10px] lg:px-[20px] text-[12px] tracking-[2px] uppercase transition-all duration-300 font-medium cursor-pointer rounded-[30px] hover:bg-[rgba(194,163,115,0.1)] hover:border-[#c8956c] hover:shadow-[0_0_15px_rgba(194,163,115,0.2)] hover:!text-[#c8956c] ${activeCategory === category ? 'bg-[#c8956c] !text-[#15110F] border-[#c8956c] font-semibold shadow-[0_0_15px_rgba(194,163,115,0.3)]' : ''}`}
-                      onClick={() => setActiveCategory(category)}
-                    >
-                      {category}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </aside>
+      <section className="py-[60px] w-full">
+        <div className="w-full px-5 mb-[40px] flex justify-center">
+          <ul className="list-none p-0 m-0 flex flex-wrap justify-center gap-[15px] max-w-[1200px]">
+            {categories.map((category, index) => (
+              <li key={index} className="m-0">
+                <button 
+                  className={`whitespace-nowrap text-center bg-transparent border border-[#4a3e35] !text-white py-[10px] px-[24px] text-[12px] tracking-[2px] uppercase transition-all duration-300 font-medium cursor-pointer rounded-[30px] hover:bg-[rgba(194,163,115,0.1)] hover:border-[#c8956c] hover:shadow-[0_0_15px_rgba(194,163,115,0.2)] hover:!text-[#c8956c] ${activeCategory === category ? 'bg-[#c8956c] !text-[#15110F] border-[#c8956c] font-semibold shadow-[0_0_15px_rgba(194,163,115,0.3)]' : ''}`}
+                  onClick={() => setActiveCategory(category)}
+                >
+                  {category}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-            {/* Gallery Grid */}
-            <div className="flex-1">
-              <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-[10px] mb-[30px] pb-[20px] border-b border-[#2c241c]">
-                <h2 className="font-serif text-[2.5rem] font-normal m-0 text-white">All <br /> <span className="text-[var(--color-brand-base)]">Collections</span></h2>
-                <p className="text-[#b5aaa0] m-0 text-[1rem]">Showing {filteredItems.length} handcrafted items</p>
-              </div>
-
-              <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-[30px]">
-                {filteredItems.map((item) => (
-                  <div className="bg-[#1C1713] rounded-[10px] overflow-hidden group hover:-translate-y-2 transition-transform duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-pointer" key={item.id}>
-                    <div className="h-[280px] w-full overflow-hidden relative">
-                      <img src={getImageForCategory(item.category)} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#15110F] via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300"></div>
-                    </div>
-                    <div className="p-6 bg-[#1C1713] relative z-10 border-t border-[#c8956c]/20">
-                      <h4 className="text-[1.2rem] mb-2 text-white font-serif uppercase tracking-[1px]">{item.title}</h4>
-                      <p className="text-[0.8rem] text-[#c8956c] m-0 tracking-[1px] uppercase font-medium">{item.category}</p>
-                    </div>
-                  </div>
-                ))}
+        <div className="w-full max-w-[1600px] mx-auto px-[60px] md:px-[120px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
+          {filteredItems.map((item) => (
+            <div className="relative overflow-hidden group cursor-pointer aspect-[4/3] w-full" key={item.id}>
+              <img src={getImageForCategory(item.category)} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-black/10 to-transparent opacity-90 transition-opacity duration-300"></div>
+              <div className="absolute bottom-0 left-0 p-[30px] z-10 w-full">
+                <p className="text-[10px] text-[#c8956c] m-0 mb-[8px] tracking-[2px] uppercase font-bold">200+ DESIGNS</p>
+                <h4 className="text-[1.3rem] m-0 text-white font-serif tracking-[1px] uppercase drop-shadow-md">{item.category.replace('HANDCRAFTED ', '').replace(' categories', '')}</h4>
               </div>
             </div>
-
-          </div>
+          ))}
         </div>
       </section>
 
@@ -167,10 +159,26 @@ const Gallery = () => {
             <p className="max-w-[700px] mx-auto text-[#b5aaa0] leading-[1.6]">Explore the beautiful spaces our customers have created using HIEIL handicrafts. See how our categories blend into diverse lifestyles and professional settings.</p>
           </div>
 
-          <div className="max-w-[800px] mx-auto">
-            <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] py-[80px] px-[20px] text-center">
-              <p className="text-[#b5aaa0] text-[1.2rem] font-normal tracking-[1px]">No shared moments yet. Be the first to share!</p>
-            </div>
+          <div className="max-w-[1200px] mx-auto">
+            {userMoments.length === 0 ? (
+              <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] py-[80px] px-[20px] text-center max-w-[800px] mx-auto">
+                <p className="text-[#b5aaa0] text-[1.2rem] font-normal tracking-[1px]">No shared moments yet. Be the first to share!</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px]">
+                {userMoments.map(moment => (
+                  moment.submittedPhotos.map((photoUrl, pIndex) => (
+                    <div key={`${moment._id}-${pIndex}`} className="relative overflow-hidden group rounded-[10px] bg-[#1C1713] aspect-square">
+                      <img src={photoUrl} alt="User Moment" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute bottom-0 left-0 p-[20px] z-10 w-full translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p className="text-[0.9rem] m-0 text-white font-serif tracking-[1px]">{moment.userName}</p>
+                      </div>
+                    </div>
+                  ))
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>

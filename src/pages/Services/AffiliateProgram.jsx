@@ -55,8 +55,8 @@ const AffiliateProgram = () => {
       <section className="py-[100px] bg-[#1C1713]">
         <div className="max-w-[1200px] mx-auto px-5">
           <div className="text-center mb-[60px]" data-aos="fade-up">
-            <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">How <br /> <span style={{ color: 'var(--color-brand-base)' }}>It Works</span></h2>
-            <p className="text-[1.1rem] text-[#c8956c] font-normal italic font-serif">Three Simple Steps to Success</p>
+            <h2 className="font-serif text-[2.5rem] font-normal text-white mb-[15px] uppercase tracking-[1px]">How <span style={{ color: 'var(--color-brand-base)' }}>It Works</span></h2>
+            <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Three Simple Steps to Success</p>
           </div>
           <div className="flex justify-between relative max-w-[1000px] mx-auto max-md:flex-col max-md:gap-10 before:content-[''] before:absolute before:top-[40px] before:left-0 before:right-0 before:h-[1px] before:bg-[#2c241c] before:z-10 max-md:before:hidden">
             {processSteps.map((step, index) => (
@@ -78,7 +78,7 @@ const AffiliateProgram = () => {
       {/* CTA Section */}
       <section className="py-[100px] px-5 bg-gradient-to-br from-[#1C1713] to-[#15110F] text-center border-t border-[#2c241c]" data-aos="zoom-in">
         <div className="max-w-[800px] mx-auto">
-          <h2 className="font-serif text-[3rem] text-white mb-5 font-normal max-md:text-[2.2rem]">Ready To Start <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Journey</span>?</h2>
+          <h2 className="font-serif text-[3rem] text-white mb-5 font-normal max-md:text-[2.2rem]">Ready To Start <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Journey?</span></h2>
           <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">Join affiliates who are already making money with HIEIL.They are successful. You can be too.Start your partnership today with HIEIL. Earn more.HIEIL is a brand that people really love.You can grow your earnings with them.
 </p>
           <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Register As An Affiliate</Link>
