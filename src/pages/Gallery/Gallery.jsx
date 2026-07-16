@@ -3,6 +3,9 @@ import axios from 'axios';
 
 const Gallery = () => {
   const [userMoments, setUserMoments] = useState([]);
+  const [galleryItems, setGalleryItems] = useState([]);
+  const [categories, setCategories] = useState(['All categories']);
+  const [activeCategory, setActiveCategory] = useState('All categories');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -11,6 +14,15 @@ const Gallery = () => {
       .then(res => {
         const approved = res.data.filter(m => m.status === 'APPROVED');
         setUserMoments(approved);
+      })
+      .catch(err => console.error(err));
+      
+    // Fetch dynamic gallery items
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/gallery`)
+      .then(res => {
+        setGalleryItems(res.data);
+        const uniqueCats = ['All categories', ...new Set(res.data.map(item => item.category).filter(Boolean))];
+        setCategories(uniqueCats);
       })
       .catch(err => console.error(err));
   }, []);
@@ -26,86 +38,6 @@ const Gallery = () => {
     }
   };
 
-  const [activeCategory, setActiveCategory] = useState('All categories');
-
-  const categories = [
-    'All categories',
-    'HANDCRAFTED BLUE POTTERY',
-    'HANDCRAFTED LUXURY CLOCK',
-    'HANDCRAFTED MATEL categories',
-    'HANDCRAFTED RUG AND CARPET',
-    'HANDCRAFTED STONE categories',
-    'HANDCRAFTED WOODEN categories',
-    'HANDMADE PAINTING ART'
-  ];
-
-  // A representative sample of the 400+ items provided by the user
-  const allItems = [
-    { title: 'Chopping Board', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Serving Tray', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Lamp', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Jar', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Decorative', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Agarbatti Stand', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Candle Holder', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Soap Dispenser', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Vase', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Serving Bowl', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Planter Plate', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Basket', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Cutlery Holder', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Box', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Bowl', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Fruit Basket', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Egg Tray', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Jar Holder', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Tissue Holder', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Planter Pot', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Book Stand', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Decor', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Serving Plate', category: 'HANDCRAFTED WOODEN categories' },
-    { title: 'Coaster', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Basket', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Serving Tray', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Planter Pot', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Bowl', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Rolling Board', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Bathroom Organiser', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Decor', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Decor Tray', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Kitchen Set', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Cutlery Holder', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Chopping Board', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Plate', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Jar', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Pestle', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Pen Stand', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Tissue Holder', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Cake Stand', category: 'HANDCRAFTED STONE categories' },
-    { title: 'Wall Clock', category: 'HANDCRAFTED LUXURY CLOCK' },
-    { title: 'Hanging Clock', category: 'HANDCRAFTED LUXURY CLOCK' },
-    { title: 'Wall Decor', category: 'HANDCRAFTED MATEL categories' },
-    { title: 'Key Hanging', category: 'HANDCRAFTED MATEL categories' },
-    { title: 'Decor', category: 'HANDCRAFTED MATEL categories' },
-    { title: 'Wall Clock', category: 'HANDCRAFTED MATEL categories' },
-    { title: 'Table Clock', category: 'HANDCRAFTED MATEL categories' },
-    { title: 'Candle Holder', category: 'HANDCRAFTED MATEL categories' },
-    { title: 'Pen Stand', category: 'HANDCRAFTED MATEL categories' },
-    { title: 'Metal Bag', category: 'HANDCRAFTED MATEL categories' },
-    { title: 'Plate', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Wash Basin', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Table Lamp', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Hanging Lamp', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Plate & Bowl', category: 'HANDCRAFTED BLUE POTTERY' },
-    { title: 'Wall Planter', category: 'HANDCRAFTED BLUE POTTERY' }
-  ];
-
-  // In a real scenario with 406 items, you would map over the full list
-  // Here we multiply the sample slightly to make the gallery look full
-  const galleryItems = [...allItems, ...allItems, ...allItems, ...allItems].map((item, index) => ({
-    id: index,
-    ...item
-  }));
 
   const filteredItems = activeCategory === 'All categories' 
     ? galleryItems 
@@ -137,16 +69,22 @@ const Gallery = () => {
         </div>
 
         <div className="w-full max-w-[1600px] mx-auto px-[60px] md:px-[120px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
-          {filteredItems.map((item) => (
-            <div className="relative overflow-hidden group cursor-pointer aspect-[4/3] w-full" key={item.id}>
-              <img src={getImageForCategory(item.category)} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-black/10 to-transparent opacity-90 transition-opacity duration-300"></div>
-              <div className="absolute bottom-0 left-0 p-[30px] z-10 w-full">
-                <p className="text-[10px] text-[#c8956c] m-0 mb-[8px] tracking-[2px] uppercase font-bold">200+ DESIGNS</p>
-                <h4 className="text-[1.3rem] m-0 text-white font-serif tracking-[1px] uppercase drop-shadow-md">{item.category.replace('HANDCRAFTED ', '').replace(' categories', '')}</h4>
-              </div>
+          {filteredItems.length === 0 ? (
+            <div className="col-span-full py-10 text-center text-[#b5aaa0] text-lg">
+              No images available in this gallery yet.
             </div>
-          ))}
+          ) : (
+            filteredItems.map((item) => (
+              <div className="relative overflow-hidden group cursor-pointer aspect-[4/3] w-full" key={item._id || item.id}>
+                <img src={item.image || getImageForCategory(item.category)} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-black/10 to-transparent opacity-90 transition-opacity duration-300"></div>
+                <div className="absolute bottom-0 left-0 p-[30px] z-10 w-full">
+                  <p className="text-[10px] text-[#c8956c] m-0 mb-[8px] tracking-[2px] uppercase font-bold">{item.tagline || '200+ DESIGNS'}</p>
+                  <h4 className="text-[1.3rem] m-0 text-white font-serif tracking-[1px] uppercase drop-shadow-md">{(item.category || '').replace('HANDCRAFTED ', '').replace(' categories', '')}</h4>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </section>
 

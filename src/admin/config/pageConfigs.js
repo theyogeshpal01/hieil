@@ -430,17 +430,7 @@ export const pageConfigs = [
       },
       data: []
     },
-  { 
-    path: 'gallery', 
-    title: 'Gallery List', 
-    columns: getCols('Gallery Item', [
-      { key: 'id', label: 'ID' },
-      { key: 'category', label: 'Category', type: 'select', options: ['Exhibitions', 'Events', 'Workshops'] },
-      { key: 'title', label: 'Title' },
-      { key: 'image', label: 'Image' }
-    ]),
-    data: []
-  },
+
   { 
     path: 'inquiry-system/product-inquiries', 
     title: 'Customer Inquiries', 
@@ -960,6 +950,7 @@ export const pageConfigs = [
     }, 
     data: []
   },
+
   { 
     path: 'gallery', 
     title: 'Show Gallery',
@@ -975,7 +966,8 @@ export const pageConfigs = [
         { key: 'id', label: '#' },
         { key: 'category', label: 'Category', type: 'select', options: ['HANDCRAFTED WOODEN PRODUCTS', 'HANDCRAFTED METAL PRODUCTS'], formLabel: 'Select Category', placeholder: ' ' },
         { key: 'image', label: 'Image', type: 'file', formLabel: 'Upload Image', render: (val) => React.createElement('img', {src: val || 'https://via.placeholder.com/60x40?text=Img', alt: 'Gallery', style: {width: '60px', height: '40px', objectFit: 'cover', borderRadius: '4px'}}) },
-        { key: 'title', label: 'Title', formLabel: 'Title', placeholder: ' ' }
+        { key: 'title', label: 'Title', formLabel: 'Title', placeholder: ' ' },
+        { key: 'tagline', label: 'Tagline', formLabel: 'Tagline (e.g. 200+ DESIGNS)', placeholder: '200+ DESIGNS' }
       ],
       hideDefaultActions: false
     }, 
