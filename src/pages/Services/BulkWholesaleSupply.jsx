@@ -1,8 +1,56 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { PackageOpen, TrendingUp, ShieldCheck, Target, Globe, Star, Clock, HeartHandshake, Search, Scale, Package, Users, Award, Box, ChevronRight } from 'lucide-react';
+import axios from 'axios';
+import { PackageOpen, TrendingUp, ShieldCheck, Target, Globe, Star, Clock, HeartHandshake, Search, Scale, Package, Users, Award, Box, ChevronRight, X } from 'lucide-react';
+import Swal from 'sweetalert2';
 
 const BulkWholesaleSupply = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    customerName: '',
+    email: '',
+    phone: '',
+    location: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/service-inquiries`, {
+        ...formData,
+        service: 'Wholesale Partnership'
+      });
+      Swal.fire({
+        title: 'Success!',
+        text: 'Your wholesale partnership inquiry has been submitted. We will contact you soon.',
+        icon: 'success',
+        background: '#1C1713',
+        color: '#fff',
+        confirmButtonColor: '#c8956c'
+      });
+      setShowModal(false);
+      setFormData({ customerName: '', email: '', phone: '', location: '', message: '' });
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        title: 'Error',
+        text: 'Failed to submit inquiry. Please try again.',
+        icon: 'error',
+        background: '#1C1713',
+        color: '#fff',
+        confirmButtonColor: '#c8956c'
+      });
+    }
+    setIsSubmitting(false);
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -197,7 +245,7 @@ They use wood to create beautiful things for the home.
         <div className="max-w-[800px] mx-auto">
           <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-5 text-center'>Are You Ready To Scale <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Business?</span></h2>
           <p className="text-[1.1rem] text-[#b5aaa0] mb-10 leading-[1.8]">We want to work with you to make sure you have a supply of products for your customers. This means you will always have items in stock and they will always be of good quality. Let us talk about how we can help your business grow with the different products we offer and the different ways we can sell them to you in bulk. We have a lot of products. We are happy to work with you to find a wholesale solution that is right, for you and your customers. </p>
-          <Link to="/services/wholesale/partnership-form" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Wholesale Partnership</Link>
+          <button onClick={() => setShowModal(true)} className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase cursor-pointer transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Wholesale Partnership</button>
         </div>
       </section>
 
@@ -218,6 +266,55 @@ They use wood to create beautiful things for the home.
           </div>
         </div>
       </section>
+
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-5 animate-[fadeIn_0.3s_ease-out]">
+          <div className="bg-[#1C1713] w-full max-w-[600px] rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.5)] border border-[#2c241c] relative animate-[slideUp_0.4s_ease-out]">
+            <button 
+              onClick={() => setShowModal(false)}
+              className="absolute top-4 right-4 bg-transparent border-none text-[#b5aaa0] hover:text-[#c8956c] cursor-pointer transition-colors duration-200"
+            >
+              <X size={24} />
+            </button>
+            <div className="p-8">
+              <h3 className="font-serif text-[2rem] text-white mb-2 text-center">Start Wholesale Partnership</h3>
+              <p className="text-[#b5aaa0] text-center mb-6 text-[0.95rem]">Fill out the details below and we'll get in touch with you shortly.</p>
+              
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+                  <div className="flex flex-col gap-1.5 text-left">
+                    <label className="text-white text-[0.85rem] font-medium">Name *</label>
+                    <input type="text" name="customerName" required value={formData.customerName} onChange={handleInputChange} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c]" placeholder="Your Name" />
+                  </div>
+                  <div className="flex flex-col gap-1.5 text-left">
+                    <label className="text-white text-[0.85rem] font-medium">Email *</label>
+                    <input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c]" placeholder="Your Email" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+                  <div className="flex flex-col gap-1.5 text-left">
+                    <label className="text-white text-[0.85rem] font-medium">Phone *</label>
+                    <input type="tel" name="phone" required value={formData.phone} onChange={handleInputChange} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c]" placeholder="Phone Number" />
+                  </div>
+                  <div className="flex flex-col gap-1.5 text-left">
+                    <label className="text-white text-[0.85rem] font-medium">Location</label>
+                    <input type="text" name="location" value={formData.location} onChange={handleInputChange} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c]" placeholder="City, Country" />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1.5 text-left">
+                  <label className="text-white text-[0.85rem] font-medium">Partnership Details *</label>
+                  <textarea name="message" required value={formData.message} onChange={handleInputChange} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c] min-h-[120px] resize-y" placeholder="Tell us about your wholesale requirements..."></textarea>
+                </div>
+                
+                <button type="submit" disabled={isSubmitting} className="mt-2 bg-[#c8956c] text-[#110e0c] border border-[#c8956c] rounded py-3 px-6 font-semibold text-[0.95rem] tracking-[1px] uppercase cursor-pointer transition-all duration-300 hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50">
+                  {isSubmitting ? 'Submitting...' : 'Submit Inquiry'}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

@@ -83,7 +83,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <SidebarItem to="/blog-category" icon={FaTags} label="Blog Category" />
             <SidebarItem to="/blogs" icon={FaBlogger} label="Blog's" />
             <SidebarItem to="/blog-fdgw" icon={FaBlogger} label="Blog-FDGW" />
-            <SidebarItem to="/testimonials" icon={FaStar} label="Testimonials" />
             <SidebarItem icon={FaBell} label="Manage Submissions">
                {[
                  {to: '/submissions/reviews', label: 'Reviews/Testimonials'},
@@ -98,7 +97,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <SidebarItem to="/leaders" icon={FaUsers} label="Our Leader's" />
             <SidebarItem to="/gallery-category" icon={FaImages} label="Gallery Category" />
             <SidebarItem to="/gallery" icon={FaImages} label="Gallery" />
-            <SidebarItem to="/submissions/user-moments" icon={FaImages} label="Gallery Submissions" />
             <SidebarItem to="/faq-category" icon={FaQuestionCircle} label="FAQ Category" />
             <SidebarItem to="/faq" icon={FaQuestionCircle} label="FAQ" />
             <SidebarItem to="/certifications" icon={FaCertificate} label="Our Certifications" />

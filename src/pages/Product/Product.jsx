@@ -19,9 +19,31 @@ const Product = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     setLoading(true);
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/products/${id}`)
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/products/${id}`)
       .then(res => {
-        setProduct(res.data);
+        const data = res.data?.data || res.data;
+        const normalizedProduct = {
+          ...data,
+          name: data.productName || data.name,
+          price: parseFloat(data.offerPrice || data.price || 0),
+          oldPrice: data.offerPrice ? parseFloat(data.price) : null,
+          image: data.mainImage || data.image,
+          gallery: [data.mainImage, data.addImg1, data.addImg2, data.addImg3, data.addImg4, data.addImg5].filter(Boolean),
+          description: data.description || '',
+          colors: data.colors ? data.colors.split(',').map(c => c.trim()) : [],
+          tags: data.tag ? data.tag.split(',').map(t => t.trim()) : [],
+        };
+        
+        if (data.craftsmanship || data.materials || data.sizes || data.hsnCode || data.productCode) {
+          normalizedProduct.specifications = {};
+          if (data.craftsmanship) normalizedProduct.specifications['Craftsmanship'] = data.craftsmanship;
+          if (data.materials) normalizedProduct.specifications['Materials'] = data.materials;
+          if (data.sizes) normalizedProduct.specifications['Sizes'] = data.sizes;
+          if (data.hsnCode) normalizedProduct.specifications['HSN Code'] = data.hsnCode;
+          if (data.productCode) normalizedProduct.specifications['Product Code'] = data.productCode;
+        }
+
+        setProduct(normalizedProduct);
         setLoading(false);
       })
       .catch(err => {

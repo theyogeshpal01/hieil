@@ -52,7 +52,7 @@ const Header = () => {
       </nav>
 
       <div className="flex items-center gap-4">
-        <button className="hidden lg:block bg-transparent border border-[#4a3e35] text-[#c8956c] py-3 px-7 text-[12px] tracking-[2px] cursor-pointer uppercase transition-all duration-300 font-medium hover:border-[#c8956c] hover:bg-[#c2a373]/5" onClick={() => navigate('/contact')}>GET QUOTE</button>
+        <button className="hidden lg:block bg-[#c8956c] text-[#110e0c] border border-[#c8956c] py-3 px-7 text-[12px] tracking-[2px] cursor-pointer uppercase font-bold transition-all duration-300 hover:bg-transparent hover:text-[#c8956c]" onClick={() => navigate('/contact')}>GET QUOTE</button>
         <button className="block lg:hidden bg-transparent border-none text-[#c8956c] cursor-pointer p-1" onClick={toggleMobileMenu} aria-label="Toggle menu">
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -99,7 +99,7 @@ const Header = () => {
                 )}
               </div>
             ))}
-            <button className="bg-transparent border border-[#c8956c] text-[#c8956c] py-3.5 px-7 text-[12px] tracking-[2px] cursor-pointer uppercase font-medium mt-5 text-center" onClick={() => { navigate('/contact'); setIsMobileMenuOpen(false); }}>GET QUOTE</button>
+            <button className="bg-[#c8956c] text-[#110e0c] border border-[#c8956c] py-3.5 px-7 text-[12px] tracking-[2px] cursor-pointer uppercase font-bold mt-5 text-center transition-all duration-300 hover:bg-transparent hover:text-[#c8956c]" onClick={() => { navigate('/contact'); setIsMobileMenuOpen(false); }}>GET QUOTE</button>
           </div>
         </div>
       )}

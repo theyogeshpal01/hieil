@@ -1,10 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import { Search, Mail } from 'lucide-react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [artisans, setArtisans] = useState([]);
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setLoading(true);
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/submissions/newsletter`, { email });
+      Swal.fire({
+        title: 'Subscribed!',
+        text: 'Thank you for subscribing to our newsletter.',
+        icon: 'success',
+        background: '#1C1713',
+        color: '#fff',
+        confirmButtonColor: '#c8956c'
+      });
+      setEmail('');
+    } catch (error) {
+      if (error.response?.data?.message?.includes('duplicate key') || error.response?.data?.message?.includes('E11000')) {
+        Swal.fire({
+          title: 'Already Subscribed',
+          text: 'This email is already in our newsletter list.',
+          icon: 'info',
+          background: '#1C1713',
+          color: '#fff',
+          confirmButtonColor: '#c8956c'
+        });
+      } else {
+        Swal.fire({
+          title: 'Error',
+          text: 'Failed to subscribe. Please try again.',
+          icon: 'error',
+          background: '#1C1713',
+          color: '#fff',
+          confirmButtonColor: '#c8956c'
+        });
+      }
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -139,11 +182,24 @@ const Blog = () => {
               <p className="text-[1.05rem] text-[#b5aaa0] leading-[1.7] max-w-[500px] mx-auto lg:mx-0">Subscribe to receive exclusive guides, market intelligence, and early access to new artisan collections curated for international buyers.</p>
             </div>
             <div className="flex-1 w-full lg:w-[450px] lg:max-w-[500px] max-w-[500px]">
-              <div className="flex flex-col lg:flex-row items-center bg-transparent lg:bg-[rgba(21,17,15,0.8)] border-none lg:border lg:border-[#4a3e35] rounded-none lg:rounded-[30px] p-0 lg:p-[5px_7px] mb-[15px] transition-all duration-300 focus-within:border-[#c8956c] gap-[15px] lg:gap-0">
+              <form onSubmit={handleSubscribe} className="flex flex-col lg:flex-row items-center bg-transparent lg:bg-[rgba(21,17,15,0.8)] border-none lg:border lg:border-[#4a3e35] rounded-none lg:rounded-[30px] p-0 lg:p-[5px_7px] mb-[15px] transition-all duration-300 focus-within:border-[#c8956c] gap-[15px] lg:gap-0">
                 <Mail size={20} className="text-[#8c8279] ml-[20px] hidden lg:block" />
-                <input type="email" placeholder="Enter your business email" className="flex-grow border-none outline-none p-[15px_25px] lg:p-[15px] text-[1rem] text-white bg-[rgba(21,17,15,0.8)] lg:bg-transparent w-full lg:w-auto rounded-[30px] lg:rounded-none border lg:border-none border-[#4a3e35]" />
-                <button type="button" className="bg-[#c8956c] border border-[#c8956c] text-[#15110F] rounded-[25px] p-[15px_30px] text-[12px] tracking-[2px] uppercase transition-all duration-300 font-semibold cursor-pointer w-full lg:w-auto hover:bg-transparent hover:text-[#c8956c]">Subscribe</button>
-              </div>
+                <input 
+                  type="email" 
+                  placeholder="Enter your business email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-grow border-none outline-none p-[15px_25px] lg:p-[15px] text-[1rem] text-white bg-[rgba(21,17,15,0.8)] lg:bg-transparent w-full lg:w-auto rounded-[30px] lg:rounded-none border lg:border-none border-[#4a3e35]" 
+                />
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="bg-[#c8956c] border border-[#c8956c] text-[#15110F] rounded-[25px] p-[15px_30px] text-[12px] tracking-[2px] uppercase transition-all duration-300 font-semibold cursor-pointer w-full lg:w-auto hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50"
+                >
+                  {loading ? 'WAIT...' : 'Subscribe'}
+                </button>
+              </form>
               <p className="text-[0.85rem] opacity-70 text-center">We respect your privacy. Unsubscribe anytime.</p>
             </div>
           </div>

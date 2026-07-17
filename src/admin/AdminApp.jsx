@@ -9,6 +9,7 @@ import InvoicePreview from './pages/InvoicePreview/InvoicePreview';
 import ReportDashboard from './pages/ReportDashboard/ReportDashboard';
 import Login from './pages/Login/Login';
 import { pageConfigs, genericData } from './config/pageConfigs';
+import './index.css';
 
 function AdminApp() {
   const [isAuthenticated, setIsAuthenticated] = useState(

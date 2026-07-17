@@ -6,14 +6,18 @@ import Swal from 'sweetalert2';
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
+  const [brands, setBrands] = useState([]);
   
   // Modal states
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showPhotoModal, setShowPhotoModal] = useState(false);
+  const [showProjectModal, setShowProjectModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isProjectSubmitting, setIsProjectSubmitting] = useState(false);
   
   const [reviewForm, setReviewForm] = useState({ userName: '', userDesignation: '', city: '', rating: 5, message: '' });
   const [photoForm, setPhotoForm] = useState({ userName: '', userEmail: '' });
+  const [projectForm, setProjectForm] = useState({ customerName: '', email: '', phone: '', location: '', message: '' });
   const [photoFiles, setPhotoFiles] = useState([]);
   const fileInputRef = useRef(null);
 
@@ -24,6 +28,12 @@ const Testimonials = () => {
         // Filter out only APPROVED testimonials
         const approved = res.data.filter(t => t.status === 'APPROVED');
         setTestimonials(approved);
+      })
+      .catch(err => console.error(err));
+
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/brands`)
+      .then(res => {
+        setBrands(res.data.data || res.data || []);
       })
       .catch(err => console.error(err));
   }, []);
@@ -89,15 +99,44 @@ const Testimonials = () => {
     }
     setIsSubmitting(false);
   };
+  const handleProjectSubmit = async (e) => {
+    e.preventDefault();
+    setIsProjectSubmitting(true);
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/service-inquiries`, {
+        ...projectForm,
+        service: 'Custom Project Development'
+      });
+      Swal.fire({
+        title: 'Success!',
+        text: 'Your project inquiry has been submitted. We will contact you soon.',
+        icon: 'success',
+        background: '#1C1713',
+        color: '#fff',
+        confirmButtonColor: '#c8956c'
+      });
+      setShowProjectModal(false);
+      setProjectForm({ customerName: '', email: '', phone: '', location: '', message: '' });
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        title: 'Error',
+        text: 'Failed to submit inquiry. Please try again.',
+        icon: 'error',
+        background: '#1C1713',
+        color: '#fff',
+        confirmButtonColor: '#c8956c'
+      });
+    }
+    setIsProjectSubmitting(false);
+  };
 
   const stats = [
     { value: '100%', label: 'Customizations' },
     { value: '100%', label: 'On-Time Delivery' }
   ];
 
-  const brands = [
-    'Brand 1', 'Brand 2', 'Brand 3', 'Brand 4', 'Brand 5'
-  ];
+
 
   return (
     <div className="font-sans text-white bg-[#15110F] overflow-x-hidden relative">
@@ -164,8 +203,12 @@ const Testimonials = () => {
           </div>
           <div className="flex justify-center flex-wrap gap-[30px]" data-aos="fade-up">
             {brands.map((brand, index) => (
-              <div className="w-[180px] h-[100px] bg-[#15110F] border border-[#2c241c] flex items-center justify-center transition-all duration-400 ease-in-out hover:border-[#c8956c] hover:shadow-[0_4px_20px_rgba(194,163,115,0.1)] hover:-translate-y-[5px] group" key={index}>
-                <span className="text-[#8c8279] font-serif font-medium text-[1.3rem] tracking-[2px] uppercase transition-colors duration-400 ease-in-out group-hover:text-[#c8956c]">{brand}</span>
+              <div className="w-[180px] h-[100px] bg-[#15110F] border border-[#2c241c] flex items-center justify-center overflow-hidden transition-all duration-400 ease-in-out hover:border-[#c8956c] hover:shadow-[0_4px_20px_rgba(194,163,115,0.1)] hover:-translate-y-[5px] group" key={index}>
+                {brand.image ? (
+                  <img src={brand.image} alt={brand.title || 'Brand'} className="max-w-[80%] max-h-[80%] object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
+                ) : (
+                  <span className="text-[#8c8279] font-serif font-medium text-[1.3rem] tracking-[2px] uppercase transition-colors duration-400 ease-in-out group-hover:text-[#c8956c]">{brand.title || `Brand ${index + 1}`}</span>
+                )}
               </div>
             ))}
           </div>
@@ -181,7 +224,7 @@ const Testimonials = () => {
               <CheckCircle className="mb-[25px] text-[#c8956c]" size={48} />
               <h2 className="font-serif text-[2.5rem] text-white mb-[20px] font-normal">Ready To Create <br /> <span style={{ color: 'var(--color-brand-base)' }}>Your Success Story?</span></h2>
               <p className="text-[1rem] text-[#b5aaa0] mb-[40px] leading-[1.8]">Join thousands of satisfied customers who have transformed their spaces with HIEIL handicrafts</p>
-              <Link to="/contact" className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Your Project</Link>
+              <button onClick={() => setShowProjectModal(true)} className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase cursor-pointer transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Your Project</button>
             </div>
 
             {/* CTA 2: Share Experience */}
@@ -288,6 +331,55 @@ const Testimonials = () => {
                 {isSubmitting ? 'Uploading...' : 'Upload & Share'}
               </button>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Project Modal */}
+      {showProjectModal && (
+        <div className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-5 animate-[fadeIn_0.3s_ease-out]">
+          <div className="bg-[#1C1713] w-full max-w-[600px] rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.5)] border border-[#2c241c] relative animate-[slideUp_0.4s_ease-out]">
+            <button 
+              onClick={() => setShowProjectModal(false)}
+              className="absolute top-4 right-4 bg-transparent border-none text-[#b5aaa0] hover:text-[#c8956c] cursor-pointer transition-colors duration-200"
+            >
+              <X size={24} />
+            </button>
+            <div className="p-8">
+              <h3 className="font-serif text-[2rem] text-white mb-2 text-center">Start Your Project</h3>
+              <p className="text-[#b5aaa0] text-center mb-6 text-[0.95rem]">Fill out the details below and we'll get in touch with you shortly.</p>
+              
+              <form onSubmit={handleProjectSubmit} className="flex flex-col gap-4">
+                <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+                  <div className="flex flex-col gap-1.5 text-left">
+                    <label className="text-white text-[0.85rem] font-medium">Name *</label>
+                    <input type="text" name="customerName" required value={projectForm.customerName} onChange={(e) => setProjectForm({...projectForm, customerName: e.target.value})} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c]" placeholder="Your Name" />
+                  </div>
+                  <div className="flex flex-col gap-1.5 text-left">
+                    <label className="text-white text-[0.85rem] font-medium">Email *</label>
+                    <input type="email" name="email" required value={projectForm.email} onChange={(e) => setProjectForm({...projectForm, email: e.target.value})} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c]" placeholder="Your Email" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+                  <div className="flex flex-col gap-1.5 text-left">
+                    <label className="text-white text-[0.85rem] font-medium">Phone *</label>
+                    <input type="tel" name="phone" required value={projectForm.phone} onChange={(e) => setProjectForm({...projectForm, phone: e.target.value})} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c]" placeholder="Phone Number" />
+                  </div>
+                  <div className="flex flex-col gap-1.5 text-left">
+                    <label className="text-white text-[0.85rem] font-medium">Location</label>
+                    <input type="text" name="location" value={projectForm.location} onChange={(e) => setProjectForm({...projectForm, location: e.target.value})} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c]" placeholder="City, Country" />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1.5 text-left">
+                  <label className="text-white text-[0.85rem] font-medium">Project Details *</label>
+                  <textarea name="message" required value={projectForm.message} onChange={(e) => setProjectForm({...projectForm, message: e.target.value})} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c] min-h-[120px] resize-y" placeholder="Tell us about your project requirements..."></textarea>
+                </div>
+                
+                <button type="submit" disabled={isProjectSubmitting} className="mt-2 bg-[#c8956c] text-[#110e0c] border border-[#c8956c] rounded py-3 px-6 font-semibold text-[0.95rem] tracking-[1px] uppercase cursor-pointer transition-all duration-300 hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50">
+                  {isProjectSubmitting ? 'Submitting...' : 'Submit Inquiry'}
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       )}

@@ -3,12 +3,19 @@ import { useParams, Link } from 'react-router-dom';
 import { ChevronRight, ArrowLeft } from 'lucide-react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Enquiry = () => {
   const { id } = useParams();
   
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    customer: '', email: '', phone: '', whatsapp: '', company: '',
+    country: '', state: '', city: '', orderType: '',
+    qty: '1', budget: '', shipping: '', port: '', gstDetails: '', deliveryDate: '', message: ''
+  });
 
   const headerRef = useScrollAnimation();
   const formRef = useScrollAnimation();
@@ -41,9 +48,61 @@ const Enquiry = () => {
     );
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Enquiry sent successfully!");
+    setIsSubmitting(true);
+    
+    // Combine fields to match backend model
+    const location = `${formData.city}, ${formData.state}, ${formData.country} (Company: ${formData.company})`;
+    const shippingDetails = `${formData.shipping} - Port: ${formData.port}`;
+    
+    const payload = {
+      product: product.productName,
+      productId: product._id,
+      customer: formData.customer,
+      email: formData.email,
+      phone: formData.phone,
+      whatsapp: formData.whatsapp,
+      location: location,
+      orderType: formData.orderType,
+      qty: formData.qty,
+      budget: formData.budget,
+      gstStatus: formData.gstDetails ? 'Provided' : 'N/A',
+      gstDetails: formData.gstDetails,
+      shipping: shippingDetails,
+      message: formData.message,
+      deliveryDate: formData.deliveryDate,
+      type: 'inquiry'
+    };
+
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/inquiries`, payload);
+      Swal.fire({
+        title: 'Enquiry Sent!',
+        text: 'Your product enquiry has been sent successfully.',
+        icon: 'success',
+        background: '#1C1713',
+        color: '#fff',
+        confirmButtonColor: '#c8956c'
+      });
+      // reset form
+      setFormData({
+        customer: '', email: '', phone: '', whatsapp: '', company: '',
+        country: '', state: '', city: '', orderType: '',
+        qty: '1', budget: '', shipping: '', port: '', gstDetails: '', deliveryDate: '', message: ''
+      });
+    } catch (error) {
+      console.error("Error submitting inquiry:", error);
+      Swal.fire({
+        title: 'Error',
+        text: 'Failed to submit enquiry. Please try again.',
+        icon: 'error',
+        background: '#1C1713',
+        color: '#fff',
+        confirmButtonColor: '#c8956c'
+      });
+    }
+    setIsSubmitting(false);
   };
 
   return (
@@ -85,23 +144,23 @@ const Enquiry = () => {
               <div className="grid grid-cols-2 gap-6 max-md:grid-cols-1">
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Full Name *</label>
-                  <input type="text" placeholder="E.g. John Doe" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="text" value={formData.customer} onChange={e => setFormData({...formData, customer: e.target.value})} placeholder="E.g. John Doe" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Email Address *</label>
-                  <input type="email" placeholder="john@example.com" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} placeholder="john@example.com" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Mobile Number *</label>
-                  <input type="tel" placeholder="+00 Phone Number" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} placeholder="+00 Phone Number" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">WhatsApp Number <span className="font-normal text-[#999999] text-[0.8rem]">(Optional)</span></label>
-                  <input type="tel" placeholder="WhatsApp Number" className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="tel" value={formData.whatsapp} onChange={e => setFormData({...formData, whatsapp: e.target.value})} placeholder="WhatsApp Number" className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2 col-span-full">
                   <label className="font-semibold text-[0.9rem] text-white">Company Name *</label>
-                  <input type="text" placeholder="Your Business Name" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="text" value={formData.company} onChange={e => setFormData({...formData, company: e.target.value})} placeholder="Your Business Name" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
               </div>
             </div>
@@ -112,7 +171,7 @@ const Enquiry = () => {
               <div className="grid grid-cols-2 gap-6 max-md:grid-cols-1">
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Country *</label>
-                  <select required defaultValue="" className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)] appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23666666\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:1em]">
+                  <select required value={formData.country} onChange={e => setFormData({...formData, country: e.target.value})} className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)] appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23666666\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:1em]">
                     <option value="" disabled>Search country...</option>
                     <option value="US">United States</option>
                     <option value="IN">India</option>
@@ -123,15 +182,15 @@ const Enquiry = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">State / Province *</label>
-                  <input type="text" placeholder="State" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="text" value={formData.state} onChange={e => setFormData({...formData, state: e.target.value})} placeholder="State" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">City *</label>
-                  <input type="text" placeholder="City" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="text" value={formData.city} onChange={e => setFormData({...formData, city: e.target.value})} placeholder="City" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Order Source *</label>
-                  <select required defaultValue="" className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)] appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23666666\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:1em]">
+                  <select required value={formData.orderType} onChange={e => setFormData({...formData, orderType: e.target.value})} className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)] appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23666666\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:1em]">
                     <option value="" disabled>Select Option</option>
                     <option value="retail">Retail</option>
                     <option value="wholesale">Wholesale</option>
@@ -148,15 +207,15 @@ const Enquiry = () => {
               <div className="grid grid-cols-2 gap-6 max-md:grid-cols-1">
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Total Quantity *</label>
-                  <input type="number" min="1" defaultValue="1" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="number" min="1" value={formData.qty} onChange={e => setFormData({...formData, qty: e.target.value})} required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Approx. Budget *</label>
-                  <input type="text" placeholder="Budget Range" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="text" value={formData.budget} onChange={e => setFormData({...formData, budget: e.target.value})} placeholder="Budget Range" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Shipping Terms *</label>
-                  <select required defaultValue="" className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)] appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23666666\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:1em]">
+                  <select required value={formData.shipping} onChange={e => setFormData({...formData, shipping: e.target.value})} className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)] appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23666666\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:1em]">
                     <option value="" disabled>FOB, CIF, etc.</option>
                     <option value="FOB">FOB</option>
                     <option value="CIF">CIF</option>
@@ -166,24 +225,24 @@ const Enquiry = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Destination Port</label>
-                  <input type="text" placeholder="Port Name" className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="text" value={formData.port} onChange={e => setFormData({...formData, port: e.target.value})} placeholder="Port Name" className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">GST Number <span className="font-normal text-[#999999] text-[0.8rem]">(Optional for International)</span></label>
-                  <input type="text" placeholder="GST Number" className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="text" value={formData.gstDetails} onChange={e => setFormData({...formData, gstDetails: e.target.value})} placeholder="GST Number" className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Requested Date</label>
-                  <input type="date" className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="date" value={formData.deliveryDate} onChange={e => setFormData({...formData, deliveryDate: e.target.value})} className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2 col-span-full">
                   <label className="font-semibold text-[0.9rem] text-white">Detailed Message *</label>
-                  <textarea placeholder="Describe your specific needs..." rows="5" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]"></textarea>
+                  <textarea value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} placeholder="Describe your specific needs..." rows="5" required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]"></textarea>
                 </div>
               </div>
             </div>
 
-            <button type="submit" className="w-full p-[1.2rem] bg-white text-black border-none rounded-md font-sans text-[1.1rem] font-semibold uppercase tracking-[1px] cursor-pointer transition-colors duration-200 mt-4 hover:bg-[#8b6b55] hover:text-white">Send Enquiry</button>
+            <button type="submit" disabled={isSubmitting} className="w-full p-[1.2rem] bg-[#c8956c] text-[#110e0c] border border-[#c8956c] rounded-md font-sans text-[1.1rem] font-semibold uppercase tracking-[1px] cursor-pointer transition-all duration-300 mt-4 hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50">{isSubmitting ? 'SENDING...' : 'Send Enquiry'}</button>
           </form>
         </div>
       </main>

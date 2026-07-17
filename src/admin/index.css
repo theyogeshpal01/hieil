@@ -25,6 +25,21 @@ button {
   font-family: var(--font-family);
 }
 
+/* Override frontend global styles leaking into admin panel */
+.layout h1, .layout h2, .layout h3, .layout h4, .layout h5, .layout h6 {
+  color: inherit !important;
+  font-family: var(--font-family) !important;
+}
+
+.layout h2 {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+body.dark-mode .layout h2 {
+  color: #e2e8f0 !important;
+}
+
 /* --- DARK MODE STYLES --- */
 body.dark-mode {
   background-color: #1a202c;

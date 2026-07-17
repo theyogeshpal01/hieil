@@ -40,7 +40,7 @@ const LatestOrders = () => {
           </div>
         ))}
       </div>
-      <button className="full-management-btn" onClick={() => navigate('/retailer-system/orders')}>Full Order Management</button>
+      <button className="full-management-btn" onClick={() => navigate('/admin/retailer-system/orders')}>Full Order Management</button>
     </div>
   );
 };

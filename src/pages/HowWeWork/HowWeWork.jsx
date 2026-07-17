@@ -139,7 +139,7 @@ const HowWeWork = () => {
       <section className="py-[100px] px-5 bg-[#15110F]">
         <div className="max-w-[800px] mx-auto text-center bg-gradient-to-br from-[#1C1713] to-[#15110F] border border-[#2c241c] py-[60px] px-[40px] rounded-[30px] shadow-[0_10px_40px_rgba(0,0,0,0.8)] relative overflow-hidden max-md:p-10" data-aos="fade-up">
           <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[#c8956c] to-[#d4a373]"></div>
-          <h2 className="text-[2.5rem] font-normal mb-5 text-white max-md:text-[2rem]">Ready To Start <br /> <span className="text-[#c8956c]">Your Order</span>?</h2>
+          <h2 className="text-[2.5rem] font-normal mb-5 text-white max-md:text-[2rem]">Ready To Start <br /> <span className="text-[#c8956c]">Your Order?</span></h2>
           <p className="text-[#b5aaa0] text-[1.1rem] leading-[1.7] mb-10 max-w-[600px] mx-auto">
             Join hundreds of satisfied clients worldwide who trust us for authentic Indian handicrafts. Let's create something beautiful together.
           </p>

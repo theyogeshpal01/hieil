@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, Heart, GitCompare, ChevronDown, ChevronUp, Share, Minus, Plus, Truck, Shirt, Ruler, Mail, MessageCircle, Fingerprint, Globe, Leaf, Shield } from 'lucide-react';
+import Swal from 'sweetalert2';
 
 const defaultAccordionData = [
   {
@@ -257,7 +258,15 @@ const ProductInfo = ({ product }) => {
           navigator.share(shareData).catch((err) => console.error("Error sharing:", err));
         } else {
           navigator.clipboard.writeText(window.location.href);
-          alert("Link copied to clipboard!");
+          Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: 'Link copied to clipboard!',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true
+          });
         }
       }}>
         <Share size={16} /> SHARE

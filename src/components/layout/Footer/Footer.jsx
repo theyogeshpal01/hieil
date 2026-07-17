@@ -1,9 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { FOOTER_LINKS, SOCIAL_LINKS } from '../../../constants/navigation';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+    setLoading(true);
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/submissions/newsletter`, { email });
+      Swal.fire({
+        title: 'Subscribed!',
+        text: 'Thank you for subscribing to our newsletter.',
+        icon: 'success',
+        background: '#1C1713',
+        color: '#fff',
+        confirmButtonColor: '#c8956c'
+      });
+      setEmail('');
+    } catch (error) {
+      if (error.response?.data?.message?.includes('duplicate key') || error.response?.data?.message?.includes('E11000')) {
+        Swal.fire({
+          title: 'Already Subscribed',
+          text: 'This email is already in our newsletter list.',
+          icon: 'info',
+          background: '#1C1713',
+          color: '#fff',
+          confirmButtonColor: '#c8956c'
+        });
+      } else {
+        Swal.fire({
+          title: 'Error',
+          text: 'Failed to subscribe. Please try again.',
+          icon: 'error',
+          background: '#1C1713',
+          color: '#fff',
+          confirmButtonColor: '#c8956c'
+        });
+      }
+    }
+    setLoading(false);
+  };
   return (
     <footer className="bg-[#110e0c] text-[#b5aaa0] font-sans pt-[80px] pb-[30px] px-[60px] max-lg:px-[40px] max-lg:pt-[60px] max-md:px-[20px] max-md:pt-[40px] max-md:pb-[20px] border-t border-white/5">
       <div className="flex justify-between gap-10 flex-wrap mb-[60px] max-w-[1400px] mx-auto max-lg:gap-[30px] max-md:flex-col max-md:gap-[40px]">
@@ -84,9 +127,22 @@ const Footer = () => {
           </div>
           
           <p className="text-[13px] leading-[1.8] mb-5 text-[#b5aaa0]">Subscribe to get news about special discounts.</p>
-          <form className="flex gap-0" onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="Email Address" className="bg-transparent border border-white/10 p-3 text-white text-[13px] w-full outline-none border-r-0 focus:border-[#c8956c]" required />
-            <button type="submit" className="bg-[#c8956c] text-[#110e0c] border border-[#c8956c] px-5 font-medium text-[11px] tracking-[1px] cursor-pointer transition-all duration-300 hover:bg-[#d4af37] hover:border-[#d4af37]">SUBSCRIBE</button>
+          <form className="flex gap-0" onSubmit={handleSubscribe}>
+            <input 
+              type="email" 
+              placeholder="Email Address" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="bg-transparent border border-white/10 p-3 text-white text-[13px] w-full outline-none border-r-0 focus:border-[#c8956c]" 
+              required 
+            />
+            <button 
+              type="submit" 
+              disabled={loading}
+              className="bg-[#c8956c] text-[#110e0c] border border-[#c8956c] px-5 font-medium text-[11px] tracking-[1px] cursor-pointer transition-all duration-300 hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50"
+            >
+              {loading ? 'WAIT...' : 'SUBSCRIBE'}
+            </button>
           </form>
         </div>
       </div>

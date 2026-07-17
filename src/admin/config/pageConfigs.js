@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaBus, FaPlane, FaCar, FaEnvelope, FaPhone, FaWhatsapp, FaFileAlt, FaTruck, FaStore, FaTrash, FaCheck, FaEye, FaDownload, FaEdit } from 'react-icons/fa';
 import * as FaIcons from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 export const genericData = [
 ];
@@ -200,61 +201,7 @@ export const pageConfigs = [
     },
     data: []
   },
-  { 
-    path: 'testimonials', 
-    title: 'Manage Testimonials', 
-    columns: {
-      title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaIcons.FaStar, null), 'REVIEW SUBMISSIONS'),
-      headers: [
-        { key: 'id', label: 'ID' },
-        { key: 'date', label: 'Date' },
-        { 
-          key: 'userDetails', 
-          label: 'User Details', 
-          render: (val, row) => React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '10px'}},
-            React.createElement('div', null,
-              React.createElement('div', {style: {fontWeight: 'bold', color: '#111827'}}, row.userName),
-              React.createElement('div', {style: {fontSize: '12px', color: '#6b7280'}}, row.userDesignation)
-            )
-          )
-        },
-        { 
-          key: 'rating', 
-          label: 'Rating',
-          render: (val) => React.createElement('div', {style: {color: '#facc15', fontSize: '16px'}}, '★'.repeat(Math.max(0, Math.min(5, Number(val) || 0))) + '☆'.repeat(Math.max(0, 5 - (Math.min(5, Number(val) || 0)))))
-        },
-        { 
-          key: 'city', 
-          label: 'City',
-          render: (val) => React.createElement('span', {style: {backgroundColor: '#06b6d4', color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', textTransform: 'uppercase'}}, val || '')
-        },
-        { key: 'message', label: 'Message', render: (val) => React.createElement('div', {style: {maxWidth: '500px', whiteSpace: 'normal', lineHeight: '1.5', color: '#4b5563', padding: '10px 0'}}, val || '') },
-        { 
-          key: 'status', 
-          label: 'Status',
-          type: 'select',
-          options: ['PENDING', 'APPROVED', 'REJECTED'],
-          render: (val) => React.createElement('span', {style: {backgroundColor: val === 'APPROVED' ? '#22c55e' : (val === 'REJECTED' ? '#ef4444' : '#eab308'), color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', textTransform: 'uppercase'}}, val || 'PENDING')
-        }
-      ],
-      hideDefaultActions: true,
-      actions: (row, { onUpdateRow, onDeleteRow }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
-        row.status !== 'APPROVED' && React.createElement('button', {
-          style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
-          onClick: () => onUpdateRow(row.id, 'status', 'APPROVED')
-        }, React.createElement(FaIcons.FaCheck, null)),
-        row.status !== 'REJECTED' && React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
-          onClick: () => onUpdateRow(row.id, 'status', 'REJECTED')
-        }, React.createElement(FaIcons.FaTimes, null)),
-        React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
-          onClick: () => onDeleteRow(row.id)
-        }, React.createElement(FaIcons.FaTrash, null))
-      )
-    },
-    data: []
-  },
+
   { 
       path: 'submissions/reviews', 
       title: 'Manage Testimonials',
@@ -409,7 +356,11 @@ export const pageConfigs = [
         title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaIcons.FaEnvelope, null), 'NEWSLETTER EMAIL LIST'),
         headers: [
           { key: 'id', label: 'ID' },
-          { key: 'subscribedAt', label: 'Subscription Date' },
+          { 
+            key: 'createdAt', 
+            label: 'Subscription Date',
+            render: (val) => val ? new Date(val).toLocaleDateString() : 'N/A'
+          },
           { 
             key: 'email', 
             label: 'Email Address', 
@@ -1200,10 +1151,38 @@ export const pageConfigs = [
         { key: 'date', label: 'Date' }
       ],
       hideDefaultActions: true,
-      actions: (row) => React.createElement('button', {
-        style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '8px', borderRadius: '4px', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', boxShadow: '0 2px 4px rgba(239, 68, 68, 0.4)'},
-        onClick: () => alert(`Delete Inquiry ID: ${row.id}`)
-      }, React.createElement(FaTrash, null))
+      actions: (row, context = {}) => React.createElement('div', {style: {display: 'flex'}},
+        React.createElement('button', {
+          style: {backgroundColor: '#10b981', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '4px 0 0 4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          title: 'Call Now',
+          onClick: () => window.open(`tel:${row.phone}`, '_self')
+        }, React.createElement(FaPhone, null)),
+        React.createElement('button', {
+          style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          title: 'Send Email',
+          onClick: () => window.open(`mailto:${row.email}`, '_blank')
+        }, React.createElement(FaEnvelope, null)),
+        React.createElement('button', {
+          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '0 4px 4px 0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          title: 'Delete',
+          onClick: () => {
+            Swal.fire({
+              title: 'Are you sure?',
+              text: "Do you want to delete this inquiry?",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#ef4444',
+              cancelButtonColor: '#6b7280',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                if(context.onDelete) context.onDelete(row);
+                else alert(`Delete Inquiry ID: ${row.id}`);
+              }
+            });
+          }
+        }, React.createElement(FaTrash, null))
+      )
     }, 
     data: []
   },

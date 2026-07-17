@@ -12,13 +12,13 @@ const PrivacyPolicy = () => {
       title: 'Information We Collect',
       content: (
         <>
-          <p className="mb-4"><strong>1.1 Information You Provide Voluntarily</strong><br />
+          <p className="mb-4 font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8]"><strong>1.1 Information You Provide Voluntarily</strong><br />
           When you interact with HIEIL &mdash; through inquiries, quote requests, bulk order forms, newsletter sign-ups, or partnership applications &mdash; you may share: Full name and professional title, Business name, GST/trade registration number, Email address and phone number, Billing and shipping address, and Product preferences.</p>
 
-          <p className="mb-4"><strong>1.2 Transaction &amp; Order Information</strong><br />
+          <p className="mb-4 font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8]"><strong>1.2 Transaction &amp; Order Information</strong><br />
           We collect details necessary to process and fulfill orders. Sensitive financial details are never stored or processed directly by HIEIL &mdash; all payment transactions are handled by certified, PCI-DSS-compliant third-party gateways.</p>
 
-          <p><strong>1.3 Technical &amp; Usage Data</strong><br />
+          <p className="font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8]"><strong>1.3 Technical &amp; Usage Data</strong><br />
           Our servers and analytics tools may automatically record your IP address, browser type, operating system, pages visited, referring URLs, and session duration. This data is used solely to improve website performance and user experience.</p>
         </>
       )
@@ -28,8 +28,8 @@ const PrivacyPolicy = () => {
       title: 'Why We Collect Your Data',
       content: (
         <>
-          <p className="mb-4">HIEIL processes personal data only for clear, legitimate purposes:</p>
-          <ul className="list-disc pl-5 space-y-2 mb-4">
+          <p className="mb-4 font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8]">HIEIL processes personal data only for clear, legitimate purposes:</p>
+          <ul className="list-disc pl-5 space-y-2 mb-4 text-[0.95rem] text-[#b5aaa0] leading-[1.8] font-sans">
             <li>Processing and fulfilling product orders and bulk wholesale requests</li>
             <li>Communicating about quotes, order status, custom product development, and export documentation</li>
             <li>Verifying the identity of merchant exporters and B2B trade partners</li>
@@ -37,7 +37,7 @@ const PrivacyPolicy = () => {
             <li>Improving website functionality through anonymized analytics</li>
             <li>Fulfilling legal, regulatory, and export compliance obligations</li>
           </ul>
-          <div className="p-4 bg-[#c8956c]/10 border-l-2 border-[#c8956c] italic">
+          <div className="p-4 bg-[#c8956c]/10 border-l-2 border-[#c8956c] italic font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8]">
             We do not use your data for profiling, targeted advertising, or any purpose unrelated to our core B2B handicraft export services.
           </div>
         </>
@@ -109,7 +109,7 @@ const PrivacyPolicy = () => {
         <div className="max-w-4xl mx-auto space-y-12">
           
           <div className="bg-[#15110F] p-8 md:p-10 border border-[#2c241c] rounded-none mb-12">
-            <p className="text-[#b5aaa0] leading-relaxed text-[15.2px]">
+            <p className="font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8] m-0">
               At HIEIL &mdash; Hind Import Export International (OPC) Pvt. Ltd. &mdash; we believe that privacy is not a formality; it is a commitment. When you engage with us through hieil.com, whether to explore our handcrafted collections, submit a trade inquiry, or partner with us as a wholesale buyer, you trust us with your information. We take that trust seriously. This Privacy Matters document explains what personal data we collect, why we collect it, how we protect it, and the rights you hold.
             </p>
           </div>
@@ -120,9 +120,9 @@ const PrivacyPolicy = () => {
                 <div className="w-12 h-12 rounded-none bg-[#1C1713] border border-[#2c241c] flex items-center justify-center text-[#c8956c]">
                   {section.icon}
                 </div>
-                <h2 className="text-2xl font-serif font-normal text-white">{section.title}</h2>
+                <h3 className="text-2xl font-serif font-normal text-white m-0">{section.title}</h3>
               </div>
-              <div className="text-[#b5aaa0] leading-relaxed text-[15.2px]">
+              <div className="font-sans text-[0.95rem] text-[#b5aaa0] leading-[1.8] m-0">
                 {section.content}
               </div>
             </div>

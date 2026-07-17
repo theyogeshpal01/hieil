@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const PartnershipForm = () => {
   useEffect(() => {
@@ -19,7 +20,17 @@ const PartnershipForm = () => {
           <p className="text-[#b5aaa0] leading-[1.6]">Fill out the form below and our wholesale team will get back to you within 24 hours to discuss partnership opportunities.</p>
         </div>
         
-        <form className="flex flex-col gap-6" onSubmit={(e) => { e.preventDefault(); alert('Application submitted successfully!'); }}>
+        <form className="flex flex-col gap-6" onSubmit={(e) => { 
+          e.preventDefault(); 
+          Swal.fire({
+            icon: 'success',
+            title: 'Application Submitted!',
+            text: 'Our wholesale team will get back to you within 24 hours.',
+            confirmButtonColor: '#c8956c',
+            background: '#1C1713',
+            color: '#ffffff'
+          }); 
+        }}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
               <label className="text-white text-[0.9rem] uppercase tracking-[1px]">Company Name *</label>
