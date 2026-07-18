@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FaFileAlt, FaCheck } from 'react-icons/fa';
 import Swal from 'sweetalert2';
-import api from '../../../services/api'; // Or just use fetch if api isn't easily importable
 
 const CreateQuotation = () => {
   const [formData, setFormData] = useState({
