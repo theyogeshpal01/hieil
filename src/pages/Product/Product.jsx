@@ -5,7 +5,7 @@ import ProductInfo from './components/ProductInfo/ProductInfo';
 import ProductDetailsTab from './components/ProductDetailsTab/ProductDetailsTab';
 import RelatedProducts from "./components/RelatedProducts/RelatedProducts";
 import useScrollAnimation from '../../hooks/useScrollAnimation';
-import axios from 'axios';
+import api from '../../config/api';
 
 const Product = () => {
   const { id } = useParams();
@@ -19,11 +19,12 @@ const Product = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     setLoading(true);
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/products/${id}`)
+    api.get(`/products/${id}`)
       .then(res => {
         const data = res.data?.data || res.data;
         const normalizedProduct = {
           ...data,
+          id: data._id || data.id,
           name: data.productName || data.name,
           price: parseFloat(data.offerPrice || data.price || 0),
           oldPrice: data.offerPrice ? parseFloat(data.price) : null,

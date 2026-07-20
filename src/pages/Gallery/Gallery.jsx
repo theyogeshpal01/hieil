@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../config/api';
 
 const Gallery = () => {
   const [userMoments, setUserMoments] = useState([]);
@@ -10,7 +10,7 @@ const Gallery = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Fetch approved user moments
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/submissions/user-moments`)
+    api.get('/submissions/user-moments')
       .then(res => {
         const approved = res.data.filter(m => m.status === 'APPROVED');
         setUserMoments(approved);
@@ -18,7 +18,7 @@ const Gallery = () => {
       .catch(err => console.error(err));
       
     // Fetch dynamic gallery items
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/gallery`)
+    api.get('/gallery')
       .then(res => {
         setGalleryItems(res.data);
         const uniqueCats = ['All categories', ...new Set(res.data.map(item => item.category).filter(Boolean))];

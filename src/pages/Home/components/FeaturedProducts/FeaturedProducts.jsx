@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
-import axios from 'axios';
+import api from '../../../../config/api';
 
 const Featuredcategories = () => {
   const [products, setProducts] = useState([]);
@@ -10,7 +10,7 @@ const Featuredcategories = () => {
 
   useEffect(() => {
     // Fetch products from backend
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/products`)
+    api.get('/products')
       .then(res => {
         if (res.data && res.data.length > 0) {
           setProducts(res.data);

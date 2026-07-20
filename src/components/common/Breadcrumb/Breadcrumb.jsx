@@ -65,27 +65,29 @@ const Breadcrumb = ({ items }) => {
   if (breadcrumbItems.length <= 1) return null;
 
   return (
-    <nav className="px-6 py-3 max-w-7xl mx-auto font-sans relative z-10" aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center m-0 p-0">
-        {breadcrumbItems.map((item, index) => {
-          const isLast = index === breadcrumbItems.length - 1 || item.isCurrent;
-          return (
-            <li key={index} className="flex items-center text-[0.85rem] text-[#b5aaa0] tracking-[0.5px]">
-              {isLast ? (
-                <span className="text-[#c8956c] font-medium" aria-current="page">
-                  {item.label}
-                </span>
-              ) : (
-                <Link to={item.href} className="text-[#b5aaa0] no-underline transition-colors duration-200 hover:text-[#c8956c]">
-                  {item.label}
-                </Link>
-              )}
-              {!isLast && <ChevronRight size={14} className="mx-2 text-[#4a3e35] opacity-70" />}
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
+    <div className="bg-[#15110F] border-b border-[#2c241c]">
+      <nav className="px-6 py-3 max-w-7xl mx-auto font-sans relative z-10" aria-label="Breadcrumb">
+        <ol className="flex flex-wrap items-center m-0 p-0">
+          {breadcrumbItems.map((item, index) => {
+            const isLast = index === breadcrumbItems.length - 1 || item.isCurrent;
+            return (
+              <li key={index} className="flex items-center text-[0.85rem] text-[#b5aaa0] tracking-[0.5px]">
+                {isLast ? (
+                  <span className="text-[#c8956c] font-medium" aria-current="page">
+                    {item.label}
+                  </span>
+                ) : (
+                  <Link to={item.href} className="text-[#b5aaa0] no-underline transition-colors duration-200 hover:text-[#c8956c]">
+                    {item.label}
+                  </Link>
+                )}
+                {!isLast && <ChevronRight size={14} className="mx-2 text-[#4a3e35] opacity-70" />}
+              </li>
+            );
+          })}
+        </ol>
+      </nav>
+    </div>
   );
 };
 

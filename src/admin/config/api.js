@@ -29,8 +29,12 @@ api.interceptors.response.use(
   },
   (error) => {
     if (error.response && error.response.status === 401) {
-      localStorage.removeItem('adminToken');
-      window.location.href = '/login';
+      // Don't redirect if it's the login request itself failing
+      if (error.config && !error.config.url.includes('/auth/login')) {
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('isAuthenticated');
+        window.location.href = '/admin';
+      }
     }
     return Promise.reject(error);
   }

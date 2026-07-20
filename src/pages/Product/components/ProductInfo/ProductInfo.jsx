@@ -72,6 +72,7 @@ const defaultAccordionData = [
 const ProductInfo = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] || null);
+  const [selectedMaterial, setSelectedMaterial] = useState('Standard');
   const [openAccordion, setOpenAccordion] = useState(null);
   const navigate = useNavigate();
 
@@ -118,7 +119,6 @@ const ProductInfo = ({ product }) => {
           <>
             {(product.oldPrice || product.price) && <span className="line-through text-[#999999] text-[1.1rem]">${Number(product.oldPrice || product.price).toFixed(2)}</span>}
             <span className="text-[#c07a5d] text-[1.4rem] font-semibold">${Number(product.offerPrice || product.price || 0).toFixed(2)}</span>
-            <span className="border border-[#c07a5d] text-[#c07a5d] text-[0.65rem] font-bold py-1 px-2 uppercase tracking-[1px]">AVAILABLE</span>
           </>
         )}
       </div>
@@ -132,18 +132,34 @@ const ProductInfo = ({ product }) => {
 
       <div className="flex items-center gap-2 text-[0.9rem]">
         <span className="font-semibold text-white">Availability:</span>
-        <span className="flex items-center gap-[0.35rem] text-[#888888]">
-          <span className="w-[6px] h-[6px] bg-[#cccccc] rounded-full"></span> Out of stock
-        </span>
+        {product.stock === 0 ? (
+          <span className="flex items-center gap-[0.35rem] text-[#ef4444]">
+            <span className="w-[6px] h-[6px] bg-[#ef4444] rounded-full"></span> Out of stock
+          </span>
+        ) : (
+          <span className="flex items-center gap-[0.35rem] text-[#22c55e]">
+            <span className="w-[6px] h-[6px] bg-[#22c55e] rounded-full"></span> In stock
+          </span>
+        )}
       </div>
 
       {/* Options */}
       <div className="flex flex-col gap-3">
         <span className="text-[0.9rem] font-semibold text-white">Material</span>
         <div className="flex gap-2">
-          <button className="bg-transparent border border-[#2c241c] py-2 px-4 font-sans text-[0.85rem] text-[#999999] cursor-not-allowed relative after:content-[''] after:absolute after:top-1/2 after:left-[10%] after:right-[10%] after:h-[1px] after:bg-[#999999] after:-rotate-10" disabled>Standard</button>
-          <button className="bg-transparent border border-[#2c241c] py-2 px-4 font-sans text-[0.85rem] text-[#999999] cursor-not-allowed relative after:content-[''] after:absolute after:top-1/2 after:left-[10%] after:right-[10%] after:h-[1px] after:bg-[#999999] after:-rotate-10" disabled>Premium</button>
-          <button className="bg-transparent border border-[#2c241c] py-2 px-4 font-sans text-[0.85rem] text-[#999999] cursor-not-allowed relative after:content-[''] after:absolute after:top-1/2 after:left-[10%] after:right-[10%] after:h-[1px] after:bg-[#999999] after:-rotate-10" disabled>Elite</button>
+          {['Standard', 'Premium', 'Elite'].map((mat) => (
+            <button 
+              key={mat}
+              className={`bg-transparent border py-2 px-4 font-sans text-[0.85rem] cursor-pointer transition-colors duration-200 ${
+                selectedMaterial === mat 
+                  ? 'border-[#c07a5d] text-[#c07a5d]' 
+                  : 'border-[#2c241c] text-[#999999] hover:border-[#c07a5d] hover:text-[#c07a5d]'
+              }`}
+              onClick={() => setSelectedMaterial(mat)}
+            >
+              {mat}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -170,20 +186,18 @@ const ProductInfo = ({ product }) => {
             <input className="flex-1 w-full border-none text-center font-sans text-[1rem] outline-none bg-transparent text-[#b5aaa0]" type="number" value={quantity} readOnly />
             <button className="bg-transparent border-none w-[35px] flex items-center justify-center cursor-pointer text-[#b5aaa0]" onClick={() => setQuantity(quantity + 1)}><Plus size={14}/></button>
           </div>
-          {product.priceOnRequest ? null : (
-            <button className="flex-1 bg-[#e8a598] text-white border-none font-sans font-semibold tracking-[1px] cursor-not-allowed max-sm:w-full" disabled>SOLD OUT</button>
-          )}
         </div>
-        {product.priceOnRequest ? (
-          <div className="flex gap-4 mt-4 max-sm:flex-col max-sm:gap-2">
-            <button className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded bg-[var(--color-brand-base)] text-black font-sans font-semibold text-[0.9rem] cursor-pointer transition-opacity duration-200 hover:opacity-90" onClick={() => navigate(`/product/${product.id}/enquiry`)}>
-              <Mail size={16} /> REQUEST QUOTE
-            </button>
-            <button className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded bg-[#25d366] text-white font-sans font-semibold text-[0.9rem] cursor-pointer transition-opacity duration-200 hover:opacity-90"><MessageCircle size={16} /> WHATSAPP INQUIRY</button>
-          </div>
-        ) : (
-          <button className="h-[44px] bg-[#15110F] border border-[#222222] text-white font-sans font-semibold tracking-[1px] cursor-pointer transition-colors duration-200 hover:bg-white hover:text-black max-sm:w-full mt-4">BUY IT NOW</button>
-        )}
+        <div className="flex gap-4 mt-4 max-sm:flex-col max-sm:gap-2">
+          <button className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded bg-[var(--color-brand-base)] text-black font-sans font-semibold text-[0.9rem] cursor-pointer transition-opacity duration-200 hover:opacity-90" onClick={() => navigate(`/product/${product.id || product._id}/enquiry`)}>
+            <Mail size={16} /> REQUEST QUOTE
+          </button>
+          <button 
+            className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded bg-[#25d366] text-white font-sans font-semibold text-[0.9rem] cursor-pointer transition-opacity duration-200 hover:opacity-90"
+            onClick={() => window.open(`https://wa.me/YOUR_NUMBER?text=Hi, I am interested in ${product.name}`, '_blank')}
+          >
+            <MessageCircle size={16} /> WHATSAPP INQUIRY
+          </button>
+        </div>
       </div>
 
       {/* Badges Section */}

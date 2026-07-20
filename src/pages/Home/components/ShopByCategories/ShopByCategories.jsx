@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
-import axios from 'axios';
+import api from '../../../../config/api';
 import { useNavigate } from 'react-router-dom';
 
 const ShopBycategories = () => {
@@ -10,7 +10,7 @@ const ShopBycategories = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/categories`)
+    api.get('/categories')
       .then(res => {
         if (res.data && res.data.length > 0) {
           setCategories(res.data);

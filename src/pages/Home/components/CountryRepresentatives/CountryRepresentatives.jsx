@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
-import axios from 'axios';
+import api from '../../../../config/api';
 
 const CountryRepresentatives = () => {
   const [representatives, setRepresentatives] = useState([]);
@@ -12,7 +12,7 @@ const CountryRepresentatives = () => {
 
   useEffect(() => {
     // Fetch leaders from backend
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/leaders`)
+    api.get('/leaders')
       .then(res => {
         if (res.data && res.data.length > 0) {
           setRepresentatives(res.data);

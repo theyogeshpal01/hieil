@@ -72,7 +72,7 @@ const AboutCTASection = () => {
           <div className="relative w-full aspect-[4/3] p-6 border border-[#2c241c] before:content-[''] before:absolute before:w-[30px] before:h-[30px] before:border before:border-[#c8956c] before:top-[-1px] before:left-[-1px] before:border-r-0 before:border-b-0 after:content-[''] after:absolute after:w-[30px] after:h-[30px] after:border after:border-[#c8956c] after:bottom-[-1px] after:right-[-1px] after:border-l-0 after:border-t-0">
             <video 
               ref={videoRef}
-              src="https://drive.google.com/file/d/1Z8MaOaJT7RUiKwoGwBnSfP5RS8pCbm2g/view?usp=drive_link" 
+              src="/about-Video.mp4" 
               className="w-full h-full object-cover rounded-sm cursor-pointer" 
               autoPlay={!showControls}
               muted={true}

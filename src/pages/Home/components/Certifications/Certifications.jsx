@@ -41,9 +41,9 @@ const Certifications = () => {
   const cardsRef = useScrollAnimation();
 
   React.useEffect(() => {
-    import('axios').then((axiosModule) => {
-      const axios = axiosModule.default;
-      axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/certifications`)
+    import('../../../../../config/api').then((apiModule) => {
+      const api = apiModule.default;
+      api.get('/certifications')
         .then(res => {
           if (res.data && res.data.length > 0) {
             setCerts(res.data);

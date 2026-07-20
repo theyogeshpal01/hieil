@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ChevronDown, ChevronUp, Grid, List, Star } from 'lucide-react';
-import axios from 'axios';
+import api from '../../config/api';
 
 // Mock filters matching Image 1 categories
 const FILTERS = [
@@ -91,7 +91,7 @@ const Shop = () => {
     window.scrollTo(0, 0);
 
     // Fetch categories
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/categories`)
+    api.get('/categories')
       .then(res => {
         if (res.data && res.data.length > 0) {
           setCategoriesList(['All categories', ...res.data.map(cat => cat.name)]);
@@ -100,7 +100,7 @@ const Shop = () => {
       .catch(err => console.error("Error fetching categories:", err));
 
     // Fetch products from backend
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/products`)
+    api.get('/products')
       .then(res => {
         if (res.data) {
           setCategories(res.data);

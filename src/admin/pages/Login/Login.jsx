@@ -36,7 +36,7 @@ const Login = ({ onLogin }) => {
           <div className="login-logo">
             <span className="logo-icon">H</span>
           </div>
-          <h2>Welcome Back</h2>
+          <h1 className="text-black text-5xl mb-4">Welcome Back</h1>
           <p>Sign in to Hieil Admin Dashboard</p>
         </div>
 

@@ -24,7 +24,7 @@ const Relatedcategories = () => {
                 
                 <div className="flex flex-col gap-1">
                   <p className="font-sans text-[0.7rem] text-[#888888] m-0 uppercase tracking-[0.5px]">{product.brand}</p>
-                  <h3 className="font-serif text-[3.5rem] text-white m-0 font-medium whitespace-nowrap overflow-hidden text-ellipsis">{product.name}</h3>
+                  <h3 className="font-serif text-[1.2rem] text-white m-0 font-medium whitespace-nowrap overflow-hidden text-ellipsis">{product.name}</h3>
                   
                   <div className="text-[#dddddd] text-[0.8rem] tracking-[2px]">
                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>

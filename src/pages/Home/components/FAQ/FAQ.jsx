@@ -27,9 +27,9 @@ const FAQ = () => {
   const gridRef = useScrollAnimation();
 
   React.useEffect(() => {
-    import('axios').then((axiosModule) => {
-      const axios = axiosModule.default;
-      axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/faqs`)
+    import('../../../../config/api').then((apiModule) => {
+      const api = apiModule.default;
+      api.get('/faqs')
         .then(res => {
           if (res.data && res.data.length > 0) {
             setFaqsData(res.data);

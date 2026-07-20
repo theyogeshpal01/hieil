@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Users } from 'lucide-react';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
-import axios from 'axios';
+import api from '../../../../config/api';
 
 const MeetOurArtisans = () => {
   const [artisans, setArtisans] = useState([]);
@@ -10,7 +10,7 @@ const MeetOurArtisans = () => {
 
   useEffect(() => {
     // Fetch artisans from backend
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/artisans`)
+    api.get('/artisans')
       .then(res => {
         if (res.data && res.data.length > 0) {
           setArtisans(res.data);

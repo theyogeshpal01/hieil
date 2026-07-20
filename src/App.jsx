@@ -10,7 +10,6 @@ import Product from './pages/Product/Product';
 import Enquiry from './pages/Enquiry/Enquiry';
 import './index.css';
 
-import Login from './pages/Login/Login';
 import Shop from './pages/Shop/Shop';
 import HowWeWork from './pages/HowWeWork/HowWeWork';
 import CustomProductDevelopment from './pages/Services/CustomProductDevelopment';
@@ -107,7 +106,6 @@ function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/testimonials" element={<Testimonials />} />
-            <Route path="/login" element={<Login />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/legal-info" element={<LegalInfo />} />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Quote, Star, PenTool, Camera, CheckCircle, X, Upload } from 'lucide-react';
-import axios from 'axios';
+import api from '../../config/api';
 import Swal from 'sweetalert2';
 
 const Testimonials = () => {
@@ -23,7 +23,7 @@ const Testimonials = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/testimonials`)
+    api.get('/testimonials')
       .then(res => {
         // Filter out only APPROVED testimonials
         const approved = res.data.filter(t => t.status === 'APPROVED');
@@ -31,7 +31,7 @@ const Testimonials = () => {
       })
       .catch(err => console.error(err));
 
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/brands`)
+    api.get('/brands')
       .then(res => {
         setBrands(res.data.data || res.data || []);
       })
@@ -42,7 +42,7 @@ const Testimonials = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/testimonials`, reviewForm);
+      await api.post('/testimonials', reviewForm);
       setShowReviewModal(false);
       setReviewForm({ userName: '', userDesignation: '', city: '', rating: 5, message: '' });
       Swal.fire({
@@ -72,12 +72,12 @@ const Testimonials = () => {
       for (const file of photoFiles) {
         const formData = new FormData();
         formData.append('file', file);
-        const uploadRes = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/upload`, formData);
+        const uploadRes = await api.post('/upload', formData);
         uploadedUrls.push(uploadRes.data.url);
       }
       
       // Submit user moment
-      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/submissions/user-moments`, {
+      await api.post('/submissions/user-moments', {
         ...photoForm,
         submittedPhotos: uploadedUrls
       });
@@ -103,7 +103,7 @@ const Testimonials = () => {
     e.preventDefault();
     setIsProjectSubmitting(true);
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/service-inquiries`, {
+      await api.post('/service-inquiries', {
         ...projectForm,
         service: 'Custom Project Development'
       });

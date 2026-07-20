@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../config/api';
 import { PackageOpen, TrendingUp, ShieldCheck, Target, Globe, Star, Clock, HeartHandshake, Search, Scale, Package, Users, Award, Box, ChevronRight, X } from 'lucide-react';
 import Swal from 'sweetalert2';
 
@@ -23,7 +23,7 @@ const BulkWholesaleSupply = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/service-inquiries`, {
+      await api.post('/service-inquiries', {
         ...formData,
         service: 'Wholesale Partnership'
       });

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../config/api';
 import { Palette, Users, TrendingUp, ShieldCheck, Target, Globe, Star, Clock, HeartHandshake, Search, Scale, Leaf, X } from 'lucide-react';
 import Swal from 'sweetalert2';
 
@@ -24,7 +24,7 @@ const CustomProductDevelopment = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/service-inquiries`, {
+      await api.post('/service-inquiries', {
         ...formData,
         service: 'Custom Product Development'
       });
@@ -56,7 +56,7 @@ const CustomProductDevelopment = () => {
     window.scrollTo(0, 0);
     
     // Fetch custom products
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/custom-products`)
+    api.get('/custom-products')
       .then(res => {
         setCustomProducts(res.data.data || res.data || []);
       })

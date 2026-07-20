@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../config/api';
 import { 
   ShieldCheck, 
   Search, 
@@ -41,7 +41,7 @@ const QualityAssurance = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/service-inquiries`, {
+      await api.post('/service-inquiries', {
         ...formData,
         service: 'Quality Assurance'
       });
