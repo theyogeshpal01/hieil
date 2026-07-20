@@ -41,7 +41,7 @@ const Certifications = () => {
   const cardsRef = useScrollAnimation();
 
   React.useEffect(() => {
-    import('../../../../../config/api').then((apiModule) => {
+    import('../../../../config/api').then((apiModule) => {
       const api = apiModule.default;
       api.get('/certifications')
         .then(res => {
