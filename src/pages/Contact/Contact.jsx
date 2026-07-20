@@ -11,6 +11,8 @@ import {
   AlertCircle,
   ChevronDown
 } from 'lucide-react';
+import api from '../../config/api';
+import Swal from 'sweetalert2';
 
 const Contact = () => {
   useEffect(() => {
@@ -88,9 +90,6 @@ const Contact = () => {
               <form className="flex flex-col gap-[25px]" onSubmit={async (e) => {
                 e.preventDefault();
                 try {
-                  const { default: axios } = await import('axios');
-                  const { default: Swal } = await import('sweetalert2');
-                  
                   // Show loading
                   Swal.fire({
                     title: 'Sending...',
@@ -101,13 +100,13 @@ const Contact = () => {
                     }
                   });
 
-                  await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/contact`, formData);
+                  await api.post('/contact', formData);
                   
                   Swal.fire('Success', 'Your message has been sent successfully. Our team will contact you soon.', 'success');
                   // Reset form
                   setFormData({ fullName: '', email: '', country: '', phone: '', subject: '', category: '', message: '' });
                 } catch (err) {
-                  import('sweetalert2').then(Swal => Swal.default.fire('Error', 'Failed to send message. Please try again.', 'error'));
+                  Swal.fire('Error', 'Failed to send message. Please try again.', 'error');
                 }
               }}>
                 <div className="flex flex-col md:flex-row gap-[25px]">

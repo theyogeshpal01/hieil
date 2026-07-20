@@ -1,6 +1,7 @@
 import React from 'react';
 import * as Icons from 'lucide-react';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
+import api from '../../../../config/api';
 
 const { ShieldCheck, BadgeCheck, FileCheck2, Landmark } = Icons;
 
@@ -41,21 +42,18 @@ const Certifications = () => {
   const cardsRef = useScrollAnimation();
 
   React.useEffect(() => {
-    import('../../../../config/api').then((apiModule) => {
-      const api = apiModule.default;
-      api.get('/certifications')
-        .then(res => {
-          if (res.data && res.data.length > 0) {
-            setCerts(res.data);
-          } else {
-            setCerts(certifications); // Fallback to static if empty
-          }
-        })
-        .catch(err => {
-          console.error('Error fetching certifications:', err);
-          setCerts(certifications);
-        });
-    });
+    api.get('/certifications')
+      .then(res => {
+        if (res.data && res.data.length > 0) {
+          setCerts(res.data);
+        } else {
+          setCerts(certifications); // Fallback to static if empty
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching certifications:', err);
+        setCerts(certifications);
+      });
   }, []);
 
   const dummyPdf = 'data:application/pdf;base64,JVBERi0xLjEKJcKlwrHDqwoKMSAwIG9iagogIDw8IC9UeXBlIC9DYXRhbG9nCiAgICAgL1BhZ2VzIDIgMCBSCiAgPj4KZW5kb2JqCgoyIDAgb2JqCiAgPDwgL1R5cGUgL1BhZ2VzCiAgICAgL0tpZHMgWzMgMCBSXQogICAgIC9Db3VudCAxCiAgICAgL01lZGlhQm94IFswIDAgMzAwIDE0NF0KICA+PgplbmRvYmoKCjMgMCBvYmoKICA8PCAgL1R5cGUgL1BhZ2UKICAgICAgL1BhcmVudCAyIDAgUgogICAgICAvUmVzb3VyY2VzCiAgICAgICA8PCAvRm9udAogICAgICAgICAgIDw8IC9GMQogICAgICAgICAgICAgICA8PCAvVHlwZSAvRm9udAogICAgICAgICAgICAgICAgICAvU3VidHlwZSAvVHlwZTEKICAgICAgICAgICAgICAgICAgL0Jhc2VGb250IC9UaW1lcy1Sb21hbgogICAgICAgICAgICAgICA+PgogICAgICAgICAgID4+CiAgICAgICA+PgogICAgICAvQ29udGVudHMgNCAwIFIKICA+PgplbmRvYmoKCjQgMCBvYmoKICA8PCAvTGVuZ3RoIDU1ID4+CnN0cmVhbQogIEJUCiAgICAvRjEgMTggVGYKICAgIDAgMCAwIHJnCiAgICAoRHVtbXkgUERGIFRlc3QpIFRqCiAgRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDUKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDE4IDAwMDAwIG4gCjAwMDAwMDAwNzcgMDAwMDAgbiAKMDAwMDAwMDE3OCAwMDAwMCBuIAowMDAwMDAwNDU3IDAwMDAwIG4gCnRyYWlsZXIKICA8PCAgL1Jvb3QgMSAwIFIKICAgICAgL1NpemUgNQogID4+CnN0YXJ0eHJlZgo1NjUKJSVFT0YK';

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
+import api from '../../../../config/api';
 
 const faqs = [
   { id: 1, question: 'Company Overview', answer: 'We are a company that sends a lot of Indian handicrafts to other countries. We want to keep the ways of making things alive while making sure our products are good enough for people all around the world to buy. Indian handicrafts are very important to us. We want people to know that we are serious, about Indian handicrafts. ' },
@@ -27,21 +28,18 @@ const FAQ = () => {
   const gridRef = useScrollAnimation();
 
   React.useEffect(() => {
-    import('../../../../config/api').then((apiModule) => {
-      const api = apiModule.default;
-      api.get('/faqs')
-        .then(res => {
-          if (res.data && res.data.length > 0) {
-            setFaqsData(res.data);
-          } else {
-            setFaqsData(faqs);
-          }
-        })
-        .catch(err => {
-          console.error('Error fetching FAQs:', err);
+    api.get('/faqs')
+      .then(res => {
+        if (res.data && res.data.length > 0) {
+          setFaqsData(res.data);
+        } else {
           setFaqsData(faqs);
-        });
-    });
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching FAQs:', err);
+        setFaqsData(faqs);
+      });
   }, []);
 
   const toggleFaq = (id) => {
