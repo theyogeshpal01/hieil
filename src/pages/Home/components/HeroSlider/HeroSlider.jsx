@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
+import LazyImage from '../../../components/common/LazyMedia/LazyImage';
+
 const slides = [
   {
     id: 1,
@@ -52,9 +54,14 @@ const HeroSlider = () => {
       {slides.map((slide, i) => (
         <div
           key={slide.id}
-          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-          style={{ backgroundImage: `url(${slide.image})` }}
-        />
+          className={`absolute inset-0 transition-opacity duration-1000 ${i === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+        >
+          <LazyImage 
+            src={slide.image} 
+            alt="Hero background" 
+            className="w-full h-full"
+          />
+        </div>
       ))}
 
       <button className="absolute top-1/2 left-4 -translate-y-1/2 z-20 flex h-12 w-12 items-center justify-center rounded-full bg-black/50 text-white transition-all hover:bg-[#c8956c]" onClick={prev} aria-label="Previous">
