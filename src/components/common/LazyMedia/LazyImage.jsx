@@ -44,12 +44,29 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick, onError }) =
   // Base classes for the container
   const containerClasses = `relative overflow-hidden ${className}`;
   
-  // Skeleton shimmer effect classes
-  const shimmerClasses = `absolute inset-0 bg-[#2a2421] before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/5 before:to-transparent`;
+  // Placeholder camera SVG background
+  const placeholderSvg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a0a0a0'%3E%3Cpath d='M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z'/%3E%3C/svg%3E`;
+  
+  // Style for the placeholder
+  const placeholderStyle = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#dcdcdc',
+    backgroundImage: `url("${placeholderSvg}")`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: '30%',
+    opacity: isLoaded ? 0 : 1,
+    transition: 'opacity 0.5s ease-in-out',
+    zIndex: 1
+  };
 
   return (
     <div ref={imgRef} className={containerClasses} style={style} onClick={onClick}>
-      {!isLoaded && <div className={shimmerClasses}></div>}
+      <div style={placeholderStyle}></div>
       
       {isVisible && (
         <img
