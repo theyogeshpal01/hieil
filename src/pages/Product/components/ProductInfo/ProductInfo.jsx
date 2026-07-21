@@ -74,7 +74,12 @@ const ProductInfo = ({ product }) => {
   const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] || null);
   const [selectedMaterial, setSelectedMaterial] = useState('Standard');
   const [openAccordion, setOpenAccordion] = useState(null);
+  const [viewers, setViewers] = useState(16);
   const navigate = useNavigate();
+
+  React.useEffect(() => {
+    setViewers(Math.floor(Math.random() * (45 - 12 + 1)) + 12);
+  }, []);
 
   if (!product) return null;
 
@@ -127,7 +132,7 @@ const ProductInfo = ({ product }) => {
 
       <div className="flex items-center gap-2 text-[0.9rem] font-medium text-white">
         <Eye size={16} />
-        <span>16 people are viewing this right now</span>
+        <span>{viewers} people are viewing this right now</span>
       </div>
 
       <div className="flex items-center gap-2 text-[0.9rem]">

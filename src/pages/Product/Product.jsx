@@ -90,7 +90,7 @@ const Product = () => {
       <ProductDetailsTab product={product} />
 
       {/* Related Products Section */}
-      <RelatedProducts currentProductId={product.id} />
+      <RelatedProducts currentProductId={product.id} category={product.category} subCategory={product.subCategory} />
 
     </main>
   );

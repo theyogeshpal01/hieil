@@ -1,10 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { categories } from "../../../../data/products";
+import api from '../../../../config/api';
 
-const Relatedcategories = () => {
-  // Use the first 4 categories as related categories for now
-  const relatedcategories = categories.slice(0, 4);
+const RelatedProducts = ({ currentProductId, category, subCategory }) => {
+  const [relatedProducts, setRelatedProducts] = useState([]);
+
+  useEffect(() => {
+    api.get('/products')
+      .then(res => {
+        const data = Array.isArray(res.data) ? res.data : (res.data?.data || []);
+        
+        // Filter out current product
+        let filtered = data.filter(p => (p._id || p.id) !== currentProductId);
+        
+        // Try to match both category and subCategory
+        let exactMatch = filtered.filter(p => p.category === category && p.subCategory === subCategory);
+        
+        // If not enough exact matches, fallback to same category
+        if (exactMatch.length < 4) {
+          const catMatch = filtered.filter(p => p.category === category && p.subCategory !== subCategory);
+          exactMatch = [...exactMatch, ...catMatch];
+        }
+        
+        // If still not enough, just use whatever is left
+        if (exactMatch.length < 4) {
+          const others = filtered.filter(p => p.category !== category);
+          exactMatch = [...exactMatch, ...others];
+        }
+
+        // Map data to match component needs
+        const mappedProducts = exactMatch.slice(0, 4).map(p => ({
+          ...p,
+          id: p._id || p.id,
+          name: p.productName || p.name,
+          image: p.mainImage || p.image || "https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop",
+          price: parseFloat(p.offerPrice || p.price || 0),
+          oldPrice: p.offerPrice ? parseFloat(p.price) : null,
+          brand: p.category || 'HANDCRAFTED',
+          discount: p.discount || null
+        }));
+
+        setRelatedProducts(mappedProducts);
+      })
+      .catch(err => console.error("Error fetching related products", err));
+  }, [currentProductId, category, subCategory]);
+
+  if (relatedProducts.length === 0) return null;
 
   return (
     <section className="py-16 px-8 bg-[#15110F]">
@@ -12,7 +53,7 @@ const Relatedcategories = () => {
         <h2 className="text-center font-serif text-[1.5rem] text-white mb-12 uppercase tracking-[1px]">YOU MAY <br /> <span style={{ color: 'var(--color-brand-base)' }}>ALSO LIKE</span></h2>
         
         <div className="grid grid-cols-4 gap-8 max-[900px]:grid-cols-2 max-[500px]:grid-cols-1">
-          {relatedcategories.map(product => (
+          {relatedProducts.map(product => (
             <div key={product.id} className="flex flex-col">
               <Link to={`/product/${product.id}`} className="group no-underline text-inherit">
                 <div className="relative bg-[#15110F] p-8 flex items-center justify-center mb-4 h-[280px] rounded">
@@ -50,4 +91,4 @@ const Relatedcategories = () => {
   );
 };
 
-export default Relatedcategories;
+export default RelatedProducts;

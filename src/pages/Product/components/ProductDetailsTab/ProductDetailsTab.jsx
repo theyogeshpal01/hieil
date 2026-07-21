@@ -16,32 +16,31 @@ const ProductDetailsTab = ({ product }) => {
 
           <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden max-md:h-[300px]">
             <img 
-              src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=1200&auto=format&fit=crop" 
-              alt="Ceramic items" 
+              src={product?.addImg1 || product?.mainImage || "https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=1200&auto=format&fit=crop"} 
+              alt={product?.productName || "Product image"} 
               className="w-full h-full object-cover"
               onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }}
             />
             <div className="absolute top-1/2 left-[5%] -translate-y-1/2 bg-white/90 p-8 rounded max-md:left-[2%] max-md:right-[2%] max-md:text-center">
-              <h3 className="font-serif text-[1.8rem] text-black mb-4 m-0">Ceramic Items</h3>
-              <p className="m-0 mb-2 text-[#b5aaa0]">Dinner Bowls - Ribbed Pattern</p>
-              <p className="m-0 mb-2 text-[#b5aaa0]">200ml Cream Ceramic</p>
-              <p className="m-0 mb-2 text-[#b5aaa0]">Handcrafted</p>
+              <h3 className="font-serif text-[1.8rem] text-black mb-4 m-0">{product?.category || "Product Details"}</h3>
+              {product?.subCategory && <p className="m-0 mb-2 text-[#b5aaa0]">{product.subCategory}</p>}
+              {product?.materials && <p className="m-0 mb-2 text-[#b5aaa0]">{product.materials}</p>}
+              {product?.craftsmanship && <p className="m-0 mb-2 text-[#b5aaa0]">{product.craftsmanship}</p>}
+              {!product?.subCategory && !product?.materials && !product?.craftsmanship && (
+                <>
+                  <p className="m-0 mb-2 text-[#b5aaa0]">High Quality Material</p>
+                  <p className="m-0 mb-2 text-[#b5aaa0]">Handcrafted with precision</p>
+                  <p className="m-0 mb-2 text-[#b5aaa0]">Durable and Stylish</p>
+                </>
+              )}
             </div>
           </div>
 
-          {product?.highlights ? (
+          {product?.highlight || product?.craftHighlight ? (
             <ul className="pl-5 marker:text-[#c07a5d]">
-              {product.highlights.map((highlight, idx) => {
-                const colonIndex = highlight.indexOf(':');
-                if (colonIndex > -1) {
-                  const boldText = highlight.substring(0, colonIndex + 1);
-                  const restText = highlight.substring(colonIndex + 1);
-                  return (
-                    <li key={idx} className="text-[0.95rem] leading-[1.6] mb-4"><strong>{boldText}</strong>{restText}</li>
-                  );
-                }
-                return <li key={idx} className="text-[0.95rem] leading-[1.6] mb-4">{highlight}</li>;
-              })}
+              {product.highlight && <li className="text-[0.95rem] leading-[1.6] mb-4"><strong>Highlight:</strong> {product.highlight}</li>}
+              {product.craftHighlight && <li className="text-[0.95rem] leading-[1.6] mb-4"><strong>Craftsmanship:</strong> {product.craftHighlight}</li>}
+              {product.sizes && <li className="text-[0.95rem] leading-[1.6] mb-4"><strong>Available Sizes:</strong> {product.sizes}</li>}
             </ul>
           ) : (
             <ul className="pl-5 marker:text-[#c07a5d]">
