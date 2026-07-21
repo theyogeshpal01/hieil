@@ -91,7 +91,7 @@ const ProductGallery = ({ product }) => {
       {/* Zoom Result Pane */}
       {isZooming && (
         <div 
-          className="absolute left-[105%] top-0 w-[500px] h-[600px] border border-[#2c241c] bg-[#15110F] bg-no-repeat bg-[size:250%] z-[100] shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
+          className="absolute left-[105%] top-0 w-[500px] h-[600px] border border-[#2c241c] bg-[#15110F] bg-no-repeat bg-[size:250%] z-[100] shadow-[0_4px_20px_rgba(0,0,0,0.5)] max-lg:hidden"
           style={{
             backgroundImage: `url(${images[activeIndex]})`,
             backgroundPosition: `${bgPos.x} ${bgPos.y}`

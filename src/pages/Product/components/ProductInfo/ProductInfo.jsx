@@ -115,7 +115,7 @@ const ProductInfo = ({ product }) => {
 
   return (
     <div className="flex flex-col gap-5 font-sans text-[#b5aaa0]">
-      <h1 className="font-serif text-[3.5rem] text-white font-medium m-0 leading-[1.3]">{product.productName || product.name}</h1>
+      <h1 className="font-serif text-[3.5rem] max-sm:text-[2rem] max-sm:leading-tight text-white font-medium m-0 leading-[1.3]">{product.productName || product.name}</h1>
       
       <div className="flex items-center gap-4">
         {product.priceOnRequest ? (

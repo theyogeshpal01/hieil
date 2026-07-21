@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProductDetailsTab = ({ product }) => {
   return (
-    <section className="p-8 bg-[#15110F]">
+    <section className="p-8 max-sm:p-4 bg-[#15110F]">
       <div className="max-w-[1200px] mx-auto">
         <div className="flex justify-center border-b border-[#2c241c] mb-8">
           <button className="bg-transparent border-none font-serif text-[0.95rem] py-4 px-8 cursor-pointer tracking-[1px] relative text-[#c07a5d] after:content-[''] after:absolute after:-bottom-[1px] after:left-0 after:w-full after:h-[2px] after:bg-[#c07a5d]">DESCRIPTION</button>
@@ -21,7 +21,7 @@ const ProductDetailsTab = ({ product }) => {
               className="w-full h-full object-cover"
               onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }}
             />
-            <div className="absolute top-1/2 left-[5%] -translate-y-1/2 bg-white/90 p-8 rounded max-md:left-[2%] max-md:right-[2%] max-md:text-center">
+            <div className="absolute top-1/2 left-[5%] -translate-y-1/2 bg-white/90 p-8 max-sm:p-4 rounded max-md:left-[2%] max-md:right-[2%] max-md:text-center">
               <h3 className="font-serif text-[1.8rem] text-black mb-4 m-0">{product?.category || "Product Details"}</h3>
               {product?.subCategory && <p className="m-0 mb-2 text-[#b5aaa0]">{product.subCategory}</p>}
               {product?.materials && <p className="m-0 mb-2 text-[#b5aaa0]">{product.materials}</p>}

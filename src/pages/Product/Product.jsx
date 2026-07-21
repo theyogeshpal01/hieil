@@ -71,9 +71,9 @@ const Product = () => {
       </div>
 
       {/* Main Top Section: Gallery + Info */}
-      <section className="py-16 px-8">
+      <section className="py-16 px-8 max-sm:py-8 max-sm:px-4">
         <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-2 gap-16 max-[900px]:grid-cols-1 max-[900px]:gap-12">
+          <div className="grid grid-cols-2 gap-16 max-[900px]:grid-cols-1 max-[900px]:gap-8">
             {/* Left Column: Image Gallery */}
             <div ref={galleryRef} className="relative z-20" style={{opacity:0,transform:'translateX(-40px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
               <ProductGallery product={product} />
