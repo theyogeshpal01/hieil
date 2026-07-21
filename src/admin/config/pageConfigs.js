@@ -987,7 +987,7 @@ export const pageConfigs = [
       addButtonText: 'Add FAQ',
       headers: [
         { key: 'id', label: '#' },
-        { key: 'category', label: 'Category', formLabel: 'Select Category', type: 'select', options: ['Information', 'Shipping', 'Returns', 'Pricing', 'General'] },
+        { key: 'category', label: 'Category', formLabel: 'Select Category', type: 'select', options: [] },
         { key: 'question', label: 'Question', placeholder: ' ' },
         { key: 'answer', label: 'Answer', type: 'textarea', placeholder: ' ' }
       ],
