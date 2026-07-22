@@ -23,15 +23,13 @@ const ShopBycategories = () => {
   const renderItem = (category) => {
     if (!category) return null;
     return (
-      <div onClick={() => navigate(`/products/${encodeURIComponent(category.name)}`)} key={category._id || category.id} className="relative overflow-hidden rounded cursor-pointer border border-transparent transition-colors duration-400 ease-in-out group hover:border-[#c8956c] pb-[133.33%] w-full">
-        <div className="absolute inset-0">
-          <LazyImage src={category.image} alt={category.name} className="w-full h-full [&>img]:transition-transform [&>img]:duration-600 [&>img]:ease-in-out group-hover:[&>img]:scale-105" />
-          <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-[linear-gradient(to_top,rgba(0,0,0,0.95)_0%,rgba(0,0,0,0.7)_40%,rgba(0,0,0,0)_100%)] flex flex-col justify-end p-8 pt-6 pointer-events-none">
-            <div className="translate-y-[30px] transition-transform duration-400 ease-in-out group-hover:translate-y-0">
-              <span className="block font-sans text-[0.7rem] tracking-[2px] text-[#c8956c] mb-1.5 uppercase">{category.tag || 'LATEST DESIGNS'}</span>
-              <h3 className="font-serif text-[1.4rem] text-white m-0 uppercase">{category.name}</h3>
-              <p className="font-sans text-[0.85rem] text-[#b5aaa0] mt-3 mb-0 leading-[1.5] opacity-0 max-h-0 transition-all duration-400 ease-in-out group-hover:opacity-100 group-hover:max-h-[100px]">{category.description}</p>
-            </div>
+      <div onClick={() => navigate(`/products/${encodeURIComponent(category.name)}`)} key={category._id || category.id} className="relative overflow-hidden rounded cursor-pointer border border-transparent transition-colors duration-400 ease-in-out group hover:border-[#c8956c] aspect-[3/4] w-full">
+        <LazyImage src={category.image} alt={category.name} className="absolute inset-0 w-full h-full [&>img]:transition-transform [&>img]:duration-600 [&>img]:ease-in-out group-hover:[&>img]:scale-105" />
+        <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-[linear-gradient(to_top,rgba(0,0,0,0.95)_0%,rgba(0,0,0,0.7)_40%,rgba(0,0,0,0)_100%)] flex flex-col justify-end p-8 pt-6 pointer-events-none z-10">
+          <div className="translate-y-[30px] transition-transform duration-400 ease-in-out group-hover:translate-y-0">
+            <span className="block font-sans text-[0.7rem] tracking-[2px] text-[#c8956c] mb-1.5 uppercase">{category.tag || 'LATEST DESIGNS'}</span>
+            <h3 className="font-serif text-[1.4rem] text-white m-0 uppercase">{category.name}</h3>
+            <p className="font-sans text-[0.85rem] text-[#b5aaa0] mt-3 mb-0 leading-[1.5] opacity-0 max-h-0 transition-all duration-400 ease-in-out group-hover:opacity-100 group-hover:max-h-[100px]">{category.description}</p>
           </div>
         </div>
       </div>
@@ -48,19 +46,8 @@ const ShopBycategories = () => {
         <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0]">Explore our diverse range of authentic Indian handicrafts</p>
       </div>
 
-      <div className="max-w-[1200px] mx-auto flex justify-between gap-6 max-md:flex-wrap max-sm:flex-col" ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
-        <div className="flex-1 flex flex-col gap-6 max-md:flex-[1_1_45%] max-sm:flex-[1_1_100%]">
-          {renderItem(categories[0])}
-          {renderItem(categories[3])}
-        </div>
-        <div className="flex-1 flex flex-col gap-6 max-md:flex-[1_1_45%] max-sm:flex-[1_1_100%]">
-          {renderItem(categories[1])}
-          {renderItem(categories[4])}
-        </div>
-        <div className="flex-1 flex flex-col gap-6 max-md:flex-[1_1_45%] max-sm:flex-[1_1_100%]">
-          {renderItem(categories[2])}
-          {renderItem(categories[5])}
-        </div>
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" ref={gridRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
+        {categories.slice(0, 6).map(category => renderItem(category))}
       </div>
     </section>
   );
