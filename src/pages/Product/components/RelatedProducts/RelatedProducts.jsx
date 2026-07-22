@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import LazyImage from '../../../../components/common/LazyMedia/LazyImage';
 import api from '../../../../config/api';
 
 const RelatedProducts = ({ currentProductId, category, subCategory }) => {
@@ -60,7 +61,7 @@ const RelatedProducts = ({ currentProductId, category, subCategory }) => {
                   {product.discount && (
                     <span className="absolute top-[10px] left-[10px] bg-[#d86c4f] text-white text-[0.7rem] font-semibold py-[0.2rem] px-[0.4rem]">{product.discount}</span>
                   )}
-                  <img src={product.image} alt={product.name} className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+                  <LazyImage src={product.image} alt={product.name} className="w-full h-full [&>img]:object-contain [&>img]:transition-transform [&>img]:duration-300 group-hover:[&>img]:scale-105" />
                 </div>
                 
                 <div className="flex flex-col gap-1">

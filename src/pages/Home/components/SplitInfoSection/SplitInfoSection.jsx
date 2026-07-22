@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
+import LazyImage from '../../../../components/common/LazyMedia/LazyImage';
 
 const SplitInfoSection = ({ 
   subtitle, 
@@ -16,7 +17,7 @@ const SplitInfoSection = ({
   return (
     <section className={`relative w-full max-w-[1200px] mx-auto my-20 min-h-[500px] rounded-2xl overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.6)] flex max-lg:flex-col ${reverse ? 'flex-row-reverse' : ''}`}>
       <div className="absolute inset-0 z-0 max-lg:relative max-lg:min-h-[350px] after:absolute after:inset-0 after:bg-gradient-to-r after:from-[rgba(21,17,15,0.95)] after:via-[rgba(21,17,15,0.7)] after:to-[rgba(21,17,15,0.3)]" ref={imgRef} style={{opacity:0,transform:'translateX(-40px)',transition:'opacity 0.7s ease,transform 0.7s ease'}}>
-        <img src={imageSrc} alt={imageAlt} className="w-full h-full object-cover" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+        <LazyImage src={imageSrc} alt={imageAlt} className="w-full h-full [&>img]:object-cover" />
       </div>
       
       <div className="relative z-10 py-20 px-16 flex flex-col justify-center max-w-[700px] max-lg:p-12 max-lg:px-8" ref={contentRef} style={{opacity:0,transform:'translateX(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>

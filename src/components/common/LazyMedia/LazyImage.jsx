@@ -12,6 +12,38 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
     }
   }, [src]);
 
+  // Format image URLs properly
+  const formattedSrc = React.useMemo(() => {
+    if (!src) return '';
+    if (src.startsWith('data:')) return src;
+    
+    // If it's a localhost URL and we are not on localhost, we might want to replace it, 
+    // but typically we just prepend the VITE_API_URL if it's a relative path.
+    if (src.startsWith('/')) {
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      return `${baseUrl}${src}`;
+    }
+    // If it's an uploads path without slash
+    if (src.startsWith('uploads/')) {
+      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      return `${baseUrl}/${src}`;
+    }
+
+    // If it's a localhost URL and we are not on localhost (live site), replace it.
+    // We check if VITE_API_URL is provided, we can just replace the origin.
+    try {
+      if (src.includes('localhost') || src.includes('127.0.0.1')) {
+        const urlObj = new URL(src);
+        const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+        return `${baseUrl}${urlObj.pathname}${urlObj.search}`;
+      }
+    } catch (e) {
+      // invalid URL
+    }
+
+    return src;
+  }, [src]);
+
   const handleLoad = () => {
     setIsLoaded(true);
   };
@@ -49,9 +81,9 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
         HIEIL
       </div>
       
-      {src && !hasError && (
+      {formattedSrc && !hasError && (
         <img
-          src={src}
+          src={formattedSrc}
           alt={alt || "Image"}
           onLoad={handleLoad}
           onError={handleError}

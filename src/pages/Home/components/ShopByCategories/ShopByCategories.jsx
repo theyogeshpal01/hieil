@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 import api from '../../../../config/api';
 import { useNavigate } from 'react-router-dom';
+import LazyImage from '../../../../components/common/LazyMedia/LazyImage';
 
 const ShopBycategories = () => {
   const [categories, setCategories] = useState([]);
@@ -23,7 +24,7 @@ const ShopBycategories = () => {
     if (!category) return null;
     return (
       <div onClick={() => navigate(`/products/${encodeURIComponent(category.name)}`)} key={category._id || category.id} className="relative overflow-hidden rounded cursor-pointer aspect-[3/4] border border-transparent transition-colors duration-400 ease-in-out group hover:border-[#c8956c]">
-        <img src={category.image || '/cat-bluepottery.jpg'} alt={category.name} className="w-full h-full object-cover transition-transform duration-600 ease-in-out group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+        <LazyImage src={category.image} alt={category.name} className="w-full h-full [&>img]:transition-transform [&>img]:duration-600 [&>img]:ease-in-out group-hover:[&>img]:scale-105" />
         <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-[linear-gradient(to_top,rgba(0,0,0,0.95)_0%,rgba(0,0,0,0.7)_40%,rgba(0,0,0,0)_100%)] flex flex-col justify-end p-8 pt-6 pointer-events-none">
           <div className="translate-y-[30px] transition-transform duration-400 ease-in-out group-hover:translate-y-0">
             <span className="block font-sans text-[0.7rem] tracking-[2px] text-[#c8956c] mb-1.5 uppercase">{category.tag || 'LATEST DESIGNS'}</span>

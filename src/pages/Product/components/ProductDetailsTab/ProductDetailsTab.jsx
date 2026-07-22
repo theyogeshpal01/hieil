@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import LazyImage from '../../../../components/common/LazyMedia/LazyImage';
 
 const ProductDetailsTab = ({ product }) => {
   return (
@@ -19,11 +20,10 @@ const ProductDetailsTab = ({ product }) => {
           )}
 
           <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden max-md:h-[300px]">
-            <img 
-              src={product?.addImg1 || product?.mainImage || "https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=1200&auto=format&fit=crop"} 
+            <LazyImage 
+              src={product?.addImg1 || product?.mainImage} 
               alt={product?.productName || "Product image"} 
-              className="w-full h-full object-cover"
-              onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }}
+              className="w-full h-full [&>img]:object-cover"
             />
             <div className="absolute top-1/2 left-[5%] -translate-y-1/2 bg-white/90 p-8 max-sm:p-4 rounded max-md:left-[2%] max-md:right-[2%] max-md:text-center">
               <h3 className="font-serif text-[1.8rem] text-black mb-4 m-0">{product?.category || "Product Details"}</h3>

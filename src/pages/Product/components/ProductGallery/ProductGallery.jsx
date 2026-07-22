@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
+import LazyImage from '../../../../components/common/LazyMedia/LazyImage';
 
 const ProductGallery = ({ product }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -55,7 +56,7 @@ const ProductGallery = ({ product }) => {
               className={`w-[70px] h-[80px] border rounded cursor-pointer overflow-hidden transition-all duration-200 bg-[#15110F] p-1 ${index === activeIndex ? 'border-[#c07a5d]' : 'border-transparent'}`}
               onClick={() => setActiveIndex(index)}
             >
-              <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover rounded-[2px]" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+              <LazyImage src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full [&>img]:object-cover rounded-[2px]" />
             </div>
           ))}
         </div>
@@ -72,13 +73,13 @@ const ProductGallery = ({ product }) => {
         onMouseLeave={() => setIsZooming(false)}
         onMouseMove={handleMouseMove}
       >
-        <img 
-          ref={imgRef}
-          src={images[activeIndex]} 
-          alt="Main product view" 
-          className="w-full h-full object-cover" 
-          onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} 
-        />
+        <div ref={imgRef} className="w-full h-full">
+          <LazyImage 
+            src={images[activeIndex]} 
+            alt="Product view" 
+            className="w-full h-full [&>img]:object-contain"
+          />
+        </div>
         
         {isZooming && (
           <div 

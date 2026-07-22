@@ -39,7 +39,7 @@ const Featuredcategories = () => {
             <div key={product._id} className="relative overflow-hidden rounded aspect-[3/4] group">
               <Link to={'/product/' + product._id} className="block w-full h-full no-underline">
                 <div className="w-full h-full relative">
-                  <LazyImage src={product.mainImage || 'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?q=80&w=500&auto=format&fit=crop'} alt={product.productName} className="w-full h-full [&>img]:transition-transform [&>img]:duration-[600ms] [&>img]:ease-in-out group-hover:[&>img]:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+                  <LazyImage src={product.mainImage} alt={product.productName} className="w-full h-full [&>img]:transition-transform [&>img]:duration-[600ms] [&>img]:ease-in-out group-hover:[&>img]:scale-105" />
                   <div className="absolute bottom-0 left-0 right-0 pt-8 px-5 pb-5 bg-gradient-to-t from-[rgba(0,0,0,0.9)] to-transparent flex flex-col">
                     <span className="font-sans text-[0.65rem] tracking-[2px] text-[#c8956c] mb-1.5 uppercase">{product.category || 'ARTISAN'}</span>
                     <h3 className="font-serif text-[1.1rem] text-white m-0 uppercase">{product.productName}</h3>

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ChevronDown, ChevronUp, Grid, List, Star } from 'lucide-react';
+import { ChevronDown, ChevronUp, Grid, List, Star, Search, Filter, X, ChevronRight, SlidersHorizontal } from 'lucide-react';
+import LazyImage from '../../components/common/LazyMedia/LazyImage';
 import api from '../../config/api';
 
 // Mock filters matching Image 1 categories
@@ -284,7 +285,7 @@ const Shop = () => {
                   <span className="absolute top-[1rem] left-[1rem] bg-[#c8956c] text-[#000000] font-sans text-[0.7rem] font-semibold py-[0.25rem] px-[0.5rem] tracking-[0.5px] z-10 rounded-[4px]">{product.tag || '-5%'}</span>
                   
                   <Link to={`/product/${product._id}`} className="flex w-full h-full items-center justify-center">
-                    <img src={product.mainImage || 'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?q=80&w=500&auto=format&fit=crop'} alt={product.productName} className="w-full h-full object-cover transition-transform duration-400 group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop"; }} />
+                    <LazyImage src={product.mainImage} alt={product.productName} className="w-full h-full [&>img]:object-cover [&>img]:transition-transform [&>img]:duration-400 group-hover:[&>img]:scale-105" />
                   </Link>
                 </div>
                 
