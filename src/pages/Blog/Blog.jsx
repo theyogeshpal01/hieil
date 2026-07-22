@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Search, Mail } from 'lucide-react';
+import LazyImage from '../../components/common/LazyMedia/LazyImage';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -125,7 +126,7 @@ const Blog = () => {
               {blogs.filter(b => activeTab === 'All Posts' || b.category === activeTab).map(blog => (
                 <div key={blog._id} className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] overflow-hidden transition-all duration-400 hover:border-[#4a3e35] hover:-translate-y-[5px]">
                   <div className="h-[240px] overflow-hidden">
-                    <img src={blog.image || '/blog1.png'} alt={blog.title} className="w-full h-full object-cover transition-transform duration-400 hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="/blog2.png"; }} />
+                    <LazyImage src={blog.image || '/blog1.png'} alt={blog.title} className="w-full h-full [&>img]:object-cover [&>img]:transition-transform [&>img]:duration-400 group-hover:[&>img]:scale-105" />
                   </div>
                   <div className="p-[25px]">
                     <span className="text-[#c8956c] font-sans text-[0.7rem] tracking-[2px] uppercase mb-2 block">{blog.tag || blog.category}</span>
@@ -155,7 +156,7 @@ const Blog = () => {
               <div className="flex flex-col lg:flex-row bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] overflow-hidden transition-all duration-400 hover:border-[#4a3e35] hover:-translate-y-[5px] hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] group" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                 <div className="flex-[0_0_45%] relative min-h-[300px] lg:min-h-[400px] overflow-hidden bg-[#3e332a]">
                   {/* Using an image to showcase the artisan */}
-                  <img src={artisan.preview || '/artisan1.png'} alt={artisan.title} className="w-full h-full object-cover absolute top-0 left-0 transition-transform duration-400 opacity-80 group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="/artisan2.png"; }} />
+                  <LazyImage src={artisan.preview || '/artisan1.png'} alt={artisan.title} className="w-full h-full [&>img]:object-cover absolute top-0 left-0 [&>img]:transition-transform [&>img]:duration-400 [&>img]:opacity-80 group-hover:[&>img]:scale-105" />
                   <span className="absolute top-[20px] left-[20px] bg-[var(--color-brand-base)] text-white p-[6px_15px] rounded-[20px] text-[0.8rem] font-semibold tracking-[1px] uppercase">Artisan Work</span>
                 </div>
                 <div className="p-[30px_20px] lg:p-[50px_40px] flex-1">

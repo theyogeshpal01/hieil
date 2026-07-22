@@ -4,6 +4,7 @@ import { ChevronRight, ArrowLeft } from 'lucide-react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import LazyImage from '../../components/common/LazyMedia/LazyImage';
 
 const Enquiry = () => {
   const { id } = useParams();
@@ -128,7 +129,7 @@ const Enquiry = () => {
             <div className="mt-10 flex flex-col items-center gap-4">
               <span className="text-[0.9rem] font-semibold text-[#8b6b55] uppercase tracking-[1px]">Inquiry Details For</span>
               <div className="flex items-center gap-6 bg-[#15110F] border border-[#2c241c] py-4 px-6 rounded-lg text-left">
-                <img src={product.mainImage || 'https://images.unsplash.com/photo-1578500494198-246f612d3b3d?q=80&w=500&auto=format&fit=crop'} alt={product.productName} className="w-20 h-20 object-cover rounded" />
+                <LazyImage src={product.mainImage} alt={product.productName} className="w-20 h-20 [&>img]:object-cover rounded" />
                 <div className="productCardInfo">
                   <h3 className="font-serif text-white text-[1.2rem] mb-1">{product.productName}</h3>
                   <p className="text-[0.85rem] text-[#888888] m-0">SKU: {product.specifications ? product.specifications['SKU / Code'] : product.sku || 'N/A'}</p>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Users } from 'lucide-react';
 import useScrollAnimation from '../../../../hooks/useScrollAnimation';
 import api from '../../../../config/api';
+import LazyImage from '../../../../components/common/LazyMedia/LazyImage';
 
 const MeetOurArtisans = () => {
   const [artisans, setArtisans] = useState([]);
@@ -34,7 +35,7 @@ const MeetOurArtisans = () => {
           return (
             <div key={artisan._id} className="bg-[#15110F] rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col group">
               <div className="w-full h-[340px] overflow-hidden">
-                <img src={artisan.preview || '/artisan1.png'} alt={artisan.title} className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105" onError={(e) => { e.target.onerror = null; e.target.src="/artisan2.jpg"; }} />
+                <LazyImage src={artisan.preview || '/artisan1.png'} alt={artisan.title} className="w-full h-full [&>img]:object-cover [&>img]:transition-transform [&>img]:duration-500 [&>img]:ease-in-out group-hover:[&>img]:scale-105" />
               </div>
               
               <div className="p-10 max-md:p-6">
