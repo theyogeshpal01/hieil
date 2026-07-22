@@ -10,9 +10,13 @@ const ProductDetailsTab = ({ product }) => {
 
         <div className="text-[#b5aaa0] font-sans">
           <h2 className="font-serif text-[1.4rem] text-white mb-4 font-medium">About <br /> <span style={{ color: 'var(--color-brand-base)' }}>this item</span></h2>
-          <p className="text-[0.95rem] leading-[1.6] mb-8">
-            {product?.description || "These bowl set are very light to hold for microwave utensils and the smooth round edges make you touch them with delight. Unlike ceramic bowls or plastic bowl our unbreakable wheat straw bowls are made of a robust and light material that protects the bowl from breaking if it is dropped, get this must-have tableware item that is both eco-friendly and stylish for your home."}
-          </p>
+          {product?.description ? (
+            <div className="text-[0.95rem] leading-[1.6] mb-8 [&>p]:m-0 [&>p]:mb-4 last:[&>p]:mb-0" dangerouslySetInnerHTML={{__html: product.description}}></div>
+          ) : (
+            <p className="text-[0.95rem] leading-[1.6] mb-8">
+              These bowl set are very light to hold for microwave utensils and the smooth round edges make you touch them with delight. Unlike ceramic bowls or plastic bowl our unbreakable wheat straw bowls are made of a robust and light material that protects the bowl from breaking if it is dropped, get this must-have tableware item that is both eco-friendly and stylish for your home.
+            </p>
+          )}
 
           <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden max-md:h-[300px]">
             <img 
@@ -38,9 +42,9 @@ const ProductDetailsTab = ({ product }) => {
 
           {product?.highlight || product?.craftHighlight ? (
             <ul className="pl-5 marker:text-[#c07a5d]">
-              {product.highlight && <li className="text-[0.95rem] leading-[1.6] mb-4"><strong>Highlight:</strong> {product.highlight}</li>}
-              {product.craftHighlight && <li className="text-[0.95rem] leading-[1.6] mb-4"><strong>Craftsmanship:</strong> {product.craftHighlight}</li>}
-              {product.sizes && <li className="text-[0.95rem] leading-[1.6] mb-4"><strong>Available Sizes:</strong> {product.sizes}</li>}
+              {product.highlight && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Highlight:</strong> <span dangerouslySetInnerHTML={{__html: product.highlight}} className="[&>p]:m-0" /></li>}
+              {product.craftHighlight && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Craftsmanship:</strong> <span dangerouslySetInnerHTML={{__html: product.craftHighlight}} className="[&>p]:m-0" /></li>}
+              {product.sizes && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Available Sizes:</strong> <span dangerouslySetInnerHTML={{__html: product.sizes}} className="[&>p]:m-0" /></li>}
             </ul>
           ) : (
             <ul className="pl-5 marker:text-[#c07a5d]">

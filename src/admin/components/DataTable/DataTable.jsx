@@ -39,11 +39,19 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow }) => {
                   if ((col.key === 'created' || col.key === 'date' || col.key === 'createdAt') && !cellValue && row.createdAt) {
                     cellValue = new Date(row.createdAt).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
                   }
+                  // Format image URLs
+                  const formatImageUrl = (url) => {
+                    if (!url) return 'https://via.placeholder.com/50';
+                    if (url.startsWith('http') || url.startsWith('data:')) return url;
+                    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+                    return url.startsWith('/') ? `${baseUrl}${url}` : `${baseUrl}/${url}`;
+                  };
+
                   let displayValue = cellValue;
                   if (col.render) {
                     displayValue = col.render(cellValue, row);
                   } else if (col.key.toLowerCase().includes('image') || col.key.toLowerCase().includes('logo')) {
-                    displayValue = <img src={cellValue || 'https://via.placeholder.com/50'} alt="img" style={{width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px'}} />;
+                    displayValue = <img src={formatImageUrl(cellValue)} alt="img" style={{width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px'}} />;
                   } else if (col.key === 'status') {
                     const statusClass = `status-${String(cellValue).toLowerCase()}`;
                     displayValue = <span className={`status-badge ${statusClass}`}>{cellValue}</span>;

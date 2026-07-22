@@ -408,7 +408,19 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
       </div>
       
       {loading ? (
-        <div style={{color: 'white', padding: '20px', textAlign: 'center'}}>Loading data...</div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '300px', width: '100%' }}>
+          <div style={{
+            width: '50px', height: '50px', borderRadius: '50%',
+            border: '4px solid #e2e8f0', borderTopColor: '#3b82f6',
+            animation: 'spin 1s linear infinite'
+          }}></div>
+          <style>{`
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `}</style>
+        </div>
       ) : (
         <DataTable 
           columns={columns} 

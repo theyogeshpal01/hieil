@@ -1,4 +1,12 @@
 import React from 'react';
+import { FaUsers, FaList } from 'react-icons/fa';
+
+const formatImageUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http')) return url;
+  const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+  return url.startsWith('/') ? `${baseUrl}${url}` : `${baseUrl}/${url}`;
+};
 import { FaBus, FaPlane, FaCar, FaEnvelope, FaPhone, FaWhatsapp, FaFileAlt, FaTruck, FaStore, FaTrash, FaCheck, FaEye, FaDownload, FaEdit } from 'react-icons/fa';
 import * as FaIcons from 'react-icons/fa';
 import Swal from 'sweetalert2';
@@ -116,7 +124,7 @@ export const pageConfigs = [
         { key: 'discount', label: 'Discount', hideInForm: true },
         { key: 'stock', label: 'Stock', formLabel: 'Available Stock *', placeholder: 'Enter Product Stock' },
         { key: 'craftHighlight', label: 'Highlight / Craft', type: 'rich-text', formLabel: 'Highlight / Craft (Optional)', required: false },
-        { key: 'mainImage', label: 'Main Image', type: 'file', formLabel: 'Product Main Image *', render: (val) => val ? React.createElement('img', { src: val, style: { width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2e8f0' } }) : 'No image' },
+        { key: 'mainImage', label: 'Main Image', type: 'file', formLabel: 'Product Main Image *', render: (val) => val ? React.createElement('img', { src: formatImageUrl(val), style: { width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2e8f0' } }) : 'No image' },
         { 
           key: 'additionalImages', 
           label: 'Additional Images', 
@@ -125,7 +133,7 @@ export const pageConfigs = [
             const images = [row.addImg1, row.addImg2, row.addImg3, row.addImg4, row.addImg5].filter(Boolean);
             if (images.length === 0) return 'No images';
             return React.createElement('div', { style: { display: 'flex', gap: '5px', flexWrap: 'wrap' } }, 
-              images.map((img, i) => React.createElement('img', { key: i, src: img, style: { width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2e8f0' } }))
+              images.map((img, i) => React.createElement('img', { key: i, src: formatImageUrl(img), style: { width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2e8f0' } }))
             );
           }
         },
@@ -589,7 +597,7 @@ export const pageConfigs = [
           label: 'Image', 
           type: 'file', 
           formLabel: 'Product Image',
-          render: (val) => React.createElement('img', { src: val || 'https://via.placeholder.com/50', alt: 'Product', style: { width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' } })
+          render: (val) => React.createElement('img', { src: formatImageUrl(val) || 'https://via.placeholder.com/50', alt: 'Product', style: { width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' } })
         },
         { key: 'title', label: 'Title', formLabel: 'Product Title', placeholder: 'e.g. Custom Furniture' },
         { key: 'priceText', label: 'Price Text', formLabel: 'Price / Starting Text', placeholder: 'e.g. Starting ₹15,000', fullWidth: true },
@@ -619,7 +627,7 @@ export const pageConfigs = [
           label: 'Image', 
           type: 'file', 
           formLabel: 'Category Image',
-          render: (val) => React.createElement('img', { src: val || 'https://via.placeholder.com/50', alt: 'Category', style: { width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' } })
+          render: (val) => React.createElement('img', { src: formatImageUrl(val) || 'https://via.placeholder.com/50', alt: 'Category', style: { width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' } })
         },
         { key: 'title', label: 'Title', formLabel: 'Category Title', placeholder: 'e.g. Rugs & Carpets' },
         { key: 'pricingInfo', label: 'Pricing Info', formLabel: 'Price / Pricing Info', placeholder: 'e.g. Bulk Pricing Available / MOQ: 25 pcs', fullWidth: true },
@@ -726,7 +734,7 @@ export const pageConfigs = [
           formLabel: 'Brand Image',
           subtext: 'Recommended size: 500x500px | Max 2MB',
           render: (val) => React.createElement('img', {
-            src: val || 'https://via.placeholder.com/120x60?text=THE+CONTRACT', 
+            src: formatImageUrl(val) || 'https://via.placeholder.com/120x60?text=THE+CONTRACT', 
             alt: 'Brand', 
             style: {maxWidth: '120px', maxHeight: '60px', objectFit: 'contain'}
           }) 
@@ -835,7 +843,7 @@ export const pageConfigs = [
           type: 'file', 
           formLabel: 'Video/Image File',
           render: (val) => React.createElement('img', {
-            src: val || 'https://via.placeholder.com/80x60?text=Img', 
+            src: formatImageUrl(val) || 'https://via.placeholder.com/80x60?text=Img', 
             alt: 'Preview', 
             style: {width: '80px', height: '60px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e5e7eb'}
           }) 
@@ -878,7 +886,7 @@ export const pageConfigs = [
           type: 'file', 
           formLabel: 'Leader Photo',
           render: (val) => React.createElement('img', {
-            src: val || 'https://via.placeholder.com/60x60?text=Photo', 
+            src: formatImageUrl(val) || 'https://via.placeholder.com/60x60?text=Photo', 
             alt: 'Leader', 
             style: {width: '60px', height: '60px', objectFit: 'cover', borderRadius: '50%'}
           }) 
@@ -916,7 +924,7 @@ export const pageConfigs = [
       headers: [
         { key: 'id', label: '#' },
         { key: 'category', label: 'Category', type: 'select', options: ['HANDCRAFTED WOODEN PRODUCTS', 'HANDCRAFTED METAL PRODUCTS'], formLabel: 'Select Category', placeholder: ' ' },
-        { key: 'image', label: 'Image', type: 'file', formLabel: 'Upload Image', render: (val) => React.createElement('img', {src: val || 'https://via.placeholder.com/60x40?text=Img', alt: 'Gallery', style: {width: '60px', height: '40px', objectFit: 'cover', borderRadius: '4px'}}) },
+        { key: 'image', label: 'Image', type: 'file', formLabel: 'Upload Image', render: (val) => React.createElement('img', {src: formatImageUrl(val) || 'https://via.placeholder.com/60x40?text=Img', alt: 'Gallery', style: {width: '60px', height: '40px', objectFit: 'cover', borderRadius: '4px'}}) },
         { key: 'title', label: 'Title', formLabel: 'Title', placeholder: ' ' },
         { key: 'tagline', label: 'Tagline', formLabel: 'Tagline (e.g. 200+ DESIGNS)', placeholder: '200+ DESIGNS' }
       ],
