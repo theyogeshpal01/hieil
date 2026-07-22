@@ -55,12 +55,12 @@ const FAQ = () => {
           <p className="font-sans text-[1.1rem] text-[#b5aaa0] m-0">Find answers to common questions about our categories and services</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex overflow-x-auto gap-4 mb-12 pb-2 w-full md:flex-wrap md:justify-center md:overflow-visible [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
           {['All', ...new Set(faqsData.map(faq => faq.category).filter(Boolean))].map((cat, i) => (
             <button
               key={i}
               onClick={() => { setActiveCategory(cat); setOpenId(null); }}
-              className={`px-6 py-2 rounded-full font-sans text-[0.95rem] font-medium transition-all duration-300 border ${
+              className={`whitespace-nowrap flex-shrink-0 px-6 py-2 rounded-full font-sans text-[0.95rem] font-medium transition-all duration-300 border ${
                 activeCategory === cat 
                   ? 'bg-[#c07a5d] text-white border-[#c07a5d]' 
                   : 'bg-transparent text-[#b5aaa0] border-[#2c241c] hover:border-[#c07a5d] hover:text-[#c07a5d]'
