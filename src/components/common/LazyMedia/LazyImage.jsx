@@ -3,12 +3,15 @@ import React, { useState, useEffect } from 'react';
 const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [retryCount, setRetryCount] = useState(0);
+  const maxRetries = 3;
 
   // Reset state if src changes
   useEffect(() => {
     if (src) {
       setIsLoaded(false);
       setHasError(false);
+      setRetryCount(0);
     }
   }, [src]);
 
@@ -46,11 +49,19 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
 
   const handleLoad = () => {
     setIsLoaded(true);
+    setHasError(false);
   };
 
   const handleError = () => {
-    setHasError(true);
-    setIsLoaded(true);
+    if (retryCount < maxRetries) {
+      // Retry after a short delay
+      setTimeout(() => {
+        setRetryCount(prev => prev + 1);
+      }, 1000); // 1 second delay before retry
+    } else {
+      setHasError(true);
+      setIsLoaded(true);
+    }
   };
 
   const containerClasses = `relative overflow-hidden ${className}`;
@@ -83,6 +94,7 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
       
       {formattedSrc && !hasError && (
         <img
+          key={`${formattedSrc}-${retryCount}`} // Change key to force re-render on retry
           src={formattedSrc}
           alt={alt || "Image"}
           onLoad={handleLoad}
