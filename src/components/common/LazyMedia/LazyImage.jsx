@@ -20,12 +20,12 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
     // If it's a localhost URL and we are not on localhost, we might want to replace it, 
     // but typically we just prepend the VITE_API_URL if it's a relative path.
     if (src.startsWith('/')) {
-      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const baseUrl = import.meta.env.VITE_API_URL || 'https://hieil.com/api-v1/api';
       return `${baseUrl}${src}`;
     }
     // If it's an uploads path without slash
     if (src.startsWith('uploads/')) {
-      const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const baseUrl = import.meta.env.VITE_API_URL || 'https://hieil.com/api-v1/api';
       return `${baseUrl}/${src}`;
     }
 
@@ -34,7 +34,7 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
     try {
       if (src.includes('localhost') || src.includes('127.0.0.1')) {
         const urlObj = new URL(src);
-        const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+        const baseUrl = import.meta.env.VITE_API_URL || 'https://hieil.com/api-v1/api';
         return `${baseUrl}${urlObj.pathname}${urlObj.search}`;
       }
     } catch (e) {
