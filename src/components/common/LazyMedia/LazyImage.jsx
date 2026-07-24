@@ -40,11 +40,6 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
         const baseUrl = import.meta.env.VITE_API_URL || 'https://hieil.com/api-v1/api';
         return `${baseUrl}${urlObj.pathname}${urlObj.search}`;
       }
-      
-      // Fix for previously uploaded images containing api.hieil.com which might be broken
-      if (src.includes('api.hieil.com')) {
-        return src.replace('api.hieil.com', 'hieil.com');
-      }
     } catch (e) {
       // invalid URL
     }
