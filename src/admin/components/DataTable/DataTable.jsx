@@ -2,8 +2,32 @@ import React from 'react';
 import { FaEdit, FaTrash, FaPlus, FaCheck, FaTimes, FaList, FaUsers } from 'react-icons/fa';
 import './DataTable.css';
 
-const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow }) => {
+const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulkDelete }) => {
   const hasActionColumn = !(columns.hideDefaultActions && !columns.actions);
+  const [selectedIds, setSelectedIds] = React.useState([]);
+
+  const handleSelectAll = (e) => {
+    if (e.target.checked) {
+      setSelectedIds(data.map(row => row.id || row._id));
+    } else {
+      setSelectedIds([]);
+    }
+  };
+
+  const handleSelectRow = (id) => {
+    if (selectedIds.includes(id)) {
+      setSelectedIds(selectedIds.filter(selectedId => selectedId !== id));
+    } else {
+      setSelectedIds([...selectedIds, id]);
+    }
+  };
+
+  const handleBulkDeleteClick = async () => {
+    if (onBulkDelete && selectedIds.length > 0) {
+      await onBulkDelete(selectedIds);
+      setSelectedIds([]);
+    }
+  };
   
   return (
     <div className="data-table-container">
@@ -11,17 +35,29 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow }) => {
         <div className="table-title">
           {columns.icon === 'users' ? <FaUsers className="title-icon" /> : <FaList className="title-icon" />} {columns.title || 'Data List'}
         </div>
-        {columns.addButtonText && (
-          <button className="add-btn" onClick={onAdd}>
-            <FaPlus /> {columns.addButtonText}
-          </button>
-        )}
+        <div style={{ display: 'flex', gap: '10px' }}>
+          {selectedIds.length > 0 && onBulkDelete && (
+            <button className="add-btn" style={{ backgroundColor: '#ef4444' }} onClick={handleBulkDeleteClick}>
+              <FaTrash /> Delete Selected ({selectedIds.length})
+            </button>
+          )}
+          {columns.addButtonText && (
+            <button className="add-btn" onClick={onAdd}>
+              <FaPlus /> {columns.addButtonText}
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="table-responsive">
         <table className="data-table">
           <thead>
             <tr style={columns.headerStyle || {}}>
+              {onBulkDelete && (
+                <th style={{ width: '40px', textAlign: 'center' }}>
+                  <input type="checkbox" onChange={handleSelectAll} checked={data.length > 0 && selectedIds.length === data.length} />
+                </th>
+              )}
               {columns.headers.filter(col => !col.hideInTable).map((col, index) => (
                 <th key={index} style={col.minWidth ? { minWidth: col.minWidth } : {}}>{col.label}</th>
               ))}
@@ -29,9 +65,16 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((row, rowIndex) => (
+            {data.map((row, rowIndex) => {
+              const rowId = row.id || row._id;
+              return (
               <React.Fragment key={rowIndex}>
               <tr key={`row-${rowIndex}`}>
+                {onBulkDelete && (
+                  <td style={{ textAlign: 'center' }}>
+                    <input type="checkbox" checked={selectedIds.includes(rowId)} onChange={() => handleSelectRow(rowId)} />
+                  </td>
+                )}
                 {columns.headers.filter(col => !col.hideInTable).map((col, colIndex) => {
                   let cellValue = row[col.key];
                   
@@ -89,7 +132,7 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow }) => {
                 </tr>
               )}
               </React.Fragment>
-            ))}
+            )})}
             {data.length === 0 && (
               <tr>
                 <td colSpan={columns.headers.length + (hasActionColumn ? 1 : 0)} className="no-data">

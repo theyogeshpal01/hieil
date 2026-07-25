@@ -179,6 +179,34 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
     });
   };
 
+  const handleBulkDelete = (ids) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `You want to delete ${ids.length} selected items?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#ef4444',
+      cancelButtonColor: '#3b82f6',
+      confirmButtonText: 'Yes, delete them!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        if (apiEndpoint) {
+          try {
+            await api.post(`${apiEndpoint}/bulk-delete`, { ids });
+            fetchData();
+            Swal.fire('Deleted!', 'The items have been deleted.', 'success');
+          } catch (error) {
+            console.error('Error deleting in bulk:', error);
+            Swal.fire('Error', 'Failed to delete the items', 'error');
+          }
+        } else {
+          setTableData(tableData.filter(item => !ids.includes(item.id)));
+          Swal.fire('Deleted!', 'The items have been deleted.', 'success');
+        }
+      }
+    });
+  };
+
   const handleEdit = (row) => {
     setFormData(row);
     setEditingId(row.id);
@@ -428,6 +456,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
           onEdit={handleEdit}
           onDelete={handleDelete}
           onUpdateRow={handleUpdateRow}
+          onBulkDelete={handleBulkDelete}
           onAdd={handleAdd}
         />
       )}

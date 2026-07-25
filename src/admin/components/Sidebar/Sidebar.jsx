@@ -77,11 +77,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
     <div className={`fixed top-0 left-0 h-screen bg-[#212b36] dark:bg-[#1a1c23] text-white flex flex-col transition-all duration-300 ease-in-out z-[1000] overflow-x-hidden ${isOpen ? 'w-[260px]' : 'w-[70px] max-md:-translate-x-full'} max-md:w-[260px] max-md:${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
       <div className={`flex items-center p-5 border-b border-[#2d3748] dark:border-gray-800 flex-shrink-0 ${!isOpen ? 'justify-center max-md:justify-start' : ''}`}>
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 cursor-pointer" onClick={() => window.location.href = '/admin/profile'}>
           <img src="https://i.pravatar.cc/150?img=11" alt="Admin" className={`rounded-full border-2 border-white object-cover ${isOpen ? 'w-[50px] h-[50px] mr-4' : 'w-[40px] h-[40px] mr-0 max-md:w-[50px] max-md:h-[50px] max-md:mr-4'}`} />
         </div>
         {isOpen && (
-          <div className="overflow-hidden whitespace-nowrap">
+          <div className="overflow-hidden whitespace-nowrap cursor-pointer" onClick={() => window.location.href = '/admin/profile'}>
             <h3 className="m-0 text-[16px] font-semibold">HIEIL ADMIN</h3>
             <p className="m-0 text-[13px] text-gray-400">hieil@gmail.com</p>
           </div>
@@ -97,7 +97,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <SidebarItem isSidebarOpen={isOpen} to="/subcategories" icon={FaList} label="Subcategory's" />
             <SidebarItem isSidebarOpen={isOpen} to="/products" icon={FaShoppingCart} label="Product's" />
             <SidebarItem isSidebarOpen={isOpen} to="/custom-products" icon={FaCogs} label="Custom Products" />
-            <SidebarItem isSidebarOpen={isOpen} to="/wholesale-categories" icon={FaLayerGroup} label="Wholesale Categories" />
+            {/* <SidebarItem isSidebarOpen={isOpen} to="/wholesale-categories" icon={FaLayerGroup} label="Wholesale Categories" /> */}
             <SidebarItem isSidebarOpen={isOpen} to="/blog-category" icon={FaTags} label="Blog Category" />
             <SidebarItem isSidebarOpen={isOpen} to="/blogs" icon={FaBlogger} label="Blog's" />
             <SidebarItem isSidebarOpen={isOpen} to="/blog-fdgw" icon={FaBlogger} label="Blog-FDGW" />

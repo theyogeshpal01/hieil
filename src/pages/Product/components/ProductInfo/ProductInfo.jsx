@@ -97,7 +97,7 @@ const ProductInfo = ({ product }) => {
               {Object.entries(product.specifications).map(([key, value], idx, arr) => (
                 <tr key={key} className="max-sm:border-b max-sm:border-[#2c241c] last:max-sm:border-none">
                   <th className={`py-3 px-4 font-medium text-white w-[40%] bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:bg-transparent max-sm:pb-1 ${idx === arr.length - 1 ? '' : 'border-b border-[#2c241c]'}`}>{key}</th>
-                  <td className={`py-3 px-4 text-[#b5aaa0] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0 ${idx === arr.length - 1 ? '' : 'border-b border-[#2c241c]'}`}>{value}</td>
+                  <td className={`py-3 px-4 text-[#b5aaa0] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0 ${idx === arr.length - 1 ? '' : 'border-b border-[#2c241c]'}`} dangerouslySetInnerHTML={{ __html: value }}></td>
                 </tr>
               ))}
             </tbody>

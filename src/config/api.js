@@ -9,4 +9,28 @@ const api = axios.create({
   }
 });
 
+let requestCount = 0;
+
+api.interceptors.request.use(config => {
+  requestCount++;
+  window.dispatchEvent(new CustomEvent('globalLoader', { detail: true }));
+  return config;
+});
+
+api.interceptors.response.use(response => {
+  requestCount--;
+  if (requestCount <= 0) { 
+    requestCount = 0; 
+    window.dispatchEvent(new CustomEvent('globalLoader', { detail: false })); 
+  }
+  return response;
+}, error => {
+  requestCount--;
+  if (requestCount <= 0) { 
+    requestCount = 0; 
+    window.dispatchEvent(new CustomEvent('globalLoader', { detail: false })); 
+  }
+  return Promise.reject(error);
+});
+
 export default api;

@@ -1,0 +1,53 @@
+.global-loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(21, 17, 15, 0.75); /* Dark background with opacity matching theme */
+  backdrop-filter: blur(4px);
+  z-index: 99999; /* Stay on top of everything */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.loader-content p {
+  color: #c8956c; /* Theme brand color */
+  font-family: serif;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  margin: 0;
+  animation: pulse 1.5s infinite;
+}
+
+.hieil-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(200, 149, 108, 0.3);
+  border-radius: 50%;
+  border-top-color: #c8956c;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

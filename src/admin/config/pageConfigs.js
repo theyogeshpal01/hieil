@@ -123,7 +123,7 @@ export const pageConfigs = [
         { key: 'offerPrice', label: 'Offer Price', formLabel: 'Offer Price (Optional)', placeholder: 'Enter Offer Price', required: false },
         { key: 'discount', label: 'Discount', hideInForm: true },
         { key: 'stock', label: 'Stock', formLabel: 'Available Stock *', placeholder: 'Enter Product Stock' },
-        { key: 'craftHighlight', label: 'Highlight / Craft', type: 'rich-text', formLabel: 'Highlight / Craft (Optional)', required: false },
+        { key: 'craftHighlight', label: 'Craftsmanship', type: 'rich-text', formLabel: 'Craftsmanship (Optional)', required: false, minWidth: '600px' },
         { key: 'mainImage', label: 'Main Image', type: 'file', formLabel: 'Product Main Image *', render: (val) => val ? React.createElement('img', { src: formatImageUrl(val), style: { width: '40px', height: '40px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2e8f0' } }) : 'No image' },
         { 
           key: 'additionalImages', 
@@ -144,7 +144,6 @@ export const pageConfigs = [
         { key: 'addImg5', label: 'Add Img 5', type: 'file', formLabel: 'Additional Image 5 (Optional)', hideInTable: true, required: false },
         { key: 'aboutProduct', label: 'About Product', hideInForm: true },
         { key: 'description', label: 'Description', type: 'rich-text', formLabel: 'Product Description (Optional)', minWidth: '400px', required: false },
-        { key: 'craftsmanship', label: 'Craftsmanship', type: 'rich-text', formLabel: 'Craftsmanship & Care (Optional)', required: false },
         { key: 'shipping', label: 'Shipping', type: 'rich-text', formLabel: 'Shipping & Returns (Optional)', required: false },
       ]
     },
@@ -240,7 +239,7 @@ export const pageConfigs = [
             label: 'City',
             render: (val) => React.createElement('span', {style: {backgroundColor: '#06b6d4', color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', textTransform: 'uppercase'}}, val || '')
           },
-          { key: 'message', label: 'Message', render: (val) => React.createElement('div', {style: {maxWidth: '500px', whiteSpace: 'normal', lineHeight: '1.5', color: '#4b5563', padding: '10px 0'}}, val || '') },
+          { key: 'message', label: 'Message', minWidth: '450px', render: (val) => React.createElement('div', {style: {maxWidth: '500px', whiteSpace: 'normal', lineHeight: '1.5', color: '#4b5563', padding: '10px 0'}}, val || '') },
           { 
             key: 'status', 
             label: 'Status',

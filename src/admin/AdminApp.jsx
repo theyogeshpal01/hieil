@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
-import Dashboard from './pages/Dashboard/Dashboard';
-import GenericList from './pages/GenericList/GenericList';
-import SubAdminMgmt from './pages/SubAdminMgmt/SubAdminMgmt';
-import CreateQuotation from './pages/CreateQuotation/CreateQuotation';
-import InvoicePreview from './pages/InvoicePreview/InvoicePreview';
-import ReportDashboard from './pages/ReportDashboard/ReportDashboard';
-import Login from './pages/Login/Login';
+
+const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));
+const GenericList = lazy(() => import('./pages/GenericList/GenericList'));
+const SubAdminMgmt = lazy(() => import('./pages/SubAdminMgmt/SubAdminMgmt'));
+const CreateQuotation = lazy(() => import('./pages/CreateQuotation/CreateQuotation'));
+const InvoicePreview = lazy(() => import('./pages/InvoicePreview/InvoicePreview'));
+const ReportDashboard = lazy(() => import('./pages/ReportDashboard/ReportDashboard'));
+const Login = lazy(() => import('./pages/Login/Login'));
+const AdminProfile = lazy(() => import('./pages/AdminProfile/AdminProfile'));
 import { pageConfigs, genericData } from './config/pageConfigs';
 import './index.css';
 
@@ -23,39 +25,45 @@ function AdminApp() {
   return (
     <Routes>
         <Route element={<Layout />}>
-          <Route index element={<Dashboard />} />
-          
-          {/* Create Quotation Routes */}
-          <Route path="retailer-system/product-inquiries/create-quotation/:id" element={<CreateQuotation />} />
-          <Route path="inquiry-system/product-inquiries/create-quotation/:id" element={<CreateQuotation />} />
-          
-          {/* Invoice Preview Routes */}
-          <Route path="retailer-system/invoices/preview/:id" element={<InvoicePreview />} />
-          <Route path="inquiry-system/invoices/preview/:id" element={<InvoicePreview />} />
-          
-          {/* Dynamically render all the CRUD pages based on sidebar links */}
-          {pageConfigs.map((config, index) => (
-            <Route 
-              key={index} 
-              path={config.path} 
-              element={
-                config.path === 'sub-admin-mgmt' ? (
-                  <SubAdminMgmt />
-                ) : config.path === 'inquiry-system/reports' ? (
-                  <ReportDashboard />
-                ) : (
-                  <GenericList 
-                    title={config.title} 
-                    subtitle={config.subtitle}
-                    columns={config.columns} 
-                    data={config.data || genericData} 
-                    config={config}
+          <Route path="/*" element={
+            <Suspense fallback={<div style={{height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}><div className="hieil-spinner"></div></div>}>
+              <Routes>
+                <Route index element={<Dashboard />} />
+                <Route path="profile" element={<AdminProfile />} />
+                
+                {/* Create Quotation Routes */}
+                <Route path="retailer-system/product-inquiries/create-quotation/:id" element={<CreateQuotation />} />
+                <Route path="inquiry-system/product-inquiries/create-quotation/:id" element={<CreateQuotation />} />
+                
+                {/* Invoice Preview Routes */}
+                <Route path="retailer-system/invoices/preview/:id" element={<InvoicePreview />} />
+                <Route path="inquiry-system/invoices/preview/:id" element={<InvoicePreview />} />
+                
+                {/* Dynamically render all the CRUD pages based on sidebar links */}
+                {pageConfigs.map((config, index) => (
+                  <Route 
+                    key={index} 
+                    path={config.path} 
+                    element={
+                      config.path === 'sub-admin-mgmt' ? (
+                        <SubAdminMgmt />
+                      ) : config.path === 'inquiry-system/reports' ? (
+                        <ReportDashboard />
+                      ) : (
+                        <GenericList 
+                          title={config.title} 
+                          subtitle={config.subtitle}
+                          columns={config.columns} 
+                          data={config.data || genericData} 
+                          config={config}
+                        />
+                      )
+                    } 
                   />
-                )
-              } 
-            />
-          ))}
-          
+                ))}
+              </Routes>
+            </Suspense>
+          } />
         </Route>
       </Routes>
   );
