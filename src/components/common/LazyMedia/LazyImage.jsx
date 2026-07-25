@@ -6,9 +6,8 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
     if (!src) return '';
     if (src.startsWith('data:')) return src;
     
-    // If it's a localhost URL and we are not on localhost, we might want to replace it, 
-    // but typically we just prepend the VITE_API_URL if it's a relative path.
-    if (src.startsWith('/')) {
+    // If it's an uploads path starting with /uploads
+    if (src.startsWith('/uploads')) {
       const baseUrl = import.meta.env.VITE_API_URL || 'https://hieil.com/api-v1/api';
       return `${baseUrl}${src}`;
     }
