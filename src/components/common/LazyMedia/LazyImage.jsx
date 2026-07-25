@@ -17,13 +17,18 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
       return `${baseUrl}/${src}`;
     }
 
-    // If it's a localhost URL and we are not on localhost (live site), replace it.
-    // We check if VITE_API_URL is provided, we can just replace the origin.
+    // Fix invalid SSL domain api.hieil.com by routing through the main domain
+    if (src.includes('api.hieil.com')) {
+      src = src.replace('api.hieil.com', 'hieil.com');
+    }
+
+    // If it's a localhost URL and we are testing on a local network (e.g., from a phone),
+    // replace localhost with the actual IP address the user is accessing the site from.
     try {
       if (src.includes('localhost') || src.includes('127.0.0.1')) {
         const urlObj = new URL(src);
-        const baseUrl = import.meta.env.VITE_API_URL || 'https://hieil.com/api-v1/api';
-        return `${baseUrl}${urlObj.pathname}${urlObj.search}`;
+        urlObj.hostname = window.location.hostname;
+        return urlObj.toString();
       }
     } catch (e) {
       // invalid URL
