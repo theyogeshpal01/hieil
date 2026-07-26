@@ -90,22 +90,26 @@ const Header = () => {
 
                   {/* Right Pane - Subcategories */}
                   <div className="w-1/2 py-4 overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-[#4a3e35] [&::-webkit-scrollbar-track]:bg-transparent">
+                    {hoveredCategory && (
+                      <Link 
+                        to={`/products?category=${encodeURIComponent(hoveredCategory)}`}
+                        className="block px-6 py-2.5 text-[#c8956c] font-semibold no-underline text-[12px] tracking-[1px] uppercase transition-all duration-300 whitespace-nowrap hover:bg-[#c2a373]/10 hover:pl-7 border-b border-[#2c241c] mb-2 pb-3"
+                      >
+                        View All {hoveredCategory}
+                      </Link>
+                    )}
+                    
                     {productSubcategories
                       .filter(sub => sub.category === hoveredCategory)
                       .map(sub => (
                         <Link 
                           key={sub._id || sub.subcategoryName}
-                          to={`/shop?category=${encodeURIComponent(sub.category)}&subcategory=${encodeURIComponent(sub.subcategoryName)}`}
+                          to={`/products?category=${encodeURIComponent(sub.category)}&subcategory=${encodeURIComponent(sub.subcategoryName)}`}
                           className="block px-6 py-2.5 text-[#8c8279] no-underline text-[12px] tracking-[1px] uppercase transition-all duration-300 whitespace-nowrap hover:text-[#c8956c] hover:bg-[#c2a373]/5 hover:pl-7"
                         >
                           {sub.subcategoryName}
                         </Link>
                       ))}
-                    {productSubcategories.filter(sub => sub.category === hoveredCategory).length === 0 && (
-                      <div className="px-6 py-4 text-[#8c8279] text-[11px] uppercase tracking-[1px] italic">
-                        No subcategories available
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
@@ -173,23 +177,25 @@ const Header = () => {
                             </div>
                             {openMobileSubDropdown === cat.name && (
                               <div className="flex flex-col pl-4 border-l border-[#2c241c] mt-1 mb-1 ml-2">
+                                <Link 
+                                  to={`/products?category=${encodeURIComponent(cat.name)}`}
+                                  className="text-[#c8956c] font-semibold no-underline text-[11px] tracking-[1px] py-2 uppercase transition-colors duration-300"
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                  View All {cat.name}
+                                </Link>
                                 {productSubcategories
                                   .filter(sub => sub.category === cat.name)
                                   .map(sub => (
                                     <Link 
                                       key={sub._id || sub.subcategoryName}
-                                      to={`/shop?category=${encodeURIComponent(sub.category)}&subcategory=${encodeURIComponent(sub.subcategoryName)}`}
+                                      to={`/products?category=${encodeURIComponent(sub.category)}&subcategory=${encodeURIComponent(sub.subcategoryName)}`}
                                       className="text-[#70665d] no-underline text-[11px] tracking-[1px] py-2 uppercase transition-colors duration-300 hover:text-[#c8956c]"
                                       onClick={() => setIsMobileMenuOpen(false)}
                                     >
                                       {sub.subcategoryName}
                                     </Link>
                                 ))}
-                                {productSubcategories.filter(sub => sub.category === cat.name).length === 0 && (
-                                  <div className="text-[#70665d] text-[11px] uppercase tracking-[1px] py-2 italic">
-                                    No subcategories
-                                  </div>
-                                )}
                               </div>
                             )}
                           </div>
