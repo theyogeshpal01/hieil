@@ -171,11 +171,9 @@ const Certifications = () => {
               </div>
               
               <div className="flex-1 relative bg-white overflow-hidden">
-                {/* Invisible overlay to block interaction/right clicks on iframe/embed */}
-                <div className="absolute inset-0 z-10" onContextMenu={(e) => e.preventDefault()}></div>
                 <iframe 
-                  src={`${currentViewUrl}#toolbar=0&navpanes=0&scrollbar=0`}
-                  className="w-full h-full border-none pointer-events-none"
+                  src={currentViewUrl}
+                  className="w-full h-full border-none"
                   title="Certificate"
                 ></iframe>
               </div>
