@@ -128,7 +128,7 @@ const ProductInfo = ({ product }) => {
         )}
       </div>
 
-      <p className="text-[0.95rem] leading-[1.6] text-[#b5aaa0] m-0">{product.description}</p>
+      <div className="text-[0.95rem] leading-[1.6] text-[#b5aaa0] m-0 [&>p]:m-0 [&>p]:mb-2 last:[&>p]:mb-0" dangerouslySetInnerHTML={{ __html: product.description }}></div>
 
       <div className="flex items-center gap-2 text-[0.9rem] font-medium text-white">
         <Eye size={16} />
