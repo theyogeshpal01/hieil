@@ -439,7 +439,37 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
   const adminRole = localStorage.getItem('adminRole') || 'superadmin';
   const rawPermissions = localStorage.getItem('adminPermissions');
   const adminPermissions = rawPermissions && rawPermissions !== 'undefined' ? JSON.parse(rawPermissions) : {};
-  const currentModule = title;
+  
+  const getPermissionKey = (path, title) => {
+    if (!path) return title;
+    if (path === 'categories') return "Category's";
+    if (path === 'subcategories') return "Subcategory's";
+    if (path === 'products') return "Product's";
+    if (path === 'custom-products') return "Custom Products";
+    if (path === 'blog-category') return "Blog Category";
+    if (path === 'blogs') return "Blog's";
+    if (path === 'brands') return "Brands";
+    if (path === 'product-cq') return "Product C & Q";
+    if (path === 'artisan') return "Artisan";
+    if (path === 'leaders') return "Leader's";
+    if (path.includes('gallery')) return "Gallery";
+    if (path.includes('faq')) return "FAQ";
+    if (path === 'certifications') return "Certifications";
+    if (path === 'download-leads') return "Download Leads";
+    if (path === 'sliders') return "Slider's";
+    if (path === 'contact') return "Contact";
+    if (path === 'bulk-fmoq') return "Bulk-FMOQ";
+    if (path === 'shipping-list') return "Shipping List";
+    if (path === 'index-states') return "Index States";
+    if (path.includes('submissions')) return "Submissions";
+    if (path.includes('service-inquiries')) return "Service Inquiries";
+    if (path.includes('vendor-management')) return "Vendor Management";
+    if (path.includes('inquiry-system')) return "Inquiry System";
+    if (path.includes('retailer-system')) return "Retailer System";
+    return title;
+  };
+  
+  const currentModule = getPermissionKey(config.path, title);
   
   const modulePerms = adminRole === 'superadmin' ? { add: true, edit: true, delete: true } : (adminPermissions[currentModule] || { add: false, edit: false, delete: false });
   
