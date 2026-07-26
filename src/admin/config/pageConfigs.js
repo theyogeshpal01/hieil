@@ -753,7 +753,7 @@ export const pageConfigs = [
           }) 
         },
         { key: 'title', label: 'Title', formLabel: 'Brand Title', placeholder: 'e.g. Adidas, Sony, etc.' },
-        { key: 'createdDate', label: 'Created Date', formLabel: 'Created Date', type: 'date', hideInForm: true }
+        { key: 'createdAt', label: 'Created Date', formLabel: 'Created Date', hideInForm: true, render: (val) => val ? new Date(val).toLocaleDateString() : 'N/A' }
       ],
       hideDefaultActions: true,
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', gap: '8px', alignItems: 'center'}},
