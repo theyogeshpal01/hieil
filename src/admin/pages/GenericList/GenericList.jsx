@@ -3,7 +3,8 @@ import Swal from 'sweetalert2';
 import * as FaIcons from 'react-icons/fa';
 import DataTable from '../../components/DataTable/DataTable';
 import './GenericList.css';
-import JoditEditor from 'jodit-react';
+import JoditEditorLib from 'jodit-react';
+const JoditEditor = JoditEditorLib.default || JoditEditorLib;
 import api from '../../config/api';
 
 const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
