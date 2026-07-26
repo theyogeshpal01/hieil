@@ -863,7 +863,7 @@ export const pageConfigs = [
         },
         { key: 'title', label: 'Title', formLabel: 'Artisan Title', placeholder: 'Enter artisan title' },
         { key: 'description', label: 'Description', type: 'textarea', formLabel: 'Artisan Description', placeholder: 'Enter artisan description' },
-        { key: 'text', label: 'Text', formLabel: 'Artisan Text', placeholder: 'Enter artisan text' }
+        { key: 'text', label: 'Text', formLabel: 'Artisan Text', placeholder: 'Enter artisan text', minWidth: '400px' }
       ],
       hideDefaultActions: true,
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center'}},
