@@ -329,3 +329,31 @@ input:checked + .sam-slider:before {
   color: #ef4444;
   font-weight: 600;
 }
+
+/* Responsive Media Queries */
+@media (max-width: 991px) {
+  .sam-form-layout {
+    flex-direction: column;
+  }
+  .sam-left-col {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+  .sam-right-col {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .sam-form-header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .sam-perms-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+  .sam-bulk-actions {
+    flex-wrap: wrap;
+  }
+}
