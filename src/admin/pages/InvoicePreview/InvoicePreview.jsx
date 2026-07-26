@@ -14,13 +14,13 @@ const InvoicePreview = () => {
     orderNo: 'SK2-ORD-2026-1774173675',
     date: '22-03-2026',
     country: 'USA',
-    currency: 'INR',
+    currency: 'USD',
     product: 'Blue Pottery Tortoise Goodluck Gift-Paper Weight (Set of 2)',
     qty: 500,
     totalPrice: '59,000.00',
     subtotal: '50,000.00',
     gst: '9,000.00',
-    grandTotal: '59,000.00 INR'
+    grandTotal: '59,000.00 USD'
   };
 
   const handlePrint = () => {

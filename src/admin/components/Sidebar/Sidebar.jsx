@@ -7,7 +7,7 @@ import {
   FaImages, FaQuestionCircle, FaCertificate, FaSlidersH,
   FaEnvelope, FaInfoCircle, FaDownload, FaUserCog,
   FaBoxOpen, FaStore, FaLayerGroup, FaShippingFast,
-  FaMapMarkerAlt, FaUserShield, FaChevronDown, FaChevronRight
+  FaMapMarkerAlt, FaUserShield, FaChevronDown, FaChevronRight, FaCog
 } from 'react-icons/fa';
 
 const SidebarItem = ({ to, icon, label, exact, children, isSidebarOpen }) => {
@@ -108,7 +108,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             {hasPermission("Custom Products") && <SidebarItem isSidebarOpen={isOpen} to="/custom-products" icon={FaCogs} label="Custom Products" />}
             {hasPermission("Blog Category") && <SidebarItem isSidebarOpen={isOpen} to="/blog-category" icon={FaTags} label="Blog Category" />}
             {hasPermission("Blog's") && <SidebarItem isSidebarOpen={isOpen} to="/blogs" icon={FaBlogger} label="Blog's" />}
-            <SidebarItem isSidebarOpen={isOpen} to="/blog-fdgw" icon={FaBlogger} label="Blog-FDGW" />
             {hasPermission("Submissions") && <SidebarItem isSidebarOpen={isOpen} icon={FaBell} label="Manage Submissions">
                {[
                  {to: '/submissions/reviews', label: 'Reviews/Testimonials'},
@@ -127,7 +126,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             {hasPermission("FAQ") && <SidebarItem isSidebarOpen={isOpen} to="/faq" icon={FaQuestionCircle} label="FAQ" />}
             {hasPermission("Certifications") && <SidebarItem isSidebarOpen={isOpen} to="/certifications" icon={FaCertificate} label="Our Certifications" />}
             {hasPermission("Download Leads") && <SidebarItem isSidebarOpen={isOpen} to="/download-leads" icon={FaDownload} label="Certificate Downloads" />}
-            {hasPermission("Slider's") && <SidebarItem isSidebarOpen={isOpen} to="/sliders" icon={FaSlidersH} label="Slider's" />}
             {hasPermission("Contact") && <SidebarItem isSidebarOpen={isOpen} to="/contact" icon={FaEnvelope} label="Contact" />}
           </ul>
         </nav>
@@ -164,9 +162,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                  {to: '/retailer-system/shipping', label: 'Shipping'}
                ]}
             </SidebarItem>}
-            {hasPermission("Bulk-FMOQ") && <SidebarItem isSidebarOpen={isOpen} to="/bulk-fmoq" icon={FaLayerGroup} label="Bulk-FMOQ" />}
             {hasPermission("Shipping List") && <SidebarItem isSidebarOpen={isOpen} to="/shipping-list" icon={FaShippingFast} label="Shipping List" />}
-            {hasPermission("Index States") && <SidebarItem isSidebarOpen={isOpen} to="/index-states" icon={FaMapMarkerAlt} label="Index States" />}
+            {hasPermission("Settings") && <SidebarItem isSidebarOpen={isOpen} to="/settings" icon={FaCog} label="Settings" />}
           </ul>
         </nav>
 

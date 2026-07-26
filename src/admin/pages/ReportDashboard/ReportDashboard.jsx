@@ -78,7 +78,7 @@ const ReportDashboard = () => {
           </div>
           <div className="rd-card">
             <FaReceipt className="rd-icon" style={{color: '#22c55e'}} />
-            <div className="rd-value">₹ {Number(data.gstCollected).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</div>
+            <div className="rd-value">$ {Number(data.gstCollected).toLocaleString('en-IN', { maximumFractionDigits: 2 })}</div>
             <div className="rd-label">GST Collected</div>
           </div>
         </div>

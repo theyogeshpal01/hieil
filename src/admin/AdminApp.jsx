@@ -10,6 +10,7 @@ const InvoicePreview = lazy(() => import('./pages/InvoicePreview/InvoicePreview'
 const ReportDashboard = lazy(() => import('./pages/ReportDashboard/ReportDashboard'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const AdminProfile = lazy(() => import('./pages/AdminProfile/AdminProfile'));
+const Settings = lazy(() => import('./pages/Settings/Settings'));
 import { pageConfigs, genericData } from './config/pageConfigs';
 import './index.css';
 
@@ -28,6 +29,7 @@ function AdminApp() {
         <Route element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="profile" element={<AdminProfile />} />
+          <Route path="settings" element={<Settings />} />
           
           {/* Create Quotation Routes */}
           <Route path="retailer-system/product-inquiries/create-quotation/:id" element={<CreateQuotation />} />

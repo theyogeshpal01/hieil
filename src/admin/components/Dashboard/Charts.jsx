@@ -110,7 +110,7 @@ const Charts = () => {
       <div className="chart-wrapper full-width">
         <h3 className="chart-title">Revenue Growth Trend (?)</h3>
         <div className="revenue-summary">
-          <h2>₹767,342 <span>Year to Date</span></h2>
+          <h2>$767,342 <span>Year to Date</span></h2>
         </div>
         <div className="chart-inner">
           <HighchartsReact highcharts={Highcharts} options={areaOptions} />

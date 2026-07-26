@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import api from '../../config/api';
 import { 
   Download, 
   Globe, 
@@ -16,6 +17,22 @@ import {
 } from 'lucide-react';
 
 const About = () => {
+  const [pdfUrl, setPdfUrl] = useState(null);
+
+  useEffect(() => {
+    const fetchPdf = async () => {
+      try {
+        const res = await api.get('/settings?key=companyProfilePdf');
+        if (res.data && res.data.companyProfilePdf) {
+          setPdfUrl(res.data.companyProfilePdf);
+        }
+      } catch (err) {
+        console.error('Failed to fetch Company Profile PDF', err);
+      }
+    };
+    fetchPdf();
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#1C1713]">
       {/* Hero Section */}
@@ -71,12 +88,18 @@ const About = () => {
             <p className="text-[#b5aaa0]">Download our complete journey & catalog</p>
           </div>
           <div className="flex flex-wrap gap-4">
-            <button className="px-6 py-3 bg-[#1C1713] text-white border border-[#2c241c] hover:border-[#c8956c] hover:text-[#c8956c] rounded-none font-medium transition-colors flex items-center gap-2 shadow-none">
-              View Online
-            </button>
-            <button className="px-6 py-3 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-medium transition-colors flex items-center gap-2 shadow-none">
-              <Download size={18} /> Download Catalog
-            </button>
+            {pdfUrl ? (
+              <>
+                <a href={pdfUrl} target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-[#1C1713] text-white border border-[#2c241c] hover:border-[#c8956c] hover:text-[#c8956c] rounded-none font-medium transition-colors flex items-center gap-2 shadow-none no-underline">
+                  View Online
+                </a>
+                <a href={pdfUrl} download className="px-6 py-3 bg-[#c8956c] hover:bg-[#917751] text-black rounded-none font-medium transition-colors flex items-center gap-2 shadow-none no-underline">
+                  <Download size={18} /> Download Catalog
+                </a>
+              </>
+            ) : (
+              <p className="text-gray-500">PDF not available</p>
+            )}
           </div>
         </div>
       </section>

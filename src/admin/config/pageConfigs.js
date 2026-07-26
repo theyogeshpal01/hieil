@@ -613,7 +613,7 @@ export const pageConfigs = [
           render: (val) => React.createElement('img', { src: formatImageUrl(val) || 'https://via.placeholder.com/50', alt: 'Product', style: { width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' } })
         },
         { key: 'title', label: 'Title', formLabel: 'Product Title', placeholder: 'e.g. Custom Furniture' },
-        { key: 'priceText', label: 'Price Text', formLabel: 'Price / Starting Text', placeholder: 'e.g. Starting ₹15,000', fullWidth: true },
+        { key: 'priceText', label: 'Price Text', formLabel: 'Price / Starting Text', placeholder: 'e.g. Starting $15,000', fullWidth: true },
         { key: 'created', label: 'Created', hideInForm: true },
         { key: 'description', label: 'Description', type: 'textarea', formLabel: 'Short Description', placeholder: 'Briefly describe the product...', hideInTable: true, fullWidth: true }
       ]
@@ -673,59 +673,7 @@ export const pageConfigs = [
     data: [] 
   },
 
-  { 
-    path: 'blog-fdgw', 
-    title: 'Show Guides',
-    breadcrumbParent: 'Guides',
-    formCardTitle: 'ADD FDGW',
-    formTitleAdd: 'Add FDGW',
-    formTitleEdit: 'Edit FDGW',
-    columns: {
-      title: 'FDGW LIST',
-      addButtonText: 'Add New FDGW',
-      formSubmitText: 'Save Changes',
-      headers: [
-        { key: 'id', label: 'ID' },
-        { 
-          key: 'icon', 
-          label: 'Icon', 
-          type: 'icon-picker', 
-          formLabel: 'Select Icon',
-          render: (val) => {
-            const IconComp = val && FaIcons[val] ? FaIcons[val] : FaIcons.FaFileAlt;
-            return React.createElement(IconComp, { style: { color: '#f59e0b', fontSize: '18px' } });
-          }
-        },
-        { key: 'title', label: 'Title', formLabel: 'Title', placeholder: 'Enter Title' },
-        { key: 'description', label: 'Description', type: 'textarea', formLabel: 'Description', placeholder: 'Enter Description' },
-        { key: 'buttonText', label: 'Button Text', formLabel: 'Button Text', placeholder: 'Enter button text' },
-        { 
-          key: 'pdfFile', 
-          label: 'PDF File', 
-          type: 'file', 
-          formLabel: 'Upload PDF',
-          render: (val) => React.createElement('a', {
-            href: val || '#',
-            target: '_blank',
-            rel: 'noreferrer',
-            style: {
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              backgroundColor: '#06b6d4',
-              color: 'white',
-              padding: '6px 12px',
-              borderRadius: '4px',
-              textDecoration: 'none',
-              fontSize: '13px',
-              fontWeight: '500'
-            }
-          }, React.createElement(FaIcons.FaFileAlt, null), 'View PDF')
-        }
-      ]
-    }, 
-    data: []
-  },
+
   { 
     path: 'brands', 
     title: 'Inventory: Managed Brands',
@@ -1125,25 +1073,7 @@ export const pageConfigs = [
     },
     data: []
   },
-  { 
-    path: 'sliders', 
-    title: 'Slider List', 
-    subtitle: 'Slider List',
-    columns: {
-      title: 'ALL SLIDERS',
-      headers: [
-        { key: 'id', label: '#' },
-        { key: 'title', label: 'Title', formLabel: 'Slider Title', placeholder: 'Enter slider title', render: (val) => React.createElement('strong', null, val) },
-        { key: 'subtitle', label: 'Subtitle', formLabel: 'Slider Subtitle', placeholder: 'Enter slider subtitle' },
-        { key: 'images1', label: 'Images1', formLabel: 'Slider Image 1' },
-        { key: 'images2', label: 'Images2', formLabel: 'Slider Image 2' },
-        { key: 'images3', label: 'Images3', formLabel: 'Slider Image 3' }
-      ],
-      hideDefaultActions: false,
-      addButtonText: 'Add Slider'
-    }, 
-    data: []
-  },
+
   { 
     path: 'contact', 
     title: 'Contact Messages', 
@@ -1473,26 +1403,7 @@ export const pageConfigs = [
     }, 
     data: []
   },
-  { 
-    path: 'bulk-fmoq', 
-    title: 'MOQ Packages', 
-    subtitle: '',
-    columns: {
-      title: 'PACKAGE LIST',
-      addButtonText: 'Add New Package',
-      headers: [
-        { key: 'id', label: '#' },
-        { key: 'package', label: 'Package' },
-        { key: 'moq', label: 'MOQ' },
-        { key: 'description', label: 'Description' },
-        { key: 'feature1', label: 'Feature1' },
-        { key: 'feature2', label: 'Feature2' },
-        { key: 'feature3', label: 'Feature3' },
-        { key: 'feature4', label: 'Feature4' }
-      ]
-    }, 
-    data: []
-  },
+
   { 
     path: 'shipping-list', 
     title: 'Shipping Management', 
@@ -1520,24 +1431,7 @@ export const pageConfigs = [
     }, 
     data: []
   },
-  { 
-    path: 'index-states', 
-    title: 'Show Static',
-    breadcrumbParent: 'Static Data',
-    formCardTitle: 'ADD STATIC',
-    formSubtitle: 'Welcome to Hieil Application',
-    columns: {
-      title: 'All Static Data',
-      addButtonText: 'Add New Static',
-      formSubmitText: 'Add Static',
-      headers: [
-        { key: 'id', label: 'ID' },
-        { key: 'staticNumber', label: 'Static Number', formLabel: 'Static Number', placeholder: 'Enter static number' },
-        { key: 'title', label: 'Title', formLabel: 'Title', placeholder: 'Enter title' }
-      ]
-    }, 
-    data: []
-  },
+
   { 
     path: 'sub-admin-mgmt', 
     title: 'Sub Admin Management', 

@@ -18,8 +18,8 @@ const SummaryCards = () => {
     { title: 'Total Orders', value: stats.orders.toString(), label: 'Processing', color: 'red' },
     { title: 'Products', value: stats.products.toString(), label: 'Live Catalog', color: 'teal' },
     { title: 'Blogs', value: stats.blogs.toString(), label: 'Published', color: 'darkblue' },
-    { title: 'Revenue', value: `₹${(stats.revenue > 1000) ? (stats.revenue / 1000).toFixed(1) + 'K' : stats.revenue}`, label: 'Net Paid', color: 'orange' },
-    { title: 'Avg Rate', value: `₹${stats.avgRate}`, label: 'Per Order', color: 'yellow' },
+    { title: 'Revenue', value: `$${(stats.revenue > 1000) ? (stats.revenue / 1000).toFixed(1) + 'K' : stats.revenue}`, label: 'Net Paid', color: 'orange' },
+    { title: 'Avg Rate', value: `$${stats.avgRate}`, label: 'Per Order', color: 'yellow' },
   ];
 
   return (
