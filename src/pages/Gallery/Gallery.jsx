@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { X } from 'lucide-react';
 import api from '../../config/api';
 
 const Gallery = () => {
@@ -6,6 +7,7 @@ const Gallery = () => {
   const [galleryItems, setGalleryItems] = useState([]);
   const [categories, setCategories] = useState(['All categories']);
   const [activeCategory, setActiveCategory] = useState('All categories');
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -75,7 +77,11 @@ const Gallery = () => {
             </div>
           ) : (
             filteredItems.map((item) => (
-              <div className="relative overflow-hidden group cursor-pointer aspect-[4/3] w-full" key={item._id || item.id}>
+              <div 
+                className="relative overflow-hidden group cursor-pointer aspect-[4/3] w-full" 
+                key={item._id || item.id}
+                onClick={() => setSelectedImage(item.image || getImageForCategory(item.category))}
+              >
                 <img src={item.image || getImageForCategory(item.category)} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-black/10 to-transparent opacity-90 transition-opacity duration-300"></div>
                 <div className="absolute bottom-0 left-0 p-[30px] z-10 w-full">
@@ -106,7 +112,11 @@ const Gallery = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px]">
                 {userMoments.map(moment => (
                   moment.submittedPhotos.map((photoUrl, pIndex) => (
-                    <div key={`${moment._id}-${pIndex}`} className="relative overflow-hidden group rounded-[10px] bg-[#1C1713] aspect-square">
+                    <div 
+                      key={`${moment._id}-${pIndex}`} 
+                      className="relative overflow-hidden group rounded-[10px] bg-[#1C1713] aspect-square cursor-pointer"
+                      onClick={() => setSelectedImage(photoUrl)}
+                    >
                       <img src={photoUrl} alt="User Moment" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="absolute bottom-0 left-0 p-[20px] z-10 w-full translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -120,6 +130,30 @@ const Gallery = () => {
           </div>
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 cursor-zoom-out backdrop-blur-sm transition-opacity duration-300"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute top-6 right-6 text-white hover:text-[#c8956c] transition-colors cursor-pointer bg-black/50 rounded-full p-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedImage(null);
+            }}
+          >
+            <X size={28} />
+          </button>
+          <img 
+            src={selectedImage} 
+            alt="Fullscreen view" 
+            className="max-w-[95vw] max-h-[90vh] object-contain rounded cursor-default shadow-2xl transition-transform duration-300 scale-100"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 };

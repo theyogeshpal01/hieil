@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { ChevronDown, ChevronUp, Grid, List, Star, Search, Filter, X, ChevronRight, SlidersHorizontal } from 'lucide-react';
 import LazyImage from '../../components/common/LazyMedia/LazyImage';
 import api from '../../config/api';
@@ -63,12 +63,18 @@ const categoryMap = {
 
 const Shop = () => {
   const { categoryId } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  
+  const queryCategory = searchParams.get('category');
+  const querySubcategory = searchParams.get('subcategory');
+
   const [categories, setCategories] = useState([]);
   const [categoriesList, setCategoriesList] = useState(['All categories']);
   const [viewMode, setViewMode] = useState('grid');
   
   // Determine initial category from URL
-  const initialCategory = categoryId ? (categoryMap[categoryId] || categoryId) : 'All categories';
+  const initialCategory = queryCategory || (categoryId ? (categoryMap[categoryId] || categoryId) : 'All categories');
 
   const [openSections, setOpenSections] = useState({
     availability: true,
@@ -81,6 +87,7 @@ const Shop = () => {
 
   const [selectedFilters, setSelectedFilters] = useState({
     categories: [initialCategory],
+    subcategories: querySubcategory ? [querySubcategory] : [],
     material: [],
     artisan: [],
     availability: [],
@@ -112,8 +119,12 @@ const Shop = () => {
 
   // Update selected categories if the URL changes
   useEffect(() => {
-    setSelectedFilters(prev => ({ ...prev, categories: [initialCategory] }));
-  }, [initialCategory]);
+    setSelectedFilters(prev => ({ 
+      ...prev, 
+      categories: [initialCategory],
+      subcategories: querySubcategory ? [querySubcategory] : []
+    }));
+  }, [initialCategory, querySubcategory]);
 
   const toggleSection = (id) => {
     setOpenSections(prev => ({ ...prev, [id]: !prev[id] }));
@@ -133,6 +144,7 @@ const Shop = () => {
   const handleClearAll = () => {
     setSelectedFilters({
       categories: ['All categories'],
+      subcategories: [],
       material: [],
       artisan: [],
       availability: [],
@@ -154,6 +166,11 @@ const Shop = () => {
     // Category Filter (Maps to product.category in the DB)
     if (selectedFilters.categories.length > 0 && !selectedFilters.categories.includes('All categories')) {
       if (!selectedFilters.categories.includes(product.category)) return false;
+    }
+
+    // Subcategory Filter (Maps to product.subCategory in the DB)
+    if (selectedFilters.subcategories && selectedFilters.subcategories.length > 0) {
+      if (!selectedFilters.subcategories.includes(product.subCategory)) return false;
     }
 
     // Material Filter

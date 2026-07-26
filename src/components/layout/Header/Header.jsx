@@ -1,20 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronUp, ChevronRight } from 'lucide-react';
 import { HEADER_LINKS } from '../../../constants/navigation';
+import api from '../../../config/api';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
+  const [openMobileSubDropdown, setOpenMobileSubDropdown] = useState(null);
+  
+  const [productCategories, setProductCategories] = useState([]);
+  const [productSubcategories, setProductSubcategories] = useState([]);
+  const [hoveredCategory, setHoveredCategory] = useState(null);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Fetch Categories
+    api.get('/categories').then(res => {
+      if (res.data) {
+        setProductCategories(res.data);
+        if (res.data.length > 0) {
+          setHoveredCategory(res.data[0].name);
+        }
+      }
+    }).catch(err => console.error(err));
+
+    // Fetch Subcategories
+    api.get('/subcategories').then(res => {
+      if (res.data) setProductSubcategories(res.data);
+    }).catch(err => console.error(err));
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+    setOpenMobileDropdown(null);
+    setOpenMobileSubDropdown(null);
   };
 
   const toggleMobileDropdown = (e, label) => {
     e.preventDefault();
     setOpenMobileDropdown(openMobileDropdown === label ? null : label);
+    if (openMobileDropdown !== label) {
+      setOpenMobileSubDropdown(null);
+    }
+  };
+
+  const toggleMobileSubDropdown = (e, label) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setOpenMobileSubDropdown(openMobileSubDropdown === label ? null : label);
   };
 
   return (
@@ -26,29 +61,81 @@ const Header = () => {
 
       {/* Desktop Nav */}
       <nav className="hidden lg:flex gap-5 h-full items-center">
-        {HEADER_LINKS.map((link) => (
-          <div key={link.label} className="relative h-full flex items-center group">
-            {link.hasDropdown ? (
-              <>
+        {HEADER_LINKS.map((link) => {
+          if (link.label === 'PRODUCTS') {
+            return (
+              <div key={link.label} className="relative h-full flex items-center group">
                 <Link to={link.href} className="text-[#b5aaa0] no-underline text-[11px] tracking-[1.5px] font-medium transition-colors duration-300 uppercase flex items-center gap-1.5 p-2.5 group-hover:text-[#c8956c]">
                   {link.label}
                   <ChevronDown size={14} className="-mt-[1px]" />
                 </Link>
-                <div className="absolute top-full left-1/2 -translate-x-1/2 translate-y-2.5 bg-[#15110F]/98 backdrop-blur-md border border-[#2c241c] min-w-[250px] py-4 shadow-[0_10px_40px_rgba(0,0,0,0.8)] opacity-0 invisible transition-all duration-300 z-50 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
-                  {link.dropdownItems.map((item) => (
-                    <Link key={item.label} to={item.href} className="block px-6 py-2.5 text-[#b5aaa0] no-underline text-[12px] tracking-[1.5px] uppercase transition-all duration-300 whitespace-nowrap hover:text-[#c8956c] hover:bg-[#c2a373]/5 hover:pl-7">
-                      {item.label}
-                    </Link>
-                  ))}
+                
+                {/* Mega Menu Dropdown */}
+                <div className="absolute top-full left-1/2 -translate-x-1/2 translate-y-2.5 bg-[#15110F]/98 backdrop-blur-md border border-[#2c241c] w-[600px] shadow-[0_10px_40px_rgba(0,0,0,0.8)] opacity-0 invisible transition-all duration-300 z-50 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 flex h-[350px]">
+                  
+                  {/* Left Pane - Categories */}
+                  <div className="w-1/2 border-r border-[#2c241c] py-4 overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-[#4a3e35] [&::-webkit-scrollbar-track]:bg-transparent">
+                    {productCategories.map((cat) => (
+                      <div 
+                        key={cat._id || cat.name}
+                        className={`px-6 py-3 text-[12px] tracking-[1.5px] uppercase transition-all duration-300 cursor-pointer flex justify-between items-center ${hoveredCategory === cat.name ? 'text-[#c8956c] bg-[#c2a373]/5 pl-7' : 'text-[#b5aaa0] hover:text-[#c8956c] hover:bg-[#c2a373]/5 hover:pl-7'}`}
+                        onMouseEnter={() => setHoveredCategory(cat.name)}
+                        onClick={() => navigate(`/shop?category=${encodeURIComponent(cat.name)}`)}
+                      >
+                        {cat.name}
+                        <ChevronRight size={14} className={`transition-opacity ${hoveredCategory === cat.name ? 'opacity-100' : 'opacity-0'}`} />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Right Pane - Subcategories */}
+                  <div className="w-1/2 py-4 overflow-y-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-[#4a3e35] [&::-webkit-scrollbar-track]:bg-transparent">
+                    {productSubcategories
+                      .filter(sub => sub.category === hoveredCategory)
+                      .map(sub => (
+                        <Link 
+                          key={sub._id || sub.subcategoryName}
+                          to={`/shop?category=${encodeURIComponent(sub.category)}&subcategory=${encodeURIComponent(sub.subcategoryName)}`}
+                          className="block px-6 py-2.5 text-[#8c8279] no-underline text-[12px] tracking-[1px] uppercase transition-all duration-300 whitespace-nowrap hover:text-[#c8956c] hover:bg-[#c2a373]/5 hover:pl-7"
+                        >
+                          {sub.subcategoryName}
+                        </Link>
+                      ))}
+                    {productSubcategories.filter(sub => sub.category === hoveredCategory).length === 0 && (
+                      <div className="px-6 py-4 text-[#8c8279] text-[11px] uppercase tracking-[1px] italic">
+                        No subcategories available
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </>
-            ) : (
-              <Link to={link.href} className="text-[#b5aaa0] no-underline text-[11px] tracking-[1.5px] font-medium transition-colors duration-300 uppercase flex items-center gap-1.5 p-2.5 hover:text-[#c8956c]">
-                {link.label}
-              </Link>
-            )}
-          </div>
-        ))}
+              </div>
+            );
+          }
+
+          return (
+            <div key={link.label} className="relative h-full flex items-center group">
+              {link.hasDropdown ? (
+                <>
+                  <Link to={link.href} className="text-[#b5aaa0] no-underline text-[11px] tracking-[1.5px] font-medium transition-colors duration-300 uppercase flex items-center gap-1.5 p-2.5 group-hover:text-[#c8956c]">
+                    {link.label}
+                    <ChevronDown size={14} className="-mt-[1px]" />
+                  </Link>
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 translate-y-2.5 bg-[#15110F]/98 backdrop-blur-md border border-[#2c241c] min-w-[250px] py-4 shadow-[0_10px_40px_rgba(0,0,0,0.8)] opacity-0 invisible transition-all duration-300 z-50 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                    {link.dropdownItems.map((item) => (
+                      <Link key={item.label} to={item.href} className="block px-6 py-2.5 text-[#b5aaa0] no-underline text-[12px] tracking-[1.5px] uppercase transition-all duration-300 whitespace-nowrap hover:text-[#c8956c] hover:bg-[#c2a373]/5 hover:pl-7">
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <Link to={link.href} className="text-[#b5aaa0] no-underline text-[11px] tracking-[1.5px] font-medium transition-colors duration-300 uppercase flex items-center gap-1.5 p-2.5 hover:text-[#c8956c]">
+                  {link.label}
+                </Link>
+              )}
+            </div>
+          );
+        })}
       </nav>
 
       <div className="flex items-center gap-4">
@@ -60,11 +147,57 @@ const Header = () => {
 
       {/* Mobile Nav Overlay */}
       {isMobileMenuOpen && (
-        <div className="block lg:hidden absolute top-[70px] sm:top-[85px] left-0 right-0 bg-[#110e0c] px-5 py-5 pb-8 sm:px-[30px] sm:py-[20px] sm:pb-[40px] border-b border-white/5 z-40 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+        <div className="block lg:hidden absolute top-[70px] sm:top-[85px] left-0 right-0 bg-[#110e0c] px-5 py-5 pb-8 sm:px-[30px] sm:py-[20px] sm:pb-[40px] border-b border-white/5 z-40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] h-[calc(100vh-70px)] sm:h-[calc(100vh-85px)] overflow-y-auto">
           <div className="flex flex-col gap-2.5">
             {HEADER_LINKS.map((link) => (
               <div key={link.label} className="flex flex-col">
-                {link.hasDropdown ? (
+                {link.label === 'PRODUCTS' ? (
+                  <>
+                    <div 
+                      className="text-[#b5aaa0] no-underline text-[14px] tracking-[2px] font-medium uppercase transition-colors duration-300 py-2.5 flex justify-between items-center cursor-pointer hover:text-[#c8956c]" 
+                      onClick={(e) => toggleMobileDropdown(e, link.label)}
+                    >
+                      {link.label}
+                      {openMobileDropdown === link.label ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                    </div>
+                    {openMobileDropdown === link.label && (
+                      <div className="flex flex-col pl-5 border-l border-[#2c241c] mt-1 mb-2.5 ml-2.5">
+                        {productCategories.map((cat) => (
+                          <div key={cat._id || cat.name} className="flex flex-col">
+                            <div 
+                              className="text-[#8c8279] no-underline text-[12px] tracking-[1px] py-2.5 uppercase transition-colors duration-300 flex justify-between items-center cursor-pointer hover:text-[#c8956c]"
+                              onClick={(e) => toggleMobileSubDropdown(e, cat.name)}
+                            >
+                              {cat.name}
+                              {openMobileSubDropdown === cat.name ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                            </div>
+                            {openMobileSubDropdown === cat.name && (
+                              <div className="flex flex-col pl-4 border-l border-[#2c241c] mt-1 mb-1 ml-2">
+                                {productSubcategories
+                                  .filter(sub => sub.category === cat.name)
+                                  .map(sub => (
+                                    <Link 
+                                      key={sub._id || sub.subcategoryName}
+                                      to={`/shop?category=${encodeURIComponent(sub.category)}&subcategory=${encodeURIComponent(sub.subcategoryName)}`}
+                                      className="text-[#70665d] no-underline text-[11px] tracking-[1px] py-2 uppercase transition-colors duration-300 hover:text-[#c8956c]"
+                                      onClick={() => setIsMobileMenuOpen(false)}
+                                    >
+                                      {sub.subcategoryName}
+                                    </Link>
+                                ))}
+                                {productSubcategories.filter(sub => sub.category === cat.name).length === 0 && (
+                                  <div className="text-[#70665d] text-[11px] uppercase tracking-[1px] py-2 italic">
+                                    No subcategories
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                ) : link.hasDropdown ? (
                   <>
                     <div 
                       className="text-[#b5aaa0] no-underline text-[14px] tracking-[2px] font-medium uppercase transition-colors duration-300 py-2.5 flex justify-between items-center cursor-pointer hover:text-[#c8956c]" 
