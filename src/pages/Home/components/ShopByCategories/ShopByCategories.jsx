@@ -29,7 +29,7 @@ const ShopBycategories = () => {
           <div className="translate-y-[30px] transition-transform duration-400 ease-in-out group-hover:translate-y-0">
             <span className="block font-sans text-[0.7rem] tracking-[2px] text-[#c8956c] mb-1.5 uppercase">{category.tag || 'LATEST DESIGNS'}</span>
             <h3 className="font-serif text-[1.4rem] text-white m-0 uppercase">{category.name}</h3>
-            <p className="font-sans text-[0.85rem] text-[#b5aaa0] mt-3 mb-0 leading-[1.5] opacity-0 max-h-0 transition-all duration-400 ease-in-out group-hover:opacity-100 group-hover:max-h-[100px]">{category.description}</p>
+            <div className="font-sans text-[0.85rem] text-[#b5aaa0] mt-3 mb-0 leading-[1.5] opacity-0 max-h-0 overflow-hidden transition-all duration-400 ease-in-out group-hover:opacity-100 group-hover:max-h-[100px] [&>p]:m-0" dangerouslySetInnerHTML={{ __html: category.description }}></div>
           </div>
         </div>
       </div>

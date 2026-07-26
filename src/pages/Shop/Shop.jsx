@@ -319,9 +319,10 @@ const Shop = () => {
                   </div>
 
                   {viewMode === 'list' && (
-                    <p className="text-[0.85rem] text-[#b5aaa0] line-clamp-2 mb-[1rem] leading-[1.6]">
-                      {product.description || 'Premium handcrafted product tailored to elevate your living spaces with authentic Indian artistry.'}
-                    </p>
+                    <div 
+                      className="text-[0.85rem] text-[#b5aaa0] line-clamp-2 mb-[1rem] leading-[1.6] [&>p]:m-0"
+                      dangerouslySetInnerHTML={{ __html: product.description || 'Premium handcrafted product tailored to elevate your living spaces with authentic Indian artistry.' }}
+                    ></div>
                   )}
                   
                   <div className={`flex justify-between items-center ${viewMode === 'list' ? 'mt-[0.5rem]' : 'mt-auto'}`}>
