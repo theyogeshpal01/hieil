@@ -100,8 +100,22 @@ const Certifications = () => {
         link.click();
         document.body.removeChild(link);
       } else {
-        // If it's a remote URL, open it or fetch it and trigger download
-        window.open(certUrl, '_blank');
+        // Fetch the file and trigger a direct download instead of opening in a new tab
+        try {
+          const response = await fetch(certUrl);
+          const blob = await response.blob();
+          const downloadUrl = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = downloadUrl;
+          link.download = currentDownloadCert.title + '.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(downloadUrl);
+        } catch (err) {
+          console.error("Download failed, opening in new tab", err);
+          window.open(certUrl, '_blank');
+        }
       }
 
       setDownloadModalOpen(false);
