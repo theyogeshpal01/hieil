@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { FaChevronLeft, FaUsers, FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import api from '../../config/api';
+import '../GenericList/GenericList.css';
+import '../../components/DataTable/DataTable.css';
 import './SubAdminMgmt.css';
 
 const permissionsList = [
