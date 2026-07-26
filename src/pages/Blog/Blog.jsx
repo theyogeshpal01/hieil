@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [artisans, setArtisans] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -53,23 +54,24 @@ const Blog = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Fetch blogs
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/blogs`)
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/blogs`)
       .then(res => setBlogs(res.data))
       .catch(err => console.error(err));
       
     // Fetch artisans
-    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/artisans`)
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/artisans`)
       .then(res => setArtisans(res.data))
+      .catch(err => console.error(err));
+      
+    // Fetch categories
+    axios.get(`${import.meta.env.VITE_API_URL || 'http://localhost:3000/api'}/blog-categories`)
+      .then(res => setCategories(res.data.map(c => c.name)))
       .catch(err => console.error(err));
   }, []);
 
   const [activeTab, setActiveTab] = useState('All Posts');
 
-  const topics = [
-    'All Posts',
-    'Handcrafted Wooden categories',
-    'Handmade Painting Art'
-  ];
+  const topics = ['All Posts', ...categories];
 
   const subTopics = [
     'Latest Blogs',

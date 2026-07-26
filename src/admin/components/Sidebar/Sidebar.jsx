@@ -118,6 +118,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             <SidebarItem isSidebarOpen={isOpen} to="/faq-category" icon={FaQuestionCircle} label="FAQ Category" />
             <SidebarItem isSidebarOpen={isOpen} to="/faq" icon={FaQuestionCircle} label="FAQ" />
             <SidebarItem isSidebarOpen={isOpen} to="/certifications" icon={FaCertificate} label="Our Certifications" />
+            <SidebarItem isSidebarOpen={isOpen} to="/download-leads" icon={FaDownload} label="Certificate Downloads" />
             <SidebarItem isSidebarOpen={isOpen} to="/sliders" icon={FaSlidersH} label="Slider's" />
             <SidebarItem isSidebarOpen={isOpen} to="/contact" icon={FaEnvelope} label="Contact" />
           </ul>

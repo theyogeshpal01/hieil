@@ -12,12 +12,14 @@ const Testimonials = () => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showPhotoModal, setShowPhotoModal] = useState(false);
   const [showProjectModal, setShowProjectModal] = useState(false);
+  const [showFeedbackModal, setShowFeedbackModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isProjectSubmitting, setIsProjectSubmitting] = useState(false);
   
   const [reviewForm, setReviewForm] = useState({ userName: '', userDesignation: '', city: '', rating: 5, message: '' });
   const [photoForm, setPhotoForm] = useState({ userName: '', userEmail: '' });
   const [projectForm, setProjectForm] = useState({ customerName: '', email: '', phone: '', location: '', message: '' });
+  const [feedbackForm, setFeedbackForm] = useState({ customerName: '', email: '', phone: '', rating: 5, feedbackMessage: '' });
   const [photoFiles, setPhotoFiles] = useState([]);
   const fileInputRef = useRef(null);
 
@@ -60,6 +62,28 @@ const Testimonials = () => {
     setIsSubmitting(false);
   };
 
+  const handleFeedbackSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await api.post('/submissions/feedback', feedbackForm);
+      setShowFeedbackModal(false);
+      setFeedbackForm({ customerName: '', email: '', phone: '', rating: 5, feedbackMessage: '' });
+      Swal.fire({
+        title: 'Feedback Received!',
+        text: 'Thank you for your valuable feedback.',
+        icon: 'success',
+        background: '#1C1713',
+        color: '#fff',
+        confirmButtonColor: '#c8956c'
+      });
+    } catch (error) {
+      console.error(error);
+      Swal.fire('Error', 'Failed to submit feedback. Please try again.', 'error');
+    }
+    setIsSubmitting(false);
+  };
+
   const handlePhotoSubmit = async (e) => {
     e.preventDefault();
     if (photoFiles.length === 0) {
@@ -72,7 +96,11 @@ const Testimonials = () => {
       for (const file of photoFiles) {
         const formData = new FormData();
         formData.append('file', file);
-        const uploadRes = await api.post('/upload', formData);
+        const uploadRes = await api.post('/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
         uploadedUrls.push(uploadRes.data.url);
       }
       
@@ -234,6 +262,7 @@ const Testimonials = () => {
               <div className="flex gap-[15px] flex-wrap justify-center max-md:flex-col">
                 <button onClick={() => setShowReviewModal(true)} className="flex items-center gap-[10px] py-[12px] px-[25px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium text-[0.8rem] tracking-[2px] uppercase cursor-pointer transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c] max-md:w-full max-md:justify-center"><PenTool size={18} /> Write a Review</button>
                 <button onClick={() => setShowPhotoModal(true)} className="flex items-center gap-[10px] py-[12px] px-[25px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium text-[0.8rem] tracking-[2px] uppercase cursor-pointer transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c] max-md:w-full max-md:justify-center"><Camera size={18} /> Share Photos</button>
+                <button onClick={() => setShowFeedbackModal(true)} className="flex items-center gap-[10px] py-[12px] px-[25px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium text-[0.8rem] tracking-[2px] uppercase cursor-pointer transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c] max-md:w-full max-md:justify-center"><MessageCircle size={18} /> Share Feedback</button>
               </div>
             </div>
           </div>
@@ -283,6 +312,53 @@ const Testimonials = () => {
               </div>
               <button disabled={isSubmitting} type="submit" className="mt-[10px] w-full py-[15px] bg-[#c8956c] text-[#15110F] font-bold tracking-[2px] uppercase rounded-[8px] hover:bg-[#b8855c] transition-colors disabled:opacity-70">
                 {isSubmitting ? 'Submitting...' : 'Submit Review'}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Feedback Modal */}
+      {showFeedbackModal && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[1000] p-5 backdrop-blur-sm">
+          <div className="bg-[#1C1713] border border-[#2c241c] rounded-[20px] p-[40px] max-w-[600px] w-full relative max-h-[90vh] overflow-y-auto">
+            <button onClick={() => setShowFeedbackModal(false)} className="absolute top-[20px] right-[20px] text-[#b5aaa0] hover:text-[#c8956c] bg-transparent border-none cursor-pointer">
+              <X size={24} />
+            </button>
+            <h3 className="font-serif text-[2rem] text-white mb-[10px] uppercase">Share Feedback</h3>
+            <p className="text-[#b5aaa0] mb-[30px] text-[0.9rem]">Help us improve our products and services.</p>
+            
+            <form onSubmit={handleFeedbackSubmit} className="flex flex-col gap-[20px]">
+              <div>
+                <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Your Name *</label>
+                <input required type="text" value={feedbackForm.customerName} onChange={e => setFeedbackForm({...feedbackForm, customerName: e.target.value})} className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c]" />
+              </div>
+              <div className="grid grid-cols-2 gap-[20px] max-sm:grid-cols-1">
+                <div>
+                  <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Email Address *</label>
+                  <input required type="email" value={feedbackForm.email} onChange={e => setFeedbackForm({...feedbackForm, email: e.target.value})} className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c]" />
+                </div>
+                <div>
+                  <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Phone Number</label>
+                  <input type="tel" value={feedbackForm.phone} onChange={e => setFeedbackForm({...feedbackForm, phone: e.target.value})} className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c]" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Rating *</label>
+                <select value={feedbackForm.rating} onChange={e => setFeedbackForm({...feedbackForm, rating: Number(e.target.value)})} className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c]">
+                  <option value="5">5 Stars - Excellent</option>
+                  <option value="4">4 Stars - Very Good</option>
+                  <option value="3">3 Stars - Good</option>
+                  <option value="2">2 Stars - Fair</option>
+                  <option value="1">1 Star - Poor</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-[#b5aaa0] text-[0.85rem] mb-[5px] uppercase tracking-[1px]">Feedback Message *</label>
+                <textarea required rows="4" value={feedbackForm.feedbackMessage} onChange={e => setFeedbackForm({...feedbackForm, feedbackMessage: e.target.value})} className="w-full p-[12px] bg-[#15110F] border border-[#4a3e35] text-white rounded-[8px] outline-none focus:border-[#c8956c] resize-y"></textarea>
+              </div>
+              <button disabled={isSubmitting} type="submit" className="mt-[10px] w-full py-[15px] bg-[#c8956c] text-[#15110F] font-bold tracking-[2px] uppercase rounded-[8px] hover:bg-[#b8855c] transition-colors disabled:opacity-70">
+                {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
               </button>
             </form>
           </div>

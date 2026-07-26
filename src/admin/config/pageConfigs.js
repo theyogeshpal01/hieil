@@ -312,14 +312,22 @@ export const pageConfigs = [
       path: 'submissions/feedback', 
       title: 'Manage Customer Feedback',
       breadcrumbParent: 'Customer Feedback',
+      formTitleAdd: 'Add Feedback',
+      formTitleEdit: 'Edit Feedback',
+      formCardTitle: 'ADD CUSTOMER FEEDBACK',
       columns: {
         title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaIcons.FaCommentAlt, null), 'FEEDBACK SUBMISSIONS'),
+        addButtonText: 'Add New Feedback',
         headers: [
-          { key: 'id', label: 'ID' },
-          { key: 'date', label: 'Date' },
+          { key: 'id', label: 'ID', hideInForm: true },
+          { key: 'createdAt', label: 'Date', hideInForm: true, render: (val) => val ? new Date(val).toLocaleDateString() : 'N/A' },
+          { key: 'customerName', label: 'Customer Name', formLabel: 'Customer Name', hideInTable: true, placeholder: 'Enter Name' },
+          { key: 'email', label: 'Email Address', formLabel: 'Email Address', hideInTable: true, placeholder: 'Enter Email' },
+          { key: 'phone', label: 'Phone Number', formLabel: 'Phone Number', hideInTable: true, placeholder: 'Enter Phone' },
           { 
             key: 'contactDetails', 
             label: 'Contact Details', 
+            hideInForm: true,
             render: (val, row) => React.createElement('div', null,
               React.createElement('div', {style: {fontWeight: 'bold', color: '#111827', marginBottom: '4px'}}, row.customerName || ''),
               React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', color: '#6b7280', marginBottom: '2px'}}, 
@@ -333,12 +341,15 @@ export const pageConfigs = [
           { 
             key: 'rating', 
             label: 'Rating',
+            formLabel: 'Rating (1-5)',
+            type: 'select',
+            options: [1, 2, 3, 4, 5],
             render: (val) => React.createElement('div', {style: {color: '#facc15', fontSize: '16px'}}, '★'.repeat(Math.max(0, Math.min(5, Number(val) || 0))) + '☆'.repeat(Math.max(0, 5 - (Math.min(5, Number(val) || 0)))))
           },
-          { key: 'feedbackMessage', label: 'Feedback Message', render: (val) => React.createElement('div', {style: {color: '#4b5563'}}, val || '') }
+          { key: 'feedbackMessage', label: 'Feedback Message', formLabel: 'Feedback Message', type: 'textarea', placeholder: 'Enter feedback' }
         ],
         hideDefaultActions: true,
-        actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex'}},
+        actions: (row, { onEdit, onDelete }) => React.createElement('div', {style: {display: 'flex'}},
           React.createElement('button', {
             style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '4px 0 0 4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
             onClick: () => window.open(`https://wa.me/${row.phone}`, '_blank')
@@ -347,6 +358,10 @@ export const pageConfigs = [
             style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
             onClick: () => window.open(`tel:${row.phone}`, '_self')
           }, React.createElement(FaIcons.FaPhoneAlt, null)),
+          React.createElement('button', {
+            style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+            onClick: () => onEdit && onEdit(row)
+          }, React.createElement(FaIcons.FaEdit, null)),
           React.createElement('button', {
             style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '0 4px 4px 0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
             onClick: () => onDelete && onDelete(row)
@@ -1021,8 +1036,11 @@ export const pageConfigs = [
       addButtonText: 'Add New Certificate',
       headers: [
         { key: 'id', label: '#' },
-        { key: 'title', label: 'Title', formLabel: 'Certificate Title' },
-        { key: 'certificateFile', label: 'Upload Certificate (PDF/Image)', type: 'file', hideInTable: true },
+        { key: 'title', label: 'Title', formLabel: 'Certificate Title (e.g. Importer Exporter Code)' },
+        { key: 'subtitle', label: 'Subtitle', formLabel: 'Subtitle (e.g. IEC Certificate)' },
+        { key: 'description', label: 'Description', formLabel: 'Description', type: 'textarea' },
+        { key: 'icon', label: 'Icon Name', formLabel: 'Lucide Icon Name (e.g. ShieldCheck, FileCheck2, Landmark, BadgeCheck)' },
+        { key: 'pdfUrl', label: 'Upload Certificate (PDF/Image)', type: 'file', hideInTable: true },
         { key: 'preview', label: 'Preview', hideInForm: true, render: (val, row) => React.createElement('button', {
             style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px'},
             onClick: () => window.open(row.pdfUrl || 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', '_blank')
@@ -1081,6 +1099,25 @@ export const pageConfigs = [
         }, React.createElement(FaTrash, null))
       )
     }, 
+    data: []
+  },
+  {
+    path: 'download-leads',
+    title: 'Certificate Downloads',
+    subtitle: 'List of users who downloaded certificates',
+    columns: {
+      title: 'DOWNLOAD LEADS',
+      addButtonText: '', // No add button needed for leads
+      headers: [
+        { key: 'id', label: '#' },
+        { key: 'name', label: 'Name', formLabel: 'Name' },
+        { key: 'mobile', label: 'Mobile', formLabel: 'Mobile' },
+        { key: 'email', label: 'Email', formLabel: 'Email' },
+        { key: 'certificateTitle', label: 'Certificate', formLabel: 'Certificate Title' },
+        { key: 'createdAt', label: 'Downloaded At', hideInForm: true, render: (val) => new Date(val).toLocaleString() }
+      ],
+      actions: ['Delete']
+    },
     data: []
   },
   { 
