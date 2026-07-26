@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { ChevronRight } from 'lucide-react';
 import ProductGallery from './components/ProductGallery/ProductGallery';
 import ProductInfo from './components/ProductInfo/ProductInfo';
 import ProductDetailsTab from './components/ProductDetailsTab/ProductDetailsTab';
@@ -64,10 +65,44 @@ const Product = () => {
   return (
     <main className="bg-[#15110F] min-h-screen">
       {/* Breadcrumb */}
-      <div className="bg-[#15110F] py-6 text-center">
-        <div className="max-w-[1200px] mx-auto font-serif text-[0.85rem] text-white [&_a]:text-[#b5aaa0] [&_a]:no-underline hover:[&_a]:text-[#c07a5d] [&_a]:transition-colors [&_a]:duration-200">
-          <Link to="/">Home</Link> / <span>{product.name}</span>
-        </div>
+      <div className="bg-[#15110F] border-b border-[#2c241c]">
+        <nav className="px-6 py-3 max-w-7xl mx-auto font-sans relative z-10" aria-label="Breadcrumb">
+          <ol className="flex flex-wrap items-center m-0 p-0">
+            <li className="flex items-center text-[0.85rem] text-[#b5aaa0] tracking-[0.5px]">
+              <Link to="/" className="text-[#b5aaa0] no-underline transition-colors duration-200 hover:text-[#c8956c]">
+                Home
+              </Link>
+              <ChevronRight size={14} className="mx-2 text-[#4a3e35] opacity-70" />
+            </li>
+            <li className="flex items-center text-[0.85rem] text-[#b5aaa0] tracking-[0.5px]">
+              <Link to="/products" className="text-[#b5aaa0] no-underline transition-colors duration-200 hover:text-[#c8956c]">
+                Products
+              </Link>
+              <ChevronRight size={14} className="mx-2 text-[#4a3e35] opacity-70" />
+            </li>
+            {product.category && (
+              <li className="flex items-center text-[0.85rem] text-[#b5aaa0] tracking-[0.5px]">
+                <Link to={`/products?category=${encodeURIComponent(product.category)}`} className="text-[#b5aaa0] no-underline transition-colors duration-200 hover:text-[#c8956c]">
+                  {product.category}
+                </Link>
+                <ChevronRight size={14} className="mx-2 text-[#4a3e35] opacity-70" />
+              </li>
+            )}
+            {product.subCategory && (
+              <li className="flex items-center text-[0.85rem] text-[#b5aaa0] tracking-[0.5px]">
+                <Link to={`/products?category=${encodeURIComponent(product.category)}&subcategory=${encodeURIComponent(product.subCategory)}`} className="text-[#b5aaa0] no-underline transition-colors duration-200 hover:text-[#c8956c]">
+                  {product.subCategory}
+                </Link>
+                <ChevronRight size={14} className="mx-2 text-[#4a3e35] opacity-70" />
+              </li>
+            )}
+            <li className="flex items-center text-[0.85rem] text-[#b5aaa0] tracking-[0.5px]">
+              <span className="text-[#c8956c] font-medium" aria-current="page">
+                {product.name}
+              </span>
+            </li>
+          </ol>
+        </nav>
       </div>
 
       {/* Main Top Section: Gallery + Info */}

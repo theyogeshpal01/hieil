@@ -5,6 +5,9 @@ import { ChevronRight } from 'lucide-react';
 const Breadcrumb = ({ items }) => {
   const location = useLocation();
 
+  // Hide global breadcrumb on product details page as it has its own
+  if (location.pathname.startsWith('/product/')) return null;
+
   const breadcrumbItems = items || (() => {
     const paths = location.pathname.split('/').filter(p => p);
     
