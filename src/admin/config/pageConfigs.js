@@ -906,7 +906,7 @@ export const pageConfigs = [
         },
         { key: 'name', label: 'Name', formLabel: 'Leader Name', placeholder: 'Enter leader name' },
         { key: 'role', label: 'Role', formLabel: 'Leader Designation', placeholder: 'Enter leader designation' },
-        { key: 'description', label: 'Description', type: 'textarea', formLabel: 'Leader Description', placeholder: 'Enter leader description' }
+        { key: 'description', label: 'Description', type: 'textarea', formLabel: 'Leader Description', placeholder: 'Enter leader description', minWidth: '400px' }
       ],
       hideDefaultActions: true,
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center'}},
