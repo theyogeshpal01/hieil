@@ -23,49 +23,45 @@ function AdminApp() {
   }
 
   return (
-    <Routes>
+    <Suspense fallback={<div style={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}><div className="hieil-spinner"></div></div>}>
+      <Routes>
         <Route element={<Layout />}>
-          <Route path="/*" element={
-            <Suspense fallback={<div style={{height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}><div className="hieil-spinner"></div></div>}>
-              <Routes>
-                <Route index element={<Dashboard />} />
-                <Route path="profile" element={<AdminProfile />} />
-                
-                {/* Create Quotation Routes */}
-                <Route path="retailer-system/product-inquiries/create-quotation/:id" element={<CreateQuotation />} />
-                <Route path="inquiry-system/product-inquiries/create-quotation/:id" element={<CreateQuotation />} />
-                
-                {/* Invoice Preview Routes */}
-                <Route path="retailer-system/invoices/preview/:id" element={<InvoicePreview />} />
-                <Route path="inquiry-system/invoices/preview/:id" element={<InvoicePreview />} />
-                
-                {/* Dynamically render all the CRUD pages based on sidebar links */}
-                {pageConfigs.map((config, index) => (
-                  <Route 
-                    key={index} 
-                    path={config.path} 
-                    element={
-                      config.path === 'sub-admin-mgmt' ? (
-                        <SubAdminMgmt />
-                      ) : config.path === 'inquiry-system/reports' ? (
-                        <ReportDashboard />
-                      ) : (
-                        <GenericList 
-                          title={config.title} 
-                          subtitle={config.subtitle}
-                          columns={config.columns} 
-                          data={config.data || genericData} 
-                          config={config}
-                        />
-                      )
-                    } 
+          <Route index element={<Dashboard />} />
+          <Route path="profile" element={<AdminProfile />} />
+          
+          {/* Create Quotation Routes */}
+          <Route path="retailer-system/product-inquiries/create-quotation/:id" element={<CreateQuotation />} />
+          <Route path="inquiry-system/product-inquiries/create-quotation/:id" element={<CreateQuotation />} />
+          
+          {/* Invoice Preview Routes */}
+          <Route path="retailer-system/invoices/preview/:id" element={<InvoicePreview />} />
+          <Route path="inquiry-system/invoices/preview/:id" element={<InvoicePreview />} />
+          
+          {/* Dynamically render all the CRUD pages based on sidebar links */}
+          {pageConfigs.map((config, index) => (
+            <Route 
+              key={index} 
+              path={config.path} 
+              element={
+                config.path === 'sub-admin-mgmt' ? (
+                  <SubAdminMgmt />
+                ) : config.path === 'inquiry-system/reports' ? (
+                  <ReportDashboard />
+                ) : (
+                  <GenericList 
+                    title={config.title} 
+                    subtitle={config.subtitle}
+                    columns={config.columns} 
+                    data={config.data || genericData} 
+                    config={config}
                   />
-                ))}
-              </Routes>
-            </Suspense>
-          } />
+                )
+              } 
+            />
+          ))}
         </Route>
       </Routes>
+    </Suspense>
   );
 }
 
