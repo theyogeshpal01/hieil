@@ -222,7 +222,6 @@ export const pageConfigs = [
             key: 'userDetails', 
             label: 'User Details', 
             render: (val, row) => React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '10px'}},
-              React.createElement('img', {src: row.userImage || 'https://via.placeholder.com/40', style: {width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover'}}),
               React.createElement('div', null,
                 React.createElement('div', {style: {fontWeight: 'bold', color: '#111827'}}, row.userName),
                 React.createElement('div', {style: {fontSize: '12px', color: '#6b7280'}}, row.userDesignation)
@@ -1116,7 +1115,13 @@ export const pageConfigs = [
         { key: 'certificateTitle', label: 'Certificate', formLabel: 'Certificate Title' },
         { key: 'createdAt', label: 'Downloaded At', hideInForm: true, render: (val) => new Date(val).toLocaleString() }
       ],
-      actions: ['Delete']
+      hideDefaultActions: true,
+      actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
+        React.createElement('button', {
+          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          onClick: () => handlers?.onDelete && handlers.onDelete(row)
+        }, React.createElement(FaTrash, null))
+      )
     },
     data: []
   },

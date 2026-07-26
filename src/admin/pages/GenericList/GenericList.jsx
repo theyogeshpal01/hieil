@@ -106,7 +106,8 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
       'retailer-system/quotations': '/retailer/quotations',
       'retailer-system/invoices': '/retailer/invoices',
       'retailer-system/payments': '/retailer/payments',
-      'retailer-system/shipping': '/retailer/shipping'
+      'retailer-system/shipping': '/retailer/shipping',
+      'submissions/feedback': '/submissions/feedback'
     };
 
     if (exactMap[path]) return exactMap[path];
@@ -340,7 +341,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                   <div>
                     <input 
                       type="file" 
-                      accept="image/*"
+                      accept={col.accept || "image/*,application/pdf"}
                       onChange={async (e) => {
                         const file = e.target.files[0];
                         if (!file) return;
@@ -351,7 +352,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                         try {
                           Swal.fire({
                             title: 'Uploading...',
-                            text: 'Please wait while the image is being uploaded',
+                            text: 'Please wait while the file is being uploaded',
                             allowOutsideClick: false,
                             didOpen: () => {
                               Swal.showLoading();
@@ -365,7 +366,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                             handleInputChange({ target: { value: res.data.url } }, col.key);
                             Swal.fire({
                               toast: true, position: 'top-end', showConfirmButton: false, timer: 3000,
-                              icon: 'success', title: 'Image uploaded successfully'
+                              icon: 'success', title: 'File uploaded successfully'
                             });
                           }
                         } catch (err) {
@@ -377,7 +378,13 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                     />
                     {formData[col.key] && (
                       <div style={{marginTop: '10px'}}>
-                        <img src={formData[col.key]} alt="Preview" style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2e8f0'}} />
+                        {formData[col.key].match(/\.(jpeg|jpg|gif|png|webp|svg)$/i) ? (
+                          <img src={formData[col.key]} alt="Preview" style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2e8f0'}} />
+                        ) : (
+                          <a href={formData[col.key]} target="_blank" rel="noopener noreferrer" style={{color: '#3b82f6', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px'}}>
+                            📄 View Uploaded File
+                          </a>
+                        )}
                       </div>
                     )}
                   </div>
