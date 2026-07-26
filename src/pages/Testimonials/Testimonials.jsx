@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Quote, Star, PenTool, Camera, CheckCircle, X, Upload } from 'lucide-react';
+import { Quote, Star, PenTool, Camera, CheckCircle, X, Upload, MessageCircle } from 'lucide-react';
 import api from '../../config/api';
 import Swal from 'sweetalert2';
 
