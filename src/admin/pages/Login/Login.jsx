@@ -20,6 +20,8 @@ const Login = ({ onLogin }) => {
       if (res.data && res.data.token) {
         localStorage.setItem('adminToken', res.data.token);
         localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('adminRole', res.data.admin?.role || 'superadmin');
+        localStorage.setItem('adminPermissions', JSON.stringify(res.data.admin?.permissions || {}));
         onLogin();
       }
     } catch (err) {

@@ -41,7 +41,7 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulk
               <FaTrash /> Delete Selected ({selectedIds.length})
             </button>
           )}
-          {columns.addButtonText && (
+          {columns.addButtonText && onAdd && (
             <button className="add-btn" onClick={onAdd}>
               <FaPlus /> {columns.addButtonText}
             </button>
@@ -113,12 +113,16 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulk
                   <td className="action-cell">
                     {columns.actions ? columns.actions(row, { onEdit, onDelete, onUpdateRow }) : (
                       <>
-                        <button className="action-btn edit-btn" style={columns.actionStyle === 'orange' ? {backgroundColor: '#f59e0b'} : {}} onClick={() => onEdit && onEdit(row)}>
-                          <FaEdit />
-                        </button>
-                        <button className="action-btn delete-btn" style={columns.actionStyle === 'orange' ? {backgroundColor: '#f59e0b'} : {}} onClick={() => onDelete && onDelete(row)}>
-                          <FaTrash />
-                        </button>
+                        {onEdit && (
+                          <button className="action-btn edit-btn" style={columns.actionStyle === 'orange' ? {backgroundColor: '#f59e0b'} : {}} onClick={() => onEdit(row)}>
+                            <FaEdit />
+                          </button>
+                        )}
+                        {onDelete && (
+                          <button className="action-btn delete-btn" style={columns.actionStyle === 'orange' ? {backgroundColor: '#f59e0b'} : {}} onClick={() => onDelete(row)}>
+                            <FaTrash />
+                          </button>
+                        )}
                       </>
                     )}
                   </td>

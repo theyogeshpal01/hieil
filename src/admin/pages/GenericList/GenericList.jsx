@@ -435,6 +435,13 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
       </div>
     );
   }
+
+  const adminRole = localStorage.getItem('adminRole') || 'superadmin';
+  const rawPermissions = localStorage.getItem('adminPermissions');
+  const adminPermissions = rawPermissions && rawPermissions !== 'undefined' ? JSON.parse(rawPermissions) : {};
+  const currentModule = title;
+  
+  const modulePerms = adminRole === 'superadmin' ? { add: true, edit: true, delete: true } : (adminPermissions[currentModule] || { add: false, edit: false, delete: false });
   
   return (
     <div className="generic-list-page">
@@ -461,11 +468,11 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
         <DataTable 
           columns={columns} 
           data={tableData} 
-          onEdit={handleEdit}
-          onDelete={handleDelete}
-          onUpdateRow={handleUpdateRow}
-          onBulkDelete={handleBulkDelete}
-          onAdd={handleAdd}
+          onEdit={modulePerms.edit ? handleEdit : null}
+          onDelete={modulePerms.delete ? handleDelete : null}
+          onUpdateRow={modulePerms.edit ? handleUpdateRow : null}
+          onBulkDelete={modulePerms.delete ? handleBulkDelete : null}
+          onAdd={modulePerms.add ? handleAdd : null}
         />
       )}
     </div>

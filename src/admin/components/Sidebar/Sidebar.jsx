@@ -74,6 +74,15 @@ const SidebarItem = ({ to, icon, label, exact, children, isSidebarOpen }) => {
 };
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+  const adminRole = localStorage.getItem('adminRole') || 'superadmin';
+  const rawPermissions = localStorage.getItem('adminPermissions');
+  const adminPermissions = rawPermissions && rawPermissions !== 'undefined' ? JSON.parse(rawPermissions) : {};
+
+  const hasPermission = (moduleName) => {
+    if (adminRole === 'superadmin') return true;
+    return adminPermissions[moduleName]?.view === true;
+  };
+
   return (
     <div className={`fixed top-0 left-0 h-screen bg-[#212b36] dark:bg-[#1a1c23] text-white flex flex-col transition-all duration-300 ease-in-out z-[1000] overflow-x-hidden ${isOpen ? 'w-[260px]' : 'w-[70px] max-md:-translate-x-full'} max-md:w-[260px] max-md:${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
       <div className={`flex items-center p-5 border-b border-[#2d3748] dark:border-gray-800 flex-shrink-0 ${!isOpen ? 'justify-center max-md:justify-start' : ''}`}>
@@ -92,51 +101,49 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         {isOpen && <div className="px-5 py-3 text-[11px] font-bold text-gray-500 tracking-[1px] uppercase whitespace-nowrap">WEBSITE CONTENT DATA</div>}
         <nav className="px-2">
           <ul className="list-none p-0 m-0">
-            <SidebarItem isSidebarOpen={isOpen} to="/" icon={FaHome} label="Dashboard" exact />
-            <SidebarItem isSidebarOpen={isOpen} to="/categories" icon={FaList} label="Category's" />
-            <SidebarItem isSidebarOpen={isOpen} to="/subcategories" icon={FaList} label="Subcategory's" />
-            <SidebarItem isSidebarOpen={isOpen} to="/products" icon={FaShoppingCart} label="Product's" />
-            <SidebarItem isSidebarOpen={isOpen} to="/custom-products" icon={FaCogs} label="Custom Products" />
-            {/* <SidebarItem isSidebarOpen={isOpen} to="/wholesale-categories" icon={FaLayerGroup} label="Wholesale Categories" /> */}
-            <SidebarItem isSidebarOpen={isOpen} to="/blog-category" icon={FaTags} label="Blog Category" />
-            <SidebarItem isSidebarOpen={isOpen} to="/blogs" icon={FaBlogger} label="Blog's" />
+            {hasPermission('Dashboard') && <SidebarItem isSidebarOpen={isOpen} to="/" icon={FaHome} label="Dashboard" exact />}
+            {hasPermission("Category's") && <SidebarItem isSidebarOpen={isOpen} to="/categories" icon={FaList} label="Category's" />}
+            {hasPermission("Subcategory's") && <SidebarItem isSidebarOpen={isOpen} to="/subcategories" icon={FaList} label="Subcategory's" />}
+            {hasPermission("Product's") && <SidebarItem isSidebarOpen={isOpen} to="/products" icon={FaShoppingCart} label="Product's" />}
+            {hasPermission("Custom Products") && <SidebarItem isSidebarOpen={isOpen} to="/custom-products" icon={FaCogs} label="Custom Products" />}
+            {hasPermission("Blog Category") && <SidebarItem isSidebarOpen={isOpen} to="/blog-category" icon={FaTags} label="Blog Category" />}
+            {hasPermission("Blog's") && <SidebarItem isSidebarOpen={isOpen} to="/blogs" icon={FaBlogger} label="Blog's" />}
             <SidebarItem isSidebarOpen={isOpen} to="/blog-fdgw" icon={FaBlogger} label="Blog-FDGW" />
-            <SidebarItem isSidebarOpen={isOpen} icon={FaBell} label="Manage Submissions">
+            {hasPermission("Submissions") && <SidebarItem isSidebarOpen={isOpen} icon={FaBell} label="Manage Submissions">
                {[
                  {to: '/submissions/reviews', label: 'Reviews/Testimonials'},
                  {to: '/submissions/user-moments', label: 'User Moments/Photos'},
                  {to: '/submissions/feedback', label: 'Customer Feedback'},
                  {to: '/submissions/newsletter', label: 'Newsletter Subscribers'}
                ]}
-            </SidebarItem>
-            <SidebarItem isSidebarOpen={isOpen} to="/brands" icon={FaBuilding} label="Brands" />
-            <SidebarItem isSidebarOpen={isOpen} to="/product-cq" icon={FaClipboardList} label="Product C & Q" />
-            <SidebarItem isSidebarOpen={isOpen} to="/artisan" icon={FaUserTie} label="Our Artisan" />
-            <SidebarItem isSidebarOpen={isOpen} to="/leaders" icon={FaUsers} label="Our Leader's" />
-            <SidebarItem isSidebarOpen={isOpen} to="/gallery-category" icon={FaImages} label="Gallery Category" />
-            <SidebarItem isSidebarOpen={isOpen} to="/gallery" icon={FaImages} label="Gallery" />
-            <SidebarItem isSidebarOpen={isOpen} to="/faq-category" icon={FaQuestionCircle} label="FAQ Category" />
-            <SidebarItem isSidebarOpen={isOpen} to="/faq" icon={FaQuestionCircle} label="FAQ" />
-            <SidebarItem isSidebarOpen={isOpen} to="/certifications" icon={FaCertificate} label="Our Certifications" />
-            <SidebarItem isSidebarOpen={isOpen} to="/download-leads" icon={FaDownload} label="Certificate Downloads" />
-            <SidebarItem isSidebarOpen={isOpen} to="/sliders" icon={FaSlidersH} label="Slider's" />
-            <SidebarItem isSidebarOpen={isOpen} to="/contact" icon={FaEnvelope} label="Contact" />
+            </SidebarItem>}
+            {hasPermission("Brands") && <SidebarItem isSidebarOpen={isOpen} to="/brands" icon={FaBuilding} label="Brands" />}
+            {hasPermission("Product C & Q") && <SidebarItem isSidebarOpen={isOpen} to="/product-cq" icon={FaClipboardList} label="Product C & Q" />}
+            {hasPermission("Artisan") && <SidebarItem isSidebarOpen={isOpen} to="/artisan" icon={FaUserTie} label="Our Artisan" />}
+            {hasPermission("Leader's") && <SidebarItem isSidebarOpen={isOpen} to="/leaders" icon={FaUsers} label="Our Leader's" />}
+            {hasPermission("Gallery") && <SidebarItem isSidebarOpen={isOpen} to="/gallery-category" icon={FaImages} label="Gallery Category" />}
+            {hasPermission("Gallery") && <SidebarItem isSidebarOpen={isOpen} to="/gallery" icon={FaImages} label="Gallery" />}
+            {hasPermission("FAQ") && <SidebarItem isSidebarOpen={isOpen} to="/faq-category" icon={FaQuestionCircle} label="FAQ Category" />}
+            {hasPermission("FAQ") && <SidebarItem isSidebarOpen={isOpen} to="/faq" icon={FaQuestionCircle} label="FAQ" />}
+            {hasPermission("Certifications") && <SidebarItem isSidebarOpen={isOpen} to="/certifications" icon={FaCertificate} label="Our Certifications" />}
+            {hasPermission("Download Leads") && <SidebarItem isSidebarOpen={isOpen} to="/download-leads" icon={FaDownload} label="Certificate Downloads" />}
+            {hasPermission("Slider's") && <SidebarItem isSidebarOpen={isOpen} to="/sliders" icon={FaSlidersH} label="Slider's" />}
+            {hasPermission("Contact") && <SidebarItem isSidebarOpen={isOpen} to="/contact" icon={FaEnvelope} label="Contact" />}
           </ul>
         </nav>
 
         {isOpen && <div className="px-5 mt-4 py-3 text-[11px] font-bold text-gray-500 tracking-[1px] uppercase whitespace-nowrap">ADMIN & OPERATIONS</div>}
         <nav className="px-2">
           <ul className="list-none p-0 m-0">
-            <SidebarItem isSidebarOpen={isOpen} to="/service-inquiries" icon={FaInfoCircle} label="Service Inquiries" />
-            <SidebarItem isSidebarOpen={isOpen} to="/download-leads" icon={FaDownload} label="Download Leads" />
-            <SidebarItem isSidebarOpen={isOpen} icon={FaUserCog} label="Vendor Management">
+            {hasPermission("Service Inquiries") && <SidebarItem isSidebarOpen={isOpen} to="/service-inquiries" icon={FaInfoCircle} label="Service Inquiries" />}
+            {hasPermission("Vendor Management") && <SidebarItem isSidebarOpen={isOpen} icon={FaUserCog} label="Vendor Management">
                {[
                  {to: '/vendor-management/master', label: 'Vendor Master'},
                  {to: '/vendor-management/report', label: 'Vendor Report'},
                  {to: '/vendor-management/payout', label: 'Vendor Payout'}
                ]}
-            </SidebarItem>
-            <SidebarItem isSidebarOpen={isOpen} icon={FaBoxOpen} label="Inquiry System">
+            </SidebarItem>}
+            {hasPermission("Inquiry System") && <SidebarItem isSidebarOpen={isOpen} icon={FaBoxOpen} label="Inquiry System">
                {[
                  {to: '/inquiry-system/product-inquiries', label: 'Product Inquiries'},
                  {to: '/inquiry-system/orders', label: 'Orders'},
@@ -146,8 +153,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                  {to: '/inquiry-system/shipping', label: 'Shipping'},
                  {to: '/inquiry-system/reports', label: 'Reports'}
                ]}
-            </SidebarItem>
-            <SidebarItem isSidebarOpen={isOpen} icon={FaStore} label="Retailer System">
+            </SidebarItem>}
+            {hasPermission("Retailer System") && <SidebarItem isSidebarOpen={isOpen} icon={FaStore} label="Retailer System">
                {[
                  {to: '/retailer-system/product-inquiries', label: 'Product Inquiries'},
                  {to: '/retailer-system/orders', label: 'Orders'},
@@ -156,19 +163,21 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                  {to: '/retailer-system/payments', label: 'Payments'},
                  {to: '/retailer-system/shipping', label: 'Shipping'}
                ]}
-            </SidebarItem>
-            <SidebarItem isSidebarOpen={isOpen} to="/bulk-fmoq" icon={FaLayerGroup} label="Bulk-FMOQ" />
-            <SidebarItem isSidebarOpen={isOpen} to="/shipping-list" icon={FaShippingFast} label="Shipping List" />
-            <SidebarItem isSidebarOpen={isOpen} to="/index-states" icon={FaMapMarkerAlt} label="Index States" />
+            </SidebarItem>}
+            {hasPermission("Bulk-FMOQ") && <SidebarItem isSidebarOpen={isOpen} to="/bulk-fmoq" icon={FaLayerGroup} label="Bulk-FMOQ" />}
+            {hasPermission("Shipping List") && <SidebarItem isSidebarOpen={isOpen} to="/shipping-list" icon={FaShippingFast} label="Shipping List" />}
+            {hasPermission("Index States") && <SidebarItem isSidebarOpen={isOpen} to="/index-states" icon={FaMapMarkerAlt} label="Index States" />}
           </ul>
         </nav>
 
-        {isOpen && <div className="px-5 mt-4 py-3 text-[11px] font-bold text-gray-500 tracking-[1px] uppercase whitespace-nowrap">SUB ADMIN CONTROL</div>}
-        <nav className="px-2">
-          <ul className="list-none p-0 m-0">
-            <SidebarItem isSidebarOpen={isOpen} to="/sub-admin-mgmt" icon={FaUserShield} label="Sub Admin Mgmt" />
-          </ul>
-        </nav>
+        {hasPermission("Sub Admin Management") && <>
+          {isOpen && <div className="px-5 mt-4 py-3 text-[11px] font-bold text-gray-500 tracking-[1px] uppercase whitespace-nowrap">SUB ADMIN CONTROL</div>}
+          <nav className="px-2">
+            <ul className="list-none p-0 m-0">
+              <SidebarItem isSidebarOpen={isOpen} to="/sub-admin-mgmt" icon={FaUserShield} label="Sub Admin Mgmt" />
+            </ul>
+          </nav>
+        </>}
       </div>
 
       <div className="p-4 border-t border-[#2d3748] dark:border-gray-800">

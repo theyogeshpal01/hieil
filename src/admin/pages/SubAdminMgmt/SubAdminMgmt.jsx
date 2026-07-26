@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { FaChevronLeft, FaUsers, FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+import api from '../../config/api';
 import './SubAdminMgmt.css';
 
 const permissionsList = [
@@ -36,10 +38,24 @@ const mockAdmins = [
     permissions: { ...initPermissions(permissionsList), 'Dashboard': { view: true }, "Category's": { view: true, add: true, edit: false, delete: false } }
   }
 ];
-
 const SubAdminMgmt = () => {
-  const [admins, setAdmins] = useState(mockAdmins);
+  const [admins, setAdmins] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const fetchAdmins = async () => {
+    try {
+      const res = await api.get('/sub-admins');
+      setAdmins(res.data);
+    } catch (error) {
+      console.error('Error fetching sub-admins', error);
+      Swal.fire('Error', 'Failed to fetch sub-admins', 'error');
+    }
+  };
+
+  React.useEffect(() => {
+    fetchAdmins();
+  }, []);
   
   const [formData, setFormData] = useState({ 
     name: '', 
@@ -63,9 +79,15 @@ const SubAdminMgmt = () => {
     setIsFormOpen(true);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if(window.confirm('Are you sure you want to delete this sub-admin?')) {
-      setAdmins(admins.filter(a => a.id !== id));
+      try {
+        await api.delete(`/sub-admins/${id}`);
+        fetchAdmins();
+        Swal.fire('Deleted', 'Sub-admin deleted successfully', 'success');
+      } catch (error) {
+        Swal.fire('Error', 'Failed to delete sub-admin', 'error');
+      }
     }
   };
 
@@ -100,15 +122,24 @@ const SubAdminMgmt = () => {
     setFormData(prev => ({ ...prev, permissions: initPermissions(permissionsList) }));
   };
 
-  const handleSave = (e) => {
+  const handleSave = async (e) => {
     e.preventDefault();
-    if(editingId) {
-      setAdmins(admins.map(a => a.id === editingId ? { ...formData, id: editingId } : a));
-    } else {
-      const newId = admins.length > 0 ? Math.max(...admins.map(a => a.id)) + 1 : 1;
-      setAdmins([...admins, { ...formData, id: newId }]);
+    setLoading(true);
+    try {
+      if(editingId) {
+        await api.put(`/sub-admins/${editingId}`, formData);
+        Swal.fire('Updated', 'Sub-admin updated successfully', 'success');
+      } else {
+        await api.post('/sub-admins', formData);
+        Swal.fire('Created', 'Sub-admin created successfully', 'success');
+      }
+      fetchAdmins();
+      setIsFormOpen(false);
+    } catch (error) {
+      Swal.fire('Error', error.response?.data?.message || 'Failed to save sub-admin', 'error');
+    } finally {
+      setLoading(false);
     }
-    setIsFormOpen(false);
   };
 
   // Helper to render toggles
@@ -188,8 +219,8 @@ const SubAdminMgmt = () => {
                     </div>
                   </div>
                   
-                  <button type="submit" className="sam-btn-submit">
-                    {editingId ? 'Save Changes' : 'Create Sub Admin'}
+                  <button type="submit" className="sam-btn-submit" disabled={loading}>
+                    {loading ? 'Saving...' : (editingId ? 'Save Changes' : 'Create Sub Admin')}
                   </button>
                 </form>
               </div>
@@ -263,8 +294,8 @@ const SubAdminMgmt = () => {
                  const permsDisplay = activePerms.slice(0, 2).join(', ') + (activePerms.length > 2 ? '...' : '');
                  
                  return (
-                  <tr key={admin.id}>
-                    <td>{admin.id}</td>
+                  <tr key={admin._id}>
+                    <td>{admin._id.substring(admin._id.length - 6)}</td>
                     <td>{admin.name}</td>
                     <td>{admin.email}</td>
                     <td>{admin.password}</td>
@@ -275,10 +306,10 @@ const SubAdminMgmt = () => {
                     </td>
                     <td>{permsDisplay || 'None'}</td>
                     <td className="action-cell">
-                      <button className="action-btn edit-btn" onClick={() => handleEdit(admin)}>
+                      <button className="action-btn edit-btn" onClick={() => handleEdit({ ...admin, id: admin._id })}>
                         <FaEdit />
                       </button>
-                      <button className="action-btn delete-btn" onClick={() => handleDelete(admin.id)}>
+                      <button className="action-btn delete-btn" onClick={() => handleDelete(admin._id)}>
                         <FaTrash />
                       </button>
                     </td>
