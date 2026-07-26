@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FaFileAlt, FaCheck } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import api from '../../config/api';
 
 const CreateQuotation = () => {
   const [formData, setFormData] = useState({
@@ -50,15 +51,8 @@ const CreateQuotation = () => {
     });
 
     try {
-      const response = await fetch('http://localhost:3000/api/quotation-email/send', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
+      const response = await api.post('/quotation-email/send', formData);
+      const data = response.data;
 
       if (data.success) {
         Swal.fire({
