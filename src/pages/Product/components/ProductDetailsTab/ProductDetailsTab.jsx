@@ -29,7 +29,9 @@ const ProductDetailsTab = ({ product }) => {
               <h3 className="font-serif text-[1.8rem] text-black mb-4 m-0">{product?.category || "Product Details"}</h3>
               {product?.subCategory && <p className="m-0 mb-2 text-[#b5aaa0]">{product.subCategory}</p>}
               {product?.materials && <p className="m-0 mb-2 text-[#b5aaa0]">{product.materials}</p>}
-              {/* {product?.craftsmanship && <p className="m-0 mb-2 text-[#b5aaa0]">{product.craftsmanship}</p>} */}
+              {product?.craftsmanship && product.craftsmanship !== '<p><br></p>' && (
+                <div className="m-0 mb-2 text-[#b5aaa0] [&>p]:m-0" dangerouslySetInnerHTML={{ __html: product.craftsmanship }} />
+              )}
               {!product?.subCategory && !product?.material && (
                 <>
                   <p className="m-0 mb-2 text-[#b5aaa0]">High Quality Material</p>
