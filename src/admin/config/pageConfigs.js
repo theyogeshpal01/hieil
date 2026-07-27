@@ -467,6 +467,7 @@ export const pageConfigs = [
     path: 'inquiry-system/quotations', 
     title: 'Quotations', 
     subtitle: 'Quotations',
+    apiEndpoint: '/quotations',
     columns: {
       title: 'QUOTATION LIST',
       headers: [
