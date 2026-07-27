@@ -98,7 +98,7 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulk
                   } else if (col.key === 'status') {
                     const statusClass = `status-${String(cellValue).toLowerCase()}`;
                     displayValue = <span className={`status-badge ${statusClass}`}>{cellValue}</span>;
-                  } else if (col.type === 'rich-text' && typeof cellValue === 'string') {
+                  } else if (typeof cellValue === 'string' && (col.type === 'rich-text' || col.type === 'textarea' || col.key === 'description')) {
                     // Strip HTML tags for table display
                     displayValue = cellValue.replace(/<[^>]*>?/gm, '');
                   }

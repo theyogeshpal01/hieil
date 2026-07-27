@@ -332,7 +332,10 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                           : dynamicSubcategories;
                         // If no exact match (due to DB string mismatches), fallback to all subcategories
                         const finalSubcategories = (filtered.length > 0 ? filtered : dynamicSubcategories);
-                        return finalSubcategories.map(s => s.subcategoryName || s.name || s.title).filter(Boolean);
+                        return finalSubcategories.map(s => {
+                          const name = s.subcategoryName || s.name || s.title;
+                          return typeof name === 'string' ? name.replace(/<[^>]*>?/gm, '') : name;
+                        }).filter(Boolean);
                       }
                       return col.options || [];
                     })().map(opt => <option key={opt} value={opt}>{opt}</option>)}
