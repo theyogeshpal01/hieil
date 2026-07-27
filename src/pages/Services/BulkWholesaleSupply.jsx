@@ -283,10 +283,21 @@ They use wood to create beautiful things for the home.
                     <div>
                       <h4 className="font-sans text-[1.1rem] text-white mb-3 uppercase tracking-[1px]">{item.title}</h4>
                       <div className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0 mb-4 [&>p]:m-0" dangerouslySetInnerHTML={{ __html: item.description }}></div>
-                      <ul className="list-none p-0 m-0 space-y-2">
-                        {item.point1 && <li className="text-[#b5aaa0] text-[0.9rem] flex items-center gap-2"><ChevronRight size={14} className="text-[#c8956c] min-w-[14px]"/> <span>{item.point1}</span></li>}
-                        {item.point2 && <li className="text-[#b5aaa0] text-[0.9rem] flex items-center gap-2"><ChevronRight size={14} className="text-[#c8956c] min-w-[14px]"/> <span>{item.point2}</span></li>}
-                      </ul>
+                        <ul className="list-none p-0 m-0 space-y-2">
+                          {item.point1 && <li className="text-[#b5aaa0] text-[0.9rem] flex items-center gap-2"><ChevronRight size={14} className="text-[#c8956c] min-w-[14px]"/> <span>{item.point1}</span></li>}
+                          {item.point2 && <li className="text-[#b5aaa0] text-[0.9rem] flex items-center gap-2"><ChevronRight size={14} className="text-[#c8956c] min-w-[14px]"/> <span>{item.point2}</span></li>}
+                          {item.point3 && <li className="text-[#b5aaa0] text-[0.9rem] flex items-center gap-2"><ChevronRight size={14} className="text-[#c8956c] min-w-[14px]"/> <span>{item.point3}</span></li>}
+                        </ul>
+                        {item.pdfFile && (
+                          <a 
+                            href={item.pdfFile.startsWith('http') ? item.pdfFile : `https://hieil.com${item.pdfFile}`} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="mt-6 inline-flex items-center gap-2 text-[0.85rem] uppercase tracking-[1px] font-semibold text-[#c8956c] transition-colors duration-300 hover:text-white w-fit"
+                          >
+                            <FaIcons.FaRegFilePdf size={16} /> VIEW PDF
+                          </a>
+                        )}
                     </div>
                   </div>
                 );
