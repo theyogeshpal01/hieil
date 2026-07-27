@@ -41,6 +41,15 @@ const ProductGallery = ({ product }) => {
     setBgPos({ x: `${bgX}%`, y: `${bgY}%` });
   };
 
+  const getFormattedUrl = (src) => {
+    if (!src) return '';
+    if (src.startsWith('data:')) return src;
+    if (src.startsWith('/uploads')) return `https://hieil.com/api-v1/api${src}`;
+    if (src.startsWith('uploads/')) return `https://hieil.com/api-v1/api/${src}`;
+    if (src.includes('api.hieil.com')) return src.replace('api.hieil.com', 'hieil.com');
+    return src;
+  };
+
   return (
     <div className="flex gap-6 h-[600px] max-sm:flex-col-reverse max-sm:h-auto">
       {/* Thumbnails Sidebar */}
@@ -94,7 +103,7 @@ const ProductGallery = ({ product }) => {
         <div 
           className="absolute left-[105%] top-0 w-[500px] h-[600px] border border-[#2c241c] bg-[#15110F] bg-no-repeat bg-[size:250%] z-[100] shadow-[0_4px_20px_rgba(0,0,0,0.5)] max-lg:hidden"
           style={{
-            backgroundImage: `url("${images[activeIndex]}")`,
+            backgroundImage: `url("${getFormattedUrl(images[activeIndex])}")`,
             backgroundPosition: `${bgPos.x} ${bgPos.y}`
           }}
         />
