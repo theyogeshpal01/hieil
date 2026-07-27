@@ -114,7 +114,7 @@ const Product = () => {
               <ProductGallery product={product} />
             </div>
             
-            <div ref={infoRef} className="relative z-10" style={{opacity:0,transform:'translateX(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
+            <div ref={infoRef} className="relative z-10" style={{opacity:0,transform:'translateX(40px)',transition:'opacity 0.7s ease,transform 0.7s ease', transitionDelay: '0.15s'}}>
               <ProductInfo product={product} />
             </div>
           </div>
