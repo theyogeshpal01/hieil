@@ -102,7 +102,11 @@ const Shop = () => {
     api.get('/categories')
       .then(res => {
         if (res.data && res.data.length > 0) {
-          setCategoriesList(['All categories', ...res.data.map(cat => cat.name)]);
+          const cleanCategories = res.data.map(cat => {
+            const name = cat.name || '';
+            return typeof name === 'string' ? name.replace(/<[^>]*>?/gm, '').trim() : name;
+          }).filter(name => name !== '');
+          setCategoriesList(['All categories', ...cleanCategories]);
         }
       })
       .catch(err => console.error("Error fetching categories:", err));

@@ -28,7 +28,14 @@ const Header = () => {
 
     // Fetch Subcategories
     api.get('/subcategories').then(res => {
-      if (res.data) setProductSubcategories(res.data);
+      if (res.data) {
+        const cleanSubcategories = res.data.map(sub => {
+          const name = sub.subcategoryName || sub.name || '';
+          const cleanName = typeof name === 'string' ? name.replace(/<[^>]*>?/gm, '').trim() : name;
+          return { ...sub, subcategoryName: cleanName, name: cleanName };
+        }).filter(sub => sub.subcategoryName !== '');
+        setProductSubcategories(cleanSubcategories);
+      }
     }).catch(err => console.error(err));
   }, []);
 
