@@ -3,10 +3,25 @@ import { Link } from 'react-router-dom';
 import api from '../../config/api';
 import { PackageOpen, TrendingUp, ShieldCheck, Target, Globe, Star, Clock, HeartHandshake, Search, Scale, Package, Users, Award, Box, ChevronRight, X } from 'lucide-react';
 import Swal from 'sweetalert2';
+import * as FaIcons from 'react-icons/fa';
 
 const BulkWholesaleSupply = () => {
   const [showModal, setShowModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [productCQ, setProductCQ] = useState([]);
+  
+  useEffect(() => {
+    const fetchProductCQ = async () => {
+      try {
+        const res = await api.get('/product-cq');
+        setProductCQ(Array.isArray(res.data) ? res.data : (res.data.data || []));
+      } catch (err) {
+        console.error('Error fetching Product C&Q:', err);
+      }
+    };
+    fetchProductCQ();
+  }, []);
+
   const [formData, setFormData] = useState({
     customerName: '',
     email: '',
@@ -248,6 +263,38 @@ They use wood to create beautiful things for the home.
           <button onClick={() => setShowModal(true)} className="inline-block py-[15px] px-[35px] bg-transparent text-[#c8956c] border border-[#4a3e35] font-medium no-underline text-[0.8rem] tracking-[2px] uppercase cursor-pointer transition-all duration-300 ease-in-out hover:border-[#c8956c] hover:bg-[rgba(194,163,115,0.05)] hover:text-[#c8956c]">Start Wholesale Partnership</button>
         </div>
       </section>
+
+      {/* Product C&Q Section */}
+      {productCQ.length > 0 && (
+        <section className="py-[100px] bg-[radial-gradient(circle_at_center,#1C1713_0%,#15110F_100%)] border-b border-[#2c241c]">
+          <div className="max-w-[1200px] mx-auto px-5">
+            <div className="text-center mb-[60px]" data-aos="fade-up">
+              <h2 className='text-3xl md:text-5xl/15 font-serif font-normal text-white uppercase tracking-[1px] mb-[15px]'>Catalogue & <span style={{ color: 'var(--color-brand-base)' }}>Quote</span></h2>
+              <p className="font-sans text-[1.1rem] font-normal text-[#b5aaa0] mb-12">Everything you need to showcase and price our products</p>
+            </div>
+            <div className="grid grid-cols-3 gap-[30px] max-[1024px]:grid-cols-2 max-md:grid-cols-1">
+              {productCQ.map((item, index) => {
+                const IconComp = item.icon && FaIcons[item.icon] ? FaIcons[item.icon] : FaIcons.FaFileAlt;
+                return (
+                  <div className="bg-transparent border border-[#2c241c] p-[30px] flex flex-col transition-all duration-400 ease-in-out hover:border-[#4a3e35] hover:bg-[rgba(255,255,255,0.02)]" key={item._id || index} data-aos="fade-up" data-aos-delay={index * 50}>
+                    <div className="text-[#c8956c] mb-5 text-[30px]">
+                      {IconComp && <IconComp />}
+                    </div>
+                    <div>
+                      <h4 className="font-sans text-[1.1rem] text-white mb-3 uppercase tracking-[1px]">{item.title}</h4>
+                      <div className="text-[#8c8279] text-[0.95rem] leading-[1.6] m-0 mb-4 [&>p]:m-0" dangerouslySetInnerHTML={{ __html: item.description }}></div>
+                      <ul className="list-none p-0 m-0 space-y-2">
+                        {item.point1 && <li className="text-[#b5aaa0] text-[0.9rem] flex items-center gap-2"><ChevronRight size={14} className="text-[#c8956c] min-w-[14px]"/> <span>{item.point1}</span></li>}
+                        {item.point2 && <li className="text-[#b5aaa0] text-[0.9rem] flex items-center gap-2"><ChevronRight size={14} className="text-[#c8956c] min-w-[14px]"/> <span>{item.point2}</span></li>}
+                      </ul>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Why Partners Choose Us */}
       <section className="py-[100px] bg-[#15110F]">
