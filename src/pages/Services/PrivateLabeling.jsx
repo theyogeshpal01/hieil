@@ -29,6 +29,7 @@ import Swal from 'sweetalert2';
 const PrivateLabeling = () => {
   const [showModal, setShowModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [file, setFile] = useState(null);
   const [formData, setFormData] = useState({
     customerName: '',
     email: '',
@@ -41,12 +42,41 @@ const PrivateLabeling = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
+    Swal.fire({
+      title: 'Submitting Inquiry...',
+      text: 'Please wait, this may take a moment.',
+      allowOutsideClick: false,
+      background: '#1C1713',
+      color: '#fff',
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     try {
+      let documentUrl = '';
+      if (file) {
+        const uploadData = new FormData();
+        uploadData.append('file', file);
+        const uploadRes = await api.post('/upload', uploadData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        documentUrl = uploadRes.data.url;
+      }
+
       await api.post('/service-inquiries', {
         ...formData,
+        document: documentUrl,
         service: 'Private Labeling'
       });
       Swal.fire({
@@ -59,6 +89,7 @@ const PrivateLabeling = () => {
       });
       setShowModal(false);
       setFormData({ customerName: '', email: '', phone: '', location: '', message: '' });
+      setFile(null);
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -394,11 +425,17 @@ const PrivateLabeling = () => {
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5 text-left">
-                  <label className="text-white text-[0.85rem] font-medium">Brand Requirements *</label>
-                  <textarea name="message" required value={formData.message} onChange={handleInputChange} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c] min-h-[120px] resize-y" placeholder="Tell us about your brand requirements..."></textarea>
-                </div>
-                
-                <button type="submit" disabled={isSubmitting} className="mt-2 bg-[#c8956c] text-[#110e0c] border border-[#c8956c] rounded py-3 px-6 font-semibold text-[0.95rem] tracking-[1px] uppercase cursor-pointer transition-all duration-300 hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50">
+                    <label className="text-white text-[0.85rem] font-medium">Brand Requirements *</label>
+                    <textarea name="message" required value={formData.message} onChange={handleInputChange} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c] min-h-[120px] resize-y" placeholder="Tell us about your brand requirements..."></textarea>
+                  </div>
+
+                  <div className="flex flex-col gap-1.5 text-left">
+                    <label className="text-white text-[0.85rem] font-medium">Upload Document (Optional)</label>
+                    <input type="file" onChange={handleFileChange} className="bg-[#15110F] border border-[#2c241c] rounded p-3 text-white text-[0.95rem] outline-none transition-colors duration-200 focus:border-[#c8956c] file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-[#c8956c] file:text-[#110e0c] hover:file:bg-[#d8a57c]" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
+                    <span className="text-[#b5aaa0] text-[0.75rem]">Upload your requirement doc or design references if any.</span>
+                  </div>
+                  
+                  <button type="submit" disabled={isSubmitting} className="mt-2 bg-[#c8956c] text-[#110e0c] border border-[#c8956c] rounded py-3 px-6 font-semibold text-[0.95rem] tracking-[1px] uppercase cursor-pointer transition-all duration-300 hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50">
                   {isSubmitting ? 'Submitting...' : 'Submit Inquiry'}
                 </button>
               </form>

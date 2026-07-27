@@ -1128,6 +1128,7 @@ export const pageConfigs = [
         },
         { key: 'location', label: 'Location' },
         { key: 'message', label: 'Message' },
+        { key: 'document', label: 'Document', render: (val) => val ? React.createElement('a', {href: val, target: '_blank', style: {color: '#3b82f6', textDecoration: 'underline'}}, 'View Document') : 'No Document' },
         { key: 'date', label: 'Date' }
       ],
       hideDefaultActions: true,
