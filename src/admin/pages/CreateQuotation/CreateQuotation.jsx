@@ -69,7 +69,7 @@ const CreateQuotation = () => {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error.message || 'An error occurred while sending the quotation.',
+        text: error.response?.data?.message || error.message || 'An error occurred while sending the quotation.',
         confirmButtonColor: '#ef4444'
       });
     } finally {
