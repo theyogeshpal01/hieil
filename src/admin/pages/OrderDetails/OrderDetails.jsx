@@ -110,49 +110,50 @@ const OrderDetails = () => {
 
         <div className="order-tab-content">
           {activeTab === 'general' && (
-            <div className="info-grid">
-              <div className="info-item">
-                <span className="info-label">Order Number</span>
-                <span className="info-value">{order.orderNo}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Linked Quotation</span>
-                <span className="info-value">{order.quotation}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Customer</span>
-                <span className="info-value">{order.customer || 'N/A'}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Country</span>
-                <span className="info-value">{order.country || 'N/A'}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Status</span>
-                <span className="info-value">
-                  <span style={{
-                    backgroundColor: order.status === 'Delivered' ? '#dcfce7' : order.status === 'Cancelled' ? '#fee2e2' : order.status === 'Processing' ? '#fef08a' : '#bfdbfe',
-                    color: order.status === 'Delivered' ? '#166534' : order.status === 'Cancelled' ? '#991b1b' : order.status === 'Processing' ? '#854d0e' : '#1e3a8a',
-                    padding: '4px 10px',
-                    borderRadius: '4px',
-                    fontSize: '12px',
-                    fontWeight: '600'
-                  }}>
-                    {order.status || 'Processing'}
+            <>
+              <div className="info-grid">
+                <div className="info-item">
+                  <span className="info-label">Order Number</span>
+                  <span className="info-value">{order.orderNo}</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">Linked Quotation</span>
+                  <span className="info-value">{order.quotation}</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">Customer</span>
+                  <span className="info-value">{order.customer || 'N/A'}</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">Country</span>
+                  <span className="info-value">{order.country || 'N/A'}</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">Status</span>
+                  <span className="info-value">
+                    <span style={{
+                      backgroundColor: order.status === 'Delivered' ? '#dcfce7' : order.status === 'Cancelled' ? '#fee2e2' : order.status === 'Processing' ? '#fef08a' : '#bfdbfe',
+                      color: order.status === 'Delivered' ? '#166534' : order.status === 'Cancelled' ? '#991b1b' : order.status === 'Processing' ? '#854d0e' : '#1e3a8a',
+                      padding: '4px 10px',
+                      borderRadius: '4px',
+                      fontSize: '12px',
+                      fontWeight: '600'
+                    }}>
+                      {order.status || 'Processing'}
+                    </span>
                   </span>
-                </span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">Order Type</span>
+                  <span className="info-value" style={{textTransform: 'capitalize'}}>{order.type}</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">Created At</span>
+                  <span className="info-value">{new Date(order.createdAt).toLocaleString()}</span>
+                </div>
               </div>
-              <div className="info-item">
-                <span className="info-label">Order Type</span>
-                <span className="info-value" style={{textTransform: 'capitalize'}}>{order.type}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">Created At</span>
-                <span className="info-value">{new Date(order.createdAt).toLocaleString()}</span>
-              </div>
-            </div>
-            
-            <div style={{marginTop: '30px', paddingTop: '20px', borderTop: '1px solid #e5e7eb'}}>
+              
+              <div style={{marginTop: '30px', paddingTop: '20px', borderTop: '1px solid #e5e7eb'}}>
               <button 
                 onClick={async () => {
                   try {
@@ -192,6 +193,7 @@ const OrderDetails = () => {
                 Generate Invoice
               </button>
             </div>
+            </>
           )}
 
           {activeTab === 'address' && (
