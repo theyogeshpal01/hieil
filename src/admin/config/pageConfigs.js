@@ -1380,10 +1380,24 @@ export const pageConfigs = [
   },
   { 
     path: 'vendor-management/master', 
+    apiEndpoint: '/vendors',
     title: 'Vendor Master', 
+    singularTitle: 'Vendor',
     subtitle: 'Vendor Master',
+    formTitleAdd: 'Add Vendor',
+    formTitleEdit: 'Edit Vendor',
+    formCardTitle: 'ADD VENDOR',
+    formFields: [
+      { name: 'vendorName', label: 'Vendor Name', type: 'text', required: true, width: 'full' },
+      { name: 'commission', label: 'Commission %', type: 'text', required: true, width: 'half' },
+      { name: 'email', label: 'Email', type: 'email', width: 'half' },
+      { name: 'phone', label: 'Phone', type: 'text', width: 'half' },
+      { name: 'status', label: 'Status', type: 'select', options: ['ACTIVE', 'INACTIVE'], default: 'ACTIVE', width: 'half' }
+    ],
     columns: {
       title: 'VENDOR LIST',
+      addButtonText: 'Add Vendor',
+      formSubmitText: 'Save Vendor',
       headers: [
         { key: 'id', label: '#' },
         { key: 'vendorName', label: 'Vendor Name' },
