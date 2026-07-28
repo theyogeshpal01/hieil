@@ -9,7 +9,23 @@ const InvoicePreview = () => {
   const navigate = useNavigate();
   const [invoice, setInvoice] = useState(null);
   const [order, setOrder] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [companyDetails, setCompanyDetails] = useState({
+    name: 'HIEIL',
+    tagline: 'Handcrafted Products, Inspired by India',
+    address: 'Jaipur, Rajasthan, India',
+    website: 'www.hieil.com',
+    email: 'info@hieil.com',
+    phone: '+91 XXXXX XXXXX',
+    gst: 'XXXXXXXXXXXXXXX',
+    iec: 'XXXXXXXXXX',
+    bankAccountName: 'HIEIL (Handcrafted Products Inspired by India)',
+    bankName: '[Your Bank Name]',
+    accountNumber: '[Your Account Number]',
+    ifsc: '[Your IFSC Code]',
+    swift: '[Your SWIFT Code]',
+    signatoryName: '[Authorised Signatory Name]',
+    designation: '[Designation]'
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +37,14 @@ const InvoicePreview = () => {
         const ordRes = await api.get('/orders');
         const matchingOrder = ordRes.data.find(o => o.orderNo === invData.orderNo);
         setOrder(matchingOrder);
+        
+        try {
+          const settingsRes = await api.get('/settings?key=companyDetails');
+          if (settingsRes.data && settingsRes.data.companyDetails) {
+            setCompanyDetails(prev => ({ ...prev, ...JSON.parse(settingsRes.data.companyDetails) }));
+          }
+        } catch(e) {}
+        
         setLoading(false);
       } catch (err) {
         console.error(err);
@@ -55,14 +79,14 @@ const InvoicePreview = () => {
     dueDate: new Date(new Date(invoice.createdAt || Date.now()).getTime() + 15 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB'), // 15 days later
     currency: 'USD',
     seller: {
-      name: 'HIEIL',
-      tagline: 'Handcrafted Products, Inspired by India',
-      address: 'Jaipur, Rajasthan, India',
-      website: 'www.hieil.com',
-      email: 'info@hieil.com',
-      phone: '+91 XXXXX XXXXX',
-      gst: 'XXXXXXXXXXXXXXX',
-      iec: 'XXXXXXXXXX'
+      name: companyDetails.name,
+      tagline: companyDetails.tagline,
+      address: companyDetails.address,
+      website: companyDetails.website,
+      email: companyDetails.email,
+      phone: companyDetails.phone,
+      gst: companyDetails.gst,
+      iec: companyDetails.iec
     },
     buyer: {
       company: parsedAddress.company || invoice.customer || order?.customer || '[Buyer Name]',
@@ -107,9 +131,9 @@ const InvoicePreview = () => {
         {/* Top Header */}
         <div className="inv-top-header">
           <div className="inv-brand-box">
-            <h1>HIEIL</h1>
-            <p>Handcrafted Products, Inspired by India</p>
-            <p>www.hieil.com | Jaipur, Rajasthan, India</p>
+            <h1>{companyDetails.name}</h1>
+            <p>{companyDetails.tagline}</p>
+            <p>{companyDetails.website} | {companyDetails.address}</p>
           </div>
           <div className="inv-title-box">
             <h2>INVOICE</h2>
@@ -267,23 +291,23 @@ const InvoicePreview = () => {
           <tbody>
             <tr>
               <td className="info-label">Account Name</td>
-              <td>HIEIL (Handcrafted Products Inspired by India)</td>
+              <td>{companyDetails.bankAccountName}</td>
             </tr>
             <tr>
               <td className="info-label">Bank Name</td>
-              <td>[Your Bank Name]</td>
+              <td>{companyDetails.bankName}</td>
             </tr>
             <tr>
               <td className="info-label">Account Number</td>
-              <td>[Your Account Number]</td>
+              <td>{companyDetails.accountNumber}</td>
             </tr>
             <tr>
               <td className="info-label">IFSC Code</td>
-              <td>[Your IFSC Code]</td>
+              <td>{companyDetails.ifsc}</td>
             </tr>
             <tr>
               <td className="info-label">SWIFT / BIC Code</td>
-              <td>[Your SWIFT Code]</td>
+              <td>{companyDetails.swift}</td>
             </tr>
             <tr>
               <td className="info-label">Bank Branch</td>
@@ -302,8 +326,8 @@ const InvoicePreview = () => {
           <div className="inv-sign-left">
             <p>Signature:</p>
             <div className="inv-sign-line">
-              [Authorised Signatory Name]<br/>
-              [Designation] | HIEIL
+              {companyDetails.signatoryName || '[Authorised Signatory Name]'}<br/>
+              {companyDetails.designation || '[Designation]'} | {companyDetails.name}
             </div>
           </div>
           <div className="inv-sign-right">
@@ -316,8 +340,8 @@ const InvoicePreview = () => {
 
         {/* Footer */}
         <div className="inv-footer-strip">
-          <p><strong>Thank you for your business with HIEIL | Authentic Indian Handicraft Exports</strong></p>
-          <p>For queries: www.hieil.com/contact | Confidential & Proprietary</p>
+          <p><strong>Thank you for your business with {companyDetails.name} | {companyDetails.tagline}</strong></p>
+          <p>For queries: {companyDetails.website}/contact | Confidential & Proprietary</p>
         </div>
 
       </div>

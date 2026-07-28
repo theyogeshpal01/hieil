@@ -7,15 +7,42 @@ const Settings = () => {
   const [uploading, setUploading] = useState(false);
   const [currentPdfUrl, setCurrentPdfUrl] = useState('');
 
+  const [companyDetails, setCompanyDetails] = useState({
+    name: 'HIEIL',
+    tagline: 'Handcrafted Products, Inspired by India',
+    address: 'Jaipur, Rajasthan, India',
+    website: 'www.hieil.com',
+    email: 'info@hieil.com',
+    phone: '+91',
+    gst: '',
+    iec: '',
+    bankAccountName: 'HIEIL (Handcrafted Products Inspired by India)',
+    bankName: '',
+    accountNumber: '',
+    ifsc: '',
+    swift: '',
+    signatoryName: '',
+    designation: ''
+  });
+  const [savingCompanyDetails, setSavingCompanyDetails] = useState(false);
+
   useEffect(() => {
     fetchSettings();
   }, []);
 
   const fetchSettings = async () => {
     try {
-      const res = await api.get('/settings?key=companyProfilePdf');
-      if (res.data && res.data.companyProfilePdf) {
-        setCurrentPdfUrl(res.data.companyProfilePdf);
+      const resPdf = await api.get('/settings?key=companyProfilePdf');
+      if (resPdf.data && resPdf.data.companyProfilePdf) {
+        setCurrentPdfUrl(resPdf.data.companyProfilePdf);
+      }
+      
+      const resDetails = await api.get('/settings?key=companyDetails');
+      if (resDetails.data && resDetails.data.companyDetails) {
+        try {
+          const parsed = JSON.parse(resDetails.data.companyDetails);
+          setCompanyDetails(prev => ({ ...prev, ...parsed }));
+        } catch(e) {}
       }
     } catch (err) {
       console.error('Failed to fetch settings:', err);
@@ -38,13 +65,11 @@ const Settings = () => {
     formData.append('file', file);
 
     try {
-      // 1. Upload file to get URL
       const uploadRes = await api.post('/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       const fileUrl = uploadRes.data.url;
 
-      // 2. Save URL in settings
       await api.post('/settings', {
         key: 'companyProfilePdf',
         value: fileUrl
@@ -54,7 +79,6 @@ const Settings = () => {
       setFile(null);
       Swal.fire('Success', 'Company Profile PDF uploaded successfully', 'success');
       
-      // Reset input
       const fileInput = document.getElementById('pdf-upload');
       if (fileInput) fileInput.value = '';
     } catch (error) {
@@ -63,6 +87,28 @@ const Settings = () => {
     } finally {
       setUploading(false);
     }
+  };
+
+  const handleSaveCompanyDetails = async (e) => {
+    e.preventDefault();
+    setSavingCompanyDetails(true);
+    try {
+      await api.post('/settings', {
+        key: 'companyDetails',
+        value: JSON.stringify(companyDetails)
+      });
+      Swal.fire('Success', 'Company details saved successfully', 'success');
+    } catch (error) {
+      console.error('Save error:', error);
+      Swal.fire('Error', 'Failed to save company details', 'error');
+    } finally {
+      setSavingCompanyDetails(false);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setCompanyDetails(prev => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -100,12 +146,101 @@ const Settings = () => {
           <button 
             type="submit" 
             disabled={uploading || !file}
-            className={`py-2 px-4 rounded-md text-white font-medium ${
+            className={`py-2 px-4 rounded-md text-white font-medium w-fit ${
               uploading || !file ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
             }`}
           >
             {uploading ? 'Uploading...' : 'Upload & Save'}
           </button>
+        </form>
+      </div>
+
+      <div className="bg-white dark:bg-[#212b36] rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-800 mb-6">
+        <h3 className="text-xl font-medium text-gray-800 dark:text-white mb-4">Company Details (For Invoices & Quotations)</h3>
+        
+        <form onSubmit={handleSaveCompanyDetails} className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Company Name</label>
+            <input type="text" name="name" value={companyDetails.name} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" required />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tagline</label>
+            <input type="text" name="tagline" value={companyDetails.tagline} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Address</label>
+            <input type="text" name="address" value={companyDetails.address} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" required />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Website</label>
+            <input type="text" name="website" value={companyDetails.website} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+            <input type="email" name="email" value={companyDetails.email} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone Number</label>
+            <input type="text" name="phone" value={companyDetails.phone} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">GST No.</label>
+            <input type="text" name="gst" value={companyDetails.gst} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">IEC No.</label>
+            <input type="text" name="iec" value={companyDetails.iec} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+
+          <div className="md:col-span-2 mt-4 border-t border-gray-200 dark:border-gray-700 pt-4">
+            <h4 className="text-lg font-medium text-gray-800 dark:text-white mb-4">Bank Details</h4>
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Bank Account Name</label>
+            <input type="text" name="bankAccountName" value={companyDetails.bankAccountName} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Bank Name</label>
+            <input type="text" name="bankName" value={companyDetails.bankName} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Account Number</label>
+            <input type="text" name="accountNumber" value={companyDetails.accountNumber} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">IFSC Code</label>
+            <input type="text" name="ifsc" value={companyDetails.ifsc} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">SWIFT / BIC Code</label>
+            <input type="text" name="swift" value={companyDetails.swift} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+
+          <div className="md:col-span-2 mt-4 border-t border-gray-200 dark:border-gray-700 pt-4">
+            <h4 className="text-lg font-medium text-gray-800 dark:text-white mb-4">Signatory Details</h4>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Authorised Signatory Name</label>
+            <input type="text" name="signatoryName" value={companyDetails.signatoryName} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Designation</label>
+            <input type="text" name="designation" value={companyDetails.designation} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+
+          <div className="md:col-span-2 mt-4">
+            <button 
+              type="submit" 
+              disabled={savingCompanyDetails}
+              className={`py-2 px-6 rounded-md text-white font-medium ${
+                savingCompanyDetails ? 'bg-green-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700'
+              }`}
+            >
+              {savingCompanyDetails ? 'Saving...' : 'Save Company Details'}
+            </button>
+          </div>
         </form>
       </div>
     </div>

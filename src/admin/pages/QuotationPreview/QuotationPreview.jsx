@@ -10,6 +10,23 @@ const QuotationPreview = () => {
   const navigate = useNavigate();
   const [quotation, setQuotation] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [companyDetails, setCompanyDetails] = useState({
+    name: 'HIEIL',
+    tagline: 'Handcrafted Products, Inspired by India',
+    address: 'Jaipur, Rajasthan, India',
+    website: 'www.hieil.com',
+    email: 'info@hieil.com',
+    phone: '+91 XXXXX XXXXX',
+    gst: 'XXXXXXXXXXXXXXX',
+    iec: 'XXXXXXXXXX',
+    bankAccountName: 'HIEIL (Handcrafted Products Inspired by India)',
+    bankName: '[Your Bank Name]',
+    accountNumber: '[Your Account Number]',
+    ifsc: '[Your IFSC Code]',
+    swift: '[Your SWIFT Code]',
+    signatoryName: '[Authorised Signatory Name]',
+    designation: '[Designation]'
+  });
 
   useEffect(() => {
     const fetchQuotation = async () => {
@@ -20,6 +37,14 @@ const QuotationPreview = () => {
         } else {
           Swal.fire('Error', 'Quotation not found', 'error');
         }
+        
+        try {
+          const settingsRes = await api.get('/settings?key=companyDetails');
+          if (settingsRes.data && settingsRes.data.companyDetails) {
+            setCompanyDetails(prev => ({ ...prev, ...JSON.parse(settingsRes.data.companyDetails) }));
+          }
+        } catch(e) {}
+        
       } catch (error) {
         console.error('Error fetching quotation:', error);
         Swal.fire('Error', 'Failed to fetch quotation details', 'error');
@@ -69,7 +94,7 @@ const QuotationPreview = () => {
         </div>
 
         <div className="invoice-title">
-          <h2>HIEIL EXPORTS - OFFICIAL QUOTATION</h2>
+          <h2>{companyDetails.name.toUpperCase()} - OFFICIAL QUOTATION</h2>
           <hr />
         </div>
 
@@ -127,7 +152,7 @@ const QuotationPreview = () => {
           {quotation.validTill && (
             <p><strong>Note:</strong> This quotation is valid until {quotation.validTill}.</p>
           )}
-          <p>If you have any questions concerning this quotation, please contact us at info@hieil.com.</p>
+          <p>If you have any questions concerning this quotation, please contact us at {companyDetails.email}.</p>
           <p style={{ marginTop: '30px' }}><strong>Thank you for your business!</strong></p>
         </div>
 
