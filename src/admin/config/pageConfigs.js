@@ -501,8 +501,13 @@ export const pageConfigs = [
           },
         { key: 'date', label: 'Date' }
       ],
-      hideDefaultActions: false,
-      actions: () => null
+      hideDefaultActions: true,
+      actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '4px'}},
+        React.createElement('button', {
+            style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '14px', display: 'flex', justifyContent: 'center'},
+            onClick: () => window.location.href = `/admin/inquiry-system/orders/details/${row._id}`
+        }, React.createElement(FaIcons.FaEye || FaFileAlt, null))
+      )
     }, 
     data: []
   },
@@ -554,12 +559,39 @@ export const pageConfigs = [
                 },
                 onChange: (e) => {
                   const newStatus = e.target.value;
-                  if (handlers && handlers.onUpdateRow) {
-                    handlers.onUpdateRow(row._id, 'status', newStatus);
+                  const updateStatus = (address = '') => {
+                    if (handlers && handlers.onUpdateRow) {
+                      handlers.onUpdateRow(row._id, 'status', newStatus);
+                    } else {
+                      api.put(`/quotations/${row._id}`, { status: newStatus, address })
+                        .then(() => window.location.reload())
+                        .catch(err => alert('Error updating status: ' + err.message));
+                    }
+                  };
+
+                  if (newStatus === 'Accepted') {
+                    Swal.fire({
+                      title: 'Enter Address',
+                      text: 'Please enter the delivery address for this order:',
+                      input: 'textarea',
+                      inputPlaceholder: 'Type address here...',
+                      showCancelButton: true,
+                      confirmButtonText: 'Save Address',
+                      cancelButtonText: 'Add it later',
+                      cancelButtonColor: '#6b7280',
+                      allowOutsideClick: false
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        updateStatus(result.value);
+                      } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        updateStatus('');
+                      } else {
+                        // user dismissed the modal, revert visual status
+                        e.target.value = val;
+                      }
+                    });
                   } else {
-                    api.put(`/quotations/${row._id}`, { status: newStatus })
-                      .then(() => window.location.reload())
-                      .catch(err => alert('Error updating status: ' + err.message));
+                    updateStatus('');
                   }
                 }
               }, 
