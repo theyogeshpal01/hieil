@@ -1,20 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaPrint, FaArrowLeft } from 'react-icons/fa';
+import api from '../../config/api';
 import './InvoicePreview.css';
 
 const InvoicePreview = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [invoice, setInvoice] = useState(null);
+  const [order, setOrder] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // In a real app, you would fetch the invoice details using the `id` from the URL.
-  // Using static mock data based on the screenshot for this demonstration.
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const invRes = await api.get(`/invoices/${id}`);
+        const invData = invRes.data;
+        setInvoice(invData);
+
+        const ordRes = await api.get('/orders');
+        const matchingOrder = ordRes.data.find(o => o.orderNo === invData.orderNo);
+        setOrder(matchingOrder);
+        setLoading(false);
+      } catch (err) {
+        console.error(err);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [id]);
+
+  if (loading) {
+    return <div style={{padding: '50px', textAlign: 'center'}}>Loading Invoice...</div>;
+  }
+
+  if (!invoice) {
+    return <div style={{padding: '50px', textAlign: 'center'}}>Invoice not found.</div>;
+  }
+
   const invoiceData = {
-    invoiceNo: id || 'INV-2026-0001',
-    quotationRef: 'QT-2025-',
+    invoiceNo: invoice.invoiceNo || id,
+    quotationRef: order?.quotation || '-',
     incoterms: 'FOB Jaipur, India',
-    date: '18 / 04 / 2025',
-    dueDate: '18 / 05 / 2025',
+    date: new Date(invoice.createdAt || Date.now()).toLocaleDateString('en-GB'),
+    dueDate: new Date(new Date(invoice.createdAt || Date.now()).getTime() + 15 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB'), // 15 days later
     currency: 'USD',
     seller: {
       name: 'HIEIL',
@@ -27,69 +56,27 @@ const InvoicePreview = () => {
       iec: 'XXXXXXXXXX'
     },
     buyer: {
-      company: '[Buyer Company Name]',
-      contact: '[Contact Person Name]',
-      addressLine1: '[Address Line 1]',
-      city: '[City, Country, ZIP]',
-      email: '[buyer@email.com]',
-      phone: '[+XX XXXXX XXXXX]',
-      tax: '[0000000000]'
+      company: invoice.customer || order?.customer || '[Buyer Name]',
+      contact: '-',
+      addressLine1: order?.address || '[Address]',
+      city: invoice.country || order?.country || '[Country]',
+      email: '-',
+      phone: '-',
+      tax: '-'
     },
-    products: [
-      {
-        id: 1,
-        descTitle: 'Jaipur Blue Pottery Vase',
-        descSub: 'Handcrafted Blue Pottery - Luxury Home Decor',
-        hsn: '6912 00 00',
-        unit: 'Pcs',
-        qty: 50,
-        price: '18.00',
-        amount: '900.00'
-      },
-      {
-        id: 2,
-        descTitle: 'Brass Metal Wall Art Panel',
-        descSub: 'Handcrafted Metal Products - Metal Wall Art',
-        hsn: '8306 29 00',
-        unit: 'Pcs',
-        qty: 30,
-        price: '42.00',
-        amount: '1,260.00'
-      },
-      {
-        id: 3,
-        descTitle: 'Marble Inlay Decorative Plate',
-        descSub: 'Handcrafted Stone Products - Decorative Plates',
-        hsn: '6802 91 00',
-        unit: 'Pcs',
-        qty: 25,
-        price: '35.00',
-        amount: '875.00'
-      },
-      {
-        id: 4,
-        descTitle: 'Sheesham Wood Trinket Box',
-        descSub: 'Handcrafted Wooden Products - Luxury Trinket Boxes',
-        hsn: '4420 90 00',
-        unit: 'Pcs',
-        qty: 40,
-        price: '22.00',
-        amount: '880.00'
-      },
-      {
-        id: 5,
-        descTitle: 'Antique Finish Wall Clock',
-        descSub: 'Luxury Clock Collection',
-        hsn: '9105 91 00',
-        unit: 'Pcs',
-        qty: 20,
-        price: '55.00',
-        amount: '1,100.00'
-      }
-    ],
-    subtotal: '5,015.00',
-    shipping: '385.00',
-    grandTotal: '5,400.00'
+    products: order?.products && order.products.length > 0 ? order.products.map((p, idx) => ({
+      id: idx + 1,
+      descTitle: p.name || 'Product',
+      descSub: '-',
+      hsn: p.hsn || '-',
+      unit: 'Pcs',
+      qty: p.quantity || 0,
+      price: parseFloat(p.price || 0).toFixed(2),
+      amount: (parseFloat(p.quantity || 0) * parseFloat(p.price || 0)).toFixed(2)
+    })) : [],
+    subtotal: invoice.total || '0.00',
+    shipping: '0.00',
+    grandTotal: invoice.total || '0.00'
   };
 
   const handlePrint = () => {
