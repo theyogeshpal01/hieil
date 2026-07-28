@@ -7,6 +7,7 @@ const GenericList = lazy(() => import('./pages/GenericList/GenericList'));
 const SubAdminMgmt = lazy(() => import('./pages/SubAdminMgmt/SubAdminMgmt'));
 const CreateQuotation = lazy(() => import('./pages/CreateQuotation/CreateQuotation'));
 const InvoicePreview = lazy(() => import('./pages/InvoicePreview/InvoicePreview'));
+const QuotationPreview = lazy(() => import('./pages/QuotationPreview/QuotationPreview'));
 const ReportDashboard = lazy(() => import('./pages/ReportDashboard/ReportDashboard'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const AdminProfile = lazy(() => import('./pages/AdminProfile/AdminProfile'));
@@ -38,6 +39,10 @@ function AdminApp() {
           {/* Invoice Preview Routes */}
           <Route path="retailer-system/invoices/preview/:id" element={<InvoicePreview />} />
           <Route path="inquiry-system/invoices/preview/:id" element={<InvoicePreview />} />
+
+          {/* Quotation Preview Routes */}
+          <Route path="retailer-system/quotations/preview/:id" element={<QuotationPreview />} />
+          <Route path="inquiry-system/quotations/preview/:id" element={<QuotationPreview />} />
           
           {/* Dynamically render all the CRUD pages based on sidebar links */}
           {pageConfigs.map((config, index) => (

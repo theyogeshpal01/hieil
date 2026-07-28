@@ -491,7 +491,7 @@ export const pageConfigs = [
       actions: (row) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '80px'}},
         React.createElement('button', {
             style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '14px', display: 'flex', justifyContent: 'center'},
-            onClick: () => alert(`Viewing Quotation Document: ${row.quoteNo}`)
+            onClick: () => window.location.href = `/admin/inquiry-system/quotations/preview/${row._id}`
         }, React.createElement(FaFileAlt, null)),
         row.status === 'Sent' && React.createElement('button', {
             style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '12px'},
@@ -1321,7 +1321,7 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row) => React.createElement('button', {
         style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '4px', cursor: 'pointer'},
-        onClick: () => alert(`Viewing Quotation: ${row.quoteNo}`)
+        onClick: () => window.location.href = `/admin/retailer-system/quotations/preview/${row._id}`
       }, '📄')
     }, 
     data: []
