@@ -496,15 +496,7 @@ export const pageConfigs = [
         onEdit && React.createElement('button', {
             style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '14px', display: 'flex', justifyContent: 'center'},
             onClick: () => onEdit(row)
-        }, React.createElement(FaEdit, null)),
-        row.status === 'Sent' && React.createElement('button', {
-            style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '12px'},
-            onClick: () => alert(`Accepted Quote: ${row.quoteNo}`)
-        }, 'Accept'),
-        row.status === 'Sent' && React.createElement('button', {
-            style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '12px'},
-            onClick: () => alert(`Rejected Quote: ${row.quoteNo}`)
-        }, 'Reject')
+        }, React.createElement(FaEdit, null))
       )
     }, 
     data: []
