@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import api from '../../config/api';
 import Swal from 'sweetalert2';
 import './OrderDetails.css';
+import { FaTrash, FaPlus } from 'react-icons/fa';
 
 const OrderDetails = () => {
   const { id } = useParams();
@@ -12,6 +13,9 @@ const OrderDetails = () => {
   const [activeTab, setActiveTab] = useState('general');
   const [isEditingAddress, setIsEditingAddress] = useState(false);
   const [addressInput, setAddressInput] = useState('');
+  
+  const [productsInput, setProductsInput] = useState([]);
+  const [isSavingProducts, setIsSavingProducts] = useState(false);
 
   useEffect(() => {
     fetchOrderDetails();
@@ -22,6 +26,7 @@ const OrderDetails = () => {
       const response = await api.get(`/orders/${id}`);
       setOrder(response.data);
       setAddressInput(response.data.address || '');
+      setProductsInput(response.data.products || []);
       setLoading(false);
     } catch (err) {
       console.error(err);
@@ -38,6 +43,34 @@ const OrderDetails = () => {
       setOrder({ ...order, address: addressInput });
     } catch (err) {
       Swal.fire('Error', 'Failed to update address.', 'error');
+    }
+  };
+
+  const handleProductChange = (index, field, value) => {
+    const updatedProducts = [...productsInput];
+    updatedProducts[index][field] = value;
+    setProductsInput(updatedProducts);
+  };
+
+  const handleAddProduct = () => {
+    setProductsInput([...productsInput, { name: '', quantity: '', price: '' }]);
+  };
+
+  const handleRemoveProduct = (index) => {
+    const updatedProducts = productsInput.filter((_, i) => i !== index);
+    setProductsInput(updatedProducts);
+  };
+
+  const handleSaveProducts = async () => {
+    setIsSavingProducts(true);
+    try {
+      await api.put(`/orders/${id}`, { products: productsInput });
+      Swal.fire('Saved!', 'Products have been updated.', 'success');
+      setOrder({ ...order, products: productsInput });
+    } catch (err) {
+      Swal.fire('Error', 'Failed to update products.', 'error');
+    } finally {
+      setIsSavingProducts(false);
     }
   };
 
@@ -66,6 +99,12 @@ const OrderDetails = () => {
             onClick={() => setActiveTab('address')}
           >
             Address
+          </button>
+          <button 
+            className={`order-tab ${activeTab === 'products' ? 'active' : ''}`}
+            onClick={() => setActiveTab('products')}
+          >
+            Products
           </button>
         </div>
 
@@ -148,6 +187,76 @@ const OrderDetails = () => {
                   </div>
                 </div>
               )}
+            </div>
+          )}
+
+          {activeTab === 'products' && (
+            <div className="products-section">
+              <div className="products-list" style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+                {productsInput.length === 0 ? (
+                  <p style={{color: '#6b7280'}}>No products added to this order yet.</p>
+                ) : (
+                  productsInput.map((product, index) => (
+                    <div key={index} className="product-row" style={{display: 'flex', gap: '12px', alignItems: 'center', backgroundColor: '#f9fafb', padding: '16px', borderRadius: '8px', border: '1px solid #e5e7eb'}}>
+                      <div style={{flex: 2}}>
+                        <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Product Name</label>
+                        <input 
+                          type="text" 
+                          value={product.name} 
+                          onChange={(e) => handleProductChange(index, 'name', e.target.value)}
+                          className="address-textarea"
+                          style={{minHeight: '40px', marginBottom: '0', padding: '8px 12px'}}
+                          placeholder="Product Name"
+                        />
+                      </div>
+                      <div style={{flex: 1}}>
+                        <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Quantity</label>
+                        <input 
+                          type="text" 
+                          value={product.quantity} 
+                          onChange={(e) => handleProductChange(index, 'quantity', e.target.value)}
+                          className="address-textarea"
+                          style={{minHeight: '40px', marginBottom: '0', padding: '8px 12px'}}
+                          placeholder="Qty"
+                        />
+                      </div>
+                      <div style={{flex: 1}}>
+                        <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Price/Rate</label>
+                        <input 
+                          type="text" 
+                          value={product.price} 
+                          onChange={(e) => handleProductChange(index, 'price', e.target.value)}
+                          className="address-textarea"
+                          style={{minHeight: '40px', marginBottom: '0', padding: '8px 12px'}}
+                          placeholder="Price"
+                        />
+                      </div>
+                      <button 
+                        onClick={() => handleRemoveProduct(index)}
+                        style={{backgroundColor: '#fee2e2', color: '#ef4444', border: 'none', padding: '10px', borderRadius: '6px', cursor: 'pointer', marginTop: '22px'}}
+                        title="Remove Product"
+                      >
+                        <FaTrash />
+                      </button>
+                    </div>
+                  ))
+                )}
+              </div>
+              <div style={{display: 'flex', gap: '12px', marginTop: '24px'}}>
+                <button 
+                  onClick={handleAddProduct}
+                  style={{backgroundColor: '#e0f2fe', color: '#0ea5e9', border: 'none', padding: '10px 20px', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px', fontWeight: '600'}}
+                >
+                  <FaPlus /> Add Product
+                </button>
+                <button 
+                  onClick={handleSaveProducts}
+                  disabled={isSavingProducts}
+                  className="save-btn"
+                >
+                  {isSavingProducts ? 'Saving...' : 'Save Products'}
+                </button>
+              </div>
             </div>
           )}
         </div>

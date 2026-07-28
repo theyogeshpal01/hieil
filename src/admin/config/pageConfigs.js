@@ -502,11 +502,15 @@ export const pageConfigs = [
         { key: 'date', label: 'Date' }
       ],
       hideDefaultActions: true,
-      actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '4px'}},
+      actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '4px'}},
         React.createElement('button', {
             style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '14px', display: 'flex', justifyContent: 'center'},
             onClick: () => window.location.href = `/admin/inquiry-system/orders/details/${row._id}`
-        }, React.createElement(FaIcons.FaEye || FaFileAlt, null))
+        }, React.createElement(FaIcons.FaEye || FaFileAlt, null)),
+        React.createElement('button', {
+            style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '14px', display: 'flex', justifyContent: 'center'},
+            onClick: () => onDelete(row)
+        }, React.createElement(FaIcons.FaTrashAlt, null))
       )
     }, 
     data: []
