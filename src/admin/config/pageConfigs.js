@@ -638,19 +638,98 @@ export const pageConfigs = [
       actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '5px', flexWrap: 'wrap'}},
         React.createElement('button', {
             style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
-            onClick: () => window.location.href = `/admin/inquiry-system/invoices/preview/${row.id}`
+            onClick: () => window.location.href = `/admin/inquiry-system/invoices/preview/${row._id}`
         }, 'PDF'),
         React.createElement('button', {
             style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
-            onClick: () => alert(`Payment for Invoice: ${row.invoiceNo}`)
+            onClick: () => {
+              Swal.fire({
+                title: 'Record Payment',
+                html: `
+                  <select id="swal-input-mode" class="swal2-input">
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Cash">Cash</option>
+                  </select>
+                  <input id="swal-input-ref" class="swal2-input" placeholder="Reference Number">
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                preConfirm: () => {
+                  return {
+                    mode: document.getElementById('swal-input-mode').value,
+                    reference: document.getElementById('swal-input-ref').value
+                  }
+                }
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                  try {
+                    await api.post('/payments', {
+                      invoiceNo: row.invoiceNo,
+                      orderNo: row.orderNo,
+                      mode: result.value.mode,
+                      reference: result.value.reference,
+                      amount: row.total,
+                      type: row.type || 'inquiry'
+                    });
+                    Swal.fire('Success', 'Payment recorded successfully.', 'success').then(() => {
+                      window.location.href = '/admin/inquiry-system/payments';
+                    });
+                  } catch(e) {
+                    Swal.fire('Error', 'Failed to record payment.', 'error');
+                  }
+                }
+              });
+            }
         }, 'Payment'),
         React.createElement('button', {
             style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px'},
-            onClick: () => alert(`Shipping Details for Order: ${row.orderNo}`)
+            onClick: () => {
+              Swal.fire({
+                title: 'Create Shipment',
+                html: `
+                  <input id="swal-input-company" class="swal2-input" placeholder="Courier Company">
+                  <input id="swal-input-tracking" class="swal2-input" placeholder="Tracking Number">
+                `,
+                focusConfirm: false,
+                showCancelButton: true,
+                preConfirm: () => {
+                  return {
+                    company: document.getElementById('swal-input-company').value,
+                    trackingNo: document.getElementById('swal-input-tracking').value
+                  }
+                }
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                  try {
+                    await api.post('/shipping', {
+                      invoice: row.invoiceNo,
+                      orderNo: row.orderNo,
+                      company: result.value.company,
+                      trackingNo: result.value.trackingNo,
+                      type: row.type || 'inquiry'
+                    });
+                    Swal.fire('Success', 'Shipment created successfully.', 'success').then(() => {
+                      window.location.href = '/admin/inquiry-system/shipping';
+                    });
+                  } catch(e) {
+                    Swal.fire('Error', 'Failed to create shipment.', 'error');
+                  }
+                }
+              });
+            }
         }, React.createElement(FaTruck, null), ' Shipping'),
         React.createElement('button', {
             style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px'},
-            onClick: () => alert(`Send Invoice to Retailer: ${row.invoiceNo}`)
+            onClick: async () => {
+              try {
+                await api.put(`/invoices/${row._id}`, { status: 'Sent to Retailer' });
+                Swal.fire('Sent!', 'Invoice status updated.', 'success').then(() => window.location.reload());
+              } catch(e) {
+                Swal.fire('Error', 'Failed to send.', 'error');
+              }
+            }
         }, React.createElement(FaStore, null), ' Send to Retailer')
       )
     }, 

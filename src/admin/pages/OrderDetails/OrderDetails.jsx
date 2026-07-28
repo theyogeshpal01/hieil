@@ -151,6 +151,47 @@ const OrderDetails = () => {
                 <span className="info-value">{new Date(order.createdAt).toLocaleString()}</span>
               </div>
             </div>
+            
+            <div style={{marginTop: '30px', paddingTop: '20px', borderTop: '1px solid #e5e7eb'}}>
+              <button 
+                onClick={async () => {
+                  try {
+                    let calcTotal = 0;
+                    productsInput.forEach(p => {
+                      const qty = parseFloat(p.quantity) || 0;
+                      const price = parseFloat(p.price) || 0;
+                      calcTotal += qty * price;
+                    });
+                    
+                    const invoiceData = {
+                      invoiceNo: 'INV-' + Date.now().toString().slice(-6),
+                      orderNo: order.orderNo,
+                      customer: order.customer,
+                      country: order.country,
+                      total: calcTotal.toString(),
+                      type: order.type
+                    };
+                    
+                    await api.post('/invoices', invoiceData);
+                    Swal.fire({
+                      title: 'Success!',
+                      text: 'Invoice generated successfully.',
+                      icon: 'success',
+                      confirmButtonText: 'Go to Invoices'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        navigate('/admin/inquiry-system/invoices');
+                      }
+                    });
+                  } catch (err) {
+                    Swal.fire('Error', 'Failed to generate invoice.', 'error');
+                  }
+                }}
+                style={{backgroundColor: '#10b981', color: 'white', border: 'none', padding: '12px 24px', borderRadius: '6px', cursor: 'pointer', fontWeight: '600', fontSize: '15px'}}
+              >
+                Generate Invoice
+              </button>
+            </div>
           )}
 
           {activeTab === 'address' && (
