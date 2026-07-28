@@ -7,9 +7,11 @@ const CreateQuotation = () => {
   const [formData, setFormData] = useState({
     customerName: 'Ankit',
     customerEmail: '', // Added email field
+    mobile: '', // Added mobile
     product: 'Blue Pottery Tortoise Goodluck Gift-Paper Weight (Set of 2)',
     quantity: '500',
     country: 'USA',
+    budget: '', // Added budget
     rate: '',
     gstPercent: '18',
     subtotal: '',
@@ -30,20 +32,10 @@ const CreateQuotation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.customerEmail) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Missing Email',
-        text: 'Please enter the Customer Email to send the quotation.',
-        confirmButtonColor: '#3b82f6'
-      });
-      return;
-    }
-
     setIsSubmitting(true);
     Swal.fire({
-      title: 'Sending Quotation...',
-      text: 'Please wait while the email is being sent.',
+      title: 'Creating Quotation...',
+      text: 'Please wait while the quotation is being created.',
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -57,19 +49,19 @@ const CreateQuotation = () => {
       if (data.success) {
         Swal.fire({
           icon: 'success',
-          title: 'Sent!',
-          text: 'Quotation has been successfully sent to the customer.',
+          title: 'Success!',
+          text: 'Quotation has been successfully generated.',
           confirmButtonColor: '#22c55e'
         });
       } else {
-        throw new Error(data.message || 'Failed to send');
+        throw new Error(data.message || 'Failed to create');
       }
     } catch (error) {
       console.error(error);
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: error.response?.data?.message || error.message || 'An error occurred while sending the quotation.',
+        text: error.response?.data?.message || error.message || 'An error occurred while creating the quotation.',
         confirmButtonColor: '#ef4444'
       });
     } finally {
@@ -81,7 +73,7 @@ const CreateQuotation = () => {
     <div className="p-5 fade-in">
       <div className="mb-5 flex">
         <h1 className="flex items-center font-['Plus_Jakarta_Sans',serif] text-[22px] text-black m-0 font-bold">
-          <FaFileAlt className="mr-2.5 text-[20px] text-black" /> Create Quotation (Retailer)
+          <FaFileAlt className="mr-2.5 text-[20px] text-black" /> Create Quotation
         </h1>
       </div>
 
@@ -104,12 +96,22 @@ const CreateQuotation = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-slate-500 text-sm font-medium">Customer Email (Required for sending)</label>
+            <label className="text-slate-500 text-sm font-medium">Customer Email</label>
             <input 
               type="email" 
               name="customerEmail"
-              required
               value={formData.customerEmail} 
+              onChange={handleChange}
+              className="px-4 py-3 border border-slate-300 rounded-md text-sm text-slate-700 bg-white transition-all duration-200 font-['Inter',sans-serif] focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="text-slate-500 text-sm font-medium">Mobile</label>
+            <input 
+              type="text" 
+              name="mobile"
+              value={formData.mobile} 
               onChange={handleChange}
               className="px-4 py-3 border border-slate-300 rounded-md text-sm text-slate-700 bg-white transition-all duration-200 font-['Inter',sans-serif] focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
             />
@@ -143,6 +145,17 @@ const CreateQuotation = () => {
               type="text" 
               name="country"
               value={formData.country} 
+              onChange={handleChange}
+              className="px-4 py-3 border border-slate-300 rounded-md text-sm text-slate-700 bg-white transition-all duration-200 font-['Inter',sans-serif] focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label className="text-slate-500 text-sm font-medium">Budget</label>
+            <input 
+              type="text" 
+              name="budget"
+              value={formData.budget} 
               onChange={handleChange}
               className="px-4 py-3 border border-slate-300 rounded-md text-sm text-slate-700 bg-white transition-all duration-200 font-['Inter',sans-serif] focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
             />
