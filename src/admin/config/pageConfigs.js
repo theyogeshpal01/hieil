@@ -775,7 +775,57 @@ export const pageConfigs = [
         },
         { key: 'date', label: 'Date' }
       ],
-      hideDefaultActions: true
+      hideDefaultActions: true,
+      actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '5px', flexWrap: 'wrap'}},
+        React.createElement('button', {
+            style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
+            onClick: () => {
+              Swal.fire({
+                title: 'Update Payment Status',
+                input: 'select',
+                inputOptions: {
+                  'Pending': 'Pending',
+                  'Paid': 'Paid',
+                  'Failed': 'Failed',
+                  'Refunded': 'Refunded'
+                },
+                inputValue: row.status || 'Pending',
+                showCancelButton: true
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                  try {
+                    await api.put(`/payments/${row._id}`, { status: result.value });
+                    Swal.fire('Updated!', 'Payment status updated.', 'success').then(() => {
+                      window.location.reload();
+                    });
+                  } catch(e) {
+                    Swal.fire('Error', 'Failed to update payment status.', 'error');
+                  }
+                }
+              });
+            }
+        }, 'Update Status'),
+        React.createElement('button', {
+            style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
+            onClick: () => {
+              Swal.fire({
+                title: 'Delete Payment?',
+                text: 'Are you sure you want to delete this payment record?',
+                icon: 'warning',
+                showCancelButton: true
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                  try {
+                    await api.delete(`/payments/${row._id}`);
+                    Swal.fire('Deleted!', '', 'success').then(() => window.location.reload());
+                  } catch(e) {
+                    Swal.fire('Error', 'Failed to delete payment.', 'error');
+                  }
+                }
+              });
+            }
+        }, 'Delete')
+      )
     }, 
     data: []
   },
@@ -1609,7 +1659,56 @@ export const pageConfigs = [
         { key: 'date', label: 'Date' }
       ],
       hideDefaultActions: true,
-      actions: null
+      actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '5px', flexWrap: 'wrap'}},
+        React.createElement('button', {
+            style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
+            onClick: () => {
+              Swal.fire({
+                title: 'Update Payment Status',
+                input: 'select',
+                inputOptions: {
+                  'Pending': 'Pending',
+                  'Paid': 'Paid',
+                  'Failed': 'Failed',
+                  'Refunded': 'Refunded'
+                },
+                inputValue: row.status || 'Pending',
+                showCancelButton: true
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                  try {
+                    await api.put(`/retailer/payments/${row._id}`, { status: result.value });
+                    Swal.fire('Updated!', 'Payment status updated.', 'success').then(() => {
+                      window.location.reload();
+                    });
+                  } catch(e) {
+                    Swal.fire('Error', 'Failed to update payment status.', 'error');
+                  }
+                }
+              });
+            }
+        }, 'Update Status'),
+        React.createElement('button', {
+            style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
+            onClick: () => {
+              Swal.fire({
+                title: 'Delete Payment?',
+                text: 'Are you sure you want to delete this payment record?',
+                icon: 'warning',
+                showCancelButton: true
+              }).then(async (result) => {
+                if (result.isConfirmed) {
+                  try {
+                    await api.delete(`/retailer/payments/${row._id}`);
+                    Swal.fire('Deleted!', '', 'success').then(() => window.location.reload());
+                  } catch(e) {
+                    Swal.fire('Error', 'Failed to delete payment.', 'error');
+                  }
+                }
+              });
+            }
+        }, 'Delete')
+      )
     }, 
     data: []
   },
