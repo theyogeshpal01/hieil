@@ -444,6 +444,7 @@ export const pageConfigs = [
     path: 'inquiry-system/orders', 
     title: 'Orders', 
     subtitle: 'Orders',
+    apiEndpoint: '/orders',
     columns: {
       title: 'ORDER LIST',
       headers: [
