@@ -575,15 +575,33 @@ export const pageConfigs = [
 
                   if (newStatus === 'Accepted') {
                     Swal.fire({
-                      title: 'Enter Address',
-                      text: 'Please enter the delivery address for this order:',
-                      input: 'textarea',
-                      inputPlaceholder: 'Type address here...',
+                      title: 'Enter Address & Contact Details',
+                      html: `
+                        <div style="display: flex; flex-direction: column; gap: 10px; text-align: left;">
+                          <input id="addr-company" class="swal2-input" placeholder="Company Name" style="margin:0; width:100%; box-sizing:border-box;">
+                          <input id="addr-contact" class="swal2-input" placeholder="Contact Person Name" style="margin:0; width:100%; box-sizing:border-box;">
+                          <input id="addr-line1" class="swal2-input" placeholder="Address Line 1" style="margin:0; width:100%; box-sizing:border-box;">
+                          <input id="addr-city" class="swal2-input" placeholder="City, Country, ZIP" style="margin:0; width:100%; box-sizing:border-box;">
+                          <input id="addr-email" class="swal2-input" placeholder="Email" type="email" style="margin:0; width:100%; box-sizing:border-box;">
+                          <input id="addr-phone" class="swal2-input" placeholder="Phone" style="margin:0; width:100%; box-sizing:border-box;">
+                          <input id="addr-tax" class="swal2-input" placeholder="Tax / VAT No." style="margin:0; width:100%; box-sizing:border-box;">
+                        </div>
+                      `,
                       showCancelButton: true,
-                      confirmButtonText: 'Save Address',
+                      confirmButtonText: 'Save Details',
                       cancelButtonText: 'Add it later',
                       cancelButtonColor: '#6b7280',
-                      allowOutsideClick: false
+                      allowOutsideClick: false,
+                      preConfirm: () => {
+                        const company = document.getElementById('addr-company').value;
+                        const contact = document.getElementById('addr-contact').value;
+                        const line1 = document.getElementById('addr-line1').value;
+                        const city = document.getElementById('addr-city').value;
+                        const email = document.getElementById('addr-email').value;
+                        const phone = document.getElementById('addr-phone').value;
+                        const tax = document.getElementById('addr-tax').value;
+                        return JSON.stringify({ company, contact, line1, city, email, phone, tax });
+                      }
                     }).then((result) => {
                       if (result.isConfirmed) {
                         updateStatus(result.value);

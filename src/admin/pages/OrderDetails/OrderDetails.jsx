@@ -12,7 +12,15 @@ const OrderDetails = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('general');
   const [isEditingAddress, setIsEditingAddress] = useState(false);
-  const [addressInput, setAddressInput] = useState('');
+  const [addressInput, setAddressInput] = useState({
+    company: '',
+    contact: '',
+    line1: '',
+    city: '',
+    email: '',
+    phone: '',
+    tax: ''
+  });
   
   const [productsInput, setProductsInput] = useState([]);
   const [isSavingProducts, setIsSavingProducts] = useState(false);
@@ -25,7 +33,17 @@ const OrderDetails = () => {
     try {
       const response = await api.get(`/orders/${id}`);
       setOrder(response.data);
-      setAddressInput(response.data.address || '');
+      
+      let parsedAddr = { company: '', contact: '', line1: '', city: '', email: '', phone: '', tax: '' };
+      if (response.data.address) {
+        try {
+          parsedAddr = JSON.parse(response.data.address);
+        } catch(e) {
+          parsedAddr.line1 = response.data.address;
+        }
+      }
+      setAddressInput(parsedAddr);
+
       setProductsInput(response.data.products || []);
       setLoading(false);
     } catch (err) {
@@ -37,10 +55,11 @@ const OrderDetails = () => {
 
   const handleSaveAddress = async () => {
     try {
-      await api.put(`/orders/${id}`, { address: addressInput });
+      const addrStr = JSON.stringify(addressInput);
+      await api.put(`/orders/${id}`, { address: addrStr });
       Swal.fire('Saved!', 'Address has been updated.', 'success');
       setIsEditingAddress(false);
-      setOrder({ ...order, address: addressInput });
+      setOrder({ ...order, address: addrStr });
     } catch (err) {
       Swal.fire('Error', 'Failed to update address.', 'error');
     }
@@ -200,29 +219,52 @@ const OrderDetails = () => {
             <div className="address-section">
               {!isEditingAddress && order.address ? (
                 <div>
-                  <div className="address-display">
-                    {order.address}
+                  <div className="address-display" style={{display: 'flex', flexDirection: 'column', gap: '8px', backgroundColor: '#f9fafb', padding: '20px', borderRadius: '8px'}}>
+                    {(() => {
+                      try {
+                        const addr = JSON.parse(order.address);
+                        return (
+                          <>
+                            <div><strong>Company:</strong> {addr.company || 'N/A'}</div>
+                            <div><strong>Contact Person:</strong> {addr.contact || 'N/A'}</div>
+                            <div><strong>Address:</strong> {addr.line1 || 'N/A'}</div>
+                            <div><strong>City/Country/ZIP:</strong> {addr.city || 'N/A'}</div>
+                            <div><strong>Email:</strong> {addr.email || 'N/A'}</div>
+                            <div><strong>Phone:</strong> {addr.phone || 'N/A'}</div>
+                            <div><strong>Tax/VAT No:</strong> {addr.tax || 'N/A'}</div>
+                          </>
+                        );
+                      } catch (e) {
+                        return <div>{order.address}</div>;
+                      }
+                    })()}
                   </div>
                   <button className="edit-btn" onClick={() => setIsEditingAddress(true)}>
-                    Edit Address
+                    Edit Address Details
                   </button>
                 </div>
               ) : (
-                <div>
-                  <textarea 
-                    className="address-textarea"
-                    placeholder="Enter full delivery address here..."
-                    value={addressInput}
-                    onChange={(e) => setAddressInput(e.target.value)}
-                  ></textarea>
-                  <div style={{display: 'flex', gap: '10px'}}>
+                <div style={{display: 'flex', flexDirection: 'column', gap: '10px'}}>
+                  <input type="text" className="address-textarea" style={{minHeight: '40px', padding: '10px', marginBottom: '0'}} placeholder="Company Name" value={addressInput.company} onChange={(e) => setAddressInput({...addressInput, company: e.target.value})} />
+                  <input type="text" className="address-textarea" style={{minHeight: '40px', padding: '10px', marginBottom: '0'}} placeholder="Contact Person Name" value={addressInput.contact} onChange={(e) => setAddressInput({...addressInput, contact: e.target.value})} />
+                  <input type="text" className="address-textarea" style={{minHeight: '40px', padding: '10px', marginBottom: '0'}} placeholder="Address Line 1" value={addressInput.line1} onChange={(e) => setAddressInput({...addressInput, line1: e.target.value})} />
+                  <input type="text" className="address-textarea" style={{minHeight: '40px', padding: '10px', marginBottom: '0'}} placeholder="City, Country, ZIP" value={addressInput.city} onChange={(e) => setAddressInput({...addressInput, city: e.target.value})} />
+                  <input type="email" className="address-textarea" style={{minHeight: '40px', padding: '10px', marginBottom: '0'}} placeholder="Email" value={addressInput.email} onChange={(e) => setAddressInput({...addressInput, email: e.target.value})} />
+                  <input type="text" className="address-textarea" style={{minHeight: '40px', padding: '10px', marginBottom: '0'}} placeholder="Phone" value={addressInput.phone} onChange={(e) => setAddressInput({...addressInput, phone: e.target.value})} />
+                  <input type="text" className="address-textarea" style={{minHeight: '40px', padding: '10px', marginBottom: '0'}} placeholder="Tax / VAT No." value={addressInput.tax} onChange={(e) => setAddressInput({...addressInput, tax: e.target.value})} />
+                  
+                  <div style={{display: 'flex', gap: '10px', marginTop: '10px'}}>
                     <button className="save-btn" onClick={handleSaveAddress}>
-                      Save Address
+                      Save Address Details
                     </button>
                     {order.address && (
                       <button className="back-button" onClick={() => {
                         setIsEditingAddress(false);
-                        setAddressInput(order.address);
+                        try {
+                          setAddressInput(JSON.parse(order.address));
+                        } catch(e) {
+                          setAddressInput({company:'', contact:'', line1: order.address, city:'', email:'', phone:'', tax:''});
+                        }
                       }}>
                         Cancel
                       </button>

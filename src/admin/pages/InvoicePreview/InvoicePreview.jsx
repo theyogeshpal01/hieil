@@ -38,6 +38,15 @@ const InvoicePreview = () => {
     return <div style={{padding: '50px', textAlign: 'center'}}>Invoice not found.</div>;
   }
 
+  let parsedAddress = {};
+  if (order?.address) {
+    try {
+      parsedAddress = JSON.parse(order.address);
+    } catch (e) {
+      parsedAddress = { line1: order.address };
+    }
+  }
+
   const invoiceData = {
     invoiceNo: invoice.invoiceNo || id,
     quotationRef: order?.quotation || '-',
@@ -56,13 +65,13 @@ const InvoicePreview = () => {
       iec: 'XXXXXXXXXX'
     },
     buyer: {
-      company: invoice.customer || order?.customer || '[Buyer Name]',
-      contact: '-',
-      addressLine1: order?.address || '[Address]',
-      city: invoice.country || order?.country || '[Country]',
-      email: '-',
-      phone: '-',
-      tax: '-'
+      company: parsedAddress.company || invoice.customer || order?.customer || '[Buyer Name]',
+      contact: parsedAddress.contact || '-',
+      addressLine1: parsedAddress.line1 || '[Address]',
+      city: parsedAddress.city || invoice.country || order?.country || '[Country]',
+      email: parsedAddress.email || '-',
+      phone: parsedAddress.phone || '-',
+      tax: parsedAddress.tax || '-'
     },
     products: order?.products && order.products.length > 0 ? order.products.map((p, idx) => ({
       id: idx + 1,
