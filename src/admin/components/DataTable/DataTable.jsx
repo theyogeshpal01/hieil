@@ -92,7 +92,7 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulk
 
                   let displayValue = cellValue;
                   if (col.render) {
-                    displayValue = col.render(cellValue, row);
+                    displayValue = col.render(cellValue, row, { onUpdateRow, onEdit, onDelete });
                   } else if (col.key.toLowerCase().includes('image') || col.key.toLowerCase().includes('logo')) {
                     displayValue = <img src={formatImageUrl(cellValue)} alt="img" style={{width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px'}} />;
                   } else if (col.key === 'status') {

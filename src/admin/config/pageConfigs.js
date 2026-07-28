@@ -481,7 +481,7 @@ export const pageConfigs = [
         { key: 'qty', label: 'Qty' },
         { key: 'budget', label: 'Budget' },
         { key: 'total', label: 'Total' },
-        { key: 'status', label: 'Status', render: (val, row) => {
+        { key: 'status', label: 'Status', render: (val, row, handlers) => {
               let bg = '#f3f4f6';
               let color = '#374151';
               if (val === 'Accepted') { bg = '#dcfce7'; color = '#166534'; }
@@ -512,9 +512,13 @@ export const pageConfigs = [
                 },
                 onChange: (e) => {
                   const newStatus = e.target.value;
-                  api.put(`/quotations/${row._id}`, { status: newStatus })
-                    .then(() => window.location.reload())
-                    .catch(err => alert('Error updating status: ' + err.message));
+                  if (handlers && handlers.onUpdateRow) {
+                    handlers.onUpdateRow(row._id, 'status', newStatus);
+                  } else {
+                    api.put(`/quotations/${row._id}`, { status: newStatus })
+                      .then(() => window.location.reload())
+                      .catch(err => alert('Error updating status: ' + err.message));
+                  }
                 }
               }, 
               React.createElement('option', {value: 'Sent', style: {color: 'black', backgroundColor: 'white'}}, 'Sent'),
