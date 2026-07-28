@@ -488,11 +488,15 @@ export const pageConfigs = [
         { key: 'date', label: 'Date', render: (val) => React.createElement('div', {style: {maxWidth: '50px', wordWrap: 'break-word', lineHeight: '1.4'}}, val.replace(/-/g, '-\n')) }
       ],
       hideDefaultActions: true,
-      actions: (row) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '80px'}},
+      actions: (row, { onEdit }) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '80px'}},
         React.createElement('button', {
             style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '14px', display: 'flex', justifyContent: 'center'},
             onClick: () => window.location.href = `/admin/inquiry-system/quotations/preview/${row._id}`
         }, React.createElement(FaFileAlt, null)),
+        onEdit && React.createElement('button', {
+            style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '14px', display: 'flex', justifyContent: 'center'},
+            onClick: () => onEdit(row)
+        }, React.createElement(FaEdit, null)),
         row.status === 'Sent' && React.createElement('button', {
             style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '12px'},
             onClick: () => alert(`Accepted Quote: ${row.quoteNo}`)
