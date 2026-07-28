@@ -1454,3 +1454,4 @@ export const pageConfigs = [
     data: [] 
   },
 ];
+
