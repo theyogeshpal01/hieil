@@ -10,6 +10,7 @@ const formatImageUrl = (url) => {
 import { FaBus, FaPlane, FaCar, FaEnvelope, FaPhone, FaWhatsapp, FaFileAlt, FaTruck, FaStore, FaTrash, FaCheck, FaEye, FaDownload, FaEdit } from 'react-icons/fa';
 import * as FaIcons from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import api from './api';
 
 export const genericData = [
 ];
@@ -480,11 +481,33 @@ export const pageConfigs = [
         { key: 'qty', label: 'Qty' },
         { key: 'budget', label: 'Budget' },
         { key: 'total', label: 'Total' },
-        { key: 'status', label: 'Status', render: (val) => {
-            const bg = val === 'Accepted' ? '#22c55e' : (val === 'Sent' ? '#eab308' : '#6b7280');
-            return React.createElement('span', {style: {backgroundColor: bg, color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '11px', border: '1px solid rgba(0,0,0,0.1)'}}, val);
-          } 
-        },
+        { key: 'status', label: 'Status', render: (val, row) => {
+              const bg = val === 'Accepted' ? '#22c55e' : (val === 'Rejected' ? '#ef4444' : (val === 'Sent' ? '#eab308' : '#6b7280'));
+              return React.createElement('select', {
+                value: val,
+                style: {
+                  backgroundColor: bg, 
+                  color: 'white', 
+                  padding: '4px 8px', 
+                  borderRadius: '4px', 
+                  fontSize: '11px', 
+                  border: '1px solid rgba(0,0,0,0.1)',
+                  outline: 'none',
+                  cursor: 'pointer'
+                },
+                onChange: (e) => {
+                  const newStatus = e.target.value;
+                  api.put(`/quotations/${row._id}`, { status: newStatus })
+                    .then(() => window.location.reload())
+                    .catch(err => alert('Error updating status: ' + err.message));
+                }
+              }, 
+              React.createElement('option', {value: 'Sent', style: {color: 'black', backgroundColor: 'white'}}, 'Sent'),
+              React.createElement('option', {value: 'Accepted', style: {color: 'black', backgroundColor: 'white'}}, 'Accepted'),
+              React.createElement('option', {value: 'Rejected', style: {color: 'black', backgroundColor: 'white'}}, 'Rejected')
+              );
+            } 
+          },
         { key: 'date', label: 'Date', render: (val) => React.createElement('div', {style: {maxWidth: '50px', wordWrap: 'break-word', lineHeight: '1.4'}}, val.replace(/-/g, '-\n')) }
       ],
       hideDefaultActions: true,
