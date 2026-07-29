@@ -725,6 +725,28 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '5px', flexWrap: 'wrap'}},
         React.createElement('button', {
+            className: 'modern-action-btn btn-neutral',
+            onClick: async () => {
+              try {
+                const res = await api.get('/vendors');
+                const vendors = Array.isArray(res.data) ? res.data : (res.data.data || []);
+                let options = '<option value="">Select a vendor...</option>';
+                vendors.forEach(v => { options += `<option value="${v._id}">${v.vendorName} (${v.commission}%)</option>`; });
+                const { value: vendorId } = await Swal.fire({
+                  title: 'Assign Vendor',
+                  html: `<select id="vendor-select" class="swal2-input">${options}</select>`,
+                  focusConfirm: false,
+                  showCancelButton: true,
+                  preConfirm: () => document.getElementById('vendor-select').value
+                });
+                if (vendorId) {
+                  await api.put(`/invoices/${row._id}`, { vendorId });
+                  Swal.fire('Assigned!', 'Vendor has been assigned successfully.', 'success').then(() => window.location.reload());
+                }
+              } catch (e) { Swal.fire('Error', 'Failed to load vendors', 'error'); }
+            }
+        }, 'Assign Vendor'),
+        React.createElement('button', {
             className: 'modern-action-btn btn-primary',
             onClick: () => window.location.href = `/admin/inquiry-system/invoices/preview/${row._id}`
         }, 'PDF'),
@@ -1659,11 +1681,29 @@ export const pageConfigs = [
       actions: (row) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '80px'}},
         React.createElement('button', {
             className: 'modern-action-btn btn-success',
-            onClick: () => alert(`Release Payout for: ${row.invoiceId}`)
+            disabled: row.status === 'Released',
+            style: row.status === 'Released' ? { opacity: 0.5, cursor: 'not-allowed' } : {},
+            onClick: async () => {
+              if (row.status === 'Released') return;
+              const result = await Swal.fire({
+                title: 'Release Payout?',
+                text: 'Are you sure you want to release this payout?',
+                icon: 'warning',
+                showCancelButton: true
+              });
+              if (result.isConfirmed) {
+                try {
+                  await api.put(`/vendor-payouts/${row._id}/release`);
+                  Swal.fire('Released!', 'Payout has been marked as released.', 'success').then(() => window.location.reload());
+                } catch (e) {
+                  Swal.fire('Error', 'Failed to release payout', 'error');
+                }
+              }
+            }
         }, React.createElement(FaCheck, null), ' Release'),
         React.createElement('button', {
             className: 'modern-action-btn btn-primary',
-            onClick: () => alert(`Download PDF for: ${row.invoiceId}`)
+            onClick: () => window.open(`/admin/vendor-management/payout-preview/${row._id}`, '_blank')
         }, React.createElement(FaFileAlt, null), ' PDF')
       )
     }, 
@@ -1840,6 +1880,28 @@ export const pageConfigs = [
       ],
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', flexWrap: 'wrap', gap: '5px', maxWidth: '160px'}}, 
+        React.createElement('button', {
+            className: 'modern-action-btn btn-neutral',
+            onClick: async () => {
+              try {
+                const res = await api.get('/vendors');
+                const vendors = Array.isArray(res.data) ? res.data : (res.data.data || []);
+                let options = '<option value="">Select a vendor...</option>';
+                vendors.forEach(v => { options += `<option value="${v._id}">${v.vendorName} (${v.commission}%)</option>`; });
+                const { value: vendorId } = await Swal.fire({
+                  title: 'Assign Vendor',
+                  html: `<select id="vendor-select" class="swal2-input">${options}</select>`,
+                  focusConfirm: false,
+                  showCancelButton: true,
+                  preConfirm: () => document.getElementById('vendor-select').value
+                });
+                if (vendorId) {
+                  await api.put(`/invoices/${row._id}`, { vendorId });
+                  Swal.fire('Assigned!', 'Vendor has been assigned successfully.', 'success').then(() => window.location.reload());
+                }
+              } catch (e) { Swal.fire('Error', 'Failed to load vendors', 'error'); }
+            }
+        }, 'Assign Vendor'),
         React.createElement('button', {
             className: 'modern-action-btn btn-primary',
             onClick: () => alert(`Generating PDF for ${row.invoiceNo}`)
