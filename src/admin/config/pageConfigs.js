@@ -860,16 +860,56 @@ export const pageConfigs = [
         { key: 'invoice', label: 'Invoice' },
         { key: 'mode', label: 'Mode' },
         { key: 'tracking', label: 'Tracking' },
-        { key: 'status', label: 'Status', render: (val) => {
-            return React.createElement('span', {style: {backgroundColor: '#14b8a6', color: 'white', padding: '4px 10px', borderRadius: '4px', fontSize: '11px', border: '1px solid #0f766e'}}, val);
+        { key: 'status', label: 'Status', render: (val, row, handlers) => {
+            let bg = '#f3f4f6';
+            let color = '#374151';
+            if (val === 'In Transit') { bg = '#fef08a'; color = '#854d0e'; }
+            else if (val === 'Delivered') { bg = '#dcfce7'; color = '#166534'; }
+            else if (val === 'Failed') { bg = '#fee2e2'; color = '#991b1b'; }
+            else if (val === 'Returned') { bg = '#ffedd5'; color = '#c2410c'; }
+            
+            const arrowSvg = `data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${color.replace('#', '%23')}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E`;
+            
+            return React.createElement('select', {
+              value: val || 'In Transit',
+              style: {
+                backgroundColor: bg,
+                color: color,
+                padding: '6px 28px 6px 12px',
+                borderRadius: '16px',
+                fontSize: '12px',
+                fontWeight: '600',
+                border: '1px solid ' + bg,
+                outline: 'none',
+                cursor: 'pointer',
+                appearance: 'none',
+                WebkitAppearance: 'none',
+                backgroundImage: `url("${arrowSvg}")`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right 8px center',
+                backgroundSize: '14px',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
+              },
+              onChange: (e) => {
+                const newStatus = e.target.value;
+                if (handlers && handlers.onUpdateRow) {
+                  handlers.onUpdateRow(row._id, 'status', newStatus);
+                } else {
+                  api.put(`/shipping/${row._id}`, { status: newStatus })
+                    .then(() => window.location.reload())
+                    .catch(err => alert('Error updating status: ' + err.message));
+                }
+              }
+            }, 
+              React.createElement('option', {value: 'In Transit'}, 'In Transit'),
+              React.createElement('option', {value: 'Delivered'}, 'Delivered'),
+              React.createElement('option', {value: 'Failed'}, 'Failed'),
+              React.createElement('option', {value: 'Returned'}, 'Returned')
+            );
           } 
         }
       ],
-      hideDefaultActions: true,
-      actions: (row) => React.createElement('button', {
-        style: {backgroundColor: '#3b82f6', color: 'white', border: 'none', padding: '6px 16px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', boxShadow: '0 2px 4px rgba(59, 130, 246, 0.4)'},
-        onClick: () => alert(`Update Shipping for Invoice: ${row.invoice}`)
-      }, 'Update')
+      hideDefaultActions: true
     }, 
     data: []
   },
