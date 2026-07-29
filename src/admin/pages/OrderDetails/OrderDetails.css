@@ -14,7 +14,7 @@
 .order-details-title {
   font-size: 24px;
   font-weight: 700;
-  color: black;
+  color: black !important;
   margin: 0;
 }
 
