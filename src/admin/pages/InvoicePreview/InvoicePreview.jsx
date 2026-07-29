@@ -7,6 +7,7 @@ import './InvoicePreview.css';
 const InvoicePreview = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
   const [invoice, setInvoice] = useState(null);
   const [order, setOrder] = useState(null);
   const [companyDetails, setCompanyDetails] = useState({
