@@ -788,18 +788,20 @@ export const pageConfigs = [
               style: {
                 backgroundColor: bg,
                 color: color,
-                border: `1px solid ${color}`,
-                padding: '4px 24px 4px 10px',
-                borderRadius: '4px',
+                padding: '6px 28px 6px 12px',
+                borderRadius: '16px',
                 fontSize: '12px',
+                fontWeight: '600',
+                border: '1px solid ' + bg,
+                outline: 'none',
                 cursor: 'pointer',
                 appearance: 'none',
+                WebkitAppearance: 'none',
                 backgroundImage: `url("${arrowSvg}")`,
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'right 8px center',
-                backgroundSize: '12px',
-                outline: 'none',
-                fontWeight: '500'
+                backgroundSize: '14px',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
               },
               onChange: (e) => {
                 const newStatus = e.target.value;
@@ -1710,18 +1712,20 @@ export const pageConfigs = [
               style: {
                 backgroundColor: bg,
                 color: color,
-                border: `1px solid ${color}`,
-                padding: '4px 24px 4px 10px',
-                borderRadius: '4px',
+                padding: '6px 28px 6px 12px',
+                borderRadius: '16px',
                 fontSize: '12px',
+                fontWeight: '600',
+                border: '1px solid ' + bg,
+                outline: 'none',
                 cursor: 'pointer',
                 appearance: 'none',
+                WebkitAppearance: 'none',
                 backgroundImage: `url("${arrowSvg}")`,
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'right 8px center',
-                backgroundSize: '12px',
-                outline: 'none',
-                fontWeight: '500'
+                backgroundSize: '14px',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
               },
               onChange: (e) => {
                 const newStatus = e.target.value;
