@@ -773,45 +773,55 @@ export const pageConfigs = [
         { key: 'mode', label: 'Mode' },
         { key: 'reference', label: 'Reference' },
         { key: 'amount', label: 'Amount' },
-        { key: 'status', label: 'Status', render: (val) => {
-            if (val === 'Paid') {
-              return React.createElement('span', {style: {backgroundColor: '#22c55e', color: 'white', padding: '4px 10px', borderRadius: '4px', fontSize: '12px', border: '1px solid #166534'}}, val);
-            }
-            return val;
+        { key: 'status', label: 'Status', render: (val, row, handlers) => {
+            let bg = '#f3f4f6';
+            let color = '#374151';
+            if (val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+            else if (val === 'Failed') { bg = '#fee2e2'; color = '#991b1b'; }
+            else if (val === 'Refunded') { bg = '#fef08a'; color = '#854d0e'; }
+            
+            const arrowSvg = `data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${color.replace('#', '%23')}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E`;
+            
+            return React.createElement('select', {
+              value: val || 'Pending',
+              style: {
+                backgroundColor: bg,
+                color: color,
+                border: `1px solid ${color}`,
+                padding: '4px 24px 4px 10px',
+                borderRadius: '4px',
+                fontSize: '12px',
+                cursor: 'pointer',
+                appearance: 'none',
+                backgroundImage: `url("${arrowSvg}")`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right 8px center',
+                backgroundSize: '12px',
+                outline: 'none',
+                fontWeight: '500'
+              },
+              onChange: (e) => {
+                const newStatus = e.target.value;
+                if (handlers && handlers.onUpdateRow) {
+                  handlers.onUpdateRow(row._id, 'status', newStatus);
+                } else {
+                  api.put(`/payments/${row._id}`, { status: newStatus })
+                    .then(() => window.location.reload())
+                    .catch(err => alert('Error updating status: ' + err.message));
+                }
+              }
+            }, 
+            React.createElement('option', {value: 'Pending', style: {color: 'black', backgroundColor: 'white'}}, 'Pending'),
+            React.createElement('option', {value: 'Paid', style: {color: 'black', backgroundColor: 'white'}}, 'Paid'),
+            React.createElement('option', {value: 'Failed', style: {color: 'black', backgroundColor: 'white'}}, 'Failed'),
+            React.createElement('option', {value: 'Refunded', style: {color: 'black', backgroundColor: 'white'}}, 'Refunded')
+            );
           } 
         },
         { key: 'date', label: 'Date' }
       ],
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '5px', flexWrap: 'wrap'}},
-        React.createElement('button', {
-            style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
-            onClick: () => {
-              Swal.fire({
-                title: 'Update Payment Status',
-                input: 'select',
-                inputOptions: {
-                  'Pending': 'Pending',
-                  'Paid': 'Paid',
-                  'Failed': 'Failed',
-                  'Refunded': 'Refunded'
-                },
-                inputValue: row.status || 'Pending',
-                showCancelButton: true
-              }).then(async (result) => {
-                if (result.isConfirmed) {
-                  try {
-                    await api.put(`/payments/${row._id}`, { status: result.value });
-                    Swal.fire('Updated!', 'Payment status updated.', 'success').then(() => {
-                      window.location.reload();
-                    });
-                  } catch(e) {
-                    Swal.fire('Error', 'Failed to update payment status.', 'error');
-                  }
-                }
-              });
-            }
-        }, 'Update Status'),
         React.createElement('button', {
             style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
             onClick: () => {
@@ -1685,45 +1695,55 @@ export const pageConfigs = [
         { key: 'mode', label: 'Mode' },
         { key: 'reference', label: 'Reference' },
         { key: 'amount', label: 'Amount' },
-        { key: 'status', label: 'Status', render: (val) => {
-            if (val === 'Paid') {
-              return React.createElement('span', {style: {backgroundColor: '#22c55e', color: 'white', padding: '4px 10px', borderRadius: '4px', fontSize: '12px', border: '1px solid #166534'}}, val);
-            }
-            return val;
+        { key: 'status', label: 'Status', render: (val, row, handlers) => {
+            let bg = '#f3f4f6';
+            let color = '#374151';
+            if (val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+            else if (val === 'Failed') { bg = '#fee2e2'; color = '#991b1b'; }
+            else if (val === 'Refunded') { bg = '#fef08a'; color = '#854d0e'; }
+            
+            const arrowSvg = `data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${color.replace('#', '%23')}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E`;
+            
+            return React.createElement('select', {
+              value: val || 'Pending',
+              style: {
+                backgroundColor: bg,
+                color: color,
+                border: `1px solid ${color}`,
+                padding: '4px 24px 4px 10px',
+                borderRadius: '4px',
+                fontSize: '12px',
+                cursor: 'pointer',
+                appearance: 'none',
+                backgroundImage: `url("${arrowSvg}")`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right 8px center',
+                backgroundSize: '12px',
+                outline: 'none',
+                fontWeight: '500'
+              },
+              onChange: (e) => {
+                const newStatus = e.target.value;
+                if (handlers && handlers.onUpdateRow) {
+                  handlers.onUpdateRow(row._id, 'status', newStatus);
+                } else {
+                  api.put(`/retailer/payments/${row._id}`, { status: newStatus })
+                    .then(() => window.location.reload())
+                    .catch(err => alert('Error updating status: ' + err.message));
+                }
+              }
+            }, 
+            React.createElement('option', {value: 'Pending', style: {color: 'black', backgroundColor: 'white'}}, 'Pending'),
+            React.createElement('option', {value: 'Paid', style: {color: 'black', backgroundColor: 'white'}}, 'Paid'),
+            React.createElement('option', {value: 'Failed', style: {color: 'black', backgroundColor: 'white'}}, 'Failed'),
+            React.createElement('option', {value: 'Refunded', style: {color: 'black', backgroundColor: 'white'}}, 'Refunded')
+            );
           } 
         },
         { key: 'date', label: 'Date' }
       ],
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '5px', flexWrap: 'wrap'}},
-        React.createElement('button', {
-            style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
-            onClick: () => {
-              Swal.fire({
-                title: 'Update Payment Status',
-                input: 'select',
-                inputOptions: {
-                  'Pending': 'Pending',
-                  'Paid': 'Paid',
-                  'Failed': 'Failed',
-                  'Refunded': 'Refunded'
-                },
-                inputValue: row.status || 'Pending',
-                showCancelButton: true
-              }).then(async (result) => {
-                if (result.isConfirmed) {
-                  try {
-                    await api.put(`/retailer/payments/${row._id}`, { status: result.value });
-                    Swal.fire('Updated!', 'Payment status updated.', 'success').then(() => {
-                      window.location.reload();
-                    });
-                  } catch(e) {
-                    Swal.fire('Error', 'Failed to update payment status.', 'error');
-                  }
-                }
-              });
-            }
-        }, 'Update Status'),
         React.createElement('button', {
             style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
             onClick: () => {
