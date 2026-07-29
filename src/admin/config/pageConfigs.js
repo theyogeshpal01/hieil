@@ -708,7 +708,7 @@ export const pageConfigs = [
               });
             }
         }, 'Payment'),
-        React.createElement('button', {
+        row.status !== 'Shipped' && React.createElement('button', {
             style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px'},
             onClick: () => {
               Swal.fire({
@@ -735,6 +735,7 @@ export const pageConfigs = [
                       trackingNo: result.value.trackingNo,
                       type: row.type || 'inquiry'
                     });
+                    await api.put(`/invoices/${row._id}`, { status: 'Shipped' });
                     Swal.fire('Success', 'Shipment created successfully.', 'success').then(() => {
                       window.location.href = '/admin/inquiry-system/shipping';
                     });
