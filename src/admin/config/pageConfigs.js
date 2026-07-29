@@ -592,13 +592,9 @@ export const pageConfigs = [
                 onChange: (e) => {
                   const newStatus = e.target.value;
                   const updateStatus = (address = '') => {
-                    if (handlers && handlers.onUpdateRow) {
-                      handlers.onUpdateRow(row._id, 'status', newStatus);
-                    } else {
-                      api.put(`/quotations/${row._id}`, { status: newStatus, address })
-                        .then(() => window.location.reload())
-                        .catch(err => alert('Error updating status: ' + err.message));
-                    }
+                    api.put(`/quotations/${row._id}`, { status: newStatus, address })
+                      .then(() => window.location.reload())
+                      .catch(err => alert('Error updating status: ' + err.message));
                   };
 
                   if (newStatus === 'Accepted') {
