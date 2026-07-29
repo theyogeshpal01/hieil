@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaPrint, FaArrowLeft, FaDownload } from 'react-icons/fa';
-import api from '../../../utils/api';
+import api from '../../config/api';
 import './PayoutPreview.css';
 
 const PayoutPreview = () => {
