@@ -714,15 +714,15 @@ export const pageConfigs = [
               Swal.fire({
                 title: 'Create Shipment',
                 html: `
-                  <input id="swal-input-company" class="swal2-input" placeholder="Courier Company">
+                  <input id="swal-input-mode" class="swal2-input" placeholder="Shipping Mode / Courier">
                   <input id="swal-input-tracking" class="swal2-input" placeholder="Tracking Number">
                 `,
                 focusConfirm: false,
                 showCancelButton: true,
                 preConfirm: () => {
                   return {
-                    company: document.getElementById('swal-input-company').value,
-                    trackingNo: document.getElementById('swal-input-tracking').value
+                    mode: document.getElementById('swal-input-mode').value,
+                    tracking: document.getElementById('swal-input-tracking').value
                   }
                 }
               }).then(async (result) => {
@@ -731,8 +731,8 @@ export const pageConfigs = [
                     await api.post('/shipping', {
                       invoice: row.invoiceNo,
                       orderNo: row.orderNo,
-                      company: result.value.company,
-                      trackingNo: result.value.trackingNo,
+                      mode: result.value.mode,
+                      tracking: result.value.tracking,
                       type: row.type || 'inquiry'
                     });
                     await api.put(`/invoices/${row._id}`, { status: 'Shipped' });
