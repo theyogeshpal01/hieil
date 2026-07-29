@@ -921,6 +921,7 @@ export const pageConfigs = [
       headers: [
         { key: 'id', label: '#' },
         { key: 'invoice', label: 'Invoice' },
+        { key: 'orderNo', label: 'Order No' },
         { key: 'mode', label: 'Mode' },
         { key: 'tracking', label: 'Tracking' },
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
