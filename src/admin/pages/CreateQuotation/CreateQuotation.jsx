@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { FaFileAlt, FaCheck } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import api from '../../config/api';
 
 const CreateQuotation = () => {
+  const { id: inquiryId } = useParams();
   const [formData, setFormData] = useState({
     customerName: 'Ankit',
     customerEmail: '', // Added email field
@@ -43,7 +45,8 @@ const CreateQuotation = () => {
     });
 
     try {
-      const response = await api.post('/quotation-email/send', formData);
+      const payload = { ...formData, inquiryId };
+      const response = await api.post('/quotation-email/send', payload);
       const data = response.data;
 
       if (data.success) {

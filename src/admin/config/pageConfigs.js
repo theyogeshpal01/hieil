@@ -431,9 +431,30 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
         React.createElement('button', {
-          style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '10px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px'},
-          onClick: () => window.location.href = `/admin/inquiry-system/product-inquiries/create-quotation/${row.id}`
-        }, React.createElement(FaFileAlt, {style: {fontSize: '16px'}}), ' Create Quotation'),
+            style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '10px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px'},
+            onClick: async () => {
+              try {
+                if (row.quotationId) {
+                  const result = await Swal.fire({
+                    title: 'Quotation Already Exists',
+                    html: `A quotation (ID: <b>${row.quoteNo || 'Unknown'}</b>) already exists for this inquiry.`,
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonText: 'Want to Edit/View',
+                    cancelButtonText: 'Cancel'
+                  });
+                  if (result.isConfirmed) {
+                    window.location.href = `/admin/inquiry-system/quotations?search=${row.quoteNo || ''}`;
+                  }
+                } else {
+                  window.location.href = `/admin/inquiry-system/product-inquiries/create-quotation/${row.id || row._id}`;
+                }
+              } catch (e) {
+                console.error(e);
+                window.location.href = `/admin/inquiry-system/product-inquiries/create-quotation/${row.id || row._id}`;
+              }
+            }
+          }, React.createElement(FaFileAlt, {style: {fontSize: '16px'}}), ' Create Quotation'),
         React.createElement('button', {
           style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '10px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
           title: 'Delete Inquiry',
@@ -1629,7 +1650,28 @@ export const pageConfigs = [
       actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
         React.createElement('button', {
           style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '10px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px'},
-          onClick: () => window.location.href = `/admin/retailer-system/product-inquiries/create-quotation/${row.id}`
+          onClick: async () => {
+            try {
+              if (row.quotationId) {
+                const result = await Swal.fire({
+                  title: 'Quotation Already Exists',
+                  html: `A quotation (ID: <b>${row.quoteNo || 'Unknown'}</b>) already exists for this inquiry.`,
+                  icon: 'info',
+                  showCancelButton: true,
+                  confirmButtonText: 'Want to Edit/View',
+                  cancelButtonText: 'Cancel'
+                });
+                if (result.isConfirmed) {
+                  window.location.href = `/admin/retailer-system/quotations?search=${row.quoteNo || ''}`;
+                }
+              } else {
+                window.location.href = `/admin/retailer-system/product-inquiries/create-quotation/${row.id || row._id}`;
+              }
+            } catch (e) {
+              console.error(e);
+              window.location.href = `/admin/retailer-system/product-inquiries/create-quotation/${row.id || row._id}`;
+            }
+          }
         }, '📄 Create Quotation'),
         React.createElement('button', {
           style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '10px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
