@@ -38,9 +38,9 @@ const ReportDashboard = () => {
 
       {/* Sales Funnel Section */}
       <div className="rd-section">
-        <h2 className="rd-section-title">
+        <div className="rd-section-title">
           <FaChartLine style={{marginRight: '8px', color: '#4b5563'}} /> Sales Funnel
-        </h2>
+        </div>
         <div className="rd-grid rd-grid-4">
           <div className="rd-card">
             <FaEnvelope className="rd-icon" style={{color: '#0ea5e9'}} />
@@ -67,9 +67,9 @@ const ReportDashboard = () => {
 
       {/* Finance Overview Section */}
       <div className="rd-section">
-        <h2 className="rd-section-title">
+        <div className="rd-section-title">
           <FaDollarSign style={{marginRight: '8px', color: '#4b5563'}} /> Finance Overview
-        </h2>
+        </div>
         <div className="rd-grid rd-grid-2">
           <div className="rd-card">
             <FaFileInvoiceDollar className="rd-icon" style={{color: '#ef4444'}} />
@@ -86,9 +86,9 @@ const ReportDashboard = () => {
 
       {/* Shipping Overview Section */}
       <div className="rd-section">
-        <h2 className="rd-section-title">
+        <div className="rd-section-title">
           <FaTruck style={{marginRight: '8px', color: '#4b5563'}} /> Shipping Overview
-        </h2>
+        </div>
         <div className="rd-grid rd-grid-3">
           <div className="rd-card">
             <FaTruck className="rd-icon" style={{color: '#3b82f6'}} />
