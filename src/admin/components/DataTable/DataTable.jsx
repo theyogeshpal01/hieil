@@ -133,12 +133,12 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulk
                           {columns.actions ? columns.actions(row, { onEdit, onDelete, onUpdateRow }) : (
                             <>
                               {onEdit && (
-                                <button className="action-btn edit-btn" style={columns.actionStyle === 'orange' ? {backgroundColor: '#f59e0b'} : {}} onClick={() => onEdit(row)}>
+                                <button className="modern-action-btn icon-action-btn btn-primary" style={columns.actionStyle === 'orange' ? {backgroundColor: '#f59e0b'} : {}} onClick={() => onEdit(row)}>
                                   <FaEdit />
                                 </button>
                               )}
                               {onDelete && (
-                                <button className="action-btn delete-btn" style={columns.actionStyle === 'orange' ? {backgroundColor: '#f59e0b'} : {}} onClick={() => onDelete(row)}>
+                                <button className="modern-action-btn icon-action-btn btn-danger" style={columns.actionStyle === 'orange' ? {backgroundColor: '#f59e0b'} : {}} onClick={() => onDelete(row)}>
                                   <FaTrash />
                                 </button>
                               )}

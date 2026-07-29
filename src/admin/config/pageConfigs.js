@@ -251,11 +251,11 @@ export const pageConfigs = [
         hideDefaultActions: true,
         actions: (row, { onUpdateRow }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
           row.status !== 'APPROVED' && React.createElement('button', {
-            style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+            className: 'modern-action-btn btn-success',
             onClick: () => onUpdateRow(row.id, 'status', 'APPROVED')
           }, React.createElement(FaIcons.FaCheck, null)),
           row.status !== 'REJECTED' && React.createElement('button', {
-            style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+            className: 'modern-action-btn btn-danger',
             onClick: () => onUpdateRow(row.id, 'status', 'REJECTED')
           }, React.createElement(FaIcons.FaTimes, null))
         )
@@ -297,11 +297,11 @@ export const pageConfigs = [
         hideDefaultActions: true,
         actions: (row, { onUpdateRow }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
           row.status !== 'APPROVED' && React.createElement('button', {
-            style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+            className: 'modern-action-btn btn-success',
             onClick: () => onUpdateRow(row.id, 'status', 'APPROVED')
           }, React.createElement(FaIcons.FaCheck, null)),
           row.status !== 'REJECTED' && React.createElement('button', {
-            style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+            className: 'modern-action-btn btn-danger',
             onClick: () => onUpdateRow(row.id, 'status', 'REJECTED')
           }, React.createElement(FaIcons.FaTimes, null))
         )
@@ -351,19 +351,19 @@ export const pageConfigs = [
         hideDefaultActions: true,
         actions: (row, { onEdit, onDelete }) => React.createElement('div', {style: {display: 'flex'}},
           React.createElement('button', {
-            style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '4px 0 0 4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+            className: 'modern-action-btn btn-success',
             onClick: () => window.open(`https://wa.me/${row.phone}`, '_blank')
           }, React.createElement(FaIcons.FaWhatsapp, null)),
           React.createElement('button', {
-            style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+            className: 'modern-action-btn btn-primary',
             onClick: () => window.open(`tel:${row.phone}`, '_self')
           }, React.createElement(FaIcons.FaPhoneAlt, null)),
           React.createElement('button', {
-            style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+            className: 'modern-action-btn btn-warning',
             onClick: () => onEdit && onEdit(row)
           }, React.createElement(FaIcons.FaEdit, null)),
           React.createElement('button', {
-            style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '0 4px 4px 0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+            className: 'modern-action-btn btn-danger',
             onClick: () => onDelete && onDelete(row)
           }, React.createElement(FaIcons.FaTrashAlt, null))
         )
@@ -392,11 +392,11 @@ export const pageConfigs = [
         hideDefaultActions: true,
         actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex'}},
           React.createElement('button', {
-            style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '4px 0 0 4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+            className: 'modern-action-btn btn-primary',
             onClick: () => window.open(`mailto:${row.email}`, '_blank')
           }, React.createElement(FaIcons.FaEnvelope, null)),
           React.createElement('button', {
-            style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '0 4px 4px 0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+            className: 'modern-action-btn btn-danger',
             onClick: () => onDelete && onDelete(row)
           }, React.createElement(FaIcons.FaTrashAlt, null))
         )
@@ -421,7 +421,7 @@ export const pageConfigs = [
           ) 
         },
         { key: 'location', label: 'Location', render: (val) => React.createElement('div', {style: {maxWidth: '150px', wordWrap: 'break-word', fontSize: '13px'}}, val) },
-        { key: 'orderType', label: 'Order Type', render: (val) => React.createElement('span', {style: {backgroundColor: '#0ea5e9', color: 'white', padding: '4px 10px', borderRadius: '12px', fontSize: '12px'}}, val) },
+        { key: 'orderType', label: 'Order Type', render: (val) => React.createElement('span', {className: 'modern-action-btn btn-primary'}, val) },
         { key: 'qty', label: 'Qty' },
         { key: 'budget', label: 'Budget' },
         { key: 'gst', label: 'GST', render: (val, row) => React.createElement('div', {style: {fontSize: '13px'}}, row.gstStatus, React.createElement('div', {style: {color: '#6b7280', marginTop: '4px', maxWidth: '120px', wordWrap: 'break-word'}}, row.gstDetails)) },
@@ -431,7 +431,7 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
         React.createElement('button', {
-            style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '10px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px'},
+            className: 'modern-action-btn btn-success',
             onClick: async () => {
               try {
                 if (row.quotationId) {
@@ -456,7 +456,7 @@ export const pageConfigs = [
             }
           }, React.createElement(FaFileAlt, {style: {fontSize: '16px'}}), ' Create Quotation'),
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '10px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          className: 'modern-action-btn btn-danger',
           title: 'Delete Inquiry',
           onClick: () => onDelete && onDelete(row)
         }, React.createElement(FaTrash, {style: {fontSize: '14px'}}))
@@ -532,11 +532,11 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '4px'}},
         React.createElement('button', {
-            style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '14px', display: 'flex', justifyContent: 'center'},
+            className: 'modern-action-btn btn-primary',
             onClick: () => window.location.href = `/admin/inquiry-system/orders/details/${row._id}`
         }, React.createElement(FaIcons.FaEye || FaFileAlt, null)),
         React.createElement('button', {
-            style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '14px', display: 'flex', justifyContent: 'center'},
+            className: 'modern-action-btn btn-danger',
             onClick: () => onDelete(row)
         }, React.createElement(FaIcons.FaTrashAlt, null))
       )
@@ -652,11 +652,11 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, { onEdit }) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '80px'}},
         React.createElement('button', {
-            style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '14px', display: 'flex', justifyContent: 'center'},
+            className: 'modern-action-btn btn-primary',
             onClick: () => window.location.href = `/admin/inquiry-system/quotations/preview/${row._id}`
         }, React.createElement(FaFileAlt, null)),
         onEdit && React.createElement('button', {
-            style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '4px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '14px', display: 'flex', justifyContent: 'center'},
+            className: 'modern-action-btn btn-warning',
             onClick: () => onEdit(row)
         }, React.createElement(FaEdit, null))
       )
@@ -725,11 +725,11 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '5px', flexWrap: 'wrap'}},
         React.createElement('button', {
-            style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
+            className: 'modern-action-btn btn-primary',
             onClick: () => window.location.href = `/admin/inquiry-system/invoices/preview/${row._id}`
         }, 'PDF'),
         React.createElement('button', {
-            style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
+            className: 'modern-action-btn btn-success',
             onClick: () => {
               Swal.fire({
                 title: 'Record Payment',
@@ -772,7 +772,7 @@ export const pageConfigs = [
             }
         }, 'Payment'),
         row.status !== 'Shipped' && React.createElement('button', {
-            style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px'},
+            className: 'modern-action-btn btn-primary',
             onClick: () => {
               Swal.fire({
                 title: 'Create Shipment',
@@ -810,7 +810,7 @@ export const pageConfigs = [
             }
         }, React.createElement(FaTruck, null), ' Shipping'),
         React.createElement('button', {
-            style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px'},
+            className: 'modern-action-btn btn-warning',
             onClick: async () => {
               try {
                 await api.put(`/invoices/${row._id}`, { status: 'Sent to Retailer' });
@@ -889,7 +889,7 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '5px', flexWrap: 'wrap'}},
         React.createElement('button', {
-            style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
+            className: 'modern-action-btn btn-danger',
             onClick: () => {
               Swal.fire({
                 title: 'Delete Payment?',
@@ -1160,11 +1160,11 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
         React.createElement('button', {
-          style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          className: 'modern-action-btn btn-warning',
           onClick: () => handlers?.onEdit && handlers.onEdit(row)
         }, React.createElement(FaEdit, null)),
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          className: 'modern-action-btn btn-danger',
           onClick: () => handlers?.onDelete && handlers.onDelete(row)
         }, React.createElement(FaTrash, null))
       )
@@ -1204,11 +1204,11 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center'}},
         React.createElement('button', {
-          style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '6px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '30px', height: '30px'},
+          className: 'modern-action-btn btn-warning',
           onClick: () => handlers?.onEdit && handlers.onEdit(row)
         }, React.createElement(FaEdit, null)),
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '30px', height: '30px'},
+          className: 'modern-action-btn btn-danger',
           onClick: () => handlers?.onDelete && handlers.onDelete(row)
         }, React.createElement(FaTrash, null))
       )
@@ -1247,11 +1247,11 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center'}},
         React.createElement('button', {
-          style: {backgroundColor: '#f59e0b', color: 'white', border: 'none', padding: '6px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '30px', height: '30px'},
+          className: 'modern-action-btn btn-warning',
           onClick: () => handlers?.onEdit && handlers.onEdit(row)
         }, React.createElement(FaEdit, null)),
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '30px', height: '30px'},
+          className: 'modern-action-btn btn-danger',
           onClick: () => handlers?.onDelete && handlers.onDelete(row)
         }, React.createElement(FaTrash, null))
       )
@@ -1299,11 +1299,11 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
         React.createElement('button', {
-          style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          className: 'modern-action-btn btn-primary',
           onClick: () => handlers?.onEdit && handlers.onEdit(row)
         }, React.createElement(FaEdit, null)),
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          className: 'modern-action-btn btn-danger',
           onClick: () => handlers?.onDelete && handlers.onDelete(row)
         }, React.createElement(FaTrash, null))
       )
@@ -1324,11 +1324,11 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
         React.createElement('button', {
-          style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          className: 'modern-action-btn btn-primary',
           onClick: () => handlers?.onEdit && handlers.onEdit(row)
         }, React.createElement(FaEdit, null)),
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          className: 'modern-action-btn btn-danger',
           onClick: () => handlers?.onDelete && handlers.onDelete(row)
         }, React.createElement(FaTrash, null))
       )
@@ -1351,11 +1351,11 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '30px', margin: '0 auto'}},
         React.createElement('button', {
-          style: {backgroundColor: '#f97316', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          className: 'modern-action-btn btn-warning',
           onClick: () => handlers?.onEdit && handlers.onEdit(row)
         }, React.createElement(FaEdit, null)),
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          className: 'modern-action-btn btn-danger',
           onClick: () => handlers?.onDelete && handlers.onDelete(row)
         }, React.createElement(FaTrash, null))
       )
@@ -1377,12 +1377,12 @@ export const pageConfigs = [
         { key: 'icon', label: 'Icon Name', formLabel: 'Lucide Icon Name (e.g. ShieldCheck, FileCheck2, Landmark, BadgeCheck)' },
         { key: 'pdfUrl', label: 'Upload Certificate (PDF/Image)', type: 'file', hideInTable: true },
         { key: 'preview', label: 'Preview', hideInForm: true, render: (val, row) => React.createElement('button', {
-            style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px'},
+            className: 'modern-action-btn btn-primary',
             onClick: () => window.open(row.pdfUrl ? formatImageUrl(row.pdfUrl) : 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', '_blank')
           }, React.createElement(FaEye, null), ' View') 
         },
         { key: 'download', label: 'Download', hideInForm: true, render: (val, row) => React.createElement('button', {
-            style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px'},
+            className: 'modern-action-btn btn-success',
             onClick: async () => {
               const dummyPdf = 'data:application/pdf;base64,JVBERi0xLjEKJcKlwrHDqwoKMSAwIG9iagogIDw8IC9UeXBlIC9DYXRhbG9nCiAgICAgL1BhZ2VzIDIgMCBSCiAgPj4KZW5kb2JqCgoyIDAgb2JqCiAgPDwgL1R5cGUgL1BhZ2VzCiAgICAgL0tpZHMgWzMgMCBSXQogICAgIC9Db3VudCAxCiAgICAgL01lZGlhQm94IFswIDAgMzAwIDE0NF0KICA+PgplbmRvYmoKCjMgMCBvYmoKICA8PCAgL1R5cGUgL1BhZ2UKICAgICAgL1BhcmVudCAyIDAgUgogICAgICAvUmVzb3VyY2VzCiAgICAgICA8PCAvRm9udAogICAgICAgICAgIDw8IC9GMQogICAgICAgICAgICAgICA8PCAvVHlwZSAvRm9udAogICAgICAgICAgICAgICAgICAvU3VidHlwZSAvVHlwZTEKICAgICAgICAgICAgICAgICAgL0Jhc2VGb250IC9UaW1lcy1Sb21hbgogICAgICAgICAgICAgICA+PgogICAgICAgICAgID4+CiAgICAgICA+PgogICAgICAvQ29udGVudHMgNCAwIFIKICA+PgplbmRvYmoKCjQgMCBvYmoKICA8PCAvTGVuZ3RoIDU1ID4+CnN0cmVhbQogIEJUCiAgICAvRjEgMTggVGYKICAgIDAgMCAwIHJnCiAgICAoRHVtbXkgUERGIFRlc3QpIFRqCiAgRVQKZW5kc3RyZWFtCmVuZG9iagoKeHJlZgowIDUKMDAwMDAwMDAwMCA2NTUzNSBmIAowMDAwMDAwMDE4IDAwMDAwIG4gCjAwMDAwMDAwNzcgMDAwMDAgbiAKMDAwMDAwMDE3OCAwMDAwMCBuIAowMDAwMDAwNDU3IDAwMDAwIG4gCnRyYWlsZXIKICA8PCAgL1Jvb3QgMSAwIFIKICAgICAgL1NpemUgNQogID4+CnN0YXJ0eHJlZgo1NjUKJSVFT0YK';
               const fileUrl = row.pdfUrl ? formatImageUrl(row.pdfUrl) : dummyPdf;
@@ -1425,11 +1425,11 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
         React.createElement('button', {
-          style: {backgroundColor: '#f97316', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          className: 'modern-action-btn btn-warning',
           onClick: () => handlers?.onEdit && handlers.onEdit(row)
         }, React.createElement(FaEdit, null)),
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          className: 'modern-action-btn btn-danger',
           onClick: () => handlers?.onDelete && handlers.onDelete(row)
         }, React.createElement(FaTrash, null))
       )
@@ -1454,7 +1454,7 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '4px', cursor: 'pointer'},
+          className: 'modern-action-btn btn-danger',
           onClick: () => handlers?.onDelete && handlers.onDelete(row)
         }, React.createElement(FaTrash, null))
       )
@@ -1497,22 +1497,22 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
         row.phone && React.createElement('button', {
-          style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '8px 12px', fontSize: '14px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          className: 'modern-action-btn btn-success',
           title: 'WhatsApp',
           onClick: () => window.open(`https://wa.me/${row.phone.replace(/[^0-9]/g, '')}`, '_blank')
         }, React.createElement(FaWhatsapp, null)),
         row.phone && React.createElement('button', {
-          style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '8px 12px', fontSize: '14px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          className: 'modern-action-btn btn-primary',
           title: 'Call',
           onClick: () => window.open(`tel:${row.phone}`, '_self')
         }, React.createElement(FaPhone, null)),
         row.email && React.createElement('button', {
-          style: {backgroundColor: '#6366f1', color: 'white', border: 'none', padding: '8px 12px', fontSize: '14px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          className: 'modern-action-btn btn-primary',
           title: 'Email',
           onClick: () => window.open(`mailto:${row.email}`, '_blank')
         }, React.createElement(FaEnvelope, null)),
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '8px 12px', fontSize: '14px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          className: 'modern-action-btn btn-danger',
           title: 'Delete Message',
           onClick: () => onDelete && onDelete(row)
         }, React.createElement(FaTrash, null))
@@ -1543,17 +1543,17 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row, context = {}) => React.createElement('div', {style: {display: 'flex'}},
         React.createElement('button', {
-          style: {backgroundColor: '#10b981', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '4px 0 0 4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          className: 'modern-action-btn btn-success',
           title: 'Call Now',
           onClick: () => window.open(`tel:${row.phone}`, '_self')
         }, React.createElement(FaPhone, null)),
         React.createElement('button', {
-          style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          className: 'modern-action-btn btn-primary',
           title: 'Send Email',
           onClick: () => window.open(`mailto:${row.email}`, '_blank')
         }, React.createElement(FaEnvelope, null)),
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '8px 12px', fontSize: '16px', borderRadius: '0 4px 4px 0', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          className: 'modern-action-btn btn-danger',
           title: 'Delete',
           onClick: () => {
             Swal.fire({
@@ -1658,11 +1658,11 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '80px'}},
         React.createElement('button', {
-            style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px'},
+            className: 'modern-action-btn btn-success',
             onClick: () => alert(`Release Payout for: ${row.invoiceId}`)
         }, React.createElement(FaCheck, null), ' Release'),
         React.createElement('button', {
-            style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '6px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px'},
+            className: 'modern-action-btn btn-primary',
             onClick: () => alert(`Download PDF for: ${row.invoiceId}`)
         }, React.createElement(FaFileAlt, null), ' PDF')
       )
@@ -1685,14 +1685,14 @@ export const pageConfigs = [
             React.createElement('div', null, '💬 ' + row.altPhone)
         ) },
         { key: 'location', label: 'Location', render: (val, row) => React.createElement('div', {style: {maxWidth: '120px', lineHeight: '1.4'}}, row.location) },
-        { key: 'orderType', label: 'Order Type', render: (val) => React.createElement('span', {style: {backgroundColor: '#0ea5e9', color: 'white', padding: '4px 14px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold'}}, val) },
+        { key: 'orderType', label: 'Order Type', render: (val) => React.createElement('span', {className: 'modern-action-btn btn-primary'}, val) },
         { key: 'qty', label: 'Qty' },
         { key: 'budget', label: 'Budget' },
         { key: 'date', label: 'Date', render: (val, row) => React.createElement('div', {style: {maxWidth: '40px', lineHeight: '1.4'}}, row.date) }
       ],
       actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
         React.createElement('button', {
-          style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '10px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px'},
+          className: 'modern-action-btn btn-success',
           onClick: async () => {
             try {
               if (row.quotationId) {
@@ -1717,7 +1717,7 @@ export const pageConfigs = [
           }
         }, '📄 Create Quotation'),
         React.createElement('button', {
-          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '10px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          className: 'modern-action-btn btn-danger',
           title: 'Delete Inquiry',
           onClick: () => onDelete && onDelete(row)
         }, React.createElement(FaTrash, {style: {fontSize: '14px'}}))
@@ -1737,9 +1737,9 @@ export const pageConfigs = [
         { key: 'quotation', label: 'Quotation' },
         { key: 'status', label: 'Status', render: (val) => {
             if (val === 'Processing') {
-              return React.createElement('span', {style: {backgroundColor: '#22c55e', color: 'white', padding: '4px 10px', borderRadius: '4px', fontSize: '12px', border: '1px solid #166534'}}, val);
+              return React.createElement('span', {className: 'modern-action-btn btn-success'}, val);
             }
-            return React.createElement('span', {style: {backgroundColor: '#22c55e', width: '16px', height: '6px', borderRadius: '10px', display: 'inline-block', border: '1px solid #166534'}});
+            return React.createElement('span', {className: 'modern-action-btn btn-success'});
           } 
         },
         { key: 'date', label: 'Date' }
@@ -1762,7 +1762,7 @@ export const pageConfigs = [
         { key: 'total', label: 'Total' },
         { key: 'status', label: 'Status', render: (val) => {
             if (val === 'Accepted') {
-              return React.createElement('span', {style: {backgroundColor: '#22c55e', color: 'white', padding: '4px 10px', borderRadius: '4px', fontSize: '12px', border: '1px solid #166534'}}, val);
+              return React.createElement('span', {className: 'modern-action-btn btn-success'}, val);
             }
             return val;
           } 
@@ -1771,7 +1771,7 @@ export const pageConfigs = [
       ],
       hideDefaultActions: true,
       actions: (row) => React.createElement('button', {
-        style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '8px 12px', borderRadius: '4px', cursor: 'pointer'},
+        className: 'modern-action-btn btn-primary',
         onClick: () => window.location.href = `/admin/retailer-system/quotations/preview/${row._id}`
       }, '📄')
     }, 
@@ -1841,15 +1841,15 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', flexWrap: 'wrap', gap: '5px', maxWidth: '160px'}}, 
         React.createElement('button', {
-            style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '5px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '12px'},
+            className: 'modern-action-btn btn-primary',
             onClick: () => alert(`Generating PDF for ${row.invoiceNo}`)
         }, '📄 PDF'),
         React.createElement('button', {
-            style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '5px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '12px'},
+            className: 'modern-action-btn btn-success',
             onClick: () => alert(`Processing Payment for ${row.invoiceNo}`)
         }, '💳 Payment'),
         React.createElement('button', {
-            style: {backgroundColor: '#0284c7', color: 'white', border: 'none', padding: '5px 8px', borderRadius: '3px', cursor: 'pointer', fontSize: '12px', marginTop: '2px'},
+            className: 'modern-action-btn btn-primary',
             onClick: () => alert(`Viewing Shipping for ${row.invoiceNo}`)
         }, '🚚 Shipping')
       )
@@ -1921,7 +1921,7 @@ export const pageConfigs = [
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '5px', flexWrap: 'wrap'}},
         React.createElement('button', {
-            style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '6px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px'},
+            className: 'modern-action-btn btn-danger',
             onClick: () => {
               Swal.fire({
                 title: 'Delete Payment?',
