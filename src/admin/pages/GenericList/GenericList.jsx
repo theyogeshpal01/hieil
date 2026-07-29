@@ -156,7 +156,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
   const handleDelete = (row) => {
     Swal.fire({
       title: 'Are you sure?',
-      text: `You want to delete ${row.name || row.title || row.category || 'this item'}?`,
+      text: `You want to delete ${row.name || row.fullName || row.title || row.subject || row.category || 'this item'}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#ef4444',

@@ -429,10 +429,17 @@ export const pageConfigs = [
         { key: 'date', label: 'Date', render: (val) => React.createElement('div', {style: {maxWidth: '60px', fontSize: '13px', lineHeight: '1.4'}}, val) }
       ],
       hideDefaultActions: true,
-      actions: (row) => React.createElement('button', {
-        style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '10px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px'},
-        onClick: () => window.location.href = `/admin/inquiry-system/product-inquiries/create-quotation/${row.id}`
-      }, React.createElement(FaFileAlt, {style: {fontSize: '16px'}}), ' Create Quotation'),
+      actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
+        React.createElement('button', {
+          style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '10px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px'},
+          onClick: () => window.location.href = `/admin/inquiry-system/product-inquiries/create-quotation/${row.id}`
+        }, React.createElement(FaFileAlt, {style: {fontSize: '16px'}}), ' Create Quotation'),
+        React.createElement('button', {
+          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '10px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          title: 'Delete Inquiry',
+          onClick: () => onDelete && onDelete(row)
+        }, React.createElement(FaTrash, {style: {fontSize: '14px'}}))
+      ),
       expandedRowRender: (row) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '14px', color: '#111827', padding: '5px 0'}}, 
         React.createElement('div', null, React.createElement('strong', null, 'Message: '), row.message),
         React.createElement('div', null, React.createElement('strong', null, 'Delivery Date: '), row.deliveryDate)
@@ -1370,7 +1377,29 @@ export const pageConfigs = [
         { key: 'message', label: 'Message' },
         { key: 'createdAt', label: 'Created At' }
       ],
-      hideDefaultActions: true
+      hideDefaultActions: true,
+      actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
+        row.phone && React.createElement('button', {
+          style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '8px 12px', fontSize: '14px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          title: 'WhatsApp',
+          onClick: () => window.open(`https://wa.me/${row.phone.replace(/[^0-9]/g, '')}`, '_blank')
+        }, React.createElement(FaWhatsapp, null)),
+        row.phone && React.createElement('button', {
+          style: {backgroundColor: '#0ea5e9', color: 'white', border: 'none', padding: '8px 12px', fontSize: '14px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          title: 'Call',
+          onClick: () => window.open(`tel:${row.phone}`, '_self')
+        }, React.createElement(FaPhone, null)),
+        row.email && React.createElement('button', {
+          style: {backgroundColor: '#6366f1', color: 'white', border: 'none', padding: '8px 12px', fontSize: '14px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          title: 'Email',
+          onClick: () => window.open(`mailto:${row.email}`, '_blank')
+        }, React.createElement(FaEnvelope, null)),
+        React.createElement('button', {
+          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '8px 12px', fontSize: '14px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          title: 'Delete Message',
+          onClick: () => onDelete && onDelete(row)
+        }, React.createElement(FaTrash, null))
+      )
     }, 
     data: []
   },
@@ -1544,10 +1573,17 @@ export const pageConfigs = [
         { key: 'budget', label: 'Budget' },
         { key: 'date', label: 'Date', render: (val, row) => React.createElement('div', {style: {maxWidth: '40px', lineHeight: '1.4'}}, row.date) }
       ],
-      actions: (row) => React.createElement('button', {
-        style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '10px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px'},
-        onClick: () => window.location.href = `/admin/retailer-system/product-inquiries/create-quotation/${row.id}`
-      }, '📄 Create Quotation')
+      actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '5px'}},
+        React.createElement('button', {
+          style: {backgroundColor: '#22c55e', color: 'white', border: 'none', padding: '10px 16px', borderRadius: '4px', cursor: 'pointer', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px'},
+          onClick: () => window.location.href = `/admin/retailer-system/product-inquiries/create-quotation/${row.id}`
+        }, '📄 Create Quotation'),
+        React.createElement('button', {
+          style: {backgroundColor: '#ef4444', color: 'white', border: 'none', padding: '10px 12px', borderRadius: '4px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center'},
+          title: 'Delete Inquiry',
+          onClick: () => onDelete && onDelete(row)
+        }, React.createElement(FaTrash, {style: {fontSize: '14px'}}))
+      )
     }, 
     data: []
   },

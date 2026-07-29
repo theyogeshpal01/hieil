@@ -7,7 +7,7 @@ const Gallery = () => {
   const [galleryItems, setGalleryItems] = useState([]);
   const [categories, setCategories] = useState(['All categories']);
   const [activeCategory, setActiveCategory] = useState('All categories');
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,9 +80,14 @@ const Gallery = () => {
               <div 
                 className="relative overflow-hidden group cursor-pointer aspect-[4/3] w-full" 
                 key={item._id || item.id}
-                onClick={() => setSelectedImage(item.image || getImageForCategory(item.category))}
+                onClick={() => setSelectedItem({
+                  image: item.image || getImageForCategory(item.category),
+                  title: item.title,
+                  categoryName: (item.category || '').replace('HANDCRAFTED ', '').replace(' categories', ''),
+                  tagline: item.tagline || '200+ DESIGNS'
+                })}
               >
-                <img src={item.image || getImageForCategory(item.category)} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={item.image || getImageForCategory(item.category)} alt={item.title || item.category} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-black/10 to-transparent opacity-90 transition-opacity duration-300"></div>
                 <div className="absolute bottom-0 left-0 p-[30px] z-10 w-full">
                   <p className="text-[10px] text-[#c8956c] m-0 mb-[8px] tracking-[2px] uppercase font-bold">{item.tagline || '200+ DESIGNS'}</p>
@@ -115,7 +120,11 @@ const Gallery = () => {
                     <div 
                       key={`${moment._id}-${pIndex}`} 
                       className="relative overflow-hidden group rounded-[10px] bg-[#1C1713] aspect-square cursor-pointer"
-                      onClick={() => setSelectedImage(photoUrl)}
+                      onClick={() => setSelectedItem({
+                        image: photoUrl,
+                        title: moment.userName ? `Shared by ${moment.userName}` : 'User Shared Moment',
+                        tagline: 'COMMUNITY MOMENT'
+                      })}
                     >
                       <img src={photoUrl} alt="User Moment" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -132,26 +141,49 @@ const Gallery = () => {
       </section>
 
       {/* Lightbox Modal */}
-      {selectedImage && (
+      {selectedItem && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 cursor-zoom-out backdrop-blur-sm transition-opacity duration-300"
-          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8 cursor-zoom-out backdrop-blur-md transition-all duration-300"
+          onClick={() => setSelectedItem(null)}
         >
           <button 
-            className="absolute top-6 right-6 text-white hover:text-[#c8956c] transition-colors cursor-pointer bg-black/50 rounded-full p-2"
+            className="absolute top-6 right-6 text-white hover:text-[#c8956c] transition-colors cursor-pointer bg-black/60 hover:bg-black/80 rounded-full p-2.5 z-20 border border-white/10"
             onClick={(e) => {
               e.stopPropagation();
-              setSelectedImage(null);
+              setSelectedItem(null);
             }}
           >
             <X size={28} />
           </button>
-          <img 
-            src={selectedImage} 
-            alt="Fullscreen view" 
-            className="max-w-[95vw] max-h-[90vh] object-contain rounded cursor-default shadow-2xl transition-transform duration-300 scale-100"
+          
+          <div 
+            className="relative flex flex-col items-center max-w-[95vw] md:max-w-[85vw] max-h-[90vh] cursor-default bg-[#1C1713] border border-[#2c241c] rounded-2xl p-4 md:p-6 shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
-          />
+          >
+            <div className="relative flex items-center justify-center max-h-[70vh] md:max-h-[75vh] w-full overflow-hidden rounded-xl bg-black/40">
+              <img 
+                src={selectedItem.image} 
+                alt={selectedItem.title || selectedItem.categoryName || "Fullscreen view"} 
+                className="max-w-full max-h-[70vh] md:max-h-[75vh] object-contain rounded-xl shadow-2xl transition-transform duration-300"
+              />
+            </div>
+            
+            <div className="w-full text-center mt-4 px-4 pt-1 pb-2">
+              {selectedItem.tagline && (
+                <p className="text-[11px] md:text-[13px] text-[#c8956c] m-0 mb-1 tracking-[2px] uppercase font-bold">
+                  {selectedItem.tagline}
+                </p>
+              )}
+              <h3 className="text-xl md:text-2xl text-white font-serif tracking-[1px] uppercase m-0 drop-shadow-md">
+                {selectedItem.title || selectedItem.categoryName}
+              </h3>
+              {selectedItem.title && selectedItem.categoryName && (
+                <p className="text-xs md:text-sm text-[#b5aaa0] m-0 mt-1 uppercase tracking-[1px] font-medium">
+                  {selectedItem.categoryName}
+                </p>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>

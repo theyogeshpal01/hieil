@@ -175,35 +175,44 @@ const OrderDetails = () => {
               <div style={{marginTop: '30px', paddingTop: '20px', borderTop: '1px solid #e5e7eb'}}>
               <button 
                 onClick={async () => {
-                  try {
-                    let calcTotal = 0;
-                    productsInput.forEach(p => {
-                      const qty = parseFloat(p.quantity) || 0;
-                      const price = parseFloat(p.price) || 0;
-                      calcTotal += qty * price;
-                    });
-                    
-                    const invoiceData = {
-                      invoiceNo: 'INV-' + Date.now().toString().slice(-6),
-                      orderNo: order.orderNo,
-                      customer: order.customer,
-                      country: order.country,
-                      total: calcTotal.toString(),
-                      type: order.type
-                    };
-                    
-                    await api.post('/invoices', invoiceData);
-                    Swal.fire({
-                      title: 'Success!',
-                      text: 'Invoice generated successfully.',
-                      icon: 'success',
-                      confirmButtonText: 'Go to Invoices'
-                    }).then((result) => {
-                      if (result.isConfirmed) {
-                        navigate('/admin/inquiry-system/invoices');
+                    try {
+                      let calcTotal = 0;
+                      productsInput.forEach(p => {
+                        const qty = parseFloat(p.quantity) || 0;
+                        const price = parseFloat(p.price) || 0;
+                        calcTotal += qty * price;
+                      });
+                      
+                      const invRes = await api.get('/invoices');
+                      const existingInvoice = invRes.data.find(inv => inv.orderNo === order.orderNo);
+
+                      const invoiceData = {
+                        orderNo: order.orderNo,
+                        customer: order.customer,
+                        country: order.country,
+                        total: calcTotal.toString(),
+                        type: order.type
+                      };
+
+                      if (existingInvoice) {
+                        invoiceData.invoiceNo = existingInvoice.invoiceNo; // Keep the old invoice no
+                        await api.put(`/invoices/${existingInvoice._id}`, invoiceData);
+                      } else {
+                        invoiceData.invoiceNo = 'INV-' + Date.now().toString().slice(-6);
+                        await api.post('/invoices', invoiceData);
                       }
-                    });
-                  } catch (err) {
+                      
+                      Swal.fire({
+                        title: 'Success!',
+                        text: existingInvoice ? 'Invoice updated successfully.' : 'Invoice generated successfully.',
+                        icon: 'success',
+                        confirmButtonText: 'Go to Invoices'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          navigate('/admin/inquiry-system/invoices');
+                        }
+                      });
+                    } catch (err) {
                     Swal.fire('Error', 'Failed to generate invoice.', 'error');
                   }
                 }}
