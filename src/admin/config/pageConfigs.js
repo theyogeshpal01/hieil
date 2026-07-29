@@ -678,7 +678,53 @@ export const pageConfigs = [
         { key: 'invoiceNo', label: 'Invoice No' },
         { key: 'orderNo', label: 'Order No' },
         { key: 'total', label: 'Total' },
-        { key: 'status', label: 'Status' }
+        { key: 'status', label: 'Status', render: (val, row, handlers) => {
+              let bg = '#fef08a';
+              let color = '#854d0e';
+              if (val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+              else if (val === 'Cancelled') { bg = '#fee2e2'; color = '#991b1b'; }
+              
+              const arrowSvg = `data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${color.replace('#', '%23')}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E`;
+
+              return React.createElement('select', {
+                value: val || 'Pending',
+                style: {
+                  backgroundColor: bg, 
+                  color: color, 
+                  padding: '6px 28px 6px 12px', 
+                  borderRadius: '16px', 
+                  fontSize: '12px', 
+                  fontWeight: '600',
+                  border: '1px solid ' + bg,
+                  outline: 'none',
+                  cursor: 'pointer',
+                  appearance: 'none',
+                  WebkitAppearance: 'none',
+                  backgroundImage: `url("${arrowSvg}")`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right 8px center',
+                  backgroundSize: '12px'
+                },
+                onChange: (e) => {
+                  const newStatus = e.target.value;
+                  if (handlers && handlers.onUpdateRow) {
+                    handlers.onUpdateRow(row._id, 'status', newStatus);
+                  } else {
+                    api.put(`/invoices/${row._id}`, { status: newStatus })
+                      .then(() => window.location.reload())
+                      .catch(err => {
+                        console.error(err);
+                        alert('Failed to update status');
+                      });
+                  }
+                }
+              },
+                React.createElement('option', {value: 'Pending'}, 'Pending'),
+                React.createElement('option', {value: 'Paid'}, 'Paid'),
+                React.createElement('option', {value: 'Cancelled'}, 'Cancelled')
+              );
+            }
+        }
       ],
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '5px', flexWrap: 'wrap'}},
@@ -1747,7 +1793,53 @@ export const pageConfigs = [
         { key: 'customer', label: 'Customer' },
         { key: 'country', label: 'Country' },
         { key: 'total', label: 'Total' },
-        { key: 'status', label: 'Status' }
+        { key: 'status', label: 'Status', render: (val, row, handlers) => {
+              let bg = '#fef08a';
+              let color = '#854d0e';
+              if (val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+              else if (val === 'Cancelled') { bg = '#fee2e2'; color = '#991b1b'; }
+              
+              const arrowSvg = `data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${color.replace('#', '%23')}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E`;
+
+              return React.createElement('select', {
+                value: val || 'Pending',
+                style: {
+                  backgroundColor: bg, 
+                  color: color, 
+                  padding: '6px 28px 6px 12px', 
+                  borderRadius: '16px', 
+                  fontSize: '12px', 
+                  fontWeight: '600',
+                  border: '1px solid ' + bg,
+                  outline: 'none',
+                  cursor: 'pointer',
+                  appearance: 'none',
+                  WebkitAppearance: 'none',
+                  backgroundImage: `url("${arrowSvg}")`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right 8px center',
+                  backgroundSize: '12px'
+                },
+                onChange: (e) => {
+                  const newStatus = e.target.value;
+                  if (handlers && handlers.onUpdateRow) {
+                    handlers.onUpdateRow(row._id, 'status', newStatus);
+                  } else {
+                    api.put(`/invoices/${row._id}`, { status: newStatus })
+                      .then(() => window.location.reload())
+                      .catch(err => {
+                        console.error(err);
+                        alert('Failed to update status');
+                      });
+                  }
+                }
+              },
+                React.createElement('option', {value: 'Pending'}, 'Pending'),
+                React.createElement('option', {value: 'Paid'}, 'Paid'),
+                React.createElement('option', {value: 'Cancelled'}, 'Cancelled')
+              );
+            }
+        }
       ],
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', flexWrap: 'wrap', gap: '5px', maxWidth: '160px'}}, 
