@@ -99,7 +99,7 @@ const OrderDetails = () => {
   return (
     <div className="order-details-container">
       <div className="order-details-header">
-        <h2 className="order-details-title">Order Details: {order.orderNo}</h2>
+        <div className="order-details-title" style={{fontSize: '24px', fontWeight: 'bold'}}>Order Details: {order.orderNo}</div>
         <button className="back-button" onClick={() => navigate(-1)}>
           &larr; Back to Orders
         </button>
