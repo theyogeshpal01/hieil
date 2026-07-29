@@ -10,6 +10,7 @@ const InvoicePreview = lazy(() => import('./pages/InvoicePreview/InvoicePreview'
 const QuotationPreview = lazy(() => import('./pages/QuotationPreview/QuotationPreview'));
 const OrderDetails = lazy(() => import('./pages/OrderDetails/OrderDetails'));
 const ReportDashboard = lazy(() => import('./pages/ReportDashboard/ReportDashboard'));
+const PayoutPreview = lazy(() => import('./pages/PayoutPreview/PayoutPreview'));
 const Login = lazy(() => import('./pages/Login/Login'));
 const AdminProfile = lazy(() => import('./pages/AdminProfile/AdminProfile'));
 const Settings = lazy(() => import('./pages/Settings/Settings'));
@@ -47,6 +48,9 @@ function AdminApp() {
 
           {/* Order Details Route */}
           <Route path="inquiry-system/orders/details/:id" element={<OrderDetails />} />
+          
+          {/* Payout Preview Route */}
+          <Route path="vendor-management/payout-preview/:id" element={<PayoutPreview />} />
           
           {/* Dynamically render all the CRUD pages based on sidebar links */}
           {pageConfigs.map((config, index) => (
