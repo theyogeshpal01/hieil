@@ -398,9 +398,12 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                       config={{
                         readonly: false,
                         placeholder: col.placeholder || `Enter ${(col.formLabel || col.label).toLowerCase()}`,
-                        minHeight: 300,
+                        minHeight: 500,
+                        askBeforePasteHTML: false,
+                        defaultActionOnPaste: 'insert_as_html'
                       }}
                       onBlur={(newContent) => handleInputChange({ target: { value: newContent } }, col.key)}
+                      onChange={(newContent) => handleInputChange({ target: { value: newContent } }, col.key)}
                     />
                   </div>
                 ) : col.type === 'textarea' ? (
@@ -409,7 +412,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                     value={formData[col.key] || ''} 
                     onChange={(e) => handleInputChange(e, col.key)}
                     required={col.required !== false}
-                    style={{width: '100%', minHeight: '150px', padding: '10px', border: '1px solid #e2e8f0', borderRadius: '4px', resize: 'vertical', fontFamily: 'inherit', color: '#000'}}
+                    style={{width: '100%', minHeight: '250px', padding: '10px', border: '1px solid #e2e8f0', borderRadius: '4px', resize: 'vertical', fontFamily: 'inherit', color: '#000'}}
                   />
                 ) : (
                   <input 
