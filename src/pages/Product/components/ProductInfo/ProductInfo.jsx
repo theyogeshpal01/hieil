@@ -97,7 +97,7 @@ const ProductInfo = ({ product }) => {
               {Object.entries(product.specifications).map(([key, value], idx, arr) => (
                 <tr key={key} className="max-sm:border-b max-sm:border-[#2c241c] last:max-sm:border-none">
                   <th className={`py-3 px-4 font-medium text-white w-[40%] bg-[#15110F] max-sm:block max-sm:w-full max-sm:border-none max-sm:bg-transparent max-sm:pb-1 ${idx === arr.length - 1 ? '' : 'border-b border-[#2c241c]'}`}>{key}</th>
-                  <td className={`py-3 px-4 text-[#b5aaa0] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0 ${idx === arr.length - 1 ? '' : 'border-b border-[#2c241c]'}`} dangerouslySetInnerHTML={{ __html: value }}></td>
+                  <td className={`py-3 px-4 text-[#b5aaa0] max-sm:block max-sm:w-full max-sm:border-none max-sm:pt-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0] ${idx === arr.length - 1 ? '' : 'border-b border-[#2c241c]'}`} dangerouslySetInnerHTML={{ __html: value }}></td>
                 </tr>
               ))}
             </tbody>
@@ -128,7 +128,7 @@ const ProductInfo = ({ product }) => {
         )}
       </div>
 
-      <div className="text-[0.95rem] leading-[1.6] text-[#b5aaa0] m-0 [&>p]:m-0 [&>p]:mb-2 last:[&>p]:mb-0" dangerouslySetInnerHTML={{ __html: product.description }}></div>
+      <div className="text-[0.95rem] leading-[1.6] text-[#b5aaa0] m-0 [&>p]:m-0 [&>p]:mb-2 last:[&>p]:mb-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" dangerouslySetInnerHTML={{ __html: product.description }}></div>
 
       <div className="flex items-center gap-2 text-[0.9rem] font-medium text-white">
         <Eye size={16} />

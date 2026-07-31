@@ -12,7 +12,7 @@ const ProductDetailsTab = ({ product }) => {
         <div className="text-[#b5aaa0] font-sans">
           <h2 className="font-serif text-[1.4rem] text-white mb-4 font-medium">About <br /> <span style={{ color: 'var(--color-brand-base)' }}>this item</span></h2>
           {product?.description ? (
-            <div className="text-[0.95rem] leading-[1.6] mb-8 [&>p]:m-0 [&>p]:mb-4 last:[&>p]:mb-0" dangerouslySetInnerHTML={{__html: product.description}}></div>
+            <div className="text-[0.95rem] leading-[1.6] mb-8 [&>p]:m-0 [&>p]:mb-4 last:[&>p]:mb-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" dangerouslySetInnerHTML={{__html: product.description}}></div>
           ) : (
             <p className="text-[0.95rem] leading-[1.6] mb-8">
               These bowl set are very light to hold for microwave utensils and the smooth round edges make you touch them with delight. Unlike ceramic bowls or plastic bowl our unbreakable wheat straw bowls are made of a robust and light material that protects the bowl from breaking if it is dropped, get this must-have tableware item that is both eco-friendly and stylish for your home.
@@ -30,7 +30,7 @@ const ProductDetailsTab = ({ product }) => {
               {product?.subCategory && <p className="m-0 mb-2 text-[#b5aaa0]">{product.subCategory}</p>}
               {product?.materials && <p className="m-0 mb-2 text-[#b5aaa0]">{product.materials}</p>}
               {product?.craftsmanship && product.craftsmanship !== '<p><br></p>' && (
-                <div className="m-0 mb-2 text-[#b5aaa0] [&>p]:m-0" dangerouslySetInnerHTML={{ __html: product.craftsmanship }} />
+                <div className="m-0 mb-2 text-[#b5aaa0] [&>p]:m-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" dangerouslySetInnerHTML={{ __html: product.craftsmanship }} />
               )}
               {!product?.subCategory && !product?.material && (
                 <>
@@ -44,9 +44,9 @@ const ProductDetailsTab = ({ product }) => {
 
           {product?.highlight || product?.craftHighlight ? (
             <ul className="pl-5 marker:text-[#c07a5d]">
-              {product.highlight && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Highlight:</strong> <span dangerouslySetInnerHTML={{__html: product.highlight}} className="[&>p]:m-0" /></li>}
-              {product.craftHighlight && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Craftsmanship:</strong> <span dangerouslySetInnerHTML={{__html: product.craftHighlight}} className="[&>p]:m-0" /></li>}
-              {product.sizes && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Available Sizes:</strong> <span dangerouslySetInnerHTML={{__html: product.sizes}} className="[&>p]:m-0" /></li>}
+              {product.highlight && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Highlight:</strong> <span dangerouslySetInnerHTML={{__html: product.highlight}} className="[&>p]:m-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" /></li>}
+              {product.craftHighlight && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Craftsmanship:</strong> <span dangerouslySetInnerHTML={{__html: product.craftHighlight}} className="[&>p]:m-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" /></li>}
+              {product.sizes && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Available Sizes:</strong> <span dangerouslySetInnerHTML={{__html: product.sizes}} className="[&>p]:m-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" /></li>}
             </ul>
           ) : (
             <ul className="pl-5 marker:text-[#c07a5d]">
