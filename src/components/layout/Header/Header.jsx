@@ -107,7 +107,7 @@ const Header = () => {
                     )}
                     
                     {productSubcategories
-                      .filter(sub => sub.category === hoveredCategory)
+                      .filter(sub => sub.category?.trim().toLowerCase() === hoveredCategory?.trim().toLowerCase())
                       .map(sub => (
                         <Link 
                           key={sub._id || sub.subcategoryName}
@@ -192,7 +192,7 @@ const Header = () => {
                                   View All {cat.name}
                                 </Link>
                                 {productSubcategories
-                                  .filter(sub => sub.category === cat.name)
+                                  .filter(sub => sub.category?.trim().toLowerCase() === cat.name?.trim().toLowerCase())
                                   .map(sub => (
                                     <Link 
                                       key={sub._id || sub.subcategoryName}
