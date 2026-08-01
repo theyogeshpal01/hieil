@@ -29,12 +29,21 @@ const Header = () => {
     // Fetch Subcategories
     api.get('/subcategories').then(res => {
       if (res.data) {
-        const cleanSubcategories = res.data.map(sub => {
-          const name = sub.subcategoryName || sub.name || '';
-          const cleanName = typeof name === 'string' ? name.replace(/<[^>]*>?/gm, '').trim() : name;
-          return { ...sub, subcategoryName: cleanName, name: cleanName };
-        }).filter(sub => sub.subcategoryName !== '');
-        setProductSubcategories(cleanSubcategories);
+          // Filter for unique subcategory names
+          const uniqueSubcategories = [];
+          const seenNames = new Set();
+          
+          res.data.forEach(sub => {
+            const name = sub.subcategoryName || sub.name || '';
+            const cleanName = typeof name === 'string' ? name.replace(/<[^>]*>?/gm, '').trim() : name;
+            
+            if (cleanName !== '' && !seenNames.has(cleanName.toLowerCase())) {
+              seenNames.add(cleanName.toLowerCase());
+              uniqueSubcategories.push({ ...sub, subcategoryName: cleanName, name: cleanName });
+            }
+          });
+          
+          setProductSubcategories(uniqueSubcategories);
       }
     }).catch(err => console.error(err));
   }, []);
@@ -107,11 +116,10 @@ const Header = () => {
                     )}
                     
                     {productSubcategories
-                      .filter(sub => sub.category?.trim().toLowerCase() === hoveredCategory?.trim().toLowerCase())
-                      .map(sub => (
+                        .map(sub => (
                         <Link 
                           key={sub._id || sub.subcategoryName}
-                          to={`/products?category=${encodeURIComponent(sub.category)}&subcategory=${encodeURIComponent(sub.subcategoryName)}`}
+                          to={`/products?category=${encodeURIComponent(hoveredCategory)}&subcategory=${encodeURIComponent(sub.subcategoryName)}`}
                           className="block px-6 py-2.5 text-[#8c8279] no-underline text-[12px] tracking-[1px] uppercase transition-all duration-300 whitespace-nowrap hover:text-[#c8956c] hover:bg-[#c2a373]/5 hover:pl-7"
                         >
                           {sub.subcategoryName}
@@ -192,11 +200,10 @@ const Header = () => {
                                   View All {cat.name}
                                 </Link>
                                 {productSubcategories
-                                  .filter(sub => sub.category?.trim().toLowerCase() === cat.name?.trim().toLowerCase())
                                   .map(sub => (
                                     <Link 
                                       key={sub._id || sub.subcategoryName}
-                                      to={`/products?category=${encodeURIComponent(sub.category)}&subcategory=${encodeURIComponent(sub.subcategoryName)}`}
+                                      to={`/products?category=${encodeURIComponent(cat.name)}&subcategory=${encodeURIComponent(sub.subcategoryName)}`}
                                       className="text-[#70665d] no-underline text-[11px] tracking-[1px] py-2 uppercase transition-colors duration-300 hover:text-[#c8956c]"
                                       onClick={() => setIsMobileMenuOpen(false)}
                                     >
