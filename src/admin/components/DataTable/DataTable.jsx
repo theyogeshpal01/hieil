@@ -123,7 +123,7 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulk
                         }
 
                         return (
-                          <td key={colIndex}>
+                          <td key={colIndex} style={col.minWidth ? { minWidth: col.minWidth } : {}}>
                             {displayValue}
                           </td>
                         );
