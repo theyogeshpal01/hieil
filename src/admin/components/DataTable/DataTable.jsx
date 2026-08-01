@@ -80,8 +80,8 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulk
                 </th>
               )}
               {columns.headers.filter(col => !col.hideInTable).map((col, index) => (
-                <th key={index}>
-                  <div style={col.minWidth ? { minWidth: col.minWidth, width: col.minWidth } : {}}>
+                <th key={index} style={col.minWidth ? { minWidth: col.minWidth, width: col.minWidth, maxWidth: col.minWidth } : {}}>
+                  <div style={col.minWidth ? { minWidth: col.minWidth, width: col.minWidth, display: 'inline-block' } : {}}>
                     {col.label}
                   </div>
                 </th>
@@ -127,8 +127,8 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulk
                         }
 
                         return (
-                          <td key={colIndex}>
-                            <div style={col.minWidth ? { minWidth: col.minWidth, width: col.minWidth } : {}}>
+                          <td key={colIndex} style={col.minWidth ? { minWidth: col.minWidth, width: col.minWidth, maxWidth: col.minWidth } : {}}>
+                            <div style={col.minWidth ? { minWidth: col.minWidth, width: col.minWidth, display: 'inline-block' } : {}}>
                               {displayValue}
                             </div>
                           </td>
