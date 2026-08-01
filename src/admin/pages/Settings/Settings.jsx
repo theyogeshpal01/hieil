@@ -114,11 +114,11 @@ const Settings = () => {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">Global Settings</h2>
+        <h2 className="text-2xl font-semibold !text-black dark:!text-white !font-sans !normal-case tracking-normal">Global Settings</h2>
       </div>
 
       <div className="bg-white dark:bg-[#212b36] rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-800 mb-6">
-        <h3 className="text-xl font-medium text-gray-800 dark:text-white mb-4">Company Profile PDF</h3>
+        <h3 className="text-xl font-medium !text-black dark:!text-white !font-sans !normal-case tracking-normal mb-4">Company Profile PDF</h3>
         
         {currentPdfUrl && (
           <div className="mb-4">
@@ -156,7 +156,7 @@ const Settings = () => {
       </div>
 
       <div className="bg-white dark:bg-[#212b36] rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-800 mb-6">
-        <h3 className="text-xl font-medium text-gray-800 dark:text-white mb-4">Company Details (For Invoices & Quotations)</h3>
+        <h3 className="text-xl font-medium !text-black dark:!text-white !font-sans !normal-case tracking-normal mb-4">Company Details (For Invoices & Quotations)</h3>
         
         <form onSubmit={handleSaveCompanyDetails} className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl">
           <div>
