@@ -80,7 +80,11 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulk
                 </th>
               )}
               {columns.headers.filter(col => !col.hideInTable).map((col, index) => (
-                <th key={index} style={col.minWidth ? { minWidth: col.minWidth } : {}}>{col.label}</th>
+                <th key={index}>
+                  <div style={col.minWidth ? { minWidth: col.minWidth, width: col.minWidth } : {}}>
+                    {col.label}
+                  </div>
+                </th>
               ))}
               {hasActionColumn && <th style={{ width: '100px', textAlign: 'center' }}>Action</th>}
             </tr>
@@ -123,8 +127,10 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulk
                         }
 
                         return (
-                          <td key={colIndex} style={col.minWidth ? { minWidth: col.minWidth } : {}}>
-                            {displayValue}
+                          <td key={colIndex}>
+                            <div style={col.minWidth ? { minWidth: col.minWidth, width: col.minWidth } : {}}>
+                              {displayValue}
+                            </div>
                           </td>
                         );
                       })}
