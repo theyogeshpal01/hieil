@@ -113,8 +113,9 @@ const Settings = () => {
 
   return (
     <div className="p-6">
+      <style>{`#root h2.settings-title-fix { color: #000000 !important; font-family: 'Inter', sans-serif !important; text-transform: none !important; } body.dark-mode #root h2.settings-title-fix { color: #ffffff !important; }`}</style>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold !text-black dark:!text-white !font-sans !normal-case tracking-normal">Global Settings</h2>
+        <h2 className="settings-title-fix text-2xl font-semibold tracking-normal">Global Settings</h2>
       </div>
 
       <div className="bg-white dark:bg-[#212b36] rounded-xl shadow-sm p-6 border border-gray-100 dark:border-gray-800 mb-6">
