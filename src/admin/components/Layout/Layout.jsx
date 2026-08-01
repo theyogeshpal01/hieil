@@ -11,7 +11,7 @@ const Layout = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="admin-layout flex min-h-screen bg-slate-50">
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       
       {isSidebarOpen && (
