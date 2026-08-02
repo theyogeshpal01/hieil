@@ -46,7 +46,7 @@ const ProductDetailsTab = ({ product }) => {
             <ul className="pl-5 marker:text-[#c07a5d]">
               {product.highlight && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Highlight:</strong> <span dangerouslySetInnerHTML={{__html: product.highlight}} className="[&>p]:m-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" /></li>}
               {product.craftHighlight && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Craftsmanship:</strong> <span dangerouslySetInnerHTML={{__html: product.craftHighlight}} className="[&>p]:m-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" /></li>}
-              {product.sizes && <li className="text-[0.95rem] leading-[1.6] mb-4 flex gap-2"><strong>Available Sizes:</strong> <span dangerouslySetInnerHTML={{__html: product.sizes}} className="[&>p]:m-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" /></li>}
+
             </ul>
           ) : (
             <ul className="pl-5 marker:text-[#c07a5d]">
