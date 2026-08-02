@@ -34,7 +34,7 @@ const defaultAccordionData = [
 ];
 
 const ProductInfo = ({ product }) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(50);
   const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] || null);
   const [selectedMaterial, setSelectedMaterial] = useState('Standard');
   const [openAccordion, setOpenAccordion] = useState(null);
@@ -140,9 +140,9 @@ const ProductInfo = ({ product }) => {
         <span className="text-[0.9rem] font-semibold text-white">Set Quantity</span>
         <div className="flex gap-4 h-[44px] max-sm:flex-col max-sm:h-auto max-sm:gap-2">
           <div className="flex border border-[#2c241c] w-[120px] max-sm:w-full max-sm:h-[44px]">
-            <button className="bg-transparent border-none w-[35px] flex items-center justify-center cursor-pointer text-[#b5aaa0]" onClick={() => setQuantity(Math.max(1, quantity - 1))}><Minus size={14}/></button>
+            <button className="bg-transparent border-none w-[35px] flex items-center justify-center cursor-pointer text-[#b5aaa0]" onClick={() => setQuantity(Math.max(50, quantity - 50))}><Minus size={14}/></button>
             <input className="flex-1 w-full border-none text-center font-sans text-[1rem] outline-none bg-transparent text-[#b5aaa0]" type="number" value={quantity} readOnly />
-            <button className="bg-transparent border-none w-[35px] flex items-center justify-center cursor-pointer text-[#b5aaa0]" onClick={() => setQuantity(quantity + 1)}><Plus size={14}/></button>
+            <button className="bg-transparent border-none w-[35px] flex items-center justify-center cursor-pointer text-[#b5aaa0]" onClick={() => setQuantity(quantity + 50)}><Plus size={14}/></button>
           </div>
         </div>
         <div className="flex gap-4 mt-4 max-sm:flex-col max-sm:gap-2">
