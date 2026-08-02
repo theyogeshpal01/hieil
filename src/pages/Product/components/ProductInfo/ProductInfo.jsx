@@ -3,35 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Eye, Heart, GitCompare, ChevronDown, ChevronUp, Share, Minus, Plus, Truck, Shirt, Ruler, Mail, MessageCircle, Fingerprint, Globe, Leaf, Shield } from 'lucide-react';
 import Swal from 'sweetalert2';
 
-const defaultAccordionData = [
-  {
-    id: 'shipping',
-    title: 'Shipping & Returns',
-    icon: Truck,
-    content: (
-      <>
-        <p className="m-0 mb-4 last:mb-0">Free shipping and returns available on all orders!</p>
-        <p className="m-0 mb-4 last:mb-0">We ship all US domestic orders within 5-10 <strong>business days</strong></p>
-      </>
-    )
-  },
-  {
-    id: 'materials',
-    title: 'Materials',
-    icon: Shirt,
-    content: (
-      <p className="m-0 mb-4 last:mb-0">The item with the Committed label has a lower environmental impact because it was made with sustainable materials or methods. We are committed to creating items that combine sustainability with style. Made with recycled cashmere and industrial by-categories.</p>
-    )
-  },
-  {
-    id: 'care',
-    title: 'Care Instructions',
-    icon: Heart,
-    content: (
-      <p className="m-0 mb-4 last:mb-0">We advise routinely dusting your items with a gentle cleanser to preserve its look. Periodically, it may need to be softly wet with a mild detergent solution.</p>
-    )
-  }
-];
 
 const ProductInfo = ({ product }) => {
   const [quantity, setQuantity] = useState(50);
@@ -74,7 +45,33 @@ const ProductInfo = ({ product }) => {
   if (product.accordions) {
     accordionsToRender.push(...product.accordions.map(a => ({ ...a, icon: ChevronDown })));
   } else {
-    accordionsToRender.push(...defaultAccordionData);
+    accordionsToRender.push({
+      id: 'shipping',
+      title: 'Shipping & Returns',
+      icon: Truck,
+      content: product.shipping ? <div className="[&>p]:m-0 [&>p]:mb-4 last:[&>p]:mb-0" dangerouslySetInnerHTML={{ __html: product.shipping }} /> : (
+        <>
+          <p className="m-0 mb-4 last:mb-0">Free shipping and returns available on all orders!</p>
+          <p className="m-0 mb-4 last:mb-0">We ship all US domestic orders within 5-10 <strong>business days</strong></p>
+        </>
+      )
+    });
+    accordionsToRender.push({
+      id: 'materials',
+      title: 'Materials',
+      icon: Shirt,
+      content: product.materials ? <div className="[&>p]:m-0 [&>p]:mb-4 last:[&>p]:mb-0" dangerouslySetInnerHTML={{ __html: product.materials }} /> : (
+        <p className="m-0 mb-4 last:mb-0">The item with the Committed label has a lower environmental impact because it was made with sustainable materials or methods. We are committed to creating items that combine sustainability with style. Made with recycled cashmere and industrial by-categories.</p>
+      )
+    });
+    accordionsToRender.push({
+      id: 'care',
+      title: 'Care Instructions',
+      icon: Heart,
+      content: product.careInstructions ? <div className="[&>p]:m-0 [&>p]:mb-4 last:[&>p]:mb-0" dangerouslySetInnerHTML={{ __html: product.careInstructions }} /> : (
+        <p className="m-0 mb-4 last:mb-0">We advise routinely dusting your items with a gentle cleanser to preserve its look. Periodically, it may need to be softly wet with a mild detergent solution.</p>
+      )
+    });
   }
 
   return (

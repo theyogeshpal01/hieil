@@ -116,7 +116,7 @@ export const pageConfigs = [
         { key: 'tag', label: 'Tag', formLabel: 'Tag Name (Optional)', placeholder: 'Enter Product Tag', required: false },
         { key: 'highlight', label: 'Highlight', formLabel: 'Product Highlight (Optional)', placeholder: 'Enter Highlight (e.g. Bestseller)', required: false, minWidth: '3600px' },
         { key: 'sizes', label: 'Sizes', formLabel: 'Size (Optional)', placeholder: 'Enter size (e.g. 21 x 11.5 x 5 cm)', required: false },
-        { key: 'materials', label: 'Materials', formLabel: 'Materials (Optional)', placeholder: 'Enter materials (e.g. quartz stone powder)', required: false },
+        { key: 'materials', label: 'Materials', type: 'rich-text', formLabel: 'Materials (Optional)', placeholder: 'Enter materials details', required: false },
         { key: 'colors', label: 'Colors', formLabel: 'Color options (Optional)', placeholder: 'Select colors will appear here', required: false },
         { key: 'hsnCode', label: 'HSN Code', formLabel: 'HSN Code (Optional)', placeholder: 'Enter HSN Code', required: false },
         { key: 'productCode', label: 'Product Code', formLabel: 'Product Code (Optional)', placeholder: 'Enter Product Code', required: false },
@@ -146,6 +146,7 @@ export const pageConfigs = [
         { key: 'aboutProduct', label: 'About Product', hideInForm: true },
         { key: 'description', label: 'Description', type: 'rich-text', formLabel: 'Product Description (Optional)', minWidth: '400px', required: false },
         { key: 'shipping', label: 'Shipping', type: 'rich-text', formLabel: 'Shipping & Returns (Optional)', required: false },
+        { key: 'careInstructions', label: 'Care Instructions', type: 'rich-text', formLabel: 'Care Instructions (Optional)', required: false },
       ]
     },
     data: []
