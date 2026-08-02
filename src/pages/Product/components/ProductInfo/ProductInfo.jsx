@@ -208,17 +208,7 @@ const ProductInfo = ({ product }) => {
         ))}
       </div>
 
-      {/* Tags Section */}
-      {product.tags && (
-        <div className="mt-6 flex flex-col gap-2">
-          <span className="text-[0.85rem] font-semibold text-white">Trending Tags:</span>
-          <div className="flex flex-wrap gap-2">
-            {product.tags.map((tag, idx) => (
-              <span key={idx} className="bg-[#15110F] text-[#b5aaa0] py-[0.4rem] px-4 rounded-full text-[0.75rem] font-medium cursor-pointer transition-colors duration-200 hover:bg-[var(--color-brand-base)] hover:text-black">{tag}</span>
-            ))}
-          </div>
-        </div>
-      )}
+
 
       <button className="bg-transparent border-none flex items-center gap-2 font-sans text-[0.85rem] font-semibold text-white cursor-pointer mt-4 w-fit p-0" onClick={() => {
         const shareData = {
