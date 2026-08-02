@@ -416,12 +416,12 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                   />
                 ) : (
                   <input 
-                    type="text" 
+                    type={col.type || "text"} 
                     placeholder={col.placeholder || `Enter ${(col.formLabel || col.label).toLowerCase()}`}
                     value={formData[col.key] || ''} 
                     onChange={(e) => handleInputChange(e, col.key)}
                     required={col.required !== false}
-                    style={{padding: '10px', border: '1px solid #e2e8f0', borderRadius: '4px', width: '100%'}}
+                    style={{padding: col.type === 'color' ? '2px' : '10px', border: '1px solid #e2e8f0', borderRadius: '4px', width: '100%', height: col.type === 'color' ? '50px' : 'auto', cursor: col.type === 'color' ? 'pointer' : 'text'}}
                   />
                 )}
               </div>

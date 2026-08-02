@@ -117,7 +117,7 @@ export const pageConfigs = [
         { key: 'highlight', label: 'Highlight', type: 'textarea', formLabel: 'Product Highlight (Optional)', placeholder: 'Enter Highlight (e.g. Bestseller)', required: false, minWidth: '3600px' },
         { key: 'sizes', label: 'Sizes', formLabel: 'Size (Optional)', placeholder: 'Enter size (e.g. 21 x 11.5 x 5 cm)', required: false },
         { key: 'materials', label: 'Materials', type: 'rich-text', formLabel: 'Materials (Optional)', placeholder: 'Enter materials details', required: false },
-        { key: 'colors', label: 'Colors', formLabel: 'Color options (Optional)', placeholder: 'Select colors will appear here', required: false },
+        { key: 'colors', label: 'Colors', type: 'color', formLabel: 'Color (Optional)', placeholder: 'Pick a color', required: false },
         { key: 'hsnCode', label: 'HSN Code', formLabel: 'HSN Code (Optional)', placeholder: 'Enter HSN Code', required: false },
         { key: 'productCode', label: 'Product Code', formLabel: 'Product Code (Optional)', placeholder: 'Enter Product Code', required: false },
         { key: 'price', label: 'Price', formLabel: 'Product Price (Optional)', placeholder: 'Enter Product Price', required: false },
