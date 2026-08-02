@@ -99,18 +99,7 @@ const ProductInfo = ({ product }) => {
         <span>{viewers} people are viewing this right now</span>
       </div>
 
-      <div className="flex items-center gap-2 text-[0.9rem]">
-        <span className="font-semibold text-white">Availability:</span>
-        {product.stock === 0 ? (
-          <span className="flex items-center gap-[0.35rem] text-[#ef4444]">
-            <span className="w-[6px] h-[6px] bg-[#ef4444] rounded-full"></span> Out of stock
-          </span>
-        ) : (
-          <span className="flex items-center gap-[0.35rem] text-[#22c55e]">
-            <span className="w-[6px] h-[6px] bg-[#22c55e] rounded-full"></span> In stock
-          </span>
-        )}
-      </div>
+
 
       {/* Options */}
       <div className="flex flex-col gap-3">
