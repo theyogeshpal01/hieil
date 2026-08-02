@@ -114,7 +114,7 @@ export const pageConfigs = [
         { key: 'subCategory', label: 'SubCategory', type: 'select', formLabel: 'Select Sub-Category *', options: ['Luxury Dining & Tableware', 'Luxury Decorative Collections', 'Preparation Tools'] },
         { key: 'productName', label: 'Product Name', formLabel: 'Product Name *', placeholder: 'Enter Product Name' },
         { key: 'tag', label: 'Tag', formLabel: 'Tag Name (Optional)', placeholder: 'Enter Product Tag', required: false },
-        { key: 'highlight', label: 'Highlight', formLabel: 'Product Highlight (Optional)', placeholder: 'Enter Highlight (e.g. Bestseller)', required: false, minWidth: '3600px' },
+        { key: 'highlight', label: 'Highlight', type: 'textarea', formLabel: 'Product Highlight (Optional)', placeholder: 'Enter Highlight (e.g. Bestseller)', required: false, minWidth: '3600px' },
         { key: 'sizes', label: 'Sizes', formLabel: 'Size (Optional)', placeholder: 'Enter size (e.g. 21 x 11.5 x 5 cm)', required: false },
         { key: 'materials', label: 'Materials', type: 'rich-text', formLabel: 'Materials (Optional)', placeholder: 'Enter materials details', required: false },
         { key: 'colors', label: 'Colors', formLabel: 'Color options (Optional)', placeholder: 'Select colors will appear here', required: false },
