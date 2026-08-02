@@ -308,7 +308,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
           <form onSubmit={handleSave} className="add-form">
             <div className="form-grid" style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '25px', marginBottom: '30px'}}>
             {columns.headers.filter(col => !col.hideInForm && col.key !== 'id').map(col => (
-              <div key={col.key} className="form-group" style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
+              <div key={col.key} className="form-group" style={{display: 'flex', flexDirection: 'column', gap: '8px', gridColumn: (col.type === 'rich-text' || col.type === 'textarea' || col.fullWidth) ? '1 / -1' : 'auto'}}>
                 <label style={{color: '#475569', fontWeight: '500', fontSize: '14px'}}>
                   {col.formLabel || col.label}
                   {col.required && <span style={{color: '#ef4444', marginLeft: '4px'}}>*</span>}
