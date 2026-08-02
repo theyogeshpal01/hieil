@@ -72,16 +72,18 @@ const RelatedProducts = ({ currentProductId, category, subCategory }) => {
                     <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
                   </div>
                   
-                  <div className="flex items-center gap-2 mt-1 font-serif">
-                    {product.priceOnRequest || !product.price ? (
-                      <span className="text-[#c07a5d] font-semibold text-[0.95rem]">Price on Request</span>
-                    ) : (
-                      <>
-                        {product.oldPrice && <span className="text-[#999999] line-through text-[0.85rem]">${product.oldPrice.toFixed(2)}</span>}
-                        <span className="text-[#c07a5d] font-semibold text-[0.95rem]">${product.price.toFixed(2)}</span>
-                      </>
-                    )}
-                  </div>
+                  {(product.priceOnRequest || product.price) ? (
+                    <div className="flex items-center gap-2 mt-1 font-serif">
+                      {product.priceOnRequest ? (
+                        <span className="text-[#c07a5d] font-semibold text-[0.95rem]">Price on Request</span>
+                      ) : (
+                        <>
+                          {product.oldPrice && <span className="text-[#999999] line-through text-[0.85rem]">${product.oldPrice.toFixed(2)}</span>}
+                          <span className="text-[#c07a5d] font-semibold text-[0.95rem]">${product.price.toFixed(2)}</span>
+                        </>
+                      )}
+                    </div>
+                  ) : null}
                 </div>
               </Link>
             </div>

@@ -78,16 +78,18 @@ const ProductInfo = ({ product }) => {
     <div className="flex flex-col gap-5 font-sans text-[#b5aaa0]">
       <h1 className="font-serif text-[3.5rem] max-sm:text-[2rem] max-sm:leading-tight text-white font-medium m-0 leading-[1.3]">{product.productName || product.name}</h1>
       
-      <div className="flex items-center gap-4">
-        {product.priceOnRequest ? (
-          <span className="text-[#c07a5d] text-[1.4rem] font-semibold">Price on Request</span>
-        ) : (
-          <>
-            {(product.oldPrice || product.price) && <span className="line-through text-[#999999] text-[1.1rem]">${Number(product.oldPrice || product.price).toFixed(2)}</span>}
-            <span className="text-[#c07a5d] text-[1.4rem] font-semibold">${Number(product.offerPrice || product.price || 0).toFixed(2)}</span>
-          </>
-        )}
-      </div>
+      {(product.priceOnRequest || product.offerPrice || product.price) ? (
+        <div className="flex items-center gap-4">
+          {product.priceOnRequest ? (
+            <span className="text-[#c07a5d] text-[1.4rem] font-semibold">Price on Request</span>
+          ) : (
+            <>
+              {product.offerPrice && product.price && <span className="line-through text-[#999999] text-[1.1rem]">${Number(product.price).toFixed(2)}</span>}
+              <span className="text-[#c07a5d] text-[1.4rem] font-semibold">${Number(product.offerPrice || product.price).toFixed(2)}</span>
+            </>
+          )}
+        </div>
+      ) : null}
 
       <div className="text-[0.95rem] leading-[1.6] text-[#b5aaa0] m-0 [&>p]:m-0 [&>p]:mb-2 last:[&>p]:mb-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" dangerouslySetInnerHTML={{ __html: product.description }}></div>
 

@@ -330,7 +330,13 @@ const Shop = () => {
                   )}
                   
                   <div className={`flex justify-between items-center ${viewMode === 'list' ? 'mt-[0.5rem]' : 'mt-auto'}`}>
-                    <span className="font-sans text-[1.15rem] font-semibold text-white">${Number(product.offerPrice || product.price || 0).toFixed(2)}</span>
+                    {(product.priceOnRequest || product.price) ? (
+                      <span className="font-sans text-[1.15rem] font-semibold text-white">
+                        {product.priceOnRequest ? "Price on Request" : `$${Number(product.offerPrice || product.price).toFixed(2)}`}
+                      </span>
+                    ) : (
+                      <span></span>
+                    )}
                     <div className="flex gap-[0.5rem]">
                       <Link to={`/product/${product._id}`} className="p-[0.5rem_1rem] text-center border border-[#c8956c] text-[#c8956c] bg-transparent font-sans text-[0.8rem] font-normal uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-[#c8956c] hover:text-[#15110F]">Details</Link>
                       <Link to={`/product/${product._id}/enquiry`} className="p-[0.5rem_1rem] text-center border border-[#c8956c] bg-[#c8956c] text-[#15110F] font-sans text-[0.8rem] font-normal uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-transparent hover:text-[#c8956c]">Enquiry</Link>
