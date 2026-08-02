@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 const ProductInfo = ({ product }) => {
   const [quantity, setQuantity] = useState(50);
   const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] || null);
-  const [selectedMaterial, setSelectedMaterial] = useState('Standard');
+
   const [openAccordion, setOpenAccordion] = useState(null);
   const [viewers, setViewers] = useState(16);
   const navigate = useNavigate();
@@ -98,25 +98,7 @@ const ProductInfo = ({ product }) => {
 
 
 
-      {/* Options */}
-      <div className="flex flex-col gap-3">
-        <span className="text-[0.9rem] font-semibold text-white">Material</span>
-        <div className="flex gap-2">
-          {['Standard', 'Premium', 'Elite'].map((mat) => (
-            <button 
-              key={mat}
-              className={`bg-transparent border py-2 px-4 font-sans text-[0.85rem] cursor-pointer transition-colors duration-200 ${
-                selectedMaterial === mat 
-                  ? 'border-[#c07a5d] text-[#c07a5d]' 
-                  : 'border-[#2c241c] text-[#999999] hover:border-[#c07a5d] hover:text-[#c07a5d]'
-              }`}
-              onClick={() => setSelectedMaterial(mat)}
-            >
-              {mat}
-            </button>
-          ))}
-        </div>
-      </div>
+
 
       <div className="flex flex-col gap-3">
         <span className="text-[0.9rem] font-semibold text-white">Color</span>
