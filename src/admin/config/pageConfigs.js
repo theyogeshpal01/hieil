@@ -480,6 +480,8 @@ export const pageConfigs = [
         { key: 'id', label: '#' },
         { key: 'orderNo', label: 'Order No' },
         { key: 'quotation', label: 'Quotation' },
+        { key: 'incoterm', label: 'Incoterm', formLabel: 'Incoterm (e.g., FOB Jaipur)' },
+        { key: 'deliveryPort', label: 'Port', formLabel: 'Delivery Port (e.g., JNPT Mumbai)' },
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
               let bg = '#f3f4f6';
               let color = '#374151';
@@ -1776,6 +1778,8 @@ export const pageConfigs = [
         { key: 'id', label: '#' },
         { key: 'orderNo', label: 'Order No' },
         { key: 'quotation', label: 'Quotation' },
+        { key: 'incoterm', label: 'Incoterm', formLabel: 'Incoterm (e.g., FOB Jaipur)' },
+        { key: 'deliveryPort', label: 'Port', formLabel: 'Delivery Port (e.g., JNPT Mumbai)' },
         { key: 'status', label: 'Status', render: (val) => {
             if (val === 'Processing') {
               return React.createElement('span', {className: 'modern-action-btn btn-success'}, val);
@@ -2074,5 +2078,56 @@ export const pageConfigs = [
     }, 
     data: [] 
   },
+  { 
+    path: 'vendor-management/orders', 
+    title: 'Vendor Orders', 
+    subtitle: 'Manage Purchase Orders to Vendors',
+    apiEndpoint: '/vendor-orders',
+    formCardTitle: 'VENDOR ORDER DETAILS',
+    formTitleAdd: 'Add Vendor Order',
+    formTitleEdit: 'Edit Vendor Order',
+    columns: {
+      title: 'VENDOR ORDERS',
+      icon: 'box',
+      addButtonText: 'Create Vendor PO',
+      formSubmitText: 'Save Order',
+      headers: [
+        { key: 'id', label: 'ID' },
+        { key: 'poNumber', label: 'PO Number', formLabel: 'PO Number' },
+        { key: 'vendorId', label: 'Vendor', type: 'select', options: [], formLabel: 'Vendor (ID)' }, // Note: Would ideally fetch from vendors API
+        { key: 'orderId', label: 'Linked Order', type: 'select', options: [], formLabel: 'Linked Order (ID)' }, 
+        { key: 'agreedPriceInr', label: 'Agreed Price (₹)', type: 'number', formLabel: 'Agreed Price (INR)' },
+        { key: 'advancePaidInr', label: 'Advance Paid (₹)', type: 'number', formLabel: 'Advance Paid (INR)' },
+        { key: 'balancePaidInr', label: 'Balance Paid (₹)', type: 'number', formLabel: 'Balance Paid (INR)' },
+        { key: 'status', label: 'Status', type: 'select', options: ['Pending', 'Production Started', 'Completed', 'Goods Received'], formLabel: 'Status' }
+      ]
+    }, 
+    data: [] 
+  },
+  { 
+    path: 'domestic-logistics', 
+    title: 'Domestic Logistics', 
+    subtitle: 'E-Way Bill & Transport to Port',
+    apiEndpoint: '/domestic-logistics',
+    formCardTitle: 'LOGISTICS DETAILS',
+    formTitleAdd: 'Add Logistics Record',
+    formTitleEdit: 'Edit Logistics Record',
+    columns: {
+      title: 'DOMESTIC LOGISTICS',
+      icon: 'truck',
+      addButtonText: 'Create E-Way Bill Record',
+      formSubmitText: 'Save Details',
+      headers: [
+        { key: 'id', label: 'ID' },
+        { key: 'ewayBillNo', label: 'E-Way Bill No.', formLabel: 'E-Way Bill No' },
+        { key: 'orderId', label: 'Linked Order', formLabel: 'Linked Order (ID)' },
+        { key: 'transporterName', label: 'Transporter', formLabel: 'Transporter Name', nested: 'transporterDetails' },
+        { key: 'vehicleNo', label: 'Vehicle No.', formLabel: 'Vehicle Number', nested: 'transporterDetails' },
+        { key: 'lrRrAirwayBill', label: 'LR/RR/Tracking ID', formLabel: 'Tracking ID (LR/RR)', nested: 'transporterDetails' },
+        { key: 'status', label: 'Status', type: 'select', options: ['Pending', 'In Transit', 'Reached Port'], formLabel: 'Status' }
+      ]
+    }, 
+    data: [] 
+  }
 ];
 

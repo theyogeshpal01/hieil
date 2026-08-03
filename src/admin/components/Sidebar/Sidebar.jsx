@@ -137,6 +137,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             {hasPermission("Vendor Management") && <SidebarItem isSidebarOpen={isOpen} icon={FaUserCog} label="Vendor Management">
                {[
                  {to: '/vendor-management/master', label: 'Vendor Master'},
+                 {to: '/vendor-management/orders', label: 'Vendor Orders'},
                  {to: '/vendor-management/report', label: 'Vendor Report'},
                  {to: '/vendor-management/payout', label: 'Vendor Payout'}
                ]}
@@ -149,7 +150,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                  {to: '/inquiry-system/invoices', label: 'Invoices'},
                  {to: '/inquiry-system/payments', label: 'Payments'},
                  {to: '/inquiry-system/shipping', label: 'Shipping'},
-                 {to: '/inquiry-system/reports', label: 'Reports'}
+                 {to: '/inquiry-system/reports', label: 'Inquiry Reports'}
                ]}
             </SidebarItem>}
             {hasPermission("Retailer System") && <SidebarItem isSidebarOpen={isOpen} icon={FaStore} label="Retailer System">
@@ -162,7 +163,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                  {to: '/retailer-system/shipping', label: 'Shipping'}
                ]}
             </SidebarItem>}
-            {hasPermission("Shipping List") && <SidebarItem isSidebarOpen={isOpen} to="/shipping-list" icon={FaShippingFast} label="Shipping List" />}
+            {hasPermission("Shipping List") && <SidebarItem isSidebarOpen={isOpen} icon={FaTruck} label="Shipping List">
+              {[
+                {to: '/shipping-list/manage', label: 'Manage Shipping'},
+                {to: '/domestic-logistics', label: 'Domestic Logistics (E-Way Bill)'}
+              ]}
+            </SidebarItem>}
             {hasPermission("Settings") && <SidebarItem isSidebarOpen={isOpen} to="/settings" icon={FaCog} label="Settings" />}
           </ul>
         </nav>
