@@ -1685,10 +1685,10 @@ export const pageConfigs = [
       actions: (row) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '4px', maxWidth: '80px'}},
         React.createElement('button', {
             className: 'modern-action-btn btn-success',
-            disabled: row.status === 'Released',
-            style: row.status === 'Released' ? { opacity: 0.5, cursor: 'not-allowed' } : {},
+            disabled: row.status !== 'Hold',
+            style: row.status !== 'Hold' ? { opacity: 0.5, cursor: 'not-allowed' } : {},
             onClick: async () => {
-              if (row.status === 'Released') return;
+              if (row.status !== 'Hold') return;
               const result = await Swal.fire({
                 title: 'Release Payout?',
                 text: 'Are you sure you want to release this payout?',
