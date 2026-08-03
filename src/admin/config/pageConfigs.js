@@ -1663,7 +1663,8 @@ export const pageConfigs = [
         { key: 'released', label: 'Released', render: (val) => React.createElement('span', {style: {color: '#22c55e'}}, val) },
         { key: 'pending', label: 'Pending', render: (val) => React.createElement('span', {style: {color: '#f59e0b'}}, val) }
       ],
-      hideDefaultActions: true
+      hideDefaultActions: true,
+      disableBulkDelete: true
     }, 
     data: []
   },

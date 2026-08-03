@@ -507,7 +507,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
           onEdit={modulePerms.edit ? handleEdit : null}
           onDelete={modulePerms.delete ? handleDelete : null}
           onUpdateRow={modulePerms.edit ? handleUpdateRow : null}
-          onBulkDelete={modulePerms.delete ? handleBulkDelete : null}
+          onBulkDelete={(modulePerms.delete && !columns.disableBulkDelete) ? handleBulkDelete : null}
           onAdd={modulePerms.add ? handleAdd : null}
         />
       )}
