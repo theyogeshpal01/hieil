@@ -6,7 +6,7 @@ import {
   FaBuilding, FaClipboardList, FaUserTie, FaUsers,
   FaImages, FaQuestionCircle, FaCertificate, FaSlidersH,
   FaEnvelope, FaInfoCircle, FaDownload, FaUserCog,
-  FaBoxOpen, FaStore, FaLayerGroup, FaShippingFast,
+  FaBoxOpen, FaStore, FaLayerGroup, FaShippingFast, FaTruck,
   FaMapMarkerAlt, FaUserShield, FaChevronDown, FaChevronRight, FaCog
 } from 'react-icons/fa';
 
