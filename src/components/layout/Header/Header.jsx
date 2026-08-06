@@ -36,9 +36,10 @@ const Header = () => {
           res.data.forEach(sub => {
             const name = sub.subcategoryName || sub.name || '';
             const cleanName = typeof name === 'string' ? name.replace(/<[^>]*>?/gm, '').trim() : name;
+            const uniqueKey = (sub.category || '') + '_' + cleanName.toLowerCase();
             
-            if (cleanName !== '' && !seenNames.has(cleanName.toLowerCase())) {
-              seenNames.add(cleanName.toLowerCase());
+            if (cleanName !== '' && !seenNames.has(uniqueKey)) {
+              seenNames.add(uniqueKey);
               uniqueSubcategories.push({ ...sub, subcategoryName: cleanName, name: cleanName });
             }
           });
@@ -116,6 +117,7 @@ const Header = () => {
                     )}
                     
                     {productSubcategories
+                        .filter(sub => sub.category === hoveredCategory)
                         .map(sub => (
                         <Link 
                           key={sub._id || sub.subcategoryName}
@@ -200,6 +202,7 @@ const Header = () => {
                                   View All {cat.name}
                                 </Link>
                                 {productSubcategories
+                                  .filter(sub => sub.category === cat.name)
                                   .map(sub => (
                                     <Link 
                                       key={sub._id || sub.subcategoryName}
