@@ -153,6 +153,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                  {to: '/inquiry-system/reports', label: 'Inquiry Reports'}
                ]}
             </SidebarItem>}
+            {/*
             {hasPermission("Retailer System") && <SidebarItem isSidebarOpen={isOpen} icon={FaStore} label="Retailer System">
                {[
                  {to: '/retailer-system/product-inquiries', label: 'Product Inquiries'},
@@ -163,6 +164,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                  {to: '/retailer-system/shipping', label: 'Shipping'}
                ]}
             </SidebarItem>}
+            */}
             {hasPermission("Shipping List") && <SidebarItem isSidebarOpen={isOpen} icon={FaTruck} label="Shipping List">
               {[
                 {to: '/shipping-list/manage', label: 'Manage Shipping'},
