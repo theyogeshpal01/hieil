@@ -167,7 +167,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             */}
             {hasPermission("Shipping List") && <SidebarItem isSidebarOpen={isOpen} icon={FaTruck} label="Shipping List">
               {[
-                {to: '/shipping-list/manage', label: 'Manage Shipping'},
+                {to: '/shipping-list', label: 'Manage Shipping'},
                 {to: '/domestic-logistics', label: 'Domestic Logistics (E-Way Bill)'}
               ]}
             </SidebarItem>}
