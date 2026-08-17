@@ -1,0 +1,1 @@
+(function(){System.register([`./createLucideIcon-legacy-CFbYdS-P.js`],function(e,t){var n,r;return{setters:[function(e){n=e.t}],execute:function(){r=[[`circle`,{cx:`12`,cy:`12`,r:`10`,key:`1mglay`}],[`path`,{d:`m9 12 2 2 4-4`,key:`dzmm74`}]],e(`t`,n(`circle-check`,r))}}})})();
