@@ -412,7 +412,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                         defaultActionOnPaste: 'insert_as_html'
                       }}
                       onBlur={(newContent) => handleInputChange({ target: { value: newContent } }, col.key)}
-                      onChange={(newContent) => handleInputChange({ target: { value: newContent } }, col.key)}
+                      onChange={() => {}}
                     />
                   </div>
                 ) : col.type === 'textarea' ? (
