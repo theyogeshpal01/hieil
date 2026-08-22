@@ -102,20 +102,22 @@ const ProductInfo = ({ product }) => {
 
 
 
-      <div className="flex flex-col gap-3">
-        <span className="text-[0.9rem] font-semibold text-white">Color</span>
-        <div className="flex gap-2">
-          {product.colors && product.colors.map((color, idx) => (
-             <button 
-               key={idx}
-               className={`w-6 h-6 rounded-full border-2 border-transparent cursor-pointer p-0 ${selectedColor === color ? 'shadow-[0_0_0_2px_#ffffff,0_0_0_4px_#cccccc]' : ''}`}
-               style={{ backgroundColor: color }}
-               onClick={() => setSelectedColor(color)}
-               aria-label={`Color ${color}`}
-             ></button>
-          ))}
+      {product.colors && product.colors.filter(c => c && c.trim() !== '').length > 0 && (
+        <div className="flex flex-col gap-3">
+          <span className="text-[0.9rem] font-semibold text-white">Color</span>
+          <div className="flex gap-2">
+            {product.colors.filter(c => c && c.trim() !== '').map((color, idx) => (
+               <button 
+                 key={idx}
+                 className={`w-6 h-6 rounded-full border-2 border-transparent cursor-pointer p-0 ${selectedColor === color ? 'shadow-[0_0_0_2px_#ffffff,0_0_0_4px_#cccccc]' : ''}`}
+                 style={{ backgroundColor: color }}
+                 onClick={() => setSelectedColor(color)}
+                 aria-label={`Color ${color}`}
+               ></button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="flex flex-col gap-3">
         <span className="text-[0.9rem] font-semibold text-white">Set Quantity</span>
