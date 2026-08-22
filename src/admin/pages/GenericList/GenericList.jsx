@@ -425,7 +425,7 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                   />
                 ) : (
                   <input 
-                    type={col.type || "text"} 
+                    type={col.type || (col.key.toLowerCase().includes('date') ? 'date' : 'text')}
                     placeholder={col.placeholder || `Enter ${(col.formLabel || col.label).toLowerCase()}`}
                     value={formData[col.key] || ''} 
                     onChange={(e) => handleInputChange(e, col.key)}
