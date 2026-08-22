@@ -20,25 +20,27 @@ const ProductDetailsTab = ({ product }) => {
           )}
 
           <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden max-md:h-[300px]">
-            <LazyImage 
-              src={product?.addImg1 || product?.mainImage} 
-              alt={product?.productName || "Product image"} 
-              className="w-full h-full [&>img]:object-cover"
-            />
-            <div className="absolute top-1/2 left-[5%] -translate-y-1/2 bg-white/90 p-8 max-sm:p-4 rounded max-md:left-[2%] max-md:right-[2%] max-md:text-center">
+            <div className="w-full h-full overflow-y-auto overflow-x-hidden" style={{ scrollbarWidth: 'thin', scrollbarColor: '#c07a5d transparent' }}>
+              <LazyImage 
+                src={product?.addImg1 || product?.mainImage} 
+                alt={product?.productName || "Product image"} 
+                className="w-full !static !overflow-visible [&>img]:!relative [&>img]:!h-auto [&>img]:!inset-auto [&>img]:min-h-full"
+              />
+            </div>
+            <div className="absolute top-1/2 left-[5%] -translate-y-1/2 bg-white/90 p-8 max-sm:p-4 rounded max-md:left-[2%] max-md:right-[2%] max-md:text-center pointer-events-none shadow-md">
               <h3 className="font-serif text-[1.8rem] text-black mb-4 m-0">{product?.category || "Product Details"}</h3>
-              {product?.subCategory && <p className="m-0 mb-2 text-[#b5aaa0]">{product.subCategory}</p>}
+              {product?.subCategory && <p className="m-0 mb-2 text-[#555] font-medium">{product.subCategory}</p>}
               {product?.materials && (
-                <div className="m-0 mb-2 text-[#b5aaa0] [&>p]:m-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" dangerouslySetInnerHTML={{ __html: product.materials }} />
+                <div className="m-0 mb-2 text-[#555] [&>p]:m-0 [&_*]:!bg-transparent [&_*]:!text-[#555]" dangerouslySetInnerHTML={{ __html: product.materials }} />
               )}
               {product?.craftsmanship && product.craftsmanship !== '<p><br></p>' && (
-                <div className="m-0 mb-2 text-[#b5aaa0] [&>p]:m-0 [&_*]:!bg-transparent [&_*]:!text-[#b5aaa0]" dangerouslySetInnerHTML={{ __html: product.craftsmanship }} />
+                <div className="m-0 mb-2 text-[#555] [&>p]:m-0 [&_*]:!bg-transparent [&_*]:!text-[#555]" dangerouslySetInnerHTML={{ __html: product.craftsmanship }} />
               )}
               {!product?.subCategory && !product?.material && (
                 <>
-                  <p className="m-0 mb-2 text-[#b5aaa0]">High Quality Material</p>
-                  <p className="m-0 mb-2 text-[#b5aaa0]">Handcrafted with precision</p>
-                  <p className="m-0 mb-2 text-[#b5aaa0]">Durable and Stylish</p>
+                  <p className="m-0 mb-2 text-[#555]">High Quality Material</p>
+                  <p className="m-0 mb-2 text-[#555]">Handcrafted with precision</p>
+                  <p className="m-0 mb-2 text-[#555]">Durable and Stylish</p>
                 </>
               )}
             </div>
