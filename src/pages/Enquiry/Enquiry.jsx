@@ -15,7 +15,7 @@ const Enquiry = () => {
   const [formData, setFormData] = useState({
     customer: '', email: '', phone: '', whatsapp: '', company: '',
     country: '', state: '', city: '', orderType: '',
-    qty: '1', budget: '', shipping: '', port: '', gstDetails: '', deliveryDate: '', message: ''
+    qty: '50', budget: '', shipping: '', port: '', gstDetails: '', deliveryDate: '', message: ''
   });
 
   const headerRef = useScrollAnimation();
@@ -208,7 +208,7 @@ const Enquiry = () => {
               <div className="grid grid-cols-2 gap-6 max-md:grid-cols-1">
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Total Quantity *</label>
-                  <input type="number" min="1" value={formData.qty} onChange={e => setFormData({...formData, qty: e.target.value})} required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
+                  <input type="number" min="50" step="50" value={formData.qty} onChange={e => setFormData({...formData, qty: e.target.value})} required className="py-[0.9rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[0.95rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#8b6b55] focus:shadow-[0_0_0_3px_rgba(139,107,85,0.1)]" />
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="font-semibold text-[0.9rem] text-white">Approx. Budget *</label>
