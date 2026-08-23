@@ -735,7 +735,7 @@ export const pageConfigs = [
                 const res = await api.get('/vendors');
                 const vendors = Array.isArray(res.data) ? res.data : (res.data.data || []);
                 let options = '<option value="">Select a vendor...</option>';
-                vendors.forEach(v => { options += `<option value="${v._id}">${v.vendorName} (${v.commission}%)</option>`; });
+                vendors.forEach(v => { options += `<option value="${v._id}">${v.vendorName} ${v.amount ? `(${v.amount})` : (v.commission ? `(${v.commission}%)` : '')}</option>`; });
                 const { value: vendorId } = await Swal.fire({
                   title: 'Assign Vendor',
                   html: `<select id="vendor-select" class="swal2-input">${options}</select>`,
@@ -1629,7 +1629,7 @@ export const pageConfigs = [
     formCardTitle: 'ADD VENDOR',
     formFields: [
       { name: 'vendorName', label: 'Vendor Name', type: 'text', required: true, width: 'full' },
-      { name: 'commission', label: 'Commission %', type: 'text', required: true, width: 'half' },
+      { name: 'amount', label: 'Amount', type: 'text', required: true, width: 'half' },
       { name: 'email', label: 'Email', type: 'email', width: 'half' },
       { name: 'phone', label: 'Phone', type: 'text', width: 'half' },
       { name: 'status', label: 'Status', type: 'select', options: ['ACTIVE', 'INACTIVE'], default: 'ACTIVE', width: 'half' }
@@ -1641,7 +1641,7 @@ export const pageConfigs = [
       headers: [
         { key: 'id', label: '#' },
         { key: 'vendorName', label: 'Vendor Name' },
-        { key: 'commission', label: 'Commission %' }
+        { key: 'amount', label: 'Amount' }
       ],
       hideDefaultActions: false
     }, 
@@ -1895,7 +1895,7 @@ export const pageConfigs = [
                 const res = await api.get('/vendors');
                 const vendors = Array.isArray(res.data) ? res.data : (res.data.data || []);
                 let options = '<option value="">Select a vendor...</option>';
-                vendors.forEach(v => { options += `<option value="${v._id}">${v.vendorName} (${v.commission}%)</option>`; });
+                vendors.forEach(v => { options += `<option value="${v._id}">${v.vendorName} ${v.amount ? `(${v.amount})` : (v.commission ? `(${v.commission}%)` : '')}</option>`; });
                 const { value: vendorId } = await Swal.fire({
                   title: 'Assign Vendor',
                   html: `<select id="vendor-select" class="swal2-input">${options}</select>`,
