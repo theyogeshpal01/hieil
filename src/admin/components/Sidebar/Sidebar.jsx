@@ -166,11 +166,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </SidebarItem>}
             */}
             {hasPermission("Shipping List") && <SidebarItem isSidebarOpen={isOpen} icon={FaTruck} label="Shipping List">
-              {[
-                {to: '/shipping-list', label: 'Manage Shipping'},
-                {to: '/domestic-logistics', label: 'Domestic Logistics (E-Way Bill)'}
-              ]}
-            </SidebarItem>}
+                {[
+                  {to: '/domestic-logistics', label: 'Domestic Logistics (E-Way Bill)'}
+                ]}
+              </SidebarItem>}
             {hasPermission("Settings") && <SidebarItem isSidebarOpen={isOpen} to="/settings" icon={FaCog} label="Settings" />}
           </ul>
         </nav>

@@ -2034,33 +2034,7 @@ export const pageConfigs = [
     data: []
   },
 
-  { 
-    path: 'shipping-list', 
-    title: 'Shipping Management', 
-    subtitle: 'Shipping',
-    columns: {
-      title: 'All Shipping Records',
-      addButtonText: 'Add New',
-      headers: [
-        { key: 'id', label: '#' },
-        { key: 'icon', label: 'Icon', render: (val) => {
-            let Icon = FaBus;
-            if(val === 'plane') Icon = FaPlane;
-            if(val === 'car') Icon = FaCar;
-            return React.createElement(Icon, { style: { color: '#f59e0b', fontSize: '18px' } });
-          }
-        },
-        { key: 'titleCol', label: 'Title' },
-        { key: 'deliveryTime', label: 'Delivery Time' },
-        { key: 'tagline', label: 'Tagline' },
-        { key: 'point1', label: 'Point 1' },
-        { key: 'point2', label: 'Point 2' },
-        { key: 'point3', label: 'Point 3' },
-        { key: 'point4', label: 'Point 4' }
-      ]
-    }, 
-    data: []
-  },
+
 
   { 
     path: 'sub-admin-mgmt', 
