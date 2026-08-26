@@ -537,8 +537,9 @@ export const pageConfigs = [
         row.status === 'Shipped' ? React.createElement('button', {
             className: 'modern-action-btn btn-success',
             title: 'Generate E-Way Bill',
+            style: { padding: '4px 8px', fontSize: '11px', whiteSpace: 'nowrap' },
             onClick: () => window.location.href = `/admin/domestic-logistics/preview-by-order/${row._id}`
-        }, React.createElement(FaIcons.FaTruck, null)) : null,
+        }, React.createElement(FaIcons.FaTruck, {style: {marginRight: '4px'}}), "EWB") : null,
         React.createElement('button', {
             className: 'modern-action-btn btn-primary',
             onClick: () => window.location.href = `/admin/inquiry-system/orders/details/${row._id}`
