@@ -534,6 +534,11 @@ export const pageConfigs = [
       ],
       hideDefaultActions: true,
       actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '4px'}},
+        row.status === 'Shipped' ? React.createElement('button', {
+            className: 'modern-action-btn btn-success',
+            title: 'Generate E-Way Bill',
+            onClick: () => window.location.href = `/admin/domestic-logistics/preview-by-order/${row._id}`
+        }, React.createElement(FaIcons.FaTruck, null)) : null,
         React.createElement('button', {
             className: 'modern-action-btn btn-primary',
             onClick: () => window.location.href = `/admin/inquiry-system/orders/details/${row._id}`
@@ -2102,9 +2107,24 @@ export const pageConfigs = [
         { key: 'vehicleNo', label: 'Vehicle No.', formLabel: 'Vehicle Number', nested: 'transporterDetails' },
         { key: 'lrRrAirwayBill', label: 'LR/RR/Tracking ID', formLabel: 'Tracking ID (LR/RR)', nested: 'transporterDetails' },
         { key: 'status', label: 'Status', type: 'select', options: ['Pending', 'In Transit', 'Reached Port'], formLabel: 'Status' }
-      ]
+      ],
+      hideDefaultActions: false,
+      actions: (row, { onEdit, onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '4px'}},
+        React.createElement('button', {
+            className: 'modern-action-btn btn-success',
+            title: 'Preview E-Way Bill',
+            onClick: () => window.location.href = `/admin/domestic-logistics/preview/${row._id}`
+        }, React.createElement(FaIcons.FaFilePdf, null)),
+        onEdit && React.createElement('button', {
+            className: 'modern-action-btn btn-primary',
+            onClick: () => onEdit(row)
+        }, React.createElement(FaIcons.FaEdit, null)),
+        onDelete && React.createElement('button', {
+            className: 'modern-action-btn btn-danger',
+            onClick: () => onDelete(row)
+        }, React.createElement(FaIcons.FaTrashAlt, null))
+      )
     }, 
     data: [] 
   }
 ];
-
