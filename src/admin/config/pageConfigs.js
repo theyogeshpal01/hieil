@@ -125,8 +125,24 @@ const manageVendorInstallments = async (row, refresh) => {
                                     installments[i].paymentMode = formValues[0];
                                     installments[i].reference = formValues[1];
                                     installments[i].paymentDate = new Date();
-                                    await api.put(`/vendor-orders/${order._id}`, { installments });
-                                    Swal.fire('Paid!', '', 'success').then(() => manageVendorInstallments(row, refresh));
+                                    
+                                    try {
+                                        await api.put(`/vendor-orders/${order._id}`, { installments });
+                                        
+                                        // Log to vendor payouts history
+                                        await api.post('/vendor-payouts', {
+                                            vendorId: order.vendorId,
+                                            invoiceId: order.poNumber || '-', 
+                                            invoiceAmount: order.agreedPriceInr || 0,
+                                            commission: installments[i].title || 'Installment',
+                                            payoutAmount: installments[i].amount,
+                                            status: 'Released'
+                                        });
+
+                                        Swal.fire('Paid!', '', 'success').then(() => manageVendorInstallments(row, refresh));
+                                    } catch (err) {
+                                        Swal.fire('Error', 'Failed to update payment', 'error');
+                                    }
                                 }
                             };
                         }
