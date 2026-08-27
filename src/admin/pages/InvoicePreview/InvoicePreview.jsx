@@ -4,6 +4,13 @@ import { FaPrint, FaArrowLeft } from 'react-icons/fa';
 import api from '../../config/api';
 import './InvoicePreview.css';
 
+const formatImageUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http')) return url;
+  const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+  return url.startsWith('/') ? `${baseUrl}${url}` : `${baseUrl}/${url}`;
+};
+
 const InvoicePreview = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -326,6 +333,9 @@ const InvoicePreview = () => {
         <div className="inv-sign-box">
           <div className="inv-sign-left">
             <p>Signature:</p>
+            {companyDetails.signatureUrl && (
+              <img src={formatImageUrl(companyDetails.signatureUrl)} alt="Signature" style={{ maxHeight: '60px', margin: '10px 0', display: 'block' }} />
+            )}
             <div className="inv-sign-line">
               {companyDetails.signatoryName || '[Authorised Signatory Name]'}<br/>
               {companyDetails.designation || '[Designation]'} | {companyDetails.name}
@@ -333,9 +343,11 @@ const InvoicePreview = () => {
           </div>
           <div className="inv-sign-right">
             <p>Company Stamp:</p>
-            <div className="inv-sign-line">
-              [Stamp Here]
-            </div>
+            {companyDetails.stampUrl ? (
+              <img src={formatImageUrl(companyDetails.stampUrl)} alt="Company Stamp" style={{ maxHeight: '80px', margin: '10px 0', display: 'block' }} />
+            ) : (
+              <div className="inv-sign-line">[Stamp Here]</div>
+            )}
           </div>
         </div>
 
