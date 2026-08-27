@@ -166,6 +166,24 @@ const OrderDetails = () => {
       try {
         await api.put(`/orders/${id}`, { installments: updated });
         setOrder({ ...order, installments: updated });
+        
+        try {
+           const invRes = await api.get('/invoices');
+           const existingInvoice = invRes.data.find(inv => inv.orderNo === order.orderNo);
+           
+           await api.post('/payments', {
+               invoiceNo: existingInvoice ? existingInvoice.invoiceNo : 'N/A',
+               orderNo: order.orderNo,
+               mode: formValues[0],
+               reference: formValues[1] || '-',
+               amount: updated[index].amount,
+               status: 'Paid',
+               type: order.type || 'inquiry'
+           });
+        } catch (e) {
+           console.error("Failed to post to payments", e);
+        }
+
         Swal.fire('Marked Paid!', '', 'success');
       } catch (err) {
         Swal.fire('Error', 'Failed to update installment.', 'error');
