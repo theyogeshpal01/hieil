@@ -101,15 +101,16 @@ const PurchaseOrderPreview = () => {
   let calculatedSubtotal = 0;
 
   if (clientOrder && clientOrder.products && clientOrder.products.length > 0) {
+    const totalQty = clientOrder.products.reduce((sum, p) => sum + (parseFloat(p.qty || p.quantity) || 1), 0);
     items = clientOrder.products.map((p, i) => {
-      const qty = p.qty || p.quantity || 1;
-      const unitPrice = vendorUnitPrice > 0 ? vendorUnitPrice : (vendorOrder.agreedPriceInr / (clientOrder.products.length * qty));
+      const qty = parseFloat(p.qty || p.quantity) || 1;
+      const unitPrice = vendorUnitPrice > 0 ? vendorUnitPrice : (vendorOrder.agreedPriceInr / totalQty);
       const amount = unitPrice * qty;
       calculatedSubtotal += amount;
 
       return {
         id: i + 1,
-        descTitle: p.productName || 'Product',
+        descTitle: p.name || p.productName || 'Product',
         descSub: p.productId ? `ID: ${p.productId}` : '',
         hsn: p.hsn || '',
         qty: qty,
