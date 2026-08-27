@@ -645,7 +645,7 @@ export const pageConfigs = [
         { key: 'date', label: 'Date' }
       ],
       hideDefaultActions: true,
-      actions: (row, { onDelete }) => React.createElement('div', {style: {display: 'flex', gap: '4px'}},
+      actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', gap: '4px'}},
         row.status === 'Shipped' ? React.createElement('button', {
             className: 'modern-action-btn btn-success',
             title: 'Generate E-Way Bill',
@@ -653,12 +653,19 @@ export const pageConfigs = [
             onClick: () => window.location.href = `/admin/domestic-logistics/preview-by-order/${row._id}`
         }, React.createElement(FaIcons.FaTruck, {style: {marginRight: '4px'}}), "EWB") : null,
         React.createElement('button', {
+            className: 'modern-action-btn btn-info',
+            title: 'Edit Order',
+            onClick: () => handlers.onEdit(row)
+        }, React.createElement(FaIcons.FaEdit, null)),
+        React.createElement('button', {
             className: 'modern-action-btn btn-primary',
+            title: 'View Details',
             onClick: () => window.location.href = `/admin/inquiry-system/orders/details/${row._id}`
         }, React.createElement(FaIcons.FaEye || FaFileAlt, null)),
         React.createElement('button', {
             className: 'modern-action-btn btn-danger',
-            onClick: () => onDelete(row)
+            title: 'Delete Order',
+            onClick: () => handlers.onDelete(row)
         }, React.createElement(FaIcons.FaTrashAlt, null))
       )
     }, 
