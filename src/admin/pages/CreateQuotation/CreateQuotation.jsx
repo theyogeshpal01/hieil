@@ -68,6 +68,26 @@ const CreateQuotation = () => {
     }));
   };
 
+  // Auto-calculate subtotal, gst amount, and total amount
+  useEffect(() => {
+    const qty = parseFloat(formData.quantity) || 0;
+    const rate = parseFloat(formData.rate) || 0;
+    const gst = parseFloat(formData.gstPercent) || 0;
+    
+    if (qty >= 0 && rate >= 0) {
+      const subtotal = qty * rate;
+      const gstAmount = (subtotal * gst) / 100;
+      const totalAmount = subtotal + gstAmount;
+      
+      setFormData(prev => ({
+        ...prev,
+        subtotal: subtotal > 0 ? subtotal.toFixed(2) : '',
+        gstAmount: gstAmount > 0 ? gstAmount.toFixed(2) : '',
+        totalAmount: totalAmount > 0 ? totalAmount.toFixed(2) : ''
+      }));
+    }
+  }, [formData.quantity, formData.rate, formData.gstPercent]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
