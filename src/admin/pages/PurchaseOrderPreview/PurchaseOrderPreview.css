@@ -1,0 +1,328 @@
+.po-preview-page {
+  padding: 20px;
+  background-color: #f3f4f6;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.po-preview-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.po-preview-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.po-preview-actions .btn-back {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.po-preview-actions .btn-print {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.po-paper {
+  background: white;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  color: #000;
+  font-size: 11px;
+}
+
+/* Header */
+.po-top-row {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.po-brand-box {
+  background-color: #17365d;
+  color: white;
+  padding: 20px;
+  width: 55%;
+}
+
+.po-brand-box h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.po-brand-box p {
+  margin: 5px 0 0 0;
+  font-size: 12px;
+}
+
+.po-brand-box .tagline {
+  font-style: italic;
+  font-size: 13px;
+}
+
+.po-title-box {
+  background-color: #d4af37;
+  color: white;
+  padding: 20px;
+  width: 45%;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.po-title-box h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.po-title-box p {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+}
+
+/* Meta Table */
+.po-meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.po-meta-table td {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+}
+
+.po-meta-table .label {
+  background-color: #e6f0fa;
+  font-weight: bold;
+  color: #17365d;
+  width: 15%;
+}
+
+.po-meta-table .value {
+  width: 35%;
+}
+
+/* Addresses */
+.po-address-row {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.po-address-box {
+  flex: 1;
+  border: 1px solid #ccc;
+}
+
+.po-address-header {
+  background-color: #17365d;
+  color: white;
+  padding: 6px 10px;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.po-address-content {
+  padding: 10px;
+  line-height: 1.5;
+}
+
+.po-address-content strong {
+  font-size: 13px;
+}
+
+/* Items Table */
+.po-items-table-wrapper {
+  margin-bottom: 20px;
+}
+
+.po-section-header {
+  background-color: #17365d;
+  color: white;
+  padding: 6px 10px;
+  font-weight: bold;
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.po-items-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.po-items-table th {
+  background-color: #17365d;
+  color: white;
+  padding: 6px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+.po-items-table th.left {
+  text-align: left;
+}
+.po-items-table th.right {
+  text-align: right;
+}
+
+.po-items-table td {
+  border: 1px solid #ccc;
+  padding: 6px;
+  text-align: center;
+}
+
+.po-items-table td.left {
+  text-align: left;
+}
+
+.po-items-table td.right {
+  text-align: right;
+}
+
+.po-items-table .item-title {
+  font-weight: bold;
+  display: block;
+}
+
+.po-items-table .item-sub {
+  font-size: 10px;
+  color: #555;
+}
+
+/* Totals */
+.po-totals {
+  width: 40%;
+  float: right;
+  border-collapse: collapse;
+}
+
+.po-totals td {
+  border: 1px solid #ccc;
+  padding: 6px;
+}
+
+.po-totals .label {
+  text-align: right;
+  font-weight: bold;
+  color: #17365d;
+}
+
+.po-totals .value {
+  text-align: right;
+  font-weight: bold;
+}
+
+.po-totals-grand {
+  background-color: #17365d;
+  color: white;
+}
+.po-totals-grand .label {
+  color: white;
+}
+
+/* Clearfix */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Info Tables */
+.po-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-top: none;
+}
+
+.po-info-table td {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+}
+
+.po-info-table .info-label {
+  font-weight: bold;
+  color: #17365d;
+  width: 20%;
+  background-color: #f9fafb;
+}
+
+/* Note Highlight */
+.po-note-highlight {
+  background-color: #fef08a;
+  color: #854d0e;
+  padding: 10px;
+  border-left: 4px solid #ca8a04;
+  margin-bottom: 20px;
+  font-size: 11px;
+}
+
+/* Signatures */
+.po-sig-row {
+  display: flex;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.po-sig-box {
+  flex: 1;
+  padding: 15px;
+}
+
+.po-sig-box:first-child {
+  border-right: 1px solid #ccc;
+}
+
+.po-sig-line {
+  margin-top: 40px;
+  border-top: 1px solid #000;
+  padding-top: 5px;
+  display: inline-block;
+  min-width: 250px;
+}
+
+/* Footer Strip */
+.po-footer-strip {
+  background-color: #17365d;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 10px;
+  margin-top: 30px;
+}
+
+@media print {
+  body {
+    background: white;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .po-paper {
+    padding: 0;
+    box-shadow: none;
+    max-width: 100%;
+  }
+}

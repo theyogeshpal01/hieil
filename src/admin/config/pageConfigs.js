@@ -2207,6 +2207,12 @@ export const pageConfigs = [
         }, React.createElement(FaIcons.FaEdit)),
         React.createElement('button', {
             className: 'modern-action-btn',
+            onClick: () => window.location.href = `/admin/vendor-management/orders/preview/${row._id}`,
+            title: 'Preview PO',
+            style: { backgroundColor: '#8b5cf6', color: 'white' }
+        }, React.createElement(FaIcons.FaFilePdf)),
+        React.createElement('button', {
+            className: 'modern-action-btn',
             onClick: () => manageVendorInstallments(row, handlers.refresh),
             title: 'Manage Installments',
             style: { backgroundColor: '#10b981', color: 'white' }

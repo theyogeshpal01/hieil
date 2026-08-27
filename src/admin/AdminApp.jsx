@@ -9,6 +9,7 @@ const CreateQuotation = lazy(() => import('./pages/CreateQuotation/CreateQuotati
 const InvoicePreview = lazy(() => import('./pages/InvoicePreview/InvoicePreview'));
 const QuotationPreview = lazy(() => import('./pages/QuotationPreview/QuotationPreview'));
 const EWayBillPreview = lazy(() => import('./pages/EWayBillPreview/EWayBillPreview'));
+const PurchaseOrderPreview = lazy(() => import('./pages/PurchaseOrderPreview/PurchaseOrderPreview'));
 const OrderDetails = lazy(() => import('./pages/OrderDetails/OrderDetails'));
 const ReportDashboard = lazy(() => import('./pages/ReportDashboard/ReportDashboard'));
 const PayoutPreview = lazy(() => import('./pages/PayoutPreview/PayoutPreview'));
@@ -53,6 +54,9 @@ function AdminApp() {
           {/* E-Way Bill Preview Routes */}
           <Route path="domestic-logistics/preview/:id" element={<EWayBillPreview />} />
           <Route path="domestic-logistics/preview-by-order/:id" element={<EWayBillPreview />} />
+
+          {/* Purchase Order Preview Route */}
+          <Route path="vendor-management/orders/preview/:id" element={<PurchaseOrderPreview />} />
 
           {/* Payout Preview Route */}
           <Route path="vendor-management/payout-preview/:id" element={<PayoutPreview />} />
