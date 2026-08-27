@@ -381,7 +381,7 @@ const EWayBillPreview = () => {
             <div style={{display:'flex', justifyContent:'space-between', padding:'20px', alignItems: 'flex-end'}}>
                 <div style={{width:'40%', textAlign: 'center'}}>
                     {companyDetails.signatureUrl ? (
-                        <img src={companyDetails.signatureUrl} alt="Signature" style={{maxHeight: '60px', marginBottom: '10px'}} />
+                        <img src={companyDetails.signatureUrl} alt="Signature" style={{maxHeight: '60px', marginBottom: '10px', marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
                     ) : (
                         <div style={{height: '60px'}}></div>
                     )}
@@ -392,7 +392,7 @@ const EWayBillPreview = () => {
                 </div>
                 <div style={{width:'40%', textAlign: 'center'}}>
                     {companyDetails.stampUrl ? (
-                        <img src={companyDetails.stampUrl} alt="Company Stamp" style={{maxHeight: '80px', marginBottom: '10px'}} />
+                        <img src={companyDetails.stampUrl} alt="Company Stamp" style={{maxHeight: '80px', marginBottom: '10px', marginLeft: 'auto', marginRight: 'auto', display: 'block'}} />
                     ) : (
                         <div style={{height: '80px'}}></div>
                     )}
