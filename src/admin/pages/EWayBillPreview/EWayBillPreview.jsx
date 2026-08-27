@@ -107,6 +107,18 @@ const EWayBillPreview = () => {
     );
   }
 
+  let parsedAddress = order?.address;
+  let parsedTax = order?.taxNo;
+  if (typeof parsedAddress === 'string') {
+      try {
+          const parsed = JSON.parse(parsedAddress);
+          parsedAddress = [parsed.company, parsed.line1, parsed.city, parsed.email ? `Email: ${parsed.email}` : null, parsed.phone ? `Phone: ${parsed.phone}` : null].filter(Boolean).join(', ');
+          if (parsed.tax && !parsedTax) parsedTax = parsed.tax;
+      } catch(e) {
+          // If it's not valid JSON, leave it as is
+      }
+  }
+
   const printDocument = () => {
     window.print();
   };
@@ -196,10 +208,10 @@ const EWayBillPreview = () => {
                 <div className="party-header">CONSIGNEE (TO)</div>
                 <div className="party-content">
                     <strong>{order?.customer || 'N/A'}</strong><br/>
-                    {order?.address || 'N/A'}<br/>
+                    {parsedAddress || 'N/A'}<br/>
                     Country: {order?.country || 'N/A'}<br/>
-                    GSTIN / Tax No: {order?.taxNo || 'UNREGISTERED'}<br/>
-                    State: N/A | State Code: 99
+                    GSTIN / Tax No: {parsedTax || 'UNREGISTERED'}<br/>
+                    State: {order?.state || 'N/A'} | State Code: {order?.country?.toLowerCase() === 'india' ? '' : '99'}
                 </div>
             </div>
         </div>
