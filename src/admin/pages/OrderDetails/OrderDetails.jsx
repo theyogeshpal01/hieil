@@ -76,7 +76,7 @@ const OrderDetails = () => {
   };
 
   const handleAddProduct = () => {
-    setProductsInput([...productsInput, { name: '', quantity: '', price: '' }]);
+    setProductsInput([...productsInput, { name: '', itemCode: '', quantity: '', price: '' }]);
   };
 
   const handleRemoveProduct = (index) => {
@@ -398,15 +398,26 @@ const OrderDetails = () => {
                     <div key={index} className="product-row" style={{display: 'flex', gap: '12px', alignItems: 'center', backgroundColor: '#f9fafb', padding: '16px', borderRadius: '8px', border: '1px solid #e5e7eb'}}>
                       <div style={{flex: 2}}>
                         <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Product Name</label>
-                        <input 
-                          type="text" 
-                          value={product.name} 
-                          onChange={(e) => handleProductChange(index, 'name', e.target.value)}
-                          className="address-textarea"
-                          style={{minHeight: '40px', marginBottom: '0', padding: '8px 12px'}}
-                          placeholder="Product Name"
-                        />
-                      </div>
+                          <input 
+                            type="text" 
+                            value={product.name} 
+                            onChange={(e) => handleProductChange(index, 'name', e.target.value)}
+                            className="address-textarea"
+                            style={{minHeight: '40px', marginBottom: '0', padding: '8px 12px'}}
+                            placeholder="Product Name"
+                          />
+                        </div>
+                        <div style={{flex: 1}}>
+                          <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Item Code</label>
+                          <input 
+                            type="text" 
+                            value={product.itemCode || ''} 
+                            onChange={(e) => handleProductChange(index, 'itemCode', e.target.value)}
+                            className="address-textarea"
+                            style={{minHeight: '40px', marginBottom: '0', padding: '8px 12px'}}
+                            placeholder="Item Code"
+                          />
+                        </div>
                       <div style={{flex: 1}}>
                         <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Quantity</label>
                         <input 

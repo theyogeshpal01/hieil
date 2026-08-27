@@ -112,7 +112,7 @@ const PurchaseOrderPreview = () => {
         id: i + 1,
         descTitle: p.name || p.productName || 'Product',
         descSub: p.productId ? `ID: ${p.productId}` : '',
-        hsn: p.hsn || '',
+        hsn: p.itemCode || p.hsn || '',
         qty: qty,
         unit: p.unit || 'Pcs',
         price: unitPrice.toFixed(2),
