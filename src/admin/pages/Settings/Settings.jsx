@@ -111,6 +111,36 @@ const Settings = () => {
     setCompanyDetails(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleImageUpload = async (e, key) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    Swal.fire({ title: 'Uploading...', allowOutsideClick: false });
+    Swal.showLoading();
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const uploadRes = await api.post('/upload', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      const fileUrl = uploadRes.data.url;
+
+      setCompanyDetails(prev => ({ ...prev, [key]: fileUrl }));
+      Swal.fire({
+        title: 'Uploaded!',
+        text: 'Image uploaded successfully. Don\'t forget to click Save Company Details below.',
+        icon: 'success',
+        timer: 2000,
+        showConfirmButton: false
+      });
+    } catch (err) {
+      console.error(err);
+      Swal.fire('Error', 'Failed to upload image', 'error');
+    }
+  };
+
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
@@ -218,16 +248,36 @@ const Settings = () => {
           </div>
 
           <div className="md:col-span-2 mt-4 border-t border-gray-200 dark:border-gray-700 pt-4">
-            <h4 className="text-lg font-medium text-gray-800 dark:text-white mb-4">Signatory Details</h4>
+            <h4 className="text-lg font-medium text-gray-800 dark:text-white mb-4">Signatory & Stamp Details</h4>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Authorised Signatory Name</label>
-            <input type="text" name="signatoryName" value={companyDetails.signatoryName} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+            <input type="text" name="signatoryName" value={companyDetails.signatoryName || ''} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Designation</label>
-            <input type="text" name="designation" value={companyDetails.designation} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+            <input type="text" name="designation" value={companyDetails.designation || ''} onChange={handleInputChange} className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-white" />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Upload Signature Image</label>
+            <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, 'signatureUrl')} className="w-full p-1.5 border border-gray-300 dark:border-gray-600 rounded-md text-sm dark:bg-gray-700 dark:text-white" />
+            {companyDetails.signatureUrl && (
+              <div className="mt-2">
+                <img src={companyDetails.signatureUrl} alt="Signature" className="h-12 object-contain" />
+              </div>
+            )}
+          </div>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Upload Company Stamp</label>
+            <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, 'stampUrl')} className="w-full p-1.5 border border-gray-300 dark:border-gray-600 rounded-md text-sm dark:bg-gray-700 dark:text-white" />
+            {companyDetails.stampUrl && (
+              <div className="mt-2">
+                <img src={companyDetails.stampUrl} alt="Company Stamp" className="h-16 object-contain" />
+              </div>
+            )}
           </div>
 
           <div className="md:col-span-2 mt-4">
