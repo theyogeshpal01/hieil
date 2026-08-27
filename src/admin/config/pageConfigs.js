@@ -2234,6 +2234,17 @@ export const pageConfigs = [
         { key: 'agreedPriceInr', label: 'Agreed Price (₹)', type: 'number', formLabel: 'Agreed Price (INR)' },
         { key: 'advancePaidInr', label: 'Advance Paid (₹)', type: 'number', formLabel: 'Advance Paid (INR)' },
         { key: 'balancePaidInr', label: 'Balance Paid (₹)', type: 'number', formLabel: 'Balance Paid (INR)' },
+        { 
+          key: 'pendingAmount', 
+          label: 'Pending Amount (₹)', 
+          render: (val, row) => {
+            const agreed = parseFloat(row.agreedPriceInr) || 0;
+            const advance = parseFloat(row.advancePaidInr) || 0;
+            const balance = parseFloat(row.balancePaidInr) || 0;
+            return (agreed - (advance + balance)).toFixed(2);
+          },
+          hideInForm: true 
+        },
         { key: 'status', label: 'Status', type: 'select', options: ['Pending', 'Production Started', 'Completed', 'Goods Received'], formLabel: 'Status' },
         { key: 'expectedDeliveryDate', label: 'Expected Delivery Date', type: 'date', formLabel: 'Expected Delivery Date', hideInTable: true },
         { key: 'incoterm', label: 'Incoterm', type: 'select', options: [{ value: 'FOB', label: 'FOB (Free On Board)' }, { value: 'EXW', label: 'EXW (Ex Works)' }, { value: 'CIF', label: 'CIF (Cost, Insurance, and Freight)' }, { value: 'DDP', label: 'DDP (Delivered Duty Paid)' }, { value: 'DAP', label: 'DAP (Delivered at Place)' }, { value: 'FCA', label: 'FCA (Free Carrier)' }, { value: 'CPT', label: 'CPT (Carriage Paid To)' }, { value: 'CIP', label: 'CIP (Carriage and Insurance Paid To)' }, { value: 'CFR', label: 'CFR (Cost and Freight)' }, { value: 'FAS', label: 'FAS (Free Alongside Ship)' }], hideInTable: true },
