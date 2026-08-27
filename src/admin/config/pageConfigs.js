@@ -653,7 +653,7 @@ export const pageConfigs = [
             onClick: () => window.location.href = `/admin/domestic-logistics/preview-by-order/${row._id}`
         }, React.createElement(FaIcons.FaTruck, {style: {marginRight: '4px'}}), "EWB") : null,
         React.createElement('button', {
-            className: 'modern-action-btn btn-info',
+            className: 'modern-action-btn btn-warning',
             title: 'Edit Order',
             onClick: () => handlers.onEdit(row)
         }, React.createElement(FaIcons.FaEdit, null)),
@@ -2277,7 +2277,7 @@ export const pageConfigs = [
             onClick: () => window.location.href = `/admin/domestic-logistics/preview/${row._id}`
         }, React.createElement(FaIcons.FaFilePdf, null)),
         row.orderId ? React.createElement('button', {
-            className: 'modern-action-btn btn-info',
+            className: 'modern-action-btn btn-warning',
             style: { backgroundColor: '#3b82f6', color: 'white' },
             title: 'View Order Details',
             onClick: () => {
