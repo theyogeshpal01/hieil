@@ -831,7 +831,8 @@ export const pageConfigs = [
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
               let bg = '#fef08a';
               let color = '#854d0e';
-              if (val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+              if (val === 'Full Paid' || val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+                else if (val === 'Partial Paid') { bg = '#fef3c7'; color = '#92400e'; }
               else if (val === 'Cancelled') { bg = '#fee2e2'; color = '#991b1b'; }
               
               const arrowSvg = `data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${color.replace('#', '%23')}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E`;
@@ -870,7 +871,8 @@ export const pageConfigs = [
                 }
               },
                 React.createElement('option', {value: 'Pending'}, 'Pending'),
-                React.createElement('option', {value: 'Paid'}, 'Paid'),
+                React.createElement('option', {value: 'Partial Paid'}, 'Partial Paid'),
+                  React.createElement('option', {value: 'Full Paid'}, 'Full Paid'),
                 React.createElement('option', {value: 'Cancelled'}, 'Cancelled')
               );
             }
@@ -998,7 +1000,8 @@ export const pageConfigs = [
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
             let bg = '#f3f4f6';
             let color = '#374151';
-            if (val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+            if (val === 'Full Paid' || val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+                else if (val === 'Partial Paid') { bg = '#fef3c7'; color = '#92400e'; }
             else if (val === 'Failed') { bg = '#fee2e2'; color = '#991b1b'; }
             else if (val === 'Refunded') { bg = '#fef08a'; color = '#854d0e'; }
             
@@ -1973,7 +1976,8 @@ export const pageConfigs = [
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
               let bg = '#fef08a';
               let color = '#854d0e';
-              if (val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+              if (val === 'Full Paid' || val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+                else if (val === 'Partial Paid') { bg = '#fef3c7'; color = '#92400e'; }
               else if (val === 'Cancelled') { bg = '#fee2e2'; color = '#991b1b'; }
               
               const arrowSvg = `data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${color.replace('#', '%23')}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E`;
@@ -2012,7 +2016,8 @@ export const pageConfigs = [
                 }
               },
                 React.createElement('option', {value: 'Pending'}, 'Pending'),
-                React.createElement('option', {value: 'Paid'}, 'Paid'),
+                React.createElement('option', {value: 'Partial Paid'}, 'Partial Paid'),
+                  React.createElement('option', {value: 'Full Paid'}, 'Full Paid'),
                 React.createElement('option', {value: 'Cancelled'}, 'Cancelled')
               );
             }
@@ -2094,7 +2099,8 @@ export const pageConfigs = [
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
             let bg = '#f3f4f6';
             let color = '#374151';
-            if (val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+            if (val === 'Full Paid' || val === 'Paid') { bg = '#dcfce7'; color = '#166534'; }
+                else if (val === 'Partial Paid') { bg = '#fef3c7'; color = '#92400e'; }
             else if (val === 'Failed') { bg = '#fee2e2'; color = '#991b1b'; }
             else if (val === 'Refunded') { bg = '#fef08a'; color = '#854d0e'; }
             
