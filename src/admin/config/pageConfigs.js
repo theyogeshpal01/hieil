@@ -2116,6 +2116,15 @@ export const pageConfigs = [
             title: 'Preview E-Way Bill',
             onClick: () => window.location.href = `/admin/domestic-logistics/preview/${row._id}`
         }, React.createElement(FaIcons.FaFilePdf, null)),
+        row.orderId ? React.createElement('button', {
+            className: 'modern-action-btn btn-info',
+            style: { backgroundColor: '#3b82f6', color: 'white' },
+            title: 'View Order Details',
+            onClick: () => {
+              const oid = typeof row.orderId === 'object' ? row.orderId._id : row.orderId;
+              window.location.href = `/admin/inquiry-system/orders/details/${oid}`;
+            }
+        }, React.createElement(FaIcons.FaExternalLinkAlt, null)) : null,
         onEdit && React.createElement('button', {
             className: 'modern-action-btn btn-primary',
             onClick: () => onEdit(row)
