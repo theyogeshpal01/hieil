@@ -16,6 +16,8 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
   const [dynamicCategories, setDynamicCategories] = useState([]);
   const [dynamicSubcategories, setDynamicSubcategories] = useState([]);
   const [hasDynamicCategories, setHasDynamicCategories] = useState(false);
+  const [dynamicVendors, setDynamicVendors] = useState([]);
+  const [dynamicOrders, setDynamicOrders] = useState([]);
 
   useEffect(() => {
     const fetchDynamicCategories = async () => {
@@ -60,8 +62,25 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
       }
     };
 
+    const fetchVendorsAndOrders = async () => {
+      if (config.path === 'vendor-management/orders') {
+        try {
+          const vRes = await api.get('/vendors');
+          const vData = Array.isArray(vRes.data) ? vRes.data : (vRes.data.data || []);
+          setDynamicVendors(vData);
+
+          const oRes = await api.get('/orders');
+          const oData = Array.isArray(oRes.data) ? oRes.data : (oRes.data.data || []);
+          setDynamicOrders(oData);
+        } catch (err) {
+          console.error("Failed to fetch vendors/orders", err);
+        }
+      }
+    };
+
     fetchDynamicCategories();
     fetchDynamicSubcategories();
+    fetchVendorsAndOrders();
   }, [config.path]);
 
   // Map paths to API endpoints based on config path
@@ -323,6 +342,12 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                   >
                     <option value="">-- Select {col.label} --</option>
                     {(() => {
+                      if (col.key === 'vendorId' && config.path === 'vendor-management/orders') {
+                        return dynamicVendors.map(v => ({ value: v._id, label: v.vendorName || v.name }));
+                      }
+                      if (col.key === 'orderId' && config.path === 'vendor-management/orders') {
+                        return dynamicOrders.map(o => ({ value: o._id, label: o.orderNo }));
+                      }
                       if ((col.key === 'category' || col.key === 'categoryName') && hasDynamicCategories) {
                         return dynamicCategories;
                       }
@@ -347,7 +372,12 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
                           });
                         }
                       return col.options || [];
-                    })().map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                    })().map(opt => {
+                      if (typeof opt === 'string') {
+                        return <option key={opt} value={opt}>{opt}</option>;
+                      }
+                      return <option key={opt.value} value={opt.value}>{opt.label}</option>;
+                    })}
                   </select>
                 ) : col.type === 'file' || col.key.toLowerCase().includes('image') || col.key.toLowerCase().includes('logo') ? (
                   <div>
