@@ -856,49 +856,7 @@ export const pageConfigs = [
             className: 'modern-action-btn btn-primary',
             onClick: () => window.location.href = `/admin/inquiry-system/invoices/preview/${row._id}`
         }, 'PDF'),
-        React.createElement('button', {
-            className: 'modern-action-btn btn-success',
-            onClick: () => {
-              Swal.fire({
-                title: 'Record Payment',
-                html: `
-                  <select id="swal-input-mode" class="swal2-input">
-                    <option value="Credit Card">Credit Card</option>
-                    <option value="Bank Transfer">Bank Transfer</option>
-                    <option value="PayPal">PayPal</option>
-                    <option value="Cash">Cash</option>
-                  </select>
-                  <input id="swal-input-ref" class="swal2-input" placeholder="Reference Number">
-                `,
-                focusConfirm: false,
-                showCancelButton: true,
-                preConfirm: () => {
-                  return {
-                    mode: document.getElementById('swal-input-mode').value,
-                    reference: document.getElementById('swal-input-ref').value
-                  }
-                }
-              }).then(async (result) => {
-                if (result.isConfirmed) {
-                  try {
-                    await api.post('/payments', {
-                      invoiceNo: row.invoiceNo,
-                      orderNo: row.orderNo,
-                      mode: result.value.mode,
-                      reference: result.value.reference,
-                      amount: row.total,
-                      type: row.type || 'inquiry'
-                    });
-                    Swal.fire('Success', 'Payment recorded successfully.', 'success').then(() => {
-                      window.location.href = '/admin/inquiry-system/payments';
-                    });
-                  } catch(e) {
-                    Swal.fire('Error', 'Failed to record payment.', 'error');
-                  }
-                }
-              });
-            }
-        }, 'Payment'),
+
         row.status !== 'Shipped' && React.createElement('button', {
             className: 'modern-action-btn btn-primary',
             onClick: () => {
