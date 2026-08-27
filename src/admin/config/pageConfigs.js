@@ -846,8 +846,32 @@ export const pageConfigs = [
                   preConfirm: () => document.getElementById('vendor-select').value
                 });
                 if (vendorId) {
-                  await api.put(`/invoices/${row._id}`, { vendorId });
-                  Swal.fire('Assigned!', 'Vendor has been assigned successfully.', 'success').then(() => window.location.reload());
+                  try {
+                    await api.put(`/invoices/${row._id}`, { vendorId });
+                    
+                    let linkedOrderId = null;
+                    try {
+                      const ordersRes = await api.get('/orders');
+                      const orderData = (Array.isArray(ordersRes.data) ? ordersRes.data : ordersRes.data.data) || [];
+                      const matchedOrder = orderData.find(o => o.orderNo === row.orderNo);
+                      if (matchedOrder) {
+                        linkedOrderId = matchedOrder._id;
+                      }
+                    } catch(e) {}
+                    
+                    await api.post('/vendor-orders', {
+                        poNumber: 'PO-' + row.orderNo,
+                        vendorId: vendorId,
+                        orderId: linkedOrderId,
+                        agreedPriceInr: row.total || 0,
+                        status: 'Pending',
+                        installments: []
+                    });
+                    
+                    Swal.fire('Assigned!', 'Vendor assigned & PO created successfully.', 'success').then(() => window.location.reload());
+                  } catch (assignErr) {
+                    Swal.fire('Error', 'Failed to assign vendor or create PO', 'error');
+                  }
                 }
               } catch (e) { Swal.fire('Error', 'Failed to load vendors', 'error'); }
             }
@@ -1964,8 +1988,32 @@ export const pageConfigs = [
                   preConfirm: () => document.getElementById('vendor-select').value
                 });
                 if (vendorId) {
-                  await api.put(`/invoices/${row._id}`, { vendorId });
-                  Swal.fire('Assigned!', 'Vendor has been assigned successfully.', 'success').then(() => window.location.reload());
+                  try {
+                    await api.put(`/invoices/${row._id}`, { vendorId });
+                    
+                    let linkedOrderId = null;
+                    try {
+                      const ordersRes = await api.get('/orders');
+                      const orderData = (Array.isArray(ordersRes.data) ? ordersRes.data : ordersRes.data.data) || [];
+                      const matchedOrder = orderData.find(o => o.orderNo === row.orderNo);
+                      if (matchedOrder) {
+                        linkedOrderId = matchedOrder._id;
+                      }
+                    } catch(e) {}
+                    
+                    await api.post('/vendor-orders', {
+                        poNumber: 'PO-' + row.orderNo,
+                        vendorId: vendorId,
+                        orderId: linkedOrderId,
+                        agreedPriceInr: row.total || 0,
+                        status: 'Pending',
+                        installments: []
+                    });
+                    
+                    Swal.fire('Assigned!', 'Vendor assigned & PO created successfully.', 'success').then(() => window.location.reload());
+                  } catch (assignErr) {
+                    Swal.fire('Error', 'Failed to assign vendor or create PO', 'error');
+                  }
                 }
               } catch (e) { Swal.fire('Error', 'Failed to load vendors', 'error'); }
             }
@@ -1974,10 +2022,6 @@ export const pageConfigs = [
             className: 'modern-action-btn btn-primary',
             onClick: () => alert(`Generating PDF for ${row.invoiceNo}`)
         }, '📄 PDF'),
-        React.createElement('button', {
-            className: 'modern-action-btn btn-success',
-            onClick: () => alert(`Processing Payment for ${row.invoiceNo}`)
-        }, '💳 Payment'),
         React.createElement('button', {
             className: 'modern-action-btn btn-primary',
             onClick: () => alert(`Viewing Shipping for ${row.invoiceNo}`)
