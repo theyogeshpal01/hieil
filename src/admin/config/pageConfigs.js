@@ -592,7 +592,7 @@ export const pageConfigs = [
         { key: 'id', label: '#' },
         { key: 'orderNo', label: 'Order No' },
         { key: 'quotation', label: 'Quotation' },
-        { key: 'incoterm', label: 'Incoterm', formLabel: 'Incoterm (e.g., FOB Jaipur)' },
+        { key: 'incoterm', label: 'Incoterm', type: 'select', options: ['FOB', 'EXW', 'CIF', 'DDP', 'DAP', 'FCA', 'CPT', 'CIP', 'CFR', 'FAS'] },
         { key: 'deliveryPort', label: 'Port', formLabel: 'Delivery Port (e.g., JNPT Mumbai)' },
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
               let bg = '#f3f4f6';
@@ -719,17 +719,18 @@ export const pageConfigs = [
                 },
                 onChange: (e) => {
                   const newStatus = e.target.value;
-                  const updateStatus = (address = '') => {
-                    api.put(`/quotations/${row._id}`, { status: newStatus, address })
+                  const updateStatus = (address = '', incoterm = '', deliveryPort = '') => {
+                    api.put(`/quotations/${row._id}`, { status: newStatus, address, incoterm, deliveryPort })
                       .then(() => window.location.reload())
                       .catch(err => alert('Error updating status: ' + err.message));
                   };
 
                   if (newStatus === 'Accepted') {
                     Swal.fire({
-                      title: 'Enter Address & Contact Details',
+                      title: 'Enter Order Details (Address & Shipping)',
                       html: `
                         <div style="display: flex; flex-direction: column; gap: 10px; text-align: left;">
+                          <h4 style="margin:0; font-size: 14px; color: #475569;">Company & Address</h4>
                           <input id="addr-company" class="swal2-input" placeholder="Company Name" style="margin:0; width:100%; box-sizing:border-box;">
                           <input id="addr-contact" class="swal2-input" placeholder="Contact Person Name" style="margin:0; width:100%; box-sizing:border-box;">
                           <input id="addr-line1" class="swal2-input" placeholder="Address Line 1" style="margin:0; width:100%; box-sizing:border-box;">
@@ -737,6 +738,22 @@ export const pageConfigs = [
                           <input id="addr-email" class="swal2-input" placeholder="Email" type="email" style="margin:0; width:100%; box-sizing:border-box;">
                           <input id="addr-phone" class="swal2-input" placeholder="Phone" style="margin:0; width:100%; box-sizing:border-box;">
                           <input id="addr-tax" class="swal2-input" placeholder="Tax / VAT No." style="margin:0; width:100%; box-sizing:border-box;">
+                          
+                          <h4 style="margin:10px 0 0 0; font-size: 14px; color: #475569;">Shipping Terms</h4>
+                          <select id="ord-incoterm" class="swal2-input" style="margin:0; width:100%; box-sizing:border-box;">
+                            <option value="">-- Select Incoterm --</option>
+                            <option value="FOB">FOB (Free On Board)</option>
+                            <option value="EXW">EXW (Ex Works)</option>
+                            <option value="CIF">CIF (Cost, Insurance, and Freight)</option>
+                            <option value="DDP">DDP (Delivered Duty Paid)</option>
+                            <option value="DAP">DAP (Delivered at Place)</option>
+                            <option value="FCA">FCA (Free Carrier)</option>
+                            <option value="CPT">CPT (Carriage Paid To)</option>
+                            <option value="CIP">CIP (Carriage and Insurance Paid To)</option>
+                            <option value="CFR">CFR (Cost and Freight)</option>
+                            <option value="FAS">FAS (Free Alongside Ship)</option>
+                          </select>
+                          <input id="ord-deliveryport" class="swal2-input" placeholder="Delivery Port (e.g., Mundra)" style="margin:0; width:100%; box-sizing:border-box;">
                         </div>
                       `,
                       showCancelButton: true,
@@ -752,11 +769,19 @@ export const pageConfigs = [
                         const email = document.getElementById('addr-email').value;
                         const phone = document.getElementById('addr-phone').value;
                         const tax = document.getElementById('addr-tax').value;
-                        return JSON.stringify({ company, contact, line1, city, email, phone, tax });
+                        
+                        const incoterm = document.getElementById('ord-incoterm').value;
+                        const deliveryPort = document.getElementById('ord-deliveryport').value;
+
+                        return {
+                          address: JSON.stringify({ company, contact, line1, city, email, phone, tax }),
+                          incoterm,
+                          deliveryPort
+                        };
                       }
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        updateStatus(result.value);
+                        updateStatus(result.value.address, result.value.incoterm, result.value.deliveryPort);
                       } else if (result.dismiss === Swal.DismissReason.cancel) {
                         updateStatus('');
                       } else {
@@ -1887,7 +1912,7 @@ export const pageConfigs = [
         { key: 'id', label: '#' },
         { key: 'orderNo', label: 'Order No' },
         { key: 'quotation', label: 'Quotation' },
-        { key: 'incoterm', label: 'Incoterm', formLabel: 'Incoterm (e.g., FOB Jaipur)' },
+        { key: 'incoterm', label: 'Incoterm', type: 'select', options: ['FOB', 'EXW', 'CIF', 'DDP', 'DAP', 'FCA', 'CPT', 'CIP', 'CFR', 'FAS'] },
         { key: 'deliveryPort', label: 'Port', formLabel: 'Delivery Port (e.g., JNPT Mumbai)' },
         { key: 'status', label: 'Status', render: (val) => {
             if (val === 'Processing') {
@@ -2205,7 +2230,7 @@ export const pageConfigs = [
         { key: 'balancePaidInr', label: 'Balance Paid (₹)', type: 'number', formLabel: 'Balance Paid (INR)' },
         { key: 'status', label: 'Status', type: 'select', options: ['Pending', 'Production Started', 'Completed', 'Goods Received'], formLabel: 'Status' },
         { key: 'expectedDeliveryDate', label: 'Expected Delivery Date', type: 'date', formLabel: 'Expected Delivery Date', hideInTable: true },
-        { key: 'incoterm', label: 'Incoterm', formLabel: 'Incoterm (e.g. FOB Jaipur)', hideInTable: true },
+        { key: 'incoterm', label: 'Incoterm', type: 'select', options: ['FOB', 'EXW', 'CIF', 'DDP', 'DAP', 'FCA', 'CPT', 'CIP', 'CFR', 'FAS'], hideInTable: true },
         { key: 'currency', label: 'Currency', formLabel: 'Currency', hideInTable: true },
         { key: 'paymentTerms', label: 'Payment Terms', type: 'textarea', formLabel: 'Payment Terms', hideInTable: true },
         { key: 'paymentMethod', label: 'Payment Method', formLabel: 'Payment Method', hideInTable: true },
