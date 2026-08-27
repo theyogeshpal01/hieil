@@ -592,7 +592,7 @@ export const pageConfigs = [
         { key: 'id', label: '#' },
         { key: 'orderNo', label: 'Order No' },
         { key: 'quotation', label: 'Quotation' },
-        { key: 'incoterm', label: 'Incoterm', type: 'select', options: ['FOB', 'EXW', 'CIF', 'DDP', 'DAP', 'FCA', 'CPT', 'CIP', 'CFR', 'FAS'] },
+        { key: 'incoterm', label: 'Incoterm', type: 'select', options: [{ value: 'FOB', label: 'FOB (Free On Board)' }, { value: 'EXW', label: 'EXW (Ex Works)' }, { value: 'CIF', label: 'CIF (Cost, Insurance, and Freight)' }, { value: 'DDP', label: 'DDP (Delivered Duty Paid)' }, { value: 'DAP', label: 'DAP (Delivered at Place)' }, { value: 'FCA', label: 'FCA (Free Carrier)' }, { value: 'CPT', label: 'CPT (Carriage Paid To)' }, { value: 'CIP', label: 'CIP (Carriage and Insurance Paid To)' }, { value: 'CFR', label: 'CFR (Cost and Freight)' }, { value: 'FAS', label: 'FAS (Free Alongside Ship)' }] },
         { key: 'deliveryPort', label: 'Port', formLabel: 'Delivery Port (e.g., JNPT Mumbai)' },
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
               let bg = '#f3f4f6';
@@ -1912,7 +1912,7 @@ export const pageConfigs = [
         { key: 'id', label: '#' },
         { key: 'orderNo', label: 'Order No' },
         { key: 'quotation', label: 'Quotation' },
-        { key: 'incoterm', label: 'Incoterm', type: 'select', options: ['FOB', 'EXW', 'CIF', 'DDP', 'DAP', 'FCA', 'CPT', 'CIP', 'CFR', 'FAS'] },
+        { key: 'incoterm', label: 'Incoterm', type: 'select', options: [{ value: 'FOB', label: 'FOB (Free On Board)' }, { value: 'EXW', label: 'EXW (Ex Works)' }, { value: 'CIF', label: 'CIF (Cost, Insurance, and Freight)' }, { value: 'DDP', label: 'DDP (Delivered Duty Paid)' }, { value: 'DAP', label: 'DAP (Delivered at Place)' }, { value: 'FCA', label: 'FCA (Free Carrier)' }, { value: 'CPT', label: 'CPT (Carriage Paid To)' }, { value: 'CIP', label: 'CIP (Carriage and Insurance Paid To)' }, { value: 'CFR', label: 'CFR (Cost and Freight)' }, { value: 'FAS', label: 'FAS (Free Alongside Ship)' }] },
         { key: 'deliveryPort', label: 'Port', formLabel: 'Delivery Port (e.g., JNPT Mumbai)' },
         { key: 'status', label: 'Status', render: (val) => {
             if (val === 'Processing') {
@@ -2230,7 +2230,7 @@ export const pageConfigs = [
         { key: 'balancePaidInr', label: 'Balance Paid (₹)', type: 'number', formLabel: 'Balance Paid (INR)' },
         { key: 'status', label: 'Status', type: 'select', options: ['Pending', 'Production Started', 'Completed', 'Goods Received'], formLabel: 'Status' },
         { key: 'expectedDeliveryDate', label: 'Expected Delivery Date', type: 'date', formLabel: 'Expected Delivery Date', hideInTable: true },
-        { key: 'incoterm', label: 'Incoterm', type: 'select', options: ['FOB', 'EXW', 'CIF', 'DDP', 'DAP', 'FCA', 'CPT', 'CIP', 'CFR', 'FAS'], hideInTable: true },
+        { key: 'incoterm', label: 'Incoterm', type: 'select', options: [{ value: 'FOB', label: 'FOB (Free On Board)' }, { value: 'EXW', label: 'EXW (Ex Works)' }, { value: 'CIF', label: 'CIF (Cost, Insurance, and Freight)' }, { value: 'DDP', label: 'DDP (Delivered Duty Paid)' }, { value: 'DAP', label: 'DAP (Delivered at Place)' }, { value: 'FCA', label: 'FCA (Free Carrier)' }, { value: 'CPT', label: 'CPT (Carriage Paid To)' }, { value: 'CIP', label: 'CIP (Carriage and Insurance Paid To)' }, { value: 'CFR', label: 'CFR (Cost and Freight)' }, { value: 'FAS', label: 'FAS (Free Alongside Ship)' }], hideInTable: true },
         { key: 'currency', label: 'Currency', formLabel: 'Currency', hideInTable: true },
         { key: 'paymentTerms', label: 'Payment Terms', type: 'textarea', formLabel: 'Payment Terms', hideInTable: true },
         { key: 'paymentMethod', label: 'Payment Method', formLabel: 'Payment Method', hideInTable: true },
