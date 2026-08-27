@@ -2192,7 +2192,7 @@ export const pageConfigs = [
         { key: 'id', label: 'ID' },
         { key: 'poNumber', label: 'PO Number', formLabel: 'PO Number' },
         { key: 'vendorId', label: 'Vendor', type: 'select', options: [], formLabel: 'Vendor (ID)' }, // Note: Would ideally fetch from vendors API
-        { key: 'orderId', label: 'Linked Order', type: 'select', options: [], formLabel: 'Linked Order (ID)' }, 
+        { key: 'orderId', label: 'Linked Order', render: (val, row) => row.poNumber ? row.poNumber.replace('PO-', '') : val, type: 'select', options: [], formLabel: 'Linked Order (ID)' }, 
         { key: 'agreedPriceInr', label: 'Agreed Price (₹)', type: 'number', formLabel: 'Agreed Price (INR)' },
         { key: 'advancePaidInr', label: 'Advance Paid (₹)', type: 'number', formLabel: 'Advance Paid (INR)' },
         { key: 'balancePaidInr', label: 'Balance Paid (₹)', type: 'number', formLabel: 'Balance Paid (INR)' },

@@ -3,7 +3,15 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FaPrint, FaArrowLeft } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import api from '../../../config/api';
-import './QuotationPreview.css';
+// We use InvoicePreview.css to match the standard bill design
+import '../InvoicePreview/InvoicePreview.css';
+
+const formatImageUrl = (url) => {
+  if (!url) return '';
+  if (url.startsWith('http')) return url;
+  const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+  return url.startsWith('/') ? `${baseUrl}${url}` : `${baseUrl}/${url}`;
+};
 
 const QuotationPreview = () => {
   const { id } = useParams();
@@ -70,10 +78,8 @@ const QuotationPreview = () => {
     return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Quotation data is unavailable.</div>;
   }
 
-  // Format date
   const dateStr = new Date(quotation.createdAt || Date.now()).toLocaleString('en-IN', {
-    day: '2-digit', month: '2-digit', year: 'numeric',
-    hour: '2-digit', minute: '2-digit'
+    day: '2-digit', month: '2-digit', year: 'numeric'
   });
 
   return (
@@ -88,78 +94,192 @@ const QuotationPreview = () => {
       </div>
 
       <div className="invoice-paper">
-        <div className="invoice-header-meta">
-          <span>{dateStr}</span>
-          <span>Quotation {quotation.quoteNo || id}</span>
+        {/* Top Header */}
+        <div className="inv-top-header">
+          <div className="inv-brand-box">
+            <h1>{companyDetails.name}</h1>
+            <p>{companyDetails.tagline}</p>
+            <p>{companyDetails.website} | {companyDetails.address}</p>
+          </div>
+          <div className="inv-title-box">
+            <h2>QUOTATION</h2>
+            <p>Official Export Quotation</p>
+          </div>
         </div>
 
-        <div className="invoice-title">
-          <h2>{companyDetails.name.toUpperCase()} - OFFICIAL QUOTATION</h2>
-          <hr />
-        </div>
-
-        <div className="invoice-details">
-          <strong>To:</strong><br />
-          {quotation.customer || quotation.customerName}<br />
-          {quotation.customerEmail && <>{quotation.customerEmail}<br /></>}
-          {quotation.phone && <>{quotation.phone}<br /></>}
-          {quotation.country && <>{quotation.country}</>}
-        </div>
-
-        <table className="invoice-table">
-          <thead>
-            <tr>
-              <th>Description / Product</th>
-              <th className="col-qty">Quantity</th>
-              <th className="col-total">Rate</th>
-              <th className="col-total">Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{quotation.product}</td>
-              <td className="text-center">{quotation.qty || quotation.quantity || 1}</td>
-              <td className="text-right">${quotation.rate || 0}</td>
-              <td className="text-right">${quotation.subtotal || quotation.total || 0}</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div className="invoice-summary-container">
-          <table className="invoice-summary-table">
+        {/* Meta Details */}
+        <div className="inv-meta-grid">
+          <table className="inv-meta-table">
             <tbody>
-              {quotation.subtotal && (
-                <tr>
-                  <td><strong>Subtotal</strong></td>
-                  <td className="text-right">${quotation.subtotal}</td>
-                </tr>
-              )}
-              {quotation.gstAmount && quotation.gstAmount > 0 && (
-                <tr>
-                  <td><strong>Tax / GST ({quotation.gstPercent}%)</strong></td>
-                  <td className="text-right">${quotation.gstAmount}</td>
-                </tr>
-              )}
               <tr>
-                <td><strong>Grand Total</strong></td>
-                <td className="text-right"><strong>${quotation.total || quotation.subtotal}</strong></td>
+                <td className="meta-label">Quote No.</td>
+                <td><strong>{quotation.quoteNo || id}</strong></td>
+              </tr>
+              <tr>
+                <td className="meta-label">Incoterms</td>
+                <td>{quotation.incoterm || '-'}</td>
+              </tr>
+              <tr>
+                <td className="meta-label">Delivery Port</td>
+                <td>{quotation.deliveryPort || '-'}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table className="inv-meta-table">
+            <tbody>
+              <tr>
+                <td className="meta-label">Quote Date</td>
+                <td>{dateStr}</td>
+              </tr>
+              <tr>
+                <td className="meta-label">Valid Until</td>
+                <td>{quotation.validTill || '-'}</td>
+              </tr>
+              <tr>
+                <td className="meta-label">Currency</td>
+                <td>USD</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div className="invoice-footer">
-          {quotation.validTill && (
-            <p><strong>Note:</strong> This quotation is valid until {quotation.validTill}.</p>
-          )}
-          <p>If you have any questions concerning this quotation, please contact us at {companyDetails.email}.</p>
-          <p style={{ marginTop: '30px' }}><strong>Thank you for your business!</strong></p>
+        {/* Addresses */}
+        <div className="inv-address-section">
+          <div className="inv-address-box">
+            <div className="inv-address-header">EXPORTER</div>
+            <div className="inv-address-content">
+              <h4>{companyDetails.name}</h4>
+              <p>{companyDetails.tagline}</p>
+              <p>{companyDetails.address}</p>
+              <p>Website: {companyDetails.website}</p>
+              <p>Email: {companyDetails.email}</p>
+              <p>Phone: {companyDetails.phone}</p>
+              <p>GST No.: {companyDetails.gst}</p>
+              <p>IEC No.: {companyDetails.iec}</p>
+            </div>
+          </div>
+          <div className="inv-address-box">
+            <div className="inv-address-header">PROSPECTIVE BUYER</div>
+            <div className="inv-address-content">
+              <h4>{quotation.customer || quotation.customerName || '-'}</h4>
+              <p>{quotation.address || '-'}</p>
+              <p>{quotation.country || '-'}</p>
+              <p>Email: {quotation.customerEmail || '-'}</p>
+              <p>Phone: {quotation.mobile || quotation.phone || '-'}</p>
+            </div>
+          </div>
         </div>
 
-        <div className="invoice-footer-meta">
-          <span>https://hieil.com/admin/inquiry-system/quotations/preview/{id}</span>
-          <span>1/1</span>
+        {/* Itemised Quotation */}
+        <div className="inv-section-title">QUOTATION DETAILS</div>
+        <table className="inv-item-table">
+          <thead>
+            <tr>
+              <th className="text-center">#</th>
+              <th>Product Description</th>
+              <th className="text-center">Qty</th>
+              <th className="text-right">Unit Price</th>
+              <th className="text-right">Amount<br/>(USD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="text-center">1</td>
+              <td>
+                <span className="item-desc-title">{quotation.product}</span>
+              </td>
+              <td className="text-center">{quotation.qty || quotation.quantity || 1}</td>
+              <td className="text-right">${quotation.rate || 0}</td>
+              <td className="text-right bold">${quotation.subtotal || quotation.total || 0}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        {/* Totals */}
+        <table className="inv-totals-table">
+          <tbody>
+            {quotation.subtotal && (
+              <tr>
+                <td style={{width: '80%'}}>Subtotal:</td>
+                <td className="bold" style={{width: '20%'}}>${quotation.subtotal}</td>
+              </tr>
+            )}
+            {quotation.gstAmount && quotation.gstAmount > 0 && (
+              <tr>
+                <td>Tax / GST ({quotation.gstPercent}%):</td>
+                <td className="bold">${quotation.gstAmount}</td>
+              </tr>
+            )}
+            <tr className="inv-grand-total">
+              <td>GRAND TOTAL (USD):</td>
+              <td>${quotation.total || quotation.subtotal || 0}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <br/>
+
+        {/* Bank Details */}
+        <div className="inv-section-title">BANK / PAYMENT DETAILS</div>
+        <table className="inv-info-table">
+          <tbody>
+            <tr>
+              <td className="info-label">Account Name</td>
+              <td>{companyDetails.bankAccountName}</td>
+            </tr>
+            <tr>
+              <td className="info-label">Bank Name</td>
+              <td>{companyDetails.bankName}</td>
+            </tr>
+            <tr>
+              <td className="info-label">Account Number</td>
+              <td>{companyDetails.accountNumber}</td>
+            </tr>
+            <tr>
+              <td className="info-label">IFSC Code</td>
+              <td>{companyDetails.ifsc}</td>
+            </tr>
+            <tr>
+              <td className="info-label">SWIFT / BIC Code</td>
+              <td>{companyDetails.swift}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div className="inv-note">
+          <strong>Note:</strong> {quotation.validTill && `This quotation is valid until ${quotation.validTill}. `}
+          All prices are in USD. Prices are subject to final confirmation upon receipt of formal purchase order.
         </div>
+
+        {/* Signatory */}
+        <div className="inv-section-title">AUTHORISED SIGNATORY</div>
+        <div className="inv-sign-box">
+          <div className="inv-sign-left">
+            <p>Signature:</p>
+            {companyDetails.signatureUrl && (
+              <img src={formatImageUrl(companyDetails.signatureUrl)} alt="Signature" style={{ maxHeight: '60px', margin: '10px 0', display: 'block' }} />
+            )}
+            <div className="inv-sign-line">
+              {companyDetails.signatoryName || '[Authorised Signatory Name]'}<br/>
+              {companyDetails.designation || '[Designation]'} | {companyDetails.name}
+            </div>
+          </div>
+          <div className="inv-sign-right">
+            <p>Company Stamp:</p>
+            {companyDetails.stampUrl ? (
+              <img src={formatImageUrl(companyDetails.stampUrl)} alt="Company Stamp" style={{ maxHeight: '80px', margin: '10px 0', display: 'block' }} />
+            ) : (
+              <div className="inv-sign-line">[Stamp Here]</div>
+            )}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="inv-footer-strip">
+          <p><strong>Thank you for your business with {companyDetails.name} | {companyDetails.tagline}</strong></p>
+          <p>For queries: {companyDetails.website}/contact | Confidential & Proprietary</p>
+        </div>
+
       </div>
     </div>
   );
