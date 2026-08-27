@@ -82,10 +82,10 @@ const InvoicePreview = () => {
   const invoiceData = {
     invoiceNo: invoice.invoiceNo || id,
     quotationRef: order?.quotation || '-',
-    incoterms: 'FOB Jaipur, India',
+    incoterms: order?.incoterm ? (order?.deliveryPort ? order.incoterm + ' ' + order.deliveryPort : order.incoterm) : 'FOB Jaipur, India',
     date: new Date(invoice.createdAt || Date.now()).toLocaleDateString('en-GB'),
     dueDate: new Date(new Date(invoice.createdAt || Date.now()).getTime() + 15 * 24 * 60 * 60 * 1000).toLocaleDateString('en-GB'), // 15 days later
-    currency: 'USD',
+    currency: order?.currency || 'USD',
     seller: {
       name: companyDetails.name,
       tagline: companyDetails.tagline,
@@ -325,7 +325,7 @@ const InvoicePreview = () => {
         </table>
 
         <div className="inv-note">
-          <strong>Note:</strong> All prices are in USD. FOB Jaipur unless otherwise specified. Prices are subject to final confirmation upon receipt of formal purchase order.
+          <strong>Note:</strong> All prices are in {invoiceData.currency}. {invoiceData.incoterms} unless otherwise specified. Prices are subject to final confirmation upon receipt of formal purchase order.
         </div>
 
         {/* Signatory */}
