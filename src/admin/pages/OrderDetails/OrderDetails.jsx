@@ -25,6 +25,9 @@ const OrderDetails = () => {
   const [productsInput, setProductsInput] = useState([]);
   const [isSavingProducts, setIsSavingProducts] = useState(false);
 
+  const [installmentsInput, setInstallmentsInput] = useState([]);
+  const [isSavingInstallments, setIsSavingInstallments] = useState(false);
+
   useEffect(() => {
     fetchOrderDetails();
   }, [id]);
@@ -45,6 +48,7 @@ const OrderDetails = () => {
       setAddressInput(parsedAddr);
 
       setProductsInput(response.data.products || []);
+      setInstallmentsInput(response.data.installments || []);
       setLoading(false);
     } catch (err) {
       console.error(err);
@@ -93,6 +97,69 @@ const OrderDetails = () => {
     }
   };
 
+  const handleInstallmentChange = (index, field, value) => {
+    const updated = [...installmentsInput];
+    updated[index][field] = value;
+    setInstallmentsInput(updated);
+  };
+
+  const handleAddInstallment = () => {
+    setInstallmentsInput([...installmentsInput, { title: '', amount: '', dueDate: '', status: 'Pending', paymentMode: '', reference: '' }]);
+  };
+
+  const handleRemoveInstallment = (index) => {
+    const updated = installmentsInput.filter((_, i) => i !== index);
+    setInstallmentsInput(updated);
+  };
+
+  const handleSaveInstallments = async () => {
+    setIsSavingInstallments(true);
+    try {
+      await api.put(`/orders/${id}`, { installments: installmentsInput });
+      Swal.fire('Saved!', 'Installments schedule has been updated.', 'success');
+      setOrder({ ...order, installments: installmentsInput });
+    } catch (err) {
+      Swal.fire('Error', 'Failed to update installments.', 'error');
+    } finally {
+      setIsSavingInstallments(false);
+    }
+  };
+
+  const markInstallmentPaid = async (index) => {
+    const { value: formValues } = await Swal.fire({
+      title: 'Mark as Paid',
+      html:
+        '<input id="swal-input1" class="swal2-input" placeholder="Payment Mode (e.g., Bank Transfer)">' +
+        '<input id="swal-input2" class="swal2-input" placeholder="Reference / UTR No.">',
+      focusConfirm: false,
+      showCancelButton: true,
+      preConfirm: () => {
+        return [
+          document.getElementById('swal-input1').value,
+          document.getElementById('swal-input2').value
+        ]
+      }
+    });
+
+    if (formValues) {
+      const updated = [...installmentsInput];
+      updated[index].status = 'Paid';
+      updated[index].paymentMode = formValues[0];
+      updated[index].reference = formValues[1];
+      updated[index].paymentDate = new Date();
+      setInstallmentsInput(updated);
+      
+      // Auto save
+      try {
+        await api.put(`/orders/${id}`, { installments: updated });
+        setOrder({ ...order, installments: updated });
+        Swal.fire('Marked Paid!', '', 'success');
+      } catch (err) {
+        Swal.fire('Error', 'Failed to update installment.', 'error');
+      }
+    }
+  };
+
   if (loading) return <div className="loading-state">Loading order details...</div>;
   if (!order) return <div className="error-state">Order not found</div>;
 
@@ -124,6 +191,12 @@ const OrderDetails = () => {
             onClick={() => setActiveTab('products')}
           >
             Products
+          </button>
+          <button 
+            className={`order-tab ${activeTab === 'installments' ? 'active' : ''}`}
+            onClick={() => setActiveTab('installments')}
+          >
+            Installments
           </button>
         </div>
 
@@ -343,17 +416,129 @@ const OrderDetails = () => {
                 >
                   <FaPlus /> Add Product
                 </button>
-                <button 
-                  onClick={handleSaveProducts}
-                  disabled={isSavingProducts}
-                  className="save-btn"
-                >
-                  {isSavingProducts ? 'Saving...' : 'Save Products'}
-                </button>
+                  <button 
+                    onClick={handleSaveProducts}
+                    disabled={isSavingProducts}
+                    className="save-btn"
+                  >
+                    {isSavingProducts ? 'Saving...' : 'Save Products'}
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+
+            {activeTab === 'installments' && (
+              <div className="installments-section">
+                <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+                  {installmentsInput.length === 0 ? (
+                    <p style={{color: '#6b7280'}}>No installments added to this order yet.</p>
+                  ) : (
+                    installmentsInput.map((inst, index) => (
+                      <div key={index} style={{display: 'flex', flexDirection: 'column', gap: '12px', backgroundColor: '#f9fafb', padding: '16px', borderRadius: '8px', border: '1px solid #e5e7eb'}}>
+                        
+                        <div style={{display: 'flex', gap: '12px', alignItems: 'center'}}>
+                          <div style={{flex: 2}}>
+                            <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Title / Description</label>
+                            <input 
+                              type="text" 
+                              value={inst.title || ''} 
+                              onChange={(e) => handleInstallmentChange(index, 'title', e.target.value)}
+                              className="address-textarea"
+                              style={{minHeight: '40px', marginBottom: '0', padding: '8px 12px'}}
+                              placeholder="e.g., 50% Advance"
+                              disabled={inst.status === 'Paid'}
+                            />
+                          </div>
+                          <div style={{flex: 1}}>
+                            <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Amount</label>
+                            <input 
+                              type="number" 
+                              value={inst.amount || ''} 
+                              onChange={(e) => handleInstallmentChange(index, 'amount', e.target.value)}
+                              className="address-textarea"
+                              style={{minHeight: '40px', marginBottom: '0', padding: '8px 12px'}}
+                              placeholder="Amount"
+                              disabled={inst.status === 'Paid'}
+                            />
+                          </div>
+                          <div style={{flex: 1}}>
+                            <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Due Date</label>
+                            <input 
+                              type="date" 
+                              value={inst.dueDate ? inst.dueDate.split('T')[0] : ''} 
+                              onChange={(e) => handleInstallmentChange(index, 'dueDate', e.target.value)}
+                              className="address-textarea"
+                              style={{minHeight: '40px', marginBottom: '0', padding: '8px 12px'}}
+                              disabled={inst.status === 'Paid'}
+                            />
+                          </div>
+                          <div style={{flex: 1}}>
+                            <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Status</label>
+                            <span style={{
+                              display: 'inline-block',
+                              marginTop: '8px',
+                              padding: '4px 12px',
+                              borderRadius: '4px',
+                              fontSize: '12px',
+                              fontWeight: 'bold',
+                              backgroundColor: inst.status === 'Paid' ? '#dcfce7' : '#fee2e2',
+                              color: inst.status === 'Paid' ? '#166534' : '#991b1b'
+                            }}>
+                              {inst.status || 'Pending'}
+                            </span>
+                          </div>
+                          <button 
+                            onClick={() => handleRemoveInstallment(index)}
+                            style={{backgroundColor: '#fee2e2', color: '#ef4444', border: 'none', padding: '10px', borderRadius: '6px', cursor: 'pointer', marginTop: '22px'}}
+                            title="Remove Installment"
+                            disabled={inst.status === 'Paid'}
+                          >
+                            <FaTrash />
+                          </button>
+                        </div>
+
+                        {inst.status === 'Paid' && (
+                          <div style={{display: 'flex', gap: '16px', marginTop: '8px', paddingTop: '12px', borderTop: '1px solid #e5e7eb'}}>
+                            <div style={{fontSize: '13px', color: '#374151'}}><strong>Mode:</strong> {inst.paymentMode || 'N/A'}</div>
+                            <div style={{fontSize: '13px', color: '#374151'}}><strong>Reference:</strong> {inst.reference || 'N/A'}</div>
+                            <div style={{fontSize: '13px', color: '#374151'}}><strong>Paid On:</strong> {inst.paymentDate ? new Date(inst.paymentDate).toLocaleDateString() : 'N/A'}</div>
+                          </div>
+                        )}
+
+                        {inst.status !== 'Paid' && (
+                          <div style={{marginTop: '8px'}}>
+                            <button 
+                              onClick={() => markInstallmentPaid(index)}
+                              style={{backgroundColor: '#10b981', color: 'white', border: 'none', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '13px'}}
+                            >
+                              Mark as Paid
+                            </button>
+                          </div>
+                        )}
+
+                      </div>
+                    ))
+                  )}
+                </div>
+
+                <div style={{display: 'flex', gap: '12px', marginTop: '20px'}}>
+                  <button 
+                    onClick={handleAddInstallment}
+                    className="add-product-btn"
+                  >
+                    <FaPlus /> Add Installment
+                  </button>
+                  <button 
+                    onClick={handleSaveInstallments}
+                    disabled={isSavingInstallments}
+                    className="save-btn"
+                  >
+                    {isSavingInstallments ? 'Saving...' : 'Save Schedule'}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
       </div>
     </div>
   );

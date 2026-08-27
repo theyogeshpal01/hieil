@@ -63,6 +63,85 @@ const getCols = (title, specificCols = null) => ({
   ]
 });
 
+const manageVendorInstallments = async (row, refresh) => {
+    try {
+        const resp = await api.get(`/vendor-orders/${row._id || row.id}`);
+        const order = resp.data;
+        let installments = order.installments || [];
+
+        let html = '<table style="width:100%; text-align:left; font-size:14px; margin-bottom:10px; border-collapse:collapse;">';
+        html += '<tr style="border-bottom:1px solid #ccc"><th>Title</th><th>Amount</th><th>Status</th></tr>';
+        if (installments.length === 0) {
+            html += '<tr><td colspan="3" style="text-align:center; padding:10px;">No installments found.</td></tr>';
+        }
+        installments.forEach((inst, i) => {
+            html += `<tr style="border-bottom:1px solid #eee">
+                <td style="padding:5px 0">${inst.title}</td>
+                <td style="padding:5px 0">${inst.amount}</td>
+                <td style="padding:5px 0">
+                    ${inst.status === 'Paid' ? '<span style="color:green; font-weight:bold;">Paid</span>' : `<button id="pay-btn-${i}" class="swal2-confirm swal2-styled" style="padding:4px 8px; font-size:12px; margin:0">Pay</button>`}
+                </td>
+            </tr>`;
+        });
+        html += '</table>';
+
+        const result = await Swal.fire({
+            title: 'Manage Installments',
+            html: html,
+            showCancelButton: true,
+            showConfirmButton: true,
+            confirmButtonText: 'Add Installment',
+            cancelButtonText: 'Close',
+            didOpen: () => {
+                installments.forEach((inst, i) => {
+                    if (inst.status !== 'Paid') {
+                        const btn = document.getElementById(`pay-btn-${i}`);
+                        if (btn) {
+                            btn.onclick = async () => {
+                                const { value: formValues } = await Swal.fire({
+                                    title: 'Mark as Paid',
+                                    html: '<input id="pay-mode" class="swal2-input" placeholder="Payment Mode"><input id="pay-ref" class="swal2-input" placeholder="Reference No">',
+                                    preConfirm: () => [document.getElementById('pay-mode').value, document.getElementById('pay-ref').value]
+                                });
+                                if (formValues) {
+                                    installments[i].status = 'Paid';
+                                    installments[i].paymentMode = formValues[0];
+                                    installments[i].reference = formValues[1];
+                                    installments[i].paymentDate = new Date();
+                                    await api.put(`/vendor-orders/${order._id}`, { installments });
+                                    Swal.fire('Paid!', '', 'success').then(() => manageVendorInstallments(row, refresh));
+                                }
+                            };
+                        }
+                    }
+                });
+            }
+        });
+
+        if (result.isConfirmed) {
+            const { value: newInst } = await Swal.fire({
+                title: 'New Installment',
+                html: '<input id="inst-title" class="swal2-input" placeholder="Title (e.g. Advance)"><input id="inst-amount" type="number" class="swal2-input" placeholder="Amount">',
+                preConfirm: () => {
+                    return {
+                        title: document.getElementById('inst-title').value,
+                        amount: document.getElementById('inst-amount').value,
+                        status: 'Pending'
+                    };
+                }
+            });
+            if (newInst && newInst.title && newInst.amount) {
+                installments.push(newInst);
+                await api.put(`/vendor-orders/${order._id}`, { installments });
+                Swal.fire('Added!', '', 'success').then(() => manageVendorInstallments(row, refresh));
+            }
+        }
+    } catch (err) {
+        console.error(err);
+        Swal.fire('Error', 'Failed to load installments', 'error');
+    }
+};
+
 export const pageConfigs = [
 
   { 
@@ -2083,7 +2162,27 @@ export const pageConfigs = [
         { key: 'advancePaidInr', label: 'Advance Paid (₹)', type: 'number', formLabel: 'Advance Paid (INR)' },
         { key: 'balancePaidInr', label: 'Balance Paid (₹)', type: 'number', formLabel: 'Balance Paid (INR)' },
         { key: 'status', label: 'Status', type: 'select', options: ['Pending', 'Production Started', 'Completed', 'Goods Received'], formLabel: 'Status' }
-      ]
+      ],
+      actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', gap: '4px'}},
+        React.createElement('button', {
+            className: 'modern-action-btn',
+            onClick: () => handlers.onEdit(row),
+            title: 'Edit Order',
+            style: { backgroundColor: '#3b82f6', color: 'white' }
+        }, React.createElement(FaIcons.FaEdit)),
+        React.createElement('button', {
+            className: 'modern-action-btn',
+            onClick: () => manageVendorInstallments(row, handlers.refresh),
+            title: 'Manage Installments',
+            style: { backgroundColor: '#10b981', color: 'white' }
+        }, React.createElement(FaIcons.FaMoneyBillAlt)),
+        React.createElement('button', {
+            className: 'modern-action-btn',
+            onClick: () => handlers.onDelete(row),
+            title: 'Delete Order',
+            style: { backgroundColor: '#ef4444', color: 'white' }
+        }, React.createElement(FaIcons.FaTrash))
+      )
     }, 
     data: [] 
   },
