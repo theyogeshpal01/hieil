@@ -2233,7 +2233,6 @@ export const pageConfigs = [
         { key: 'orderId', label: 'Linked Order', render: (val, row) => row.poNumber ? row.poNumber.replace('PO-', '') : val, type: 'select', options: [], formLabel: 'Linked Order (ID)' }, 
         { key: 'agreedPriceInr', label: 'Agreed Price (₹)', type: 'number', formLabel: 'Agreed Price (INR)' },
         { key: 'advancePaidInr', label: 'Advance Paid (₹)', type: 'number', formLabel: 'Advance Paid (INR)' },
-        { key: 'balancePaidInr', label: 'Balance Paid (₹)', type: 'number', formLabel: 'Balance Paid (INR)' },
         { key: 'status', label: 'Status', type: 'select', options: ['Pending', 'Production Started', 'Completed', 'Goods Received'], formLabel: 'Status' },
         { key: 'expectedDeliveryDate', label: 'Expected Delivery Date', type: 'date', formLabel: 'Expected Delivery Date', hideInTable: true },
         
