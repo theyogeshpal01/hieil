@@ -1743,7 +1743,7 @@ export const pageConfigs = [
         { key: 'vendorName', label: 'Vendor Name' },
         { key: 'totalInvoices', label: 'Total Invoices' },
         { key: 'totalInvoiceAmount', label: 'Total Invoice Amount' },
-        { key: 'totalCommission', label: 'Total Commission' },
+        { key: 'totalCommission', label: 'Total Amount' },
         { key: 'totalPayout', label: 'Total Payout', render: (val) => React.createElement('strong', null, val) },
         { key: 'released', label: 'Released', render: (val) => React.createElement('span', {style: {color: '#22c55e'}}, val) },
         { key: 'pending', label: 'Pending', render: (val) => React.createElement('span', {style: {color: '#f59e0b'}}, val) }
@@ -1763,7 +1763,7 @@ export const pageConfigs = [
         { key: 'id', label: '#' },
         { key: 'invoiceId', label: 'Invoice ID' },
         { key: 'invoiceAmount', label: 'Invoice Amount' },
-        { key: 'commission', label: 'Commission' },
+        { key: 'commission', label: 'Amount' },
         { key: 'payoutAmount', label: 'Payout Amount', render: (val) => React.createElement('strong', null, val) },
         { key: 'status', label: 'Status', render: (val) => React.createElement('span', {style: {backgroundColor: '#facc15', color: '#854d0e', padding: '4px 10px', borderRadius: '4px', fontSize: '12px', border: '1px solid #ca8a04'}}, val) }
       ],
