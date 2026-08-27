@@ -2248,7 +2248,13 @@ export const pageConfigs = [
         
         
         
-      ],
+      
+        { key: 'paymentTerms', label: 'Payment Terms', type: 'textarea', formLabel: 'Payment Terms', hideInTable: true },
+        { key: 'packaging', label: 'Packaging', type: 'textarea', formLabel: 'Packaging', hideInTable: true },
+        { key: 'qualityAssurance', label: 'Quality Assurance', type: 'textarea', formLabel: 'Quality Assurance', hideInTable: true },
+        { key: 'leadTime', label: 'Lead Time', type: 'textarea', formLabel: 'Lead Time', hideInTable: true },
+        { key: 'cancellation', label: 'Cancellation Terms', type: 'textarea', formLabel: 'Cancellation Terms', hideInTable: true },
+        { key: 'specialInstructions', label: 'Special Instructions', type: 'textarea', formLabel: 'Special Instructions', hideInTable: true }],
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', gap: '4px'}},
         React.createElement('button', {
             className: 'modern-action-btn',
