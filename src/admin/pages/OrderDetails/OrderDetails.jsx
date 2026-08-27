@@ -447,15 +447,9 @@ const OrderDetails = () => {
                   display: 'flex', gap: '20px', marginBottom: '24px', backgroundColor: '#f0fdf4', padding: '16px', borderRadius: '8px', border: '1px solid #bbf7d0', flexWrap: 'wrap'
                 }}>
                   <div style={{ flex: 1, minWidth: '120px' }}>
-                    <span style={{ display: 'block', fontSize: '12px', color: '#166534', fontWeight: '600', marginBottom: '4px' }}>ORDER VALUE (PRODUCTS)</span>
+                    <span style={{ display: 'block', fontSize: '12px', color: '#166534', fontWeight: '600', marginBottom: '4px' }}>ORDER VALUE</span>
                     <strong style={{ fontSize: '18px', color: '#15803d' }}>
                       ${productsInput.reduce((sum, p) => sum + ((parseFloat(p.quantity) || 0) * (parseFloat(p.price) || 0)), 0).toFixed(2)}
-                    </strong>
-                  </div>
-                  <div style={{ flex: 1, minWidth: '120px' }}>
-                    <span style={{ display: 'block', fontSize: '12px', color: '#374151', fontWeight: '600', marginBottom: '4px' }}>TOTAL SCHEDULED</span>
-                    <strong style={{ fontSize: '18px', color: '#1f2937' }}>
-                      ${installmentsInput.reduce((sum, inst) => sum + (parseFloat(inst.amount) || 0), 0).toFixed(2)}
                     </strong>
                   </div>
                   <div style={{ flex: 1, minWidth: '120px' }}>
@@ -465,9 +459,12 @@ const OrderDetails = () => {
                     </strong>
                   </div>
                   <div style={{ flex: 1, minWidth: '120px' }}>
-                    <span style={{ display: 'block', fontSize: '12px', color: '#991b1b', fontWeight: '600', marginBottom: '4px' }}>PENDING</span>
+                    <span style={{ display: 'block', fontSize: '12px', color: '#991b1b', fontWeight: '600', marginBottom: '4px' }}>PENDING BALANCE</span>
                     <strong style={{ fontSize: '18px', color: '#b91c1c' }}>
-                      ${(installmentsInput.reduce((sum, inst) => sum + (parseFloat(inst.amount) || 0), 0) - installmentsInput.reduce((sum, inst) => inst.status === 'Paid' ? sum + (parseFloat(inst.amount) || 0) : sum, 0)).toFixed(2)}
+                      ${(
+                        productsInput.reduce((sum, p) => sum + ((parseFloat(p.quantity) || 0) * (parseFloat(p.price) || 0)), 0) - 
+                        installmentsInput.reduce((sum, inst) => inst.status === 'Paid' ? sum + (parseFloat(inst.amount) || 0) : sum, 0)
+                      ).toFixed(2)}
                     </strong>
                   </div>
                 </div>
