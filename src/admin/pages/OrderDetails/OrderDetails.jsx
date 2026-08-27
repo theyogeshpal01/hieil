@@ -128,16 +128,29 @@ const OrderDetails = () => {
   const markInstallmentPaid = async (index) => {
     const { value: formValues } = await Swal.fire({
       title: 'Mark as Paid',
-      html:
-        '<input id="swal-input1" class="swal2-input" placeholder="Payment Mode (e.g., Bank Transfer)">' +
-        '<input id="swal-input2" class="swal2-input" placeholder="Reference / UTR No.">',
+      html: `
+        <select id="swal-input1" class="swal2-select" style="width: 80%; display: flex; margin: 15px auto; padding: 0 15px; height: 50px; font-size: 16px;">
+            <option value="" disabled selected>Select Payment Mode</option>
+            <option value="Bank Transfer">Bank Transfer (NEFT/RTGS)</option>
+            <option value="UPI">UPI</option>
+            <option value="Cash">Cash</option>
+            <option value="Cheque">Cheque</option>
+            <option value="Other">Other</option>
+        </select>
+        <input id="swal-input2" class="swal2-input" placeholder="Reference / UTR No.">
+      `,
       focusConfirm: false,
       showCancelButton: true,
       preConfirm: () => {
+        const mode = document.getElementById('swal-input1').value;
+        if (!mode) {
+          Swal.showValidationMessage('Please select a payment mode');
+          return false;
+        }
         return [
-          document.getElementById('swal-input1').value,
+          mode,
           document.getElementById('swal-input2').value
-        ]
+        ];
       }
     });
 

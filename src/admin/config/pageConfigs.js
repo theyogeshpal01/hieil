@@ -100,8 +100,25 @@ const manageVendorInstallments = async (row, refresh) => {
                             btn.onclick = async () => {
                                 const { value: formValues } = await Swal.fire({
                                     title: 'Mark as Paid',
-                                    html: '<input id="pay-mode" class="swal2-input" placeholder="Payment Mode"><input id="pay-ref" class="swal2-input" placeholder="Reference No">',
-                                    preConfirm: () => [document.getElementById('pay-mode').value, document.getElementById('pay-ref').value]
+                                    html: `
+                                        <select id="pay-mode" class="swal2-select" style="width: 80%; display: flex; margin: 15px auto; padding: 0 15px; height: 50px; font-size: 16px;">
+                                            <option value="" disabled selected>Select Payment Mode</option>
+                                            <option value="Bank Transfer">Bank Transfer (NEFT/RTGS)</option>
+                                            <option value="UPI">UPI</option>
+                                            <option value="Cash">Cash</option>
+                                            <option value="Cheque">Cheque</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <input id="pay-ref" class="swal2-input" placeholder="Reference / UTR No.">
+                                    `,
+                                    preConfirm: () => {
+                                        const mode = document.getElementById('pay-mode').value;
+                                        if (!mode) {
+                                            Swal.showValidationMessage('Please select a payment mode');
+                                            return false;
+                                        }
+                                        return [mode, document.getElementById('pay-ref').value];
+                                    }
                                 });
                                 if (formValues) {
                                     installments[i].status = 'Paid';
