@@ -94,20 +94,34 @@ const PurchaseOrderPreview = () => {
 
   const deliveryDateStr = vendorOrder.expectedDeliveryDate ? new Date(vendorOrder.expectedDeliveryDate).toLocaleDateString('en-IN') : '[DD/MM/YYYY]';
 
-  // We will use clientOrder products if available, else fallback to a generic row
+  // Use vendor amount as unit price, fallback to agreedPriceInr / qty if not available
+  const vendorUnitPrice = vendor && vendor.amount ? parseFloat(vendor.amount) : 0;
+  
   let items = [];
+  let calculatedSubtotal = 0;
+
   if (clientOrder && clientOrder.products && clientOrder.products.length > 0) {
-    items = clientOrder.products.map((p, i) => ({
-      id: i + 1,
-      descTitle: p.productName || 'Product',
-      descSub: p.productId ? `ID: ${p.productId}` : '',
-      hsn: p.hsn || '',
-      qty: p.qty || p.quantity || 1,
-      unit: p.unit || 'Pcs',
-      price: (vendorOrder.agreedPriceInr / (clientOrder.products.length || 1)).toFixed(2), // Estimating unit price based on agreed total
-      amount: (vendorOrder.agreedPriceInr / (clientOrder.products.length || 1)).toFixed(2)
-    }));
+    items = clientOrder.products.map((p, i) => {
+      const qty = p.qty || p.quantity || 1;
+      const unitPrice = vendorUnitPrice > 0 ? vendorUnitPrice : (vendorOrder.agreedPriceInr / (clientOrder.products.length * qty));
+      const amount = unitPrice * qty;
+      calculatedSubtotal += amount;
+
+      return {
+        id: i + 1,
+        descTitle: p.productName || 'Product',
+        descSub: p.productId ? `ID: ${p.productId}` : '',
+        hsn: p.hsn || '',
+        qty: qty,
+        unit: p.unit || 'Pcs',
+        price: unitPrice.toFixed(2),
+        amount: amount.toFixed(2)
+      };
+    });
   } else {
+    const unitPrice = vendorUnitPrice > 0 ? vendorUnitPrice : vendorOrder.agreedPriceInr;
+    calculatedSubtotal = unitPrice;
+    
     items = [{
       id: 1,
       descTitle: 'Manufactured Goods as per Order',
@@ -115,10 +129,13 @@ const PurchaseOrderPreview = () => {
       hsn: '-',
       qty: 1,
       unit: 'Lot',
-      price: vendorOrder.agreedPriceInr,
-      amount: vendorOrder.agreedPriceInr
+      price: unitPrice.toFixed(2),
+      amount: unitPrice.toFixed(2)
     }];
   }
+
+  // Use calculated subtotal if vendor amount was used, otherwise use agreed price
+  const displayTotal = vendorUnitPrice > 0 ? calculatedSubtotal.toFixed(2) : vendorOrder.agreedPriceInr.toFixed(2);
 
   return (
     <div className="po-preview-page">
@@ -235,7 +252,7 @@ const PurchaseOrderPreview = () => {
             <tbody>
               <tr>
                 <td className="label">SUBTOTAL (EX-WORKS)</td>
-                <td className="value">₹{vendorOrder.agreedPriceInr}</td>
+                <td className="value">₹{displayTotal}</td>
               </tr>
               <tr>
                 <td className="label">Shipping & Insurance (EST.)</td>
@@ -243,7 +260,7 @@ const PurchaseOrderPreview = () => {
               </tr>
               <tr className="po-totals-grand">
                 <td className="label">TOTAL ORDER VALUE ({vendorOrder.currency || 'INR'})</td>
-                <td className="value">₹{vendorOrder.agreedPriceInr}</td>
+                <td className="value">₹{displayTotal}</td>
               </tr>
             </tbody>
           </table>
