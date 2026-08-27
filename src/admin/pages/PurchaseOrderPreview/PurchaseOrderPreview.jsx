@@ -162,9 +162,9 @@ const PurchaseOrderPreview = () => {
             </tr>
             <tr>
               <td className="label">Incoterms</td>
-              <td className="value">FOB Jaipur, India</td>
+              <td className="value">{vendorOrder.incoterm || 'FOB Jaipur, India'}</td>
               <td className="label">Currency</td>
-              <td className="value">INR</td>
+              <td className="value">{vendorOrder.currency || 'INR'}</td>
             </tr>
           </tbody>
         </table>
@@ -208,7 +208,7 @@ const PurchaseOrderPreview = () => {
                 <th>UOM</th>
                 <th>QTY</th>
                 <th className="right">UNIT PRICE</th>
-                <th className="right" style={{backgroundColor: '#d4af37'}}>AMOUNT (INR)</th>
+                <th className="right" style={{backgroundColor: '#d4af37'}}>AMOUNT ({vendorOrder.currency || 'INR'})</th>
                 <th>REQUIRED BY</th>
               </tr>
             </thead>
@@ -242,7 +242,7 @@ const PurchaseOrderPreview = () => {
                 <td className="value">₹0.00</td>
               </tr>
               <tr className="po-totals-grand">
-                <td className="label">TOTAL ORDER VALUE (INR)</td>
+                <td className="label">TOTAL ORDER VALUE ({vendorOrder.currency || 'INR'})</td>
                 <td className="value">₹{vendorOrder.agreedPriceInr}</td>
               </tr>
             </tbody>
@@ -256,31 +256,31 @@ const PurchaseOrderPreview = () => {
           <tbody>
             <tr>
               <td className="info-label">Payment Terms</td>
-              <td>As agreed per installments / advance schedules.</td>
+              <td>{vendorOrder.paymentTerms || 'As agreed per installments / advance schedules.'}</td>
             </tr>
             <tr>
               <td className="info-label">Payment Method</td>
-              <td>Bank Transfer / UPI</td>
+              <td>{vendorOrder.paymentMethod || 'Bank Transfer / UPI'}</td>
             </tr>
             <tr>
               <td className="info-label">Delivery Port</td>
-              <td>Jaipur / Delhi</td>
+              <td>{vendorOrder.deliveryPort || 'Jaipur / Delhi'}</td>
             </tr>
             <tr>
               <td className="info-label">Packaging</td>
-              <td>Export-grade double-wall corrugated with custom foam inserts for fragile items.</td>
+              <td>{vendorOrder.packaging || 'Export-grade double-wall corrugated with custom foam inserts for fragile items.'}</td>
             </tr>
             <tr>
               <td className="info-label">Quality Assurance</td>
-              <td>100% inspection before dispatch, photographic proof provided.</td>
+              <td>{vendorOrder.qualityAssurance || '100% inspection before dispatch, photographic proof provided.'}</td>
             </tr>
             <tr>
               <td className="info-label">Lead Time</td>
-              <td>As specified per product. Customizations may require additional time.</td>
+              <td>{vendorOrder.leadTime || 'As specified per product. Customizations may require additional time.'}</td>
             </tr>
             <tr>
               <td className="info-label">Cancellation</td>
-              <td>Any cancellation or quantity change requests require notice.</td>
+              <td>{vendorOrder.cancellation || 'Any cancellation or quantity change requests require notice.'}</td>
             </tr>
           </tbody>
         </table>
@@ -295,15 +295,15 @@ const PurchaseOrderPreview = () => {
             </tr>
             <tr>
               <td className="info-label">Shipping Mode</td>
-              <td>Road Transport / Local Logistics</td>
+              <td>{vendorOrder.shippingMode || 'Road Transport / Local Logistics'}</td>
             </tr>
             <tr>
               <td className="info-label">Preferred Carrier</td>
-              <td>As agreed</td>
+              <td>{vendorOrder.preferredCarrier || 'As agreed'}</td>
             </tr>
             <tr>
               <td className="info-label">Special Instructions</td>
-              <td>{vendorOrder.notes || 'Ensure safe handling and proper packaging for transit.'}</td>
+              <td>{vendorOrder.specialInstructions || vendorOrder.notes || 'Ensure safe handling and proper packaging for transit.'}</td>
             </tr>
           </tbody>
         </table>

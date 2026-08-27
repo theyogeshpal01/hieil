@@ -2196,7 +2196,20 @@ export const pageConfigs = [
         { key: 'agreedPriceInr', label: 'Agreed Price (₹)', type: 'number', formLabel: 'Agreed Price (INR)' },
         { key: 'advancePaidInr', label: 'Advance Paid (₹)', type: 'number', formLabel: 'Advance Paid (INR)' },
         { key: 'balancePaidInr', label: 'Balance Paid (₹)', type: 'number', formLabel: 'Balance Paid (INR)' },
-        { key: 'status', label: 'Status', type: 'select', options: ['Pending', 'Production Started', 'Completed', 'Goods Received'], formLabel: 'Status' }
+        { key: 'status', label: 'Status', type: 'select', options: ['Pending', 'Production Started', 'Completed', 'Goods Received'], formLabel: 'Status' },
+        { key: 'expectedDeliveryDate', label: 'Expected Delivery Date', type: 'date', formLabel: 'Expected Delivery Date', hideInTable: true },
+        { key: 'incoterm', label: 'Incoterm', formLabel: 'Incoterm (e.g. FOB Jaipur)', hideInTable: true },
+        { key: 'currency', label: 'Currency', formLabel: 'Currency', hideInTable: true },
+        { key: 'paymentTerms', label: 'Payment Terms', type: 'textarea', formLabel: 'Payment Terms', hideInTable: true },
+        { key: 'paymentMethod', label: 'Payment Method', formLabel: 'Payment Method', hideInTable: true },
+        { key: 'deliveryPort', label: 'Delivery Port', formLabel: 'Delivery Port', hideInTable: true },
+        { key: 'packaging', label: 'Packaging', type: 'textarea', formLabel: 'Packaging', hideInTable: true },
+        { key: 'qualityAssurance', label: 'Quality Assurance', type: 'textarea', formLabel: 'Quality Assurance', hideInTable: true },
+        { key: 'leadTime', label: 'Lead Time', type: 'textarea', formLabel: 'Lead Time', hideInTable: true },
+        { key: 'cancellation', label: 'Cancellation Terms', type: 'textarea', formLabel: 'Cancellation Terms', hideInTable: true },
+        { key: 'shippingMode', label: 'Shipping Mode', formLabel: 'Shipping Mode', hideInTable: true },
+        { key: 'preferredCarrier', label: 'Preferred Carrier', formLabel: 'Preferred Carrier', hideInTable: true },
+        { key: 'specialInstructions', label: 'Special Instructions', type: 'textarea', formLabel: 'Special Instructions', hideInTable: true }
       ],
       actions: (row, handlers) => React.createElement('div', {style: {display: 'flex', gap: '4px'}},
         React.createElement('button', {
