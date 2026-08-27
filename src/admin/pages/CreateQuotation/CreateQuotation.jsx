@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { FaFileAlt, FaCheck } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { FaFileAlt, FaCheck, FaArrowLeft } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import api from '../../config/api';
 
 const CreateQuotation = () => {
   const { id: inquiryId } = useParams();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    customerName: 'Ankit',
-    customerEmail: '', // Added email field
-    mobile: '', // Added mobile
-    product: 'Blue Pottery Tortoise Goodluck Gift-Paper Weight (Set of 2)',
-    quantity: '500',
-    country: 'USA',
-    budget: '', // Added budget
+    customerName: '',
+    customerEmail: '',
+    mobile: '',
+    product: '',
+    quantity: '',
+    country: '',
+    budget: '',
     rate: '',
     gstPercent: '18',
     subtotal: '',
@@ -22,6 +23,42 @@ const CreateQuotation = () => {
     validTill: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchInquiry = async () => {
+      try {
+        if (!inquiryId) {
+            setIsLoading(false);
+            return;
+        }
+        // Could be product-inquiry (inquiries) or retailer-inquiry (retailer/inquiries)
+        // Check window.location to determine if it's retailer
+        const isRetailer = window.location.pathname.includes('retailer-system');
+        const endpoint = isRetailer ? `/retailer/inquiries/${inquiryId}` : `/inquiries/${inquiryId}`;
+        
+        const res = await api.get(endpoint);
+        const data = res.data;
+        if (data) {
+          setFormData(prev => ({
+            ...prev,
+            customerName: data.customer || prev.customerName,
+            customerEmail: data.email || prev.customerEmail,
+            mobile: data.phone || data.whatsapp || prev.mobile,
+            product: data.product || prev.product,
+            quantity: data.qty ? data.qty.replace(/[^0-9]/g, '') : prev.quantity,
+            country: data.location || prev.country,
+            budget: data.budget || prev.budget,
+          }));
+        }
+      } catch (error) {
+        console.error("Error fetching inquiry:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchInquiry();
+  }, [inquiryId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,6 +108,14 @@ const CreateQuotation = () => {
       setIsSubmitting(false);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1e3a8a]"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-5 fade-in">
