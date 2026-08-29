@@ -846,7 +846,7 @@ export const pageConfigs = [
         { key: 'invoiceNo', label: 'Invoice No' },
         { key: 'orderNo', label: 'Order No' },
         { key: 'total', label: 'Total' },
-        { key: 'vendorId', label: 'Assigned Vendor', render: (val) => val ? React.createElement('span', {style: {color: '#16a34a', fontWeight: 'bold'}}, 'Assigned') : React.createElement('span', {style: {color: '#9ca3af'}}, 'None') },
+        { key: 'vendorId', label: 'Assigned Vendor', render: (val) => val ? React.createElement('span', {style: {color: '#16a34a', fontWeight: 'bold'}}, val.vendorName || val) : React.createElement('span', {style: {color: '#9ca3af'}}, 'None') },
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
               let bg = '#fef08a';
               let color = '#854d0e';
@@ -1993,7 +1993,7 @@ export const pageConfigs = [
         { key: 'customer', label: 'Customer' },
         { key: 'country', label: 'Country' },
         { key: 'total', label: 'Total' },
-        { key: 'vendorId', label: 'Assigned Vendor', render: (val) => val ? React.createElement('span', {style: {color: '#16a34a', fontWeight: 'bold'}}, 'Assigned') : React.createElement('span', {style: {color: '#9ca3af'}}, 'None') },
+        { key: 'vendorId', label: 'Assigned Vendor', render: (val) => val ? React.createElement('span', {style: {color: '#16a34a', fontWeight: 'bold'}}, val.vendorName || val) : React.createElement('span', {style: {color: '#9ca3af'}}, 'None') },
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
               let bg = '#fef08a';
               let color = '#854d0e';
