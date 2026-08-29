@@ -1,6 +1,36 @@
 import React from 'react';
 import { FaUsers, FaList } from 'react-icons/fa';
 
+
+const VendorNameDisplay = ({ vendorId, fallbackStyle = {} }) => {
+  const [name, setName] = React.useState(null);
+
+  React.useEffect(() => {
+    if (!vendorId) return;
+    if (typeof vendorId === 'object' && vendorId.vendorName) {
+      setName(vendorId.vendorName);
+      return;
+    }
+    const fetchVendor = async () => {
+      try {
+        const { default: api } = await import('../../config/api');
+        const res = await api.get(`/vendors/${vendorId}`);
+        if (res.data && res.data.vendorName) {
+          setName(res.data.vendorName);
+        } else {
+          setName(vendorId);
+        }
+      } catch(e) {
+        setName(vendorId);
+      }
+    };
+    fetchVendor();
+  }, [vendorId]);
+
+  if (!vendorId) return React.createElement('span', {style: {color: '#9ca3af'}}, 'None');
+  return React.createElement('span', { style: fallbackStyle }, name || (typeof vendorId === 'object' ? vendorId._id : vendorId));
+};
+
 const formatImageUrl = (url) => {
   if (!url) return '';
   if (url.startsWith('http')) return url;
@@ -846,7 +876,7 @@ export const pageConfigs = [
         { key: 'invoiceNo', label: 'Invoice No' },
         { key: 'orderNo', label: 'Order No' },
         { key: 'total', label: 'Total' },
-        { key: 'vendorId', label: 'Assigned Vendor', render: (val) => val ? React.createElement('span', {style: {color: '#16a34a', fontWeight: 'bold'}}, val.vendorName || val) : React.createElement('span', {style: {color: '#9ca3af'}}, 'None') },
+        { key: 'vendorId', label: 'Assigned Vendor', render: (val) => React.createElement(VendorNameDisplay, { vendorId: val, fallbackStyle: { color: '#16a34a', fontWeight: 'bold' } }) },
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
               let bg = '#fef08a';
               let color = '#854d0e';
@@ -1830,7 +1860,7 @@ export const pageConfigs = [
         title: 'PAYOUT LIST',
         headers: [
           { key: 'id', label: '#' },
-          { key: 'vendorId', label: 'Vendor', render: (val) => val && val.vendorName ? val.vendorName : (val || '-') },
+          { key: 'vendorId', label: 'Vendor', render: (val) => React.createElement(VendorNameDisplay, { vendorId: val }) },
           { key: 'createdAt', label: 'Date', render: (val) => val ? new Date(val).toLocaleDateString('en-IN') : '-' },
         { key: 'invoiceId', label: 'Invoice ID' },
         { key: 'invoiceAmount', label: 'Invoice Amount' },
@@ -1993,7 +2023,7 @@ export const pageConfigs = [
         { key: 'customer', label: 'Customer' },
         { key: 'country', label: 'Country' },
         { key: 'total', label: 'Total' },
-        { key: 'vendorId', label: 'Assigned Vendor', render: (val) => val ? React.createElement('span', {style: {color: '#16a34a', fontWeight: 'bold'}}, val.vendorName || val) : React.createElement('span', {style: {color: '#9ca3af'}}, 'None') },
+        { key: 'vendorId', label: 'Assigned Vendor', render: (val) => React.createElement(VendorNameDisplay, { vendorId: val, fallbackStyle: { color: '#16a34a', fontWeight: 'bold' } }) },
         { key: 'status', label: 'Status', render: (val, row, handlers) => {
               let bg = '#fef08a';
               let color = '#854d0e';
@@ -2250,7 +2280,7 @@ export const pageConfigs = [
       headers: [
         { key: 'id', label: 'ID' },
         { key: 'poNumber', label: 'PO Number', formLabel: 'PO Number' },
-        { key: 'vendorId', label: 'Vendor', render: (val) => val && val.vendorName ? val.vendorName : (val || '-'), type: 'select', options: [], formLabel: 'Vendor (ID)' }, // Note: Would ideally fetch from vendors API
+        { key: 'vendorId', label: 'Vendor', render: (val) => React.createElement(VendorNameDisplay, { vendorId: val }), type: 'select', options: [], formLabel: 'Vendor (ID)' }, // Note: Would ideally fetch from vendors API
         { key: 'orderId', label: 'Linked Order', render: (val, row) => row.poNumber ? row.poNumber.replace('PO-', '') : val, type: 'select', options: [], formLabel: 'Linked Order (ID)' }, 
         { key: 'agreedPriceInr', label: 'Agreed Price (₹)', type: 'number', formLabel: 'Agreed Price (INR)' },
         { key: 'advancePaidInr', label: 'Advance Paid (₹)', type: 'number', formLabel: 'Advance Paid (INR)' },
