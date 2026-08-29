@@ -23,6 +23,18 @@ const OrderDetails = () => {
   });
   
   const [productsInput, setProductsInput] = useState([]);
+  const [availableProducts, setAvailableProducts] = useState([]);
+  
+  useEffect(() => {
+    const fetchProds = async () => {
+      try {
+        const res = await api.get('/products');
+        if (res.data && res.data.products) setAvailableProducts(res.data.products);
+        else if (Array.isArray(res.data)) setAvailableProducts(res.data);
+      } catch (err) {}
+    };
+    fetchProds();
+  }, []);
   const [isSavingProducts, setIsSavingProducts] = useState(false);
 
   const [installmentsInput, setInstallmentsInput] = useState([]);
@@ -400,12 +412,28 @@ const OrderDetails = () => {
                         <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Product Name</label>
                           <input 
                             type="text" 
+                            list={`prod-list-${index}`}
                             value={product.name} 
-                            onChange={(e) => handleProductChange(index, 'name', e.target.value)}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              const selectedProd = availableProducts.find(p => p.productName === val);
+                              const updated = [...productsInput];
+                              updated[index].name = val;
+                              if (selectedProd) {
+                                updated[index].itemCode = selectedProd.productCode || '';
+                                updated[index].price = selectedProd.offerPrice || selectedProd.price || '';
+                              }
+                              setProductsInput(updated);
+                            }}
                             className="address-textarea"
                             style={{minHeight: '40px', marginBottom: '0', padding: '8px 12px'}}
                             placeholder="Product Name"
                           />
+                          <datalist id={`prod-list-${index}`}>
+                            {availableProducts.map(ap => (
+                              <option key={ap._id} value={ap.productName} />
+                            ))}
+                          </datalist>
                         </div>
                         <div style={{flex: 1}}>
                           <label className="info-label" style={{display: 'block', marginBottom: '6px'}}>Item Code</label>
