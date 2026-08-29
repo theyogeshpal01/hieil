@@ -69,7 +69,16 @@ const manageVendorInstallments = async (row, refresh) => {
         const order = resp.data;
         let installments = order.installments || [];
 
-        let html = '<table style="width:100%; text-align:left; font-size:14px; margin-bottom:10px; border-collapse:collapse;">';
+        const agreedPrice = parseFloat(order.agreedPriceInr) || 0;
+        const totalPaid = installments.reduce((sum, inst) => inst.status === 'Paid' ? sum + (parseFloat(inst.amount) || 0) : sum, 0);
+        const isFullPaid = totalPaid >= agreedPrice;
+
+        let html = '';
+        if (isFullPaid && agreedPrice > 0) {
+            html += '<div style="background-color: #dcfce7; color: #166534; padding: 12px; border-radius: 6px; font-weight: bold; margin-bottom: 15px; border: 1px solid #bbf7d0; font-size: 16px;">✓ FULL PAID (' + agreedPrice + ')</div>';
+        }
+
+        html += '<table style="width:100%; text-align:left; font-size:14px; margin-bottom:10px; border-collapse:collapse;">';
         html += '<tr style="border-bottom:1px solid #ccc"><th>Title</th><th>Amount</th><th>Status</th></tr>';
         if (installments.length === 0) {
             html += '<tr><td colspan="3" style="text-align:center; padding:10px;">No installments found.</td></tr>';
@@ -93,6 +102,16 @@ const manageVendorInstallments = async (row, refresh) => {
             confirmButtonText: 'Add Installment',
             cancelButtonText: 'Close',
             didOpen: () => {
+                if (isFullPaid && agreedPrice > 0) {
+                    const btn = Swal.getConfirmButton();
+                    if (btn) {
+                        btn.disabled = true;
+                        btn.style.backgroundColor = '#ccc';
+                        btn.style.color = '#666';
+                        btn.style.cursor = 'not-allowed';
+                        btn.title = 'Order is fully paid';
+                    }
+                }
                 installments.forEach((inst, i) => {
                     if (inst.status !== 'Paid') {
                         const btn = document.getElementById(`pay-btn-${i}`);
