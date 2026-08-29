@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaEdit, FaTrash, FaPlus, FaCheck, FaTimes, FaList, FaUsers } from 'react-icons/fa';
 import './DataTable.css';
+import UnifiedStatusBadge from './UnifiedStatusBadge';
 
 const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulkDelete }) => {
   const hasActionColumn = !(columns.hideDefaultActions && !columns.actions);
@@ -120,8 +121,7 @@ const DataTable = ({ columns, data, onEdit, onDelete, onAdd, onUpdateRow, onBulk
                         } else if (col.key.toLowerCase().includes('image') || col.key.toLowerCase().includes('logo')) {
                           displayValue = <img src={formatImageUrl(cellValue)} alt="img" style={{width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px'}} />;
                         } else if (col.key === 'status') {
-                          const statusClass = `status-${String(cellValue).toLowerCase()}`;
-                          displayValue = <span className={`status-badge ${statusClass}`}>{cellValue}</span>;
+    displayValue = <UnifiedStatusBadge value={cellValue} options={col.options || []} readonly={!onUpdateRow || col.type !== 'select'} onChange={(v) => onUpdateRow(row.id, 'status', v)} />;
                         } else if (typeof cellValue === 'string' && (col.type === 'rich-text' || col.type === 'textarea' || col.key === 'description')) {
                           displayValue = cellValue.replace(/<[^>]*>?/gm, '');
                         }
