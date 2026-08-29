@@ -136,7 +136,7 @@ const InvoicePreview = () => {
   return (
     <div className="invoice-preview-page">
       <div className="invoice-preview-actions no-print">
-        <button className="btn-back" onClick={() => navigate(-1)}>
+        <button className="btn-back" onClick={() => { if (window.history.length > 2) navigate(-1); else window.close(); }}>
           <FaArrowLeft /> Back
         </button>
         <button className="btn-print" onClick={handlePrint}>

@@ -102,7 +102,7 @@ const EWayBillPreview = () => {
   if (!logistics && !order) {
     return (
       <div className="error-state">
-        <button onClick={() => navigate(-1)} className="back-btn"><FaArrowLeft /> Go Back</button>
+        <button onClick={() => { if (window.history.length > 2) navigate(-1); else window.close(); }} className="back-btn"><FaArrowLeft /> Go Back</button>
         <p>E-Way Bill / Order data not found.</p>
       </div>
     );
@@ -145,7 +145,7 @@ const EWayBillPreview = () => {
   return (
     <div className="ewaybill-preview-wrapper">
       <div className="preview-actions hide-on-print">
-        <button className="back-btn" onClick={() => navigate(-1)}>
+        <button className="back-btn" onClick={() => { if (window.history.length > 2) navigate(-1); else window.close(); }}>
           <FaArrowLeft /> Back
         </button>
         <button className="print-btn" onClick={printDocument}>

@@ -210,7 +210,7 @@ const OrderDetails = () => {
     <div className="order-details-container">
       <div className="order-details-header">
         <div className="order-details-title" style={{fontSize: '24px', fontWeight: 'bold'}}>Order Details: {order.orderNo}</div>
-        <button className="back-button" onClick={() => navigate(-1)}>
+        <button className="back-button" onClick={() => { if (window.history.length > 2) navigate(-1); else window.close(); }}>
           &larr; Back to Orders
         </button>
       </div>
