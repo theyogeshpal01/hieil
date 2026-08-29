@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaPrint, FaArrowLeft } from 'react-icons/fa';
+import html2pdf from 'html2pdf.js';
 import api from '../../config/api';
 import '../PurchaseOrderPreview/PurchaseOrderPreview.css'; 
 
@@ -44,13 +45,25 @@ const PayoutPreview = () => {
 
   const dateStr = new Date(payoutData.createdAt).toLocaleDateString('en-GB');
 
+  const handlePrint = () => {
+    const element = document.querySelector('.po-paper');
+    const opt = {
+      margin:       [0.2, 0.2, 0.2, 0.2],
+      filename:     `Payout-${id}.pdf`,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+  };
+
   return (
     <div className="po-preview-page">
       <div className="po-preview-actions no-print">
         <button className="btn-back" onClick={() => navigate(-1)}>
           <FaArrowLeft /> Back
         </button>
-        <button className="btn-print" onClick={() => window.print()}>
+        <button className="btn-print" onClick={handlePrint}>
           <FaPrint /> Print Receipt
         </button>
       </div>

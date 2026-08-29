@@ -1,1 +1,0 @@
-(function(){System.register([`./createLucideIcon-legacy-CFbYdS-P.js`],function(e,t){var n,r;return{setters:[function(e){n=e.t}],execute:function(){r=[[`path`,{d:`M4 5h16`,key:`1tepv9`}],[`path`,{d:`M4 12h16`,key:`1lakjw`}],[`path`,{d:`M4 19h16`,key:`1djgab`}]],e(`t`,n(`menu`,r))}}})})();

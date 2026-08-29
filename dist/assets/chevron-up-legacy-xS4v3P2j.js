@@ -1,0 +1,1 @@
+(function(){System.register([`./createLucideIcon-legacy-Bh_gXqLW.js`],function(e,t){var n,r;return{setters:[function(e){n=e.t}],execute:function(){r=[[`path`,{d:`m18 15-6-6-6 6`,key:`153udz`}]],e(`t`,n(`chevron-up`,r))}}})})();

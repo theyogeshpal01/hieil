@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FaPrint, FaArrowLeft } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import api from '../../../config/api';
+import html2pdf from 'html2pdf.js';
 // We use InvoicePreview.css to match the standard bill design
 import '../InvoicePreview/InvoicePreview.css';
 
@@ -67,7 +68,15 @@ const QuotationPreview = () => {
   }, [id]);
 
   const handlePrint = () => {
-    window.print();
+    const element = document.querySelector('.invoice-paper');
+    const opt = {
+      margin:       [0.2, 0.2, 0.2, 0.2],
+      filename:     `Quotation-${quotation?.quoteNo || id}.pdf`,
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2, useCORS: true },
+      jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
   };
 
   if (loading) {
