@@ -87,9 +87,34 @@ const QuotationPreview = () => {
     return <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>Quotation data is unavailable.</div>;
   }
 
+  
   const dateStr = new Date(quotation.createdAt || Date.now()).toLocaleString('en-IN', {
     day: '2-digit', month: '2-digit', year: 'numeric'
   });
+
+  let parsedAddress = quotation.address;
+  let buyerName = quotation.customer || quotation.customerName || '-';
+  let buyerEmail = quotation.customerEmail || '-';
+  let buyerPhone = quotation.mobile || quotation.phone || '-';
+  let buyerTax = '';
+  let buyerCountry = quotation.country || '';
+
+  if (typeof parsedAddress === 'string') {
+    try {
+      const parsed = JSON.parse(parsedAddress);
+      if (parsed.company) buyerName = parsed.company;
+      if (parsed.email && buyerEmail === '-') buyerEmail = parsed.email;
+      if (parsed.phone && buyerPhone === '-') buyerPhone = parsed.phone;
+      if (parsed.tax) buyerTax = parsed.tax;
+      if (parsed.country && !buyerCountry) buyerCountry = parsed.country;
+      
+      const addrLines = [parsed.line1, parsed.city, parsed.state, parsed.country].filter(Boolean);
+      parsedAddress = addrLines.join(', ');
+    } catch(e) {
+      // not JSON
+    }
+  }
+
 
   return (
     <div className="invoice-preview-page">
@@ -111,7 +136,7 @@ const QuotationPreview = () => {
             <p>{companyDetails.website} | {companyDetails.address}</p>
           </div>
           <div className="inv-title-box">
-            <h2>QUOTATION</h2>
+            <h2 style={{ fontSize: '30px', letterSpacing: '1px' }}>QUOTATION</h2>
             <p>Official Export Quotation</p>
           </div>
         </div>
@@ -169,13 +194,14 @@ const QuotationPreview = () => {
           </div>
           <div className="inv-address-box">
             <div className="inv-address-header">PROSPECTIVE BUYER</div>
-            <div className="inv-address-content">
-              <h4>{quotation.customer || quotation.customerName || '-'}</h4>
-              <p>{quotation.address || '-'}</p>
-              <p>{quotation.country || '-'}</p>
-              <p>Email: {quotation.customerEmail || '-'}</p>
-              <p>Phone: {quotation.mobile || quotation.phone || '-'}</p>
-            </div>
+              <div className="inv-address-content">
+                <h4>{buyerName}</h4>
+                <p>{parsedAddress || '-'}</p>
+                {buyerCountry && <p>{buyerCountry}</p>}
+                <p>Email: {buyerEmail}</p>
+                <p>Phone: {buyerPhone}</p>
+                {buyerTax && <p>Tax ID: {buyerTax}</p>}
+              </div>
           </div>
         </div>
 
