@@ -584,14 +584,7 @@ const OrderDetails = () => {
                               {inst.status || 'Pending'}
                             </span>
                           </div>
-                          <button 
-                            onClick={() => handleRemoveInstallment(index)}
-                            style={{backgroundColor: '#fee2e2', color: '#ef4444', border: 'none', padding: '10px', borderRadius: '6px', cursor: 'pointer', marginTop: '22px'}}
-                            title="Remove Installment"
-                            disabled={inst.status === 'Paid'}
-                          >
-                            <FaTrash />
-                          </button>
+                          
                         </div>
 
                         {inst.status === 'Paid' && (
