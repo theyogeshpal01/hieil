@@ -2239,9 +2239,13 @@ export const pageConfigs = [
           label: 'Pending Amount (₹)', 
           render: (val, row) => {
             const agreed = parseFloat(row.agreedPriceInr) || 0;
-            const advance = parseFloat(row.advancePaidInr) || 0;
-            const balance = parseFloat(row.balancePaidInr) || 0;
-            return (agreed - (advance + balance)).toFixed(2);
+            let totalPaid = 0;
+            if (row.installments && Array.isArray(row.installments)) {
+              totalPaid = row.installments.reduce((sum, inst) => inst.status === 'Paid' ? sum + (parseFloat(inst.amount) || 0) : sum, 0);
+            } else {
+              totalPaid = (parseFloat(row.advancePaidInr) || 0) + (parseFloat(row.balancePaidInr) || 0);
+            }
+            return (agreed - totalPaid).toFixed(2);
           },
           hideInForm: true 
         },
