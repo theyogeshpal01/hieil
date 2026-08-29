@@ -941,7 +941,7 @@ export const pageConfigs = [
       ],
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', gap: '5px', flexWrap: 'wrap'}},
-        React.createElement('button', {
+        !row.vendorId && React.createElement('button', {
             className: 'modern-action-btn btn-neutral',
             onClick: async () => {
               try {
@@ -1029,18 +1029,7 @@ export const pageConfigs = [
                 }
               });
             }
-        }, React.createElement(FaTruck, null), ' Shipping'),
-        React.createElement('button', {
-            className: 'modern-action-btn btn-warning',
-            onClick: async () => {
-              try {
-                await api.put(`/invoices/${row._id}`, { status: 'Sent to Retailer' });
-                Swal.fire('Sent!', 'Invoice status updated.', 'success').then(() => window.location.reload());
-              } catch(e) {
-                Swal.fire('Error', 'Failed to send.', 'error');
-              }
-            }
-        }, React.createElement(FaStore, null), ' Send to Retailer')
+        }, React.createElement(FaTruck, null), ' Shipping')
       )
     }, 
     data: []
@@ -2066,7 +2055,7 @@ export const pageConfigs = [
       ],
       hideDefaultActions: true,
       actions: (row) => React.createElement('div', {style: {display: 'flex', flexWrap: 'wrap', gap: '5px', maxWidth: '160px'}}, 
-        React.createElement('button', {
+        !row.vendorId && React.createElement('button', {
             className: 'modern-action-btn btn-neutral',
             onClick: async () => {
               try {
