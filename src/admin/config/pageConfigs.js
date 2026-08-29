@@ -1824,12 +1824,14 @@ export const pageConfigs = [
   },
   { 
     path: 'vendor-management/payout', 
-    title: 'Vendor Payout', 
-    subtitle: 'Vendor Payout',
-    columns: {
-      title: 'PAYOUT LIST',
-      headers: [
-        { key: 'id', label: '#' },
+      title: 'Vendor Payout', 
+      subtitle: 'Vendor Payout',
+      columns: {
+        title: 'PAYOUT LIST',
+        headers: [
+          { key: 'id', label: '#' },
+          { key: 'vendorId', label: 'Vendor', render: (val) => val && val.vendorName ? val.vendorName : (val || '-') },
+          { key: 'createdAt', label: 'Date', render: (val) => val ? new Date(val).toLocaleDateString('en-IN') : '-' },
         { key: 'invoiceId', label: 'Invoice ID' },
         { key: 'invoiceAmount', label: 'Invoice Amount' },
         { key: 'commission', label: 'Amount' },
@@ -2248,7 +2250,7 @@ export const pageConfigs = [
       headers: [
         { key: 'id', label: 'ID' },
         { key: 'poNumber', label: 'PO Number', formLabel: 'PO Number' },
-        { key: 'vendorId', label: 'Vendor', type: 'select', options: [], formLabel: 'Vendor (ID)' }, // Note: Would ideally fetch from vendors API
+        { key: 'vendorId', label: 'Vendor', render: (val) => val && val.vendorName ? val.vendorName : (val || '-'), type: 'select', options: [], formLabel: 'Vendor (ID)' }, // Note: Would ideally fetch from vendors API
         { key: 'orderId', label: 'Linked Order', render: (val, row) => row.poNumber ? row.poNumber.replace('PO-', '') : val, type: 'select', options: [], formLabel: 'Linked Order (ID)' }, 
         { key: 'agreedPriceInr', label: 'Agreed Price (₹)', type: 'number', formLabel: 'Agreed Price (INR)' },
         { key: 'advancePaidInr', label: 'Advance Paid (₹)', type: 'number', formLabel: 'Advance Paid (INR)' },
