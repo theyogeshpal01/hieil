@@ -229,8 +229,15 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
   };
 
   const handleEdit = (row) => {
-    setFormData(row);
-    setEditingId(row.id);
+    const formattedRow = { ...row };
+    // Flatten populated objects to their _id string so <select> fields bind correctly
+    for (const key in formattedRow) {
+      if (formattedRow[key] && typeof formattedRow[key] === 'object' && formattedRow[key]._id) {
+        formattedRow[key] = formattedRow[key]._id;
+      }
+    }
+    setFormData(formattedRow);
+    setEditingId(row.id || row._id);
     setIsModalOpen(true);
   };
 
