@@ -203,12 +203,16 @@ const manageVendorInstallments = async (row, refresh) => {
                                           };
                                           
                                           if (newIsFullPaid && agreedPrice > 0) {
-                                              payload.status = 'Completed';
+                                              payload.status = 'Goods Received';
+                                          } else if (newAdvance > 0 && order.status === 'Pending') {
+                                              // First advance payment received → auto start production
+                                              payload.status = 'Production Started';
                                           }
                                           await api.put(`/vendor-orders/${order._id}`, payload);
                                           
                                           order.advancePaidInr = newAdvance;
                                           order.balancePaidInr = newBalance;
+                                          order.status = payload.status || order.status;
                                         
                                         // Log to vendor payouts history
                                         await api.post('/vendor-payouts', {
@@ -273,12 +277,15 @@ const manageVendorInstallments = async (row, refresh) => {
                                           };
                                           
                                           if (newIsFullPaid && agreedPrice > 0) {
-                                              payload.status = 'Completed';
+                                              payload.status = 'Goods Received';
+                                          } else if (newAdvance > 0 && order.status === 'Pending') {
+                                              payload.status = 'Production Started';
                                           }
                                           await api.put(`/vendor-orders/${order._id}`, payload);
                                           
                                           order.advancePaidInr = newAdvance;
                                           order.balancePaidInr = newBalance;
+                                          order.status = payload.status || order.status;
                 Swal.fire('Added!', '', 'success').then(() => manageVendorInstallments(row, refresh));
             }
         }
@@ -2467,3 +2474,4 @@ export const pageConfigs = [
     data: [] 
   }
 ];
+
