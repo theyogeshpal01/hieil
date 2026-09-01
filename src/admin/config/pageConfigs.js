@@ -176,13 +176,39 @@ const manageVendorInstallments = async (row, refresh) => {
                                     installments[i].paymentDate = new Date();
                                     
                                     try {
-                                        const newTotalPaid = installments.reduce((sum, inst) => inst.status === 'Paid' ? sum + (parseFloat(inst.amount) || 0) : sum, 0);
+                                        const paidInsts = installments.filter(inst => inst.status === 'Paid');
+                                          let newAdvance = parseFloat(order.advancePaidInr) || 0;
+                                          let newBalance = parseFloat(order.balancePaidInr) || 0;
+                                          
+                                          if (paidInsts.length > 0) {
+                                              if (!order.advancePaidInr || parseFloat(order.advancePaidInr) === 0) {
+                                                  newAdvance = parseFloat(paidInsts[0].amount) || 0;
+                                                  newBalance = paidInsts.slice(1).reduce((sum, x) => sum + (parseFloat(x.amount) || 0), 0);
+                                              } else {
+                                                  if (newAdvance === (parseFloat(paidInsts[0].amount) || 0)) {
+                                                      newBalance = paidInsts.slice(1).reduce((sum, x) => sum + (parseFloat(x.amount) || 0), 0);
+                                                  } else {
+                                                      newBalance = paidInsts.reduce((sum, x) => sum + (parseFloat(x.amount) || 0), 0);
+                                                  }
+                                              }
+                                          }
+                                          
+                                          const newTotalPaid = newAdvance + newBalance;
                                           const newIsFullPaid = newTotalPaid >= agreedPrice;
-                                          const payload = { installments };
+                                          
+                                          const payload = { 
+                                              installments,
+                                              advancePaidInr: newAdvance,
+                                              balancePaidInr: newBalance
+                                          };
+                                          
                                           if (newIsFullPaid && agreedPrice > 0) {
                                               payload.status = 'Completed';
                                           }
                                           await api.put(`/vendor-orders/${order._id}`, payload);
+                                          
+                                          order.advancePaidInr = newAdvance;
+                                          order.balancePaidInr = newBalance;
                                         
                                         // Log to vendor payouts history
                                         await api.post('/vendor-payouts', {
@@ -220,13 +246,39 @@ const manageVendorInstallments = async (row, refresh) => {
             });
             if (newInst && newInst.title && newInst.amount) {
                 installments.push(newInst);
-                const newTotalPaid = installments.reduce((sum, inst) => inst.status === 'Paid' ? sum + (parseFloat(inst.amount) || 0) : sum, 0);
+                const paidInsts = installments.filter(inst => inst.status === 'Paid');
+                                          let newAdvance = parseFloat(order.advancePaidInr) || 0;
+                                          let newBalance = parseFloat(order.balancePaidInr) || 0;
+                                          
+                                          if (paidInsts.length > 0) {
+                                              if (!order.advancePaidInr || parseFloat(order.advancePaidInr) === 0) {
+                                                  newAdvance = parseFloat(paidInsts[0].amount) || 0;
+                                                  newBalance = paidInsts.slice(1).reduce((sum, x) => sum + (parseFloat(x.amount) || 0), 0);
+                                              } else {
+                                                  if (newAdvance === (parseFloat(paidInsts[0].amount) || 0)) {
+                                                      newBalance = paidInsts.slice(1).reduce((sum, x) => sum + (parseFloat(x.amount) || 0), 0);
+                                                  } else {
+                                                      newBalance = paidInsts.reduce((sum, x) => sum + (parseFloat(x.amount) || 0), 0);
+                                                  }
+                                              }
+                                          }
+                                          
+                                          const newTotalPaid = newAdvance + newBalance;
                                           const newIsFullPaid = newTotalPaid >= agreedPrice;
-                                          const payload = { installments };
+                                          
+                                          const payload = { 
+                                              installments,
+                                              advancePaidInr: newAdvance,
+                                              balancePaidInr: newBalance
+                                          };
+                                          
                                           if (newIsFullPaid && agreedPrice > 0) {
                                               payload.status = 'Completed';
                                           }
                                           await api.put(`/vendor-orders/${order._id}`, payload);
+                                          
+                                          order.advancePaidInr = newAdvance;
+                                          order.balancePaidInr = newBalance;
                 Swal.fire('Added!', '', 'success').then(() => manageVendorInstallments(row, refresh));
             }
         }
@@ -2309,11 +2361,7 @@ export const pageConfigs = [
           render: (val, row) => {
             const agreed = parseFloat(row.agreedPriceInr) || 0;
             let totalPaid = 0;
-            if (row.installments && Array.isArray(row.installments)) {
-              totalPaid = row.installments.reduce((sum, inst) => inst.status === 'Paid' ? sum + (parseFloat(inst.amount) || 0) : sum, 0);
-            } else {
-              totalPaid = (parseFloat(row.advancePaidInr) || 0) + (parseFloat(row.balancePaidInr) || 0);
-            }
+            totalPaid = (parseFloat(row.advancePaidInr) || 0) + (parseFloat(row.balancePaidInr) || 0);
             return (agreed - totalPaid).toFixed(2);
           },
           hideInForm: true 
