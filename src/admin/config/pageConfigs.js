@@ -2361,7 +2361,13 @@ export const pageConfigs = [
           render: (val, row) => {
             const agreed = parseFloat(row.agreedPriceInr) || 0;
             let totalPaid = 0;
-            totalPaid = (parseFloat(row.advancePaidInr) || 0) + (parseFloat(row.balancePaidInr) || 0);
+            if ((parseFloat(row.advancePaidInr) || 0) + (parseFloat(row.balancePaidInr) || 0) > 0) {
+              totalPaid = (parseFloat(row.advancePaidInr) || 0) + (parseFloat(row.balancePaidInr) || 0);
+            } else if (row.installments && Array.isArray(row.installments)) {
+              totalPaid = row.installments.reduce((sum, inst) => inst.status === 'Paid' ? sum + (parseFloat(inst.amount) || 0) : sum, 0);
+            } else {
+              totalPaid = 0;
+            }
             return (agreed - totalPaid).toFixed(2);
           },
           hideInForm: true 
