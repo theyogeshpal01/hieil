@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const imgRef = useRef(null);
+
   // Format image URLs properly
   const formattedSrc = React.useMemo(() => {
     if (!src) return '';
@@ -22,8 +26,7 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
       src = src.replace('api.hieil.com', 'hieil.com');
     }
 
-    // If it's a localhost URL and we are testing on a local network (e.g., from a phone),
-    // replace localhost with the actual IP address the user is accessing the site from.
+    // If it's a localhost URL, replace with actual hostname
     try {
       if (src.includes('localhost') || src.includes('127.0.0.1')) {
         const urlObj = new URL(src);
@@ -37,13 +40,49 @@ const LazyImage = ({ src, alt, className = "", style = {}, onClick }) => {
     return src;
   }, [src]);
 
+  // Intersection Observer for true lazy loading
+  useEffect(() => {
+    const el = imgRef.current;
+    if (!el) return;
+
+    // If native lazy loading is supported, just let browser handle it
+    if ('loading' in HTMLImageElement.prototype) {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px 0px' } // Start loading 200px before entering viewport
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className={`relative overflow-hidden ${className}`} style={style} onClick={onClick}>
-      {formattedSrc && (
+    <div ref={imgRef} className={`relative overflow-hidden ${className}`} style={style} onClick={onClick}>
+      {/* Low quality placeholder blur */}
+      {!isLoaded && (
+        <div
+          className="absolute inset-0 bg-gray-200 animate-pulse"
+          style={{ backgroundColor: '#f3f4f6' }}
+        />
+      )}
+      {formattedSrc && (isInView || 'loading' in HTMLImageElement.prototype) && (
         <img
           src={formattedSrc}
           alt={alt || "Image"}
-          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setIsLoaded(true)}
         />
       )}
     </div>

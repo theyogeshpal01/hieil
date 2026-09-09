@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUsers, FaList } from 'react-icons/fa';
+import { FaBus, FaCar, FaCheck, FaCommentAlt, FaDownload, FaEdit, FaEnvelope, FaExternalLinkAlt, FaEye, FaFileAlt, FaFilePdf, FaImages, FaList, FaMoneyBillAlt, FaPhone, FaPhoneAlt, FaPlane, FaSave, FaStar, FaStore, FaTh, FaTimes, FaTrash, FaTrashAlt, FaTruck, FaUsers, FaWhatsapp } from 'react-icons/fa';
 
 
 const VendorNameDisplay = ({ vendorId, fallbackStyle = {} }) => {
@@ -37,8 +37,7 @@ const formatImageUrl = (url) => {
   const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
   return url.startsWith('/') ? `${baseUrl}${url}` : `${baseUrl}/${url}`;
 };
-import { FaBus, FaPlane, FaCar, FaEnvelope, FaPhone, FaWhatsapp, FaFileAlt, FaTruck, FaStore, FaTrash, FaCheck, FaEye, FaDownload, FaEdit } from 'react-icons/fa';
-import * as FaIcons from 'react-icons/fa';
+
 import Swal from 'sweetalert2';
 import api from './api';
 
@@ -448,7 +447,7 @@ export const pageConfigs = [
       title: 'Manage Testimonials',
       breadcrumbParent: 'Manage Reviews',
       columns: {
-        title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaIcons.FaStar, null), 'REVIEW SUBMISSIONS'),
+        title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaStar, null), 'REVIEW SUBMISSIONS'),
         headers: [
           { key: 'id', label: 'ID' },
           { key: 'date', label: 'Date' },
@@ -486,11 +485,11 @@ export const pageConfigs = [
           row.status !== 'APPROVED' && React.createElement('button', {
             className: 'modern-action-btn btn-success',
             onClick: () => onUpdateRow(row.id, 'status', 'APPROVED')
-          }, React.createElement(FaIcons.FaCheck, null)),
+          }, React.createElement(FaCheck, null)),
           row.status !== 'REJECTED' && React.createElement('button', {
             className: 'modern-action-btn btn-danger',
             onClick: () => onUpdateRow(row.id, 'status', 'REJECTED')
-          }, React.createElement(FaIcons.FaTimes, null))
+          }, React.createElement(FaTimes, null))
         )
       },
       data: []
@@ -500,7 +499,7 @@ export const pageConfigs = [
       title: 'Manage Gallery Submissions',
       breadcrumbParent: 'Gallery Submissions',
       columns: {
-        title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaIcons.FaImages, null), 'GALLERY SUBMISSIONS'),
+        title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaImages, null), 'GALLERY SUBMISSIONS'),
         headers: [
           { key: 'id', label: 'ID' },
           { key: 'date', label: 'Date' },
@@ -532,11 +531,11 @@ export const pageConfigs = [
           row.status !== 'APPROVED' && React.createElement('button', {
             className: 'modern-action-btn btn-success',
             onClick: () => onUpdateRow(row.id, 'status', 'APPROVED')
-          }, React.createElement(FaIcons.FaCheck, null)),
+          }, React.createElement(FaCheck, null)),
           row.status !== 'REJECTED' && React.createElement('button', {
             className: 'modern-action-btn btn-danger',
             onClick: () => onUpdateRow(row.id, 'status', 'REJECTED')
-          }, React.createElement(FaIcons.FaTimes, null))
+          }, React.createElement(FaTimes, null))
         )
       },
       data: []
@@ -549,7 +548,7 @@ export const pageConfigs = [
       formTitleEdit: 'Edit Feedback',
       formCardTitle: 'ADD CUSTOMER FEEDBACK',
       columns: {
-        title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaIcons.FaCommentAlt, null), 'FEEDBACK SUBMISSIONS'),
+        title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaCommentAlt, null), 'FEEDBACK SUBMISSIONS'),
         addButtonText: 'Add New Feedback',
         headers: [
           { key: 'id', label: 'ID', hideInForm: true },
@@ -564,10 +563,10 @@ export const pageConfigs = [
             render: (val, row) => React.createElement('div', null,
               React.createElement('div', {style: {fontWeight: 'bold', color: '#111827', marginBottom: '4px'}}, row.customerName || ''),
               React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', color: '#6b7280', marginBottom: '2px'}}, 
-                React.createElement(FaIcons.FaEnvelope, null), row.email || ''
+                React.createElement(FaEnvelope, null), row.email || ''
               ),
               React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '4px', fontSize: '13px', color: '#06b6d4'}}, 
-                React.createElement(FaIcons.FaPhoneAlt, null), row.phone || ''
+                React.createElement(FaPhoneAlt, null), row.phone || ''
               )
             )
           },
@@ -586,19 +585,19 @@ export const pageConfigs = [
           React.createElement('button', {
             className: 'modern-action-btn btn-success',
             onClick: () => window.open(`https://wa.me/${row.phone}`, '_blank')
-          }, React.createElement(FaIcons.FaWhatsapp, null)),
+          }, React.createElement(FaWhatsapp, null)),
           React.createElement('button', {
             className: 'modern-action-btn btn-primary',
             onClick: () => window.open(`tel:${row.phone}`, '_self')
-          }, React.createElement(FaIcons.FaPhoneAlt, null)),
+          }, React.createElement(FaPhoneAlt, null)),
           React.createElement('button', {
             className: 'modern-action-btn btn-warning',
             onClick: () => onEdit && onEdit(row)
-          }, React.createElement(FaIcons.FaEdit, null)),
+          }, React.createElement(FaEdit, null)),
           React.createElement('button', {
             className: 'modern-action-btn btn-danger',
             onClick: () => onDelete && onDelete(row)
-          }, React.createElement(FaIcons.FaTrashAlt, null))
+          }, React.createElement(FaTrashAlt, null))
         )
       },
       data: []
@@ -608,7 +607,7 @@ export const pageConfigs = [
       title: 'Manage Newsletter Subscribers',
       breadcrumbParent: 'Subscribers',
       columns: {
-        title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaIcons.FaEnvelope, null), 'NEWSLETTER EMAIL LIST'),
+        title: React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '8px'}}, React.createElement(FaEnvelope, null), 'NEWSLETTER EMAIL LIST'),
         headers: [
           { key: 'id', label: 'ID' },
           { 
@@ -627,11 +626,11 @@ export const pageConfigs = [
           React.createElement('button', {
             className: 'modern-action-btn btn-primary',
             onClick: () => window.open(`mailto:${row.email}`, '_blank')
-          }, React.createElement(FaIcons.FaEnvelope, null)),
+          }, React.createElement(FaEnvelope, null)),
           React.createElement('button', {
             className: 'modern-action-btn btn-danger',
             onClick: () => onDelete && onDelete(row)
-          }, React.createElement(FaIcons.FaTrashAlt, null))
+          }, React.createElement(FaTrashAlt, null))
         )
       },
       data: []
@@ -811,22 +810,22 @@ export const pageConfigs = [
             title: 'Generate E-Way Bill',
             style: { padding: '4px 8px', fontSize: '11px', whiteSpace: 'nowrap' },
             onClick: () => window.location.href = `/admin/domestic-logistics/preview-by-order/${row._id}`
-        }, React.createElement(FaIcons.FaTruck, {style: {marginRight: '4px'}}), "EWB") : null,
+        }, React.createElement(FaTruck, {style: {marginRight: '4px'}}), "EWB") : null,
         React.createElement('button', {
             className: 'modern-action-btn btn-warning',
             title: 'Edit Order',
             onClick: () => handlers.onEdit(row)
-        }, React.createElement(FaIcons.FaEdit, null)),
+        }, React.createElement(FaEdit, null)),
         React.createElement('button', {
             className: 'modern-action-btn btn-primary',
             title: 'View Details',
             onClick: () => window.location.href = `/admin/inquiry-system/orders/details/${row._id}`
-        }, React.createElement(FaIcons.FaEye || FaFileAlt, null)),
+        }, React.createElement(FaEye || FaFileAlt, null)),
         React.createElement('button', {
             className: 'modern-action-btn btn-danger',
             title: 'Delete Order',
             onClick: () => handlers.onDelete(row)
-        }, React.createElement(FaIcons.FaTrashAlt, null))
+        }, React.createElement(FaTrashAlt, null))
       )
     }, 
     data: []
@@ -2400,25 +2399,25 @@ export const pageConfigs = [
             onClick: () => handlers.onEdit(row),
             title: 'Edit Order',
             style: { backgroundColor: '#3b82f6', color: 'white' }
-        }, React.createElement(FaIcons.FaEdit)),
+        }, React.createElement(FaEdit)),
         React.createElement('button', {
             className: 'modern-action-btn',
             onClick: () => window.location.href = `/admin/vendor-management/orders/preview/${row._id}`,
             title: 'Preview PO',
             style: { backgroundColor: '#8b5cf6', color: 'white' }
-        }, React.createElement(FaIcons.FaFilePdf)),
+        }, React.createElement(FaFilePdf)),
         React.createElement('button', {
             className: 'modern-action-btn',
             onClick: () => manageVendorInstallments(row, handlers.refresh),
             title: 'Manage Installments',
             style: { backgroundColor: '#10b981', color: 'white' }
-        }, React.createElement(FaIcons.FaMoneyBillAlt)),
+        }, React.createElement(FaMoneyBillAlt)),
         React.createElement('button', {
             className: 'modern-action-btn',
             onClick: () => handlers.onDelete(row),
             title: 'Delete Order',
             style: { backgroundColor: '#ef4444', color: 'white' }
-        }, React.createElement(FaIcons.FaTrash))
+        }, React.createElement(FaTrash))
       )
     }, 
     data: [] 
@@ -2451,7 +2450,7 @@ export const pageConfigs = [
             className: 'modern-action-btn btn-success',
             title: 'Preview E-Way Bill',
             onClick: () => window.location.href = `/admin/domestic-logistics/preview/${row._id}`
-        }, React.createElement(FaIcons.FaFilePdf, null)),
+        }, React.createElement(FaFilePdf, null)),
         row.orderId ? React.createElement('button', {
             className: 'modern-action-btn btn-warning',
             style: { backgroundColor: '#3b82f6', color: 'white' },
@@ -2460,18 +2459,20 @@ export const pageConfigs = [
               const oid = typeof row.orderId === 'object' ? row.orderId._id : row.orderId;
               window.location.href = `/admin/inquiry-system/orders/details/${oid}`;
             }
-        }, React.createElement(FaIcons.FaExternalLinkAlt, null)) : null,
+        }, React.createElement(FaExternalLinkAlt, null)) : null,
         onEdit && React.createElement('button', {
             className: 'modern-action-btn btn-primary',
             onClick: () => onEdit(row)
-        }, React.createElement(FaIcons.FaEdit, null)),
+        }, React.createElement(FaEdit, null)),
         onDelete && React.createElement('button', {
             className: 'modern-action-btn btn-danger',
             onClick: () => onDelete(row)
-        }, React.createElement(FaIcons.FaTrashAlt, null))
+        }, React.createElement(FaTrashAlt, null))
       )
     }, 
     data: [] 
   }
 ];
+
+
 
