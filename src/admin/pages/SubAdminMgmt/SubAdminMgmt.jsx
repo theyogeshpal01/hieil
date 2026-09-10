@@ -284,8 +284,7 @@ const SubAdminMgmt = () => {
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Password</th>
-                <th>Status</th>
+                                <th>Status</th>
                 <th>Permissions</th>
                 <th>Action</th>
               </tr>
@@ -299,18 +298,14 @@ const SubAdminMgmt = () => {
                   <tr key={admin._id}>
                     <td>{admin._id.substring(admin._id.length - 6)}</td>
                     <td>{admin.name}</td>
-                    <td>{admin.email}</td>
-                    <td>{admin.password}</td>
-                    <td>
+                    <td>{admin.email}</td>                    <td>
                       <span className={`status-badge status-${admin.status.toLowerCase()}`}>
                         {admin.status}
                       </span>
                     </td>
                     <td>{permsDisplay || 'None'}</td>
                     <td className="action-cell">
-                      <button className="action-btn edit-btn" onClick={() => handleEdit({ ...admin, id: admin._id })}>
-                        <FaEdit />
-                      </button>
+                      <button className="action-btn edit-btn" onClick={() => handleEdit({ ...admin, id: admin._id })} style={{display:'flex',alignItems:'center',gap:'5px',padding:'6px 12px',whiteSpace:'nowrap'}}><FaEdit /> Edit Details</button>
                       <button className="action-btn delete-btn" onClick={() => handleDelete(admin._id)}>
                         <FaTrash />
                       </button>
@@ -330,3 +325,5 @@ const SubAdminMgmt = () => {
 };
 
 export default SubAdminMgmt;
+
+
