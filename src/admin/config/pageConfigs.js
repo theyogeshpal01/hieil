@@ -661,7 +661,7 @@ export const pageConfigs = [
       title: 'INQUIRY LIST',
       headers: [
         { key: 'id', label: 'ID' },
-        { key: 'product', label: 'Product', render: (val, row) => React.createElement('div', {style: {fontSize: '13px'}}, val, React.createElement('div', {style: {color: '#6b7280', marginTop: '4px'}}, 'ID: ' + row.productId)) },
+        { key: 'product', label: 'Product', render: (val, row) => React.createElement('div', {style: {fontSize: '13px'}}, val, React.createElement('div', {style: {color: '#6b7280', marginTop: '4px', marginBottom: '8px'}}, 'ID: ' + row.productId), React.createElement('button', { className: 'modern-action-btn', style: { padding: '4px 8px', fontSize: '11px', display: 'inline-flex', alignItems: 'center', gap: '4px', backgroundColor: '#f1f5f9', color: '#0ea5e9', border: '1px solid #bae6fd', borderRadius: '4px' }, onClick: () => window.open('/product/' + row.productId, '_blank') }, React.createElement(FaExternalLinkAlt, {style: {fontSize: '10px'}}), 'View Product')) },
         { key: 'customer', label: 'Customer', render: (val) => React.createElement('div', {style: {maxWidth: '150px', wordWrap: 'break-word', fontSize: '13px'}}, val) },
         { key: 'contact', label: 'Contact', render: (val, row) => React.createElement('div', {style: {fontSize: '12px', lineHeight: '1.6'}}, 
             React.createElement('div', {style: {display: 'flex', alignItems: 'center', gap: '5px'}}, React.createElement(FaEnvelope, {style: {color: '#6366f1', fontSize: '14px'}}), row.email),
@@ -2490,6 +2490,7 @@ export const pageConfigs = [
     data: [] 
   }
 ];
+
 
 
 
