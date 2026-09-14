@@ -83,13 +83,16 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
+  overflow: hidden;
 }
 
 .inv-brand-box {
   background-color: #1b365d;
   color: white;
   padding: 15px 20px;
-  width: 55%;
+  flex: 0 0 55%;
+  max-width: 55%;
+  box-sizing: border-box;
 }
 
 .inv-brand-box h1 {
@@ -108,17 +111,21 @@
   background-color: #d4a024;
   color: white;
   padding: 15px 20px;
-  width: 40%;
+  flex: 0 0 43%;
+  max-width: 43%;
+  box-sizing: border-box;
   text-align: right;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 }
 
 .inv-title-box h2 {
   margin: 0 0 5px 0;
-  font-size: 24px;
-  letter-spacing: 2px;
+  font-size: 22px;
+  letter-spacing: 1px;
+  word-break: break-word;
 }
 
 .inv-title-box p {

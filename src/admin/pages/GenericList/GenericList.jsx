@@ -284,6 +284,14 @@ const GenericList = ({ title, subtitle, columns, data, config = {} }) => {
 
   const handleInputChange = (e, key) => {
     const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    // Auto-fill agreedPriceInr when vendor is selected in vendor orders form
+    if (key === 'vendorId' && config.path === 'vendor-management/orders' && value) {
+      const selectedVendor = dynamicVendors.find(v => v._id === value);
+      if (selectedVendor && selectedVendor.amount) {
+        setFormData({ ...formData, [key]: value, agreedPriceInr: selectedVendor.amount });
+        return;
+      }
+    }
     setFormData({ ...formData, [key]: value });
   };
 
