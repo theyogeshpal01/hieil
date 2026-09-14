@@ -134,7 +134,7 @@ const ProductInfo = ({ product }) => {
           </button>
           <button 
             className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded bg-[#25d366] text-white font-sans font-semibold text-[0.9rem] cursor-pointer transition-opacity duration-200 hover:opacity-90"
-            onClick={() => window.open(`https://wa.me/YOUR_NUMBER?text=Hi, I am interested in ${product.name}`, '_blank')}
+            onClick={() => window.open(`https://wa.me/919050001972?text=Hi, I am interested in ${encodeURIComponent(product.name || 'your product')}`, '_blank')}
           >
             <MessageCircle size={16} /> WHATSAPP INQUIRY
           </button>
@@ -164,7 +164,6 @@ const ProductInfo = ({ product }) => {
       {/* Meta Links */}
       <div className="flex gap-6 mt-2">
         <button className="bg-transparent border-none flex items-center gap-[0.4rem] font-sans text-[0.9rem] text-[#b5aaa0] cursor-pointer p-0 hover:text-[#c07a5d]"><Heart size={16} /> Wishlist</button>
-        <button className="bg-transparent border-none flex items-center gap-[0.4rem] font-sans text-[0.9rem] text-[#b5aaa0] cursor-pointer p-0 hover:text-[#c07a5d]"><GitCompare size={16} /> Compare</button>
       </div>
 
       {/* Accordions (Now includes Specifications) */}
