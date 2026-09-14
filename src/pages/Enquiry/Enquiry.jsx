@@ -12,11 +12,39 @@ const Enquiry = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isQuickSubmitting, setIsQuickSubmitting] = useState(false);
+  const [quickEmail, setQuickEmail] = useState('');
   const [formData, setFormData] = useState({
     customer: '', email: '', phone: '', whatsapp: '', company: '',
     country: '', state: '', city: '', orderType: '',
     qty: '50', budget: '', shipping: '', port: '', gstDetails: '', deliveryDate: '', message: ''
   });
+
+  const handleQuickSubmit = async (e) => {
+    e.preventDefault();
+    if (!quickEmail) return;
+    setIsQuickSubmitting(true);
+    try {
+      await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/quick-inquiries`, {
+        email: quickEmail,
+        productName: product?.name || '',
+        productId: product?._id || id,
+        message: 'Direct Contact Inquiry from product page'
+      });
+      Swal.fire({
+        title: 'Success!',
+        text: 'Your email has been received. We will contact you soon.',
+        icon: 'success',
+        confirmButtonColor: '#c8956c'
+      });
+      setQuickEmail('');
+    } catch (err) {
+      console.error(err);
+      Swal.fire('Error', 'Failed to send inquiry. Please try again.', 'error');
+    } finally {
+      setIsQuickSubmitting(false);
+    }
+  };
 
   const headerRef = useScrollAnimation();
   const formRef = useScrollAnimation();
@@ -243,6 +271,29 @@ const Enquiry = () => {
 
             <button type="submit" disabled={isSubmitting} className="w-full p-[1.2rem] bg-[#c8956c] text-[#110e0c] border border-[#c8956c] rounded-md font-sans text-[1.1rem] font-semibold uppercase tracking-[1px] cursor-pointer transition-all duration-300 mt-4 hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50">{isSubmitting ? 'SENDING...' : 'Send Enquiry'}</button>
           </form>
+
+          {/* Quick Contact Option */}
+          <div className="mt-16 bg-[#1a1512] border border-[#2c241c] p-8 rounded-lg text-center shadow-lg relative overflow-hidden">
+            <h2 className="font-serif text-[1.6rem] text-[#c8956c] mb-4">Or Quick Direct Contact</h2>
+            <p className="text-[#b5aaa0] mb-8 font-sans">Just enter your email and we'll get back to you immediately.</p>
+            <form onSubmit={handleQuickSubmit} className="flex max-sm:flex-col gap-4 max-w-[500px] mx-auto">
+              <input 
+                type="email" 
+                value={quickEmail} 
+                onChange={e => setQuickEmail(e.target.value)} 
+                placeholder="Your Email Address" 
+                required 
+                className="flex-1 py-[1rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[1rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#c8956c] focus:shadow-[0_0_0_3px_rgba(200,149,108,0.15)]" 
+              />
+              <button 
+                type="submit" 
+                disabled={isQuickSubmitting} 
+                className="px-8 py-[1rem] bg-[#c8956c] text-[#110e0c] border border-[#c8956c] rounded-md font-sans text-[1rem] font-semibold uppercase tracking-[1px] cursor-pointer transition-all duration-300 hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50"
+              >
+                {isQuickSubmitting ? 'Sending...' : 'Send'}
+              </button>
+            </form>
+          </div>
         </div>
       </main>
     </div>

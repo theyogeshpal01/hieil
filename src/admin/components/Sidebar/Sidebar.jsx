@@ -145,6 +145,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             {hasPermission("Inquiry System") && <SidebarItem isSidebarOpen={isOpen} icon={FaBoxOpen} label="Inquiry System">
                {[
                  {to: '/inquiry-system/product-inquiries', label: 'Product Inquiries'},
+                 {to: '/inquiry-system/quick-inquiries', label: 'Quick Inquiries'},
                  {to: '/inquiry-system/orders', label: 'Orders'},
                  {to: '/inquiry-system/quotations', label: 'Quotations'},
                  {to: '/inquiry-system/invoices', label: 'Invoices'},

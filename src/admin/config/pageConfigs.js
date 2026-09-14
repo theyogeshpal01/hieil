@@ -635,8 +635,25 @@ export const pageConfigs = [
       },
       data: []
     },
-
-  { 
+  {
+    path: 'inquiry-system/quick-inquiries',
+    title: 'Quick Direct Contacts',
+    subtitle: 'Direct email inquiries from product pages',
+    apiEndpoint: '/quick-inquiries',
+    disableAdd: true,
+    columns: {
+      title: 'QUICK INQUIRIES',
+      headers: [
+        { key: 'id', label: 'ID' },
+        { key: 'email', label: 'Email Address' },
+        { key: 'productName', label: 'Product Name' },
+        { key: 'message', label: 'Message' },
+        { key: 'status', label: 'Status' },
+        { key: 'createdAt', label: 'Date', render: (val) => new Date(val).toLocaleDateString() }
+      ]
+    }
+  },
+    { 
     path: 'inquiry-system/product-inquiries', 
     title: 'Customer Inquiries', 
     subtitle: 'Inquiries',
@@ -2473,6 +2490,7 @@ export const pageConfigs = [
     data: [] 
   }
 ];
+
 
 
 
