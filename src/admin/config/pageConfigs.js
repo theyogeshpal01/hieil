@@ -223,7 +223,7 @@ const manageVendorInstallments = async (row, refresh) => {
                                             status: 'Released'
                                         });
 
-                                        Swal.fire('Paid!', '', 'success').then(() => manageVendorInstallments(row, refresh));
+                                        Swal.fire('Paid!', '', 'success').then(() => { if (typeof refresh === 'function') { refresh(); } manageVendorInstallments(row, refresh); });
                                     } catch (err) {
                                         Swal.fire('Error', 'Failed to update payment', 'error');
                                     }
@@ -285,7 +285,7 @@ const manageVendorInstallments = async (row, refresh) => {
                                           order.advancePaidInr = newAdvance;
                                           order.balancePaidInr = newBalance;
                                           order.status = payload.status || order.status;
-                Swal.fire('Added!', '', 'success').then(() => manageVendorInstallments(row, refresh));
+                Swal.fire('Added!', '', 'success').then(() => { if (typeof refresh === 'function') { refresh(); } manageVendorInstallments(row, refresh); });
             }
         }
     } catch (err) {
@@ -2490,6 +2490,8 @@ export const pageConfigs = [
     data: [] 
   }
 ];
+
+
 
 
 
