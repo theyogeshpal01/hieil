@@ -338,9 +338,21 @@ const Shop = () => {
                       <span></span>
                     )}
                     <div className="flex gap-[0.5rem]">
-                      <Link to={`/product/${product._id}`} className="p-[0.5rem_1rem] text-center border border-[#c8956c] text-[#c8956c] bg-transparent font-sans text-[0.8rem] font-normal uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-[#c8956c] hover:text-[#15110F]">Details</Link>
-                      <Link to={`/product/${product._id}/enquiry`} className="p-[0.5rem_1rem] text-center border border-[#c8956c] bg-[#c8956c] text-[#15110F] font-sans text-[0.8rem] font-normal uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-transparent hover:text-[#c8956c]">Enquiry</Link>
-                    </div>
+                        <button 
+                          onClick={(e) => {
+                            e.preventDefault();
+                            const productUrl = window.location.origin + `/product/${product._id}`;
+                            const waText = `Hi, I am interested in ${product.name || 'your product'}. You can view it here: ${productUrl}`;
+                            window.open(`https://wa.me/919050001972?text=${encodeURIComponent(waText)}`, '_blank');
+                          }}
+                          className="flex items-center justify-center p-[0.5rem_1rem] border border-[#25d366] text-[#25d366] bg-transparent rounded-[30px] transition-all duration-200 hover:bg-[#25d366] hover:text-white"
+                          title="WhatsApp Enquiry"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </button>
+                        <Link to={`/product/${product._id}`} className="p-[0.5rem_1rem] text-center border border-[#c8956c] text-[#c8956c] bg-transparent font-sans text-[0.8rem] font-normal uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-[#c8956c] hover:text-[#15110F]">Details</Link>
+                        <Link to={`/product/${product._id}/enquiry`} className="p-[0.5rem_1rem] text-center border border-[#c8956c] bg-[#c8956c] text-[#15110F] font-sans text-[0.8rem] font-normal uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-transparent hover:text-[#c8956c]">Enquiry</Link>
+                      </div>
                   </div>
                 </div>
               </div>

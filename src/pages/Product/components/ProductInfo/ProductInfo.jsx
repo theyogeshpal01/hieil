@@ -134,7 +134,7 @@ const ProductInfo = ({ product }) => {
           </button>
           <button 
             className="flex-1 flex items-center justify-center gap-2 p-4 border-none rounded bg-[#25d366] text-white font-sans font-semibold text-[0.9rem] cursor-pointer transition-opacity duration-200 hover:opacity-90"
-            onClick={() => window.open(`https://wa.me/919050001972?text=Hi, I am interested in ${encodeURIComponent(product.name || 'your product')}`, '_blank')}
+            onClick={() => { const productUrl = window.location.origin + `/product/${product.id || product._id}`; const waText = `Hi, I am interested in ${product.name || 'your product'}. You can view it here: ${productUrl}`; window.open(`https://wa.me/919050001972?text=${encodeURIComponent(waText)}`, '_blank'); }}
           >
             <MessageCircle size={16} /> WHATSAPP INQUIRY
           </button>
