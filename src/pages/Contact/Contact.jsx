@@ -20,7 +20,7 @@ const Contact = () => {
   }, []);
 
   const [openFaq, setOpenFaq] = useState(null);
-  const [formData, setFormData] = useState({ fullName: '', email: '', country: '', phone: '', subject: '', category: '', message: '' });
+  const [formData, setFormData] = useState({ fullName: '', email: '', country: '', phone: '', message: '' });
 
   const countryList = [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", 
@@ -104,7 +104,7 @@ const Contact = () => {
                   
                   Swal.fire('Success', 'Your message has been sent successfully. Our team will contact you soon.', 'success');
                   // Reset form
-                  setFormData({ fullName: '', email: '', country: '', phone: '', subject: '', category: '', message: '' });
+                  setFormData({ fullName: '', email: '', country: '', phone: '', message: '' });
                 } catch (err) {
                   Swal.fire('Error', 'Failed to send message. Please try again.', 'error');
                 }
@@ -138,34 +138,6 @@ const Contact = () => {
                     <div className="flex">
                       <span className="bg-[rgba(21,17,15,0.8)] border border-[#4a3e35] border-r-0 p-[15px] rounded-l-[10px] text-[#b5aaa0] font-medium flex items-center">+</span>
                       <input required value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="w-full p-[15px] border border-[#4a3e35] rounded-r-[10px] rounded-l-none bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]" type="text" placeholder="000 000 0000" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-col md:flex-row gap-[25px]">
-                  <div className="flex-1 flex flex-col">
-                    <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Subject *</label>
-                    <div className="relative">
-                      <select required value={formData.subject} onChange={e => setFormData({...formData, subject: e.target.value})} className="appearance-none cursor-pointer w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]">
-                        <option value="" className="bg-[#15110F] text-white">Select a subject</option>
-                        <option value="Product Inquiry" className="bg-[#15110F] text-white">Product Inquiry</option>
-                        <option value="Order Status" className="bg-[#15110F] text-white">Order Status</option>
-                        <option value="Custom Project" className="bg-[#15110F] text-white">Custom Project</option>
-                        <option value="Partnership" className="bg-[#15110F] text-white">Partnership</option>
-                      </select>
-                      <ChevronDown className="absolute right-[15px] top-[50%] -translate-y-1/2 text-[#8c8279] pointer-events-none" size={18} />
-                    </div>
-                  </div>
-                  <div className="flex-1 flex flex-col">
-                    <label className="font-medium mb-[10px] text-white text-[0.95rem] tracking-[1px]">Inquiry Category *</label>
-                    <div className="relative">
-                      <select required value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="appearance-none cursor-pointer w-full p-[15px] border border-[#4a3e35] rounded-[10px] bg-[rgba(21,17,15,0.8)] text-[1rem] text-white transition-all duration-300 outline-none focus:border-[#c8956c] focus:shadow-[0_0_15px_rgba(194,163,115,0.1)]">
-                        <option value="" className="bg-[#15110F] text-white">Select a category</option>
-                        <option value="Wholesale" className="bg-[#15110F] text-white">Wholesale</option>
-                        <option value="Retail" className="bg-[#15110F] text-white">Retail</option>
-                        <option value="Support" className="bg-[#15110F] text-white">Support</option>
-                      </select>
-                      <ChevronDown className="absolute right-[15px] top-[50%] -translate-y-1/2 text-[#8c8279] pointer-events-none" size={18} />
                     </div>
                   </div>
                 </div>

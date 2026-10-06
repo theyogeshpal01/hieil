@@ -1815,9 +1815,7 @@ export const pageConfigs = [
         { key: 'email', label: 'Email' },
         { key: 'phone', label: 'Phone' },
         { key: 'country', label: 'Country' },
-        { key: 'subject', label: 'Subject' },
-        { key: 'category', label: 'Category' },
-        { key: 'message', label: 'Message' },
+          { key: 'message', label: 'Message' },
         { key: 'createdAt', label: 'Created At' }
       ],
       hideDefaultActions: true,
