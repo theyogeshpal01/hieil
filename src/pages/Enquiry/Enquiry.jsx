@@ -167,7 +167,7 @@ const Enquiry = () => {
           </div>
 
                     {/* Quick Contact Option */}
-          <div className="mb-12 bg-[#1a1512] border border-[#2c241c] p-8 rounded-lg text-center shadow-lg relative overflow-hidden" ref={formRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.1s'}}>
+          <div className="mb-12 bg-[#1a1512] border border-[#2c241c] p-8 rounded-lg text-center shadow-lg relative overflow-hidden">
             <h2 className="font-serif text-[1.6rem] text-[#c8956c] mb-4">Quick Direct Contact</h2>
             <p className="text-[#b5aaa0] mb-6 font-sans">Don't want to fill the form? Just enter your email and we'll get back to you immediately.</p>
             <form onSubmit={handleQuickSubmit} className="flex max-sm:flex-col gap-4 max-w-[500px] mx-auto">
