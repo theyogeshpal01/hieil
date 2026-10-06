@@ -212,11 +212,14 @@ const Shop = () => {
 
       <div className="max-w-[1400px] mx-auto p-[3rem_2rem] flex flex-col md:flex-row gap-[3.5rem]">
         {/* Sidebar */}
-        <aside className={`w-full md:w-[280px] shrink-0 md:sticky md:top-[2rem] max-h-[calc(100vh-4rem)] overflow-y-auto overflow-x-hidden p-[20px] md:p-[25px] bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] scrollbar-thin scrollbar-thumb-[#e0e0e0] scrollbar-track-[#15110F] hover:scrollbar-thumb-[#c8956c] transition-all duration-300 ${isMobileFilterOpen ? "block mb-6" : "hidden md:block"}`}>
+        <aside className={`fixed inset-0 z-[100] bg-[#15110F] w-full h-full p-[20px] overflow-y-auto transform transition-transform duration-300 md:transform-none md:static md:z-auto md:w-[280px] md:h-auto md:shrink-0 md:sticky md:top-[2rem] md:max-h-[calc(100vh-4rem)] md:bg-[rgba(28,23,19,0.6)] md:backdrop-blur-[10px] md:border md:border-[#2c241c] md:rounded-[20px] scrollbar-thin scrollbar-thumb-[#e0e0e0] scrollbar-track-[#15110F] hover:scrollbar-thumb-[#c8956c] ${isMobileFilterOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
           <div className="flex justify-between items-center mb-[1.5rem] border-b border-[#2c241c] pb-[1rem]">
-            <h3 className="font-serif text-[0.9rem] font-semibold text-white m-0 uppercase tracking-[1px]">FILTER:</h3>
-            <button className="bg-transparent border-none font-sans text-[0.8rem] text-[#c8956c] cursor-pointer p-0" onClick={handleClearAll}>Clear All</button>
-          </div>
+              <h3 className="font-serif text-[0.9rem] font-semibold text-white m-0 uppercase tracking-[1px]">FILTER:</h3>
+              <div className="flex items-center gap-4">
+                <button className="bg-transparent border-none font-sans text-[0.8rem] text-[#c8956c] cursor-pointer p-0" onClick={handleClearAll}>Clear All</button>
+                <button className="md:hidden text-[#b5aaa0] hover:text-white bg-transparent border-none p-0 cursor-pointer" onClick={() => setIsMobileFilterOpen(false)}><X size={20} /></button>
+              </div>
+            </div>
 
           <div className="flex flex-col gap-0 w-full">
             {dynamicFilters.map((section) => (
@@ -272,7 +275,17 @@ const Shop = () => {
               </div>
             )}
           </div>
-        </div></aside>
+        </div>
+            {/* Mobile Apply Button */}
+            <div className="md:hidden sticky bottom-0 left-0 right-0 bg-[#15110F] pt-4 mt-6 border-t border-[#2c241c]">
+              <button 
+                onClick={() => setIsMobileFilterOpen(false)}
+                className="w-full bg-[#c8956c] text-[#15110F] py-3 rounded-lg font-bold tracking-[1px] uppercase transition-colors hover:bg-white"
+              >
+                Show Results ({filteredcategories.length})
+              </button>
+            </div>
+          </aside>
 
         {/* Content Area */}
         <div className="flex-1">
