@@ -646,7 +646,7 @@ export const pageConfigs = [
       headers: [
         { key: 'id', label: 'ID' },
         { key: 'email', label: 'Email Address' },
-        { key: 'productName', label: 'Product Name' },
+        { key: 'productName', label: 'Product', render: (val, row) => React.createElement('div', {style: {display: 'flex', flexDirection: 'column', gap: '8px'}}, React.createElement('div', {style: {fontWeight: '500', color: '#111827', fontSize: '13px'}}, row.productName || 'N/A'), row.productId && React.createElement('button', { style: { padding: '4px 8px', fontSize: '11px', display: 'inline-flex', alignItems: 'center', gap: '4px', backgroundColor: '#f1f5f9', color: '#0ea5e9', border: '1px solid #bae6fd', borderRadius: '4px', cursor: 'pointer' }, onClick: () => window.open('/product/' + row.productId, '_blank') }, React.createElement(FaExternalLinkAlt, {style: {fontSize: '10px'}}), 'View Product')) },
         { key: 'message', label: 'Message' },
         { key: 'status', label: 'Status' },
         { key: 'createdAt', label: 'Date', render: (val) => new Date(val).toLocaleDateString() }

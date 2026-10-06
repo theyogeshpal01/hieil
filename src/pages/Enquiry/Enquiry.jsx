@@ -27,7 +27,7 @@ const Enquiry = () => {
     try {
       await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/quick-inquiries`, {
         email: quickEmail,
-        productName: product?.name || '',
+        productName: product?.productName || '',
         productId: product?._id || id,
         message: 'Direct Contact Inquiry from product page'
       });
@@ -166,6 +166,35 @@ const Enquiry = () => {
             </div>
           </div>
 
+                    {/* Quick Contact Option */}
+          <div className="mb-12 bg-[#1a1512] border border-[#2c241c] p-8 rounded-lg text-center shadow-lg relative overflow-hidden" ref={formRef} style={{opacity:0,transform:'translateY(30px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.1s'}}>
+            <h2 className="font-serif text-[1.6rem] text-[#c8956c] mb-4">Quick Direct Contact</h2>
+            <p className="text-[#b5aaa0] mb-6 font-sans">Don't want to fill the form? Just enter your email and we'll get back to you immediately.</p>
+            <form onSubmit={handleQuickSubmit} className="flex max-sm:flex-col gap-4 max-w-[500px] mx-auto">
+              <input 
+                type="email" 
+                value={quickEmail} 
+                onChange={e => setQuickEmail(e.target.value)} 
+                placeholder="Your Email Address" 
+                required 
+                className="flex-1 py-[1rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[1rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#c8956c] focus:shadow-[0_0_0_3px_rgba(200,149,108,0.15)]" 
+              />
+              <button 
+                type="submit" 
+                disabled={isQuickSubmitting} 
+                className="px-8 py-[1rem] bg-[#c8956c] text-[#110e0c] border border-[#c8956c] rounded-md font-sans text-[1rem] font-semibold uppercase tracking-[1px] cursor-pointer transition-all duration-300 hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50"
+              >
+                {isQuickSubmitting ? 'Sending...' : 'Send'}
+              </button>
+            </form>
+          </div>
+          
+          <div className="flex items-center gap-4 mb-12">
+            <hr className="flex-1 border-t border-[#2c241c]" />
+            <span className="text-[#8b6b55] font-serif text-[1.2rem]">OR DETAILED INQUIRY</span>
+            <hr className="flex-1 border-t border-[#2c241c]" />
+          </div>
+
           <form className="form" onSubmit={handleSubmit} ref={formRef} style={{opacity:0,transform:'translateY(40px)',transition:'opacity 0.7s ease,transform 0.7s ease,transition-delay:0.15s'}}>
             {/* Section 1: Personal Info */}
             <div className="mb-12">
@@ -271,29 +300,6 @@ const Enquiry = () => {
 
             <button type="submit" disabled={isSubmitting} className="w-full p-[1.2rem] bg-[#c8956c] text-[#110e0c] border border-[#c8956c] rounded-md font-sans text-[1.1rem] font-semibold uppercase tracking-[1px] cursor-pointer transition-all duration-300 mt-4 hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50">{isSubmitting ? 'SENDING...' : 'Send Enquiry'}</button>
           </form>
-
-          {/* Quick Contact Option */}
-          <div className="mt-16 bg-[#1a1512] border border-[#2c241c] p-8 rounded-lg text-center shadow-lg relative overflow-hidden">
-            <h2 className="font-serif text-[1.6rem] text-[#c8956c] mb-4">Or Quick Direct Contact</h2>
-            <p className="text-[#b5aaa0] mb-8 font-sans">Just enter your email and we'll get back to you immediately.</p>
-            <form onSubmit={handleQuickSubmit} className="flex max-sm:flex-col gap-4 max-w-[500px] mx-auto">
-              <input 
-                type="email" 
-                value={quickEmail} 
-                onChange={e => setQuickEmail(e.target.value)} 
-                placeholder="Your Email Address" 
-                required 
-                className="flex-1 py-[1rem] px-[1.2rem] border border-[#2c241c] rounded-md font-sans text-[1rem] bg-[#15110F] text-white transition-all duration-200 focus:outline-none focus:border-[#c8956c] focus:shadow-[0_0_0_3px_rgba(200,149,108,0.15)]" 
-              />
-              <button 
-                type="submit" 
-                disabled={isQuickSubmitting} 
-                className="px-8 py-[1rem] bg-[#c8956c] text-[#110e0c] border border-[#c8956c] rounded-md font-sans text-[1rem] font-semibold uppercase tracking-[1px] cursor-pointer transition-all duration-300 hover:bg-transparent hover:text-[#c8956c] disabled:opacity-50"
-              >
-                {isQuickSubmitting ? 'Sending...' : 'Send'}
-              </button>
-            </form>
-          </div>
         </div>
       </main>
     </div>

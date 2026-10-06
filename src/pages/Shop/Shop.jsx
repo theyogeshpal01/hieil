@@ -210,14 +210,15 @@ const Shop = () => {
 
       <div className="max-w-[1400px] mx-auto p-[3rem_2rem] flex flex-col md:flex-row gap-[3.5rem]">
         {/* Sidebar */}
-        <aside className="w-full md:w-[280px] shrink-0 sticky top-[2rem] max-h-[calc(100vh-4rem)] overflow-y-auto p-[25px] bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] scrollbar-thin scrollbar-thumb-[#e0e0e0] scrollbar-track-[#15110F] hover:scrollbar-thumb-[#c8956c]">
+        <aside className="w-full md:w-[280px] shrink-0 md:sticky md:top-[2rem] max-h-[calc(100vh-4rem)] overflow-y-auto md:overflow-y-auto overflow-x-hidden p-[20px] md:p-[25px] bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] scrollbar-thin scrollbar-thumb-[#e0e0e0] scrollbar-track-[#15110F] hover:scrollbar-thumb-[#c8956c]">
           <div className="flex justify-between items-center mb-[1.5rem] border-b border-[#2c241c] pb-[1rem]">
             <h3 className="font-serif text-[0.9rem] font-semibold text-white m-0 uppercase tracking-[1px]">FILTER:</h3>
             <button className="bg-transparent border-none font-sans text-[0.8rem] text-[#c8956c] cursor-pointer p-0" onClick={handleClearAll}>Clear All</button>
           </div>
 
-          {dynamicFilters.map((section) => (
-            <div key={section.id} className="border-b border-[#2c241c] py-[1.25rem]">
+          <div className="flex flex-row overflow-x-auto md:flex-col gap-6 md:gap-0 pb-4 md:pb-0 scrollbar-none md:scrollbar-thin w-full scroll-smooth">
+            {dynamicFilters.map((section) => (
+            <div key={section.id} className="border border-[#2c241c] md:border-0 md:border-b md:border-[#2c241c] py-4 px-5 md:px-0 md:py-[1.25rem] min-w-[250px] md:min-w-0 rounded-xl md:rounded-none bg-[rgba(20,16,14,0.8)] md:bg-transparent flex-shrink-0">
               <button 
                 className="flex justify-between items-center cursor-pointer bg-transparent border-none w-full p-0 font-serif text-[0.85rem] font-semibold text-white uppercase tracking-[0.5px]"
                 onClick={() => toggleSection(section.id)}
@@ -248,7 +249,7 @@ const Shop = () => {
           ))}
 
           {/* Color Section */}
-          <div className="border-b border-[#2c241c] py-[1.25rem]">
+          <div className="border border-[#2c241c] md:border-0 md:border-b md:border-[#2c241c] py-4 px-5 md:px-0 md:py-[1.25rem] min-w-[250px] md:min-w-0 rounded-xl md:rounded-none bg-[rgba(20,16,14,0.8)] md:bg-transparent flex-shrink-0">
             <button 
               className="flex justify-between items-center cursor-pointer bg-transparent border-none w-full p-0 font-serif text-[0.85rem] font-semibold text-white uppercase tracking-[0.5px]"
               onClick={() => toggleSection('colors')}
@@ -269,7 +270,7 @@ const Shop = () => {
               </div>
             )}
           </div>
-        </aside>
+        </div></aside>
 
         {/* Content Area */}
         <div className="flex-1">
