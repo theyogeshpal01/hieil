@@ -114,6 +114,10 @@ function App() {
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/testimonials" element={<Testimonials />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/auth" element={<AuthPage />} />
+              <Route path="/account" element={<UserDashboard />} />
+
+
               <Route path="/terms-of-service" element={<TermsOfService />} />
               <Route path="/legal-info" element={<LegalInfo />} />
               
@@ -124,8 +128,8 @@ function App() {
 
             {/* Admin Panel Route */}
             <Route path="/admin/*" element={<AdminApp />} />
-            <Route path="/auth" element={<AuthPage />} />
-          <Route path="/account" element={<UserDashboard />} />
+
+
         </Routes>
         </Suspense>
       </div>
