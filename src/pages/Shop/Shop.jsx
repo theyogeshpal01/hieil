@@ -87,9 +87,6 @@ const Shop = () => {
     if (node) observer.current.observe(node);
   }, []);
 
-  useEffect(() => {
-    setVisibleCount(12);
-  }, [selectedFilters, queryCategory, querySubcategory]);
   
   // Determine initial category from URL
   const initialCategory = queryCategory || (categoryId ? (categoryMap[categoryId] || categoryId) : 'All categories');
@@ -112,6 +109,8 @@ const Shop = () => {
     availability: [],
     price: []
   });
+
+  useEffect(() => { setVisibleCount(12); }, [selectedFilters, queryCategory, querySubcategory]);
 
   // Fetch categories and products
   useEffect(() => {
