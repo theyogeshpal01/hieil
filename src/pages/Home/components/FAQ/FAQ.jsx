@@ -62,8 +62,8 @@ const FAQ = () => {
               onClick={() => { setActiveCategory(cat); setOpenId(null); }}
               className={`whitespace-nowrap flex-shrink-0 px-6 py-2 rounded-full font-sans text-[0.95rem] font-medium transition-all duration-300 border ${
                 activeCategory === cat 
-                  ? 'bg-[#c07a5d] text-white border-[#c07a5d]' 
-                  : 'bg-transparent text-[#b5aaa0] border-[#2c241c] hover:border-[#c07a5d] hover:text-[#c07a5d]'
+                  ? 'bg-[#c8956c] text-white border-[#c8956c]' 
+                  : 'bg-transparent text-[#b5aaa0] border-[#2c241c] hover:border-[#c8956c] hover:text-[#c8956c]'
               }`}
             >
               {cat}
@@ -75,12 +75,12 @@ const FAQ = () => {
           {(activeCategory === 'All' ? faqsData : faqsData.filter(f => f.category === activeCategory)).map((faq, i) => (
             <div 
               key={faq._id || faq.id || i} 
-              className={`group bg-[#15110F] rounded shadow-[0_4px_20px_rgba(0,0,0,0.5)] overflow-hidden cursor-pointer border transition-all duration-200 ease-in-out ${openId === (faq._id || faq.id || i) ? 'border-[#c07a5d] shadow-[0_4px_20px_rgba(0,0,0,0.5)]' : 'border-transparent hover:border-[#c07a5d] hover:shadow-[0_4px_20px_rgba(0,0,0,0.5)]'}`}
+              className={`group bg-[#15110F] rounded shadow-[0_4px_20px_rgba(0,0,0,0.5)] overflow-hidden cursor-pointer border transition-all duration-200 ease-in-out ${openId === (faq._id || faq.id || i) ? 'border-[#c8956c] shadow-[0_4px_20px_rgba(0,0,0,0.5)]' : 'border-transparent hover:border-[#c8956c] hover:shadow-[0_4px_20px_rgba(0,0,0,0.5)]'}`}
               onClick={() => toggleFaq(faq._id || faq.id || i)}
             >
               <div className="py-5 px-6 flex justify-between items-center bg-[#15110F]">
                 <h4 className="font-serif text-[0.95rem] font-semibold text-[#b5aaa0] uppercase tracking-[1px] m-0">{faq.question}</h4>
-                <div className="text-[#c07a5d] flex items-center justify-center">
+                <div className="text-[#c8956c] flex items-center justify-center">
                   {openId === (faq._id || faq.id || i) ? <Minus size={18} /> : <Plus size={18} />}
                 </div>
               </div>
