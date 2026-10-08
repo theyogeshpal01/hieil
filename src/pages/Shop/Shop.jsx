@@ -73,6 +73,27 @@ const Shop = () => {
   const [categories, setCategories] = useState([]);
   const [categoriesList, setCategoriesList] = useState(['All categories']);
   const [viewMode, setViewMode] = useState('grid');
+  const [visibleCount, setVisibleCount] = useState(12);
+  const observerRef = useRef(null);
+
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [selectedFilters, queryCategory, querySubcategory]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount((prev) => prev + 12);
+        }
+      },
+      { rootMargin: '200px' }
+    );
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
   
   // Determine initial category from URL
   const initialCategory = queryCategory || (categoryId ? (categoryMap[categoryId] || categoryId) : 'All categories');
@@ -324,7 +345,7 @@ const Shop = () => {
             {filteredcategories.length === 0 ? (
               <div className="py-[2rem] text-[#666]">No categories found matching your filters.</div>
             ) : (
-              filteredcategories.map((product) => (
+              filteredcategories.slice(0, visibleCount).map((product) => (
                 <div key={product._id} className={`bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-[20px] p-[20px] transition-all duration-400 hover:border-[#c8956c] hover:shadow-[0_10px_40px_rgba(194,163,115,0.05)] group relative ${viewMode === 'list' ? 'flex flex-row gap-[1.5rem] items-center' : 'flex flex-col h-full hover:-translate-y-[5px]'}`}>
                 <div className={`rounded-[12px] bg-[#15110F] relative flex items-center justify-center overflow-hidden shrink-0 ${viewMode === 'list' ? 'w-[200px] h-[200px]' : 'w-full h-[260px] mb-[1rem]'}`}>
                   <span className="absolute top-[1rem] left-[1rem] bg-[#c8956c] text-[#000000] font-sans text-[0.7rem] font-semibold py-[0.25rem] px-[0.5rem] tracking-[0.5px] z-10 rounded-[4px]">{product.tag || '-5%'}</span>

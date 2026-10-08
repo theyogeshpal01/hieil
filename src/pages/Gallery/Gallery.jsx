@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import api from '../../config/api';
 
@@ -8,6 +8,27 @@ const Gallery = () => {
   const [categories, setCategories] = useState(['All categories']);
   const [activeCategory, setActiveCategory] = useState('All categories');
   const [selectedItem, setSelectedItem] = useState(null);
+  const [visibleCount, setVisibleCount] = useState(12);
+  const observerRef = useRef(null);
+
+  useEffect(() => {
+    setVisibleCount(12);
+  }, [activeCategory]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleCount((prev) => prev + 12);
+        }
+      },
+      { rootMargin: '200px' } // Load slightly before reaching the bottom
+    );
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -76,7 +97,7 @@ const Gallery = () => {
               No images available in this gallery yet.
             </div>
           ) : (
-            filteredItems.map((item) => (
+            filteredItems.slice(0, visibleCount).map((item) => (
               <div 
                 className="relative overflow-hidden group cursor-pointer aspect-[4/3] w-full" 
                 key={item._id || item.id}
@@ -87,7 +108,7 @@ const Gallery = () => {
                   tagline: item.tagline || '200+ DESIGNS'
                 })}
               >
-                <img src={item.image || getImageForCategory(item.category)} alt={item.title || item.category} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img loading="lazy" src={item.image || getImageForCategory(item.category)} alt={item.title || item.category} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-black/10 to-transparent opacity-90 transition-opacity duration-300"></div>
                 <div className="absolute bottom-0 left-0 p-[30px] z-10 w-full">
                   <p className="text-[10px] text-[#c8956c] m-0 mb-[8px] tracking-[2px] uppercase font-bold">{item.tagline || '200+ DESIGNS'}</p>
