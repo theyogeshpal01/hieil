@@ -22,7 +22,7 @@ const UserDashboard = () => {
   const fetchDashboardData = async () => {
     setDataLoading(true);
     try {
-      if (activeTab === 'inquiries') {
+      if (activeTab === 'inquiries' || activeTab === 'quotations') {
         const res = await api.get('/users/auth/inquiries', { headers: { Authorization: 'Bearer ' + token } });
         setInquiries(res.data.inquiries || []);
         setQuotations(res.data.quotations || []);
@@ -66,7 +66,8 @@ const UserDashboard = () => {
 
   const tabs = [
     { id: 'profile', label: 'My Profile', icon: <User size={18} /> },
-    { id: 'inquiries', label: 'My Inquiries & Quotations', icon: <FileText size={18} /> },
+    { id: 'inquiries', label: 'My Inquiries', icon: <FileText size={18} /> },
+    { id: 'quotations', label: 'My Quotations', icon: <FileText size={18} /> },
     { id: 'wishlist', label: 'Wishlist', icon: <Heart size={18} /> },
     { id: 'orders', label: 'Orders', icon: <CheckCircle size={18} /> },
   ];
@@ -126,59 +127,84 @@ const UserDashboard = () => {
             </div>
           )}
           
-          {/* INQUIRIES & QUOTATIONS TAB */}
-          {activeTab === 'inquiries' && (
-            <div>
-              <h3 className="text-2xl font-serif text-[#c8956c] mb-6">My Inquiries & Quotations</h3>
-              {dataLoading ? (
-                <div className="flex justify-center py-10"><div className="w-8 h-8 border-4 border-[#c8956c] border-t-transparent rounded-full animate-spin"></div></div>
-              ) : (
-                <div className="flex flex-col gap-6">
-                  {inquiries.length === 0 && quotations.length === 0 ? (
-                    <p className="text-[#888888]">You haven't made any inquiries yet.</p>
-                  ) : (
-                    <>
-                      {/* Active Quotations */}
-                      {quotations.map(quote => (
-                        <div key={quote._id} className="bg-[#15110F] p-6 rounded-xl border border-[#c8956c] relative overflow-hidden">
-                          <div className="absolute top-0 right-0 bg-[#c8956c] text-[#15110F] text-xs font-bold px-3 py-1 uppercase rounded-bl-lg">Quotation Received</div>
-                          <h4 className="font-serif text-xl mb-2 text-white">Quotation #{quote.quoteNo || quote._id.substring(0,6)}</h4>
-                          <div className="grid grid-cols-2 gap-4 mb-4 text-[#888888] text-sm">
-                            <div><span className="block text-[#b5aaa0]">Product</span>{quote.product}</div>
-                            <div><span className="block text-[#b5aaa0]">Total Amount</span>${quote.total}</div>
-                            <div><span className="block text-[#b5aaa0]">Valid Till</span>{quote.validTill || 'N/A'}</div>
-                            <div><span className="block text-[#b5aaa0]">Status</span><span className={`font-bold ${quote.status === 'Accepted' ? 'text-green-500' : 'text-white'}`}>{quote.status || 'Sent'}</span></div>
+                      {/* INQUIRIES TAB */}
+            {activeTab === 'inquiries' && (
+              <div>
+                <h3 className="text-2xl font-serif text-[#c8956c] mb-6">My Inquiries</h3>
+                {dataLoading ? (
+                  <div className="flex justify-center py-10"><div className="w-8 h-8 border-4 border-[#c8956c] border-t-transparent rounded-full animate-spin"></div></div>
+                ) : (
+                  <div className="flex flex-col gap-6">
+                    {inquiries.length === 0 ? (
+                      <p className="text-[#888888]">You haven't made any inquiries yet.</p>
+                    ) : (
+                      <>
+                        {inquiries.map(inq => (
+                          <div key={inq._id} className="bg-[#15110F] p-6 rounded-xl border border-[#2c241c]">
+                            <div className="flex justify-between items-start mb-4">
+                              <h4 className="font-serif text-lg text-white">{inq.product || 'General Inquiry'}</h4>
+                              <span className="bg-[#2c241c] text-[#888888] text-xs px-2 py-1 rounded uppercase">{inq.status || 'Pending'}</span>
+                            </div>
+                            <p className="text-sm text-[#888888] mb-2"><span className="text-[#b5aaa0]">Quantity:</span> {inq.qty || 'N/A'}</p>
+                            <p className="text-sm text-[#888888] mb-4"><span className="text-[#b5aaa0]">Message:</span> {inq.message || 'No additional message'}</p>
+                            
+                            {inq.productId && (
+                              <Link 
+                                to={`/product/${inq.productId}`}
+                                className="inline-block mt-2 bg-[#2c241c] hover:bg-[#c8956c] hover:text-[#15110F] text-[#888888] text-xs font-bold tracking-wide uppercase px-4 py-2 rounded transition-colors"
+                              >
+                                View Product
+                              </Link>
+                            )}
                           </div>
-                          {quote.status !== 'Accepted' && (
-                            <button 
-                              onClick={() => handleAcceptQuotation(quote._id)}
-                              className="mt-2 bg-[#c8956c] text-[#15110F] px-5 py-2 rounded font-bold tracking-wide hover:bg-white transition-colors"
-                            >
-                              Accept Quotation & Place Order
-                            </button>
-                          )}
-                        </div>
-                      ))}
+                        ))}
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
 
-                      {/* Pending Inquiries */}
-                      {inquiries.filter(inq => inq.status !== 'Quotation Created' && inq.status !== 'Accepted').map(inq => (
-                        <div key={inq._id} className="bg-[#15110F] p-6 rounded-xl border border-[#2c241c]">
-                          <div className="flex justify-between items-start mb-4">
-                            <h4 className="font-serif text-lg text-white">{inq.product || 'General Inquiry'}</h4>
-                            <span className="bg-[#2c241c] text-[#888888] text-xs px-2 py-1 rounded uppercase">{inq.status || 'Pending'}</span>
+            {/* QUOTATIONS TAB */}
+            {activeTab === 'quotations' && (
+              <div>
+                <h3 className="text-2xl font-serif text-[#c8956c] mb-6">My Quotations</h3>
+                {dataLoading ? (
+                  <div className="flex justify-center py-10"><div className="w-8 h-8 border-4 border-[#c8956c] border-t-transparent rounded-full animate-spin"></div></div>
+                ) : (
+                  <div className="flex flex-col gap-6">
+                    {quotations.length === 0 ? (
+                      <p className="text-[#888888]">No quotations received yet.</p>
+                    ) : (
+                      <>
+                        {quotations.map(quote => (
+                          <div key={quote._id} className="bg-[#15110F] p-6 rounded-xl border border-[#c8956c] relative overflow-hidden">
+                            <div className="absolute top-0 right-0 bg-[#c8956c] text-[#15110F] text-xs font-bold px-3 py-1 uppercase rounded-bl-lg">Quotation Received</div>
+                            <h4 className="font-serif text-xl mb-2 text-white">Quotation #{quote.quoteNo || quote._id.substring(0,6)}</h4>
+                            <div className="grid grid-cols-2 gap-4 mb-4 text-[#888888] text-sm">
+                              <div><span className="block text-[#b5aaa0]">Product</span>{quote.product}</div>
+                              <div><span className="block text-[#b5aaa0]">Total Amount</span>${quote.total}</div>
+                              <div><span className="block text-[#b5aaa0]">Valid Till</span>{quote.validTill || 'N/A'}</div>
+                              <div><span className="block text-[#b5aaa0]">Status</span><span className={`font-bold ${quote.status === 'Accepted' ? 'text-green-500' : 'text-white'}`}>{quote.status || 'Sent'}</span></div>
+                            </div>
+                            {quote.status !== 'Accepted' && (
+                              <button 
+                                onClick={() => handleAcceptQuotation(quote._id)}
+                                className="mt-2 bg-[#c8956c] text-[#15110F] px-5 py-2 rounded font-bold tracking-wide hover:bg-white transition-colors"
+                              >
+                                Accept Quotation & Place Order
+                              </button>
+                            )}
                           </div>
-                          <p className="text-sm text-[#888888] mb-2"><span className="text-[#b5aaa0]">Quantity:</span> {inq.qty || 'N/A'}</p>
-                          <p className="text-sm text-[#888888] line-clamp-2"><span className="text-[#b5aaa0]">Message:</span> {inq.message || 'No additional message'}</p>
-                        </div>
-                      ))}
-                    </>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-          
-          {/* WISHLIST TAB */}
+                        ))}
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* WISHLIST TAB */}
           {activeTab === 'wishlist' && (
             <div>
               <h3 className="text-2xl font-serif text-[#c8956c] mb-6">My Wishlist</h3>
