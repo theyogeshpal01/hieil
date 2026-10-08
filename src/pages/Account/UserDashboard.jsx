@@ -30,7 +30,7 @@ const UserDashboard = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={\`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-left \${activeTab === tab.id ? 'bg-[#c8956c] text-[#15110F] font-bold' : 'text-[#888888] hover:bg-[#2c241c] hover:text-white'}\`}
+                  className={'flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-left ' + (activeTab === tab.id ? 'bg-[#c8956c] text-[#15110F] font-bold' : 'text-[#888888] hover:bg-[#2c241c] hover:text-white')}
                 >
                   {tab.icon}
                   <span>{tab.label}</span>

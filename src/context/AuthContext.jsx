@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       if (token) {
         try {
           const res = await api.get('/users/auth/me', {
-            headers: { Authorization: \`Bearer \${token}\` }
+            headers: { Authorization: 'Bearer ' + token }
           });
           setUser(res.data);
         } catch (error) {
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
     if (!token) return false;
     try {
       const res = await api.post('/users/auth/wishlist/toggle', { productId }, {
-        headers: { Authorization: \`Bearer \${token}\` }
+        headers: { Authorization: 'Bearer ' + token }
       });
       setUser(prev => ({ ...prev, wishlist: res.data }));
       return true;
