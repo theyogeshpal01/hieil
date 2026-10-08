@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { FaWhatsapp } from 'react-icons/fa';
-import { ChevronDown, ChevronUp, Grid, List, Star, Search, Filter, X, ChevronRight, SlidersHorizontal } from 'lucide-react';
+import { ChevronDown, ChevronUp, Grid, List, Star, Search, Filter, X, ChevronRight, SlidersHorizontal, Heart } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 import LazyImage from '../../components/common/LazyMedia/LazyImage';
 import api from '../../config/api';
 
@@ -63,6 +64,7 @@ const categoryMap = {
 };
 
 const Shop = () => {
+  const { user, toggleWishlist } = useAuth();
   const { categoryId } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -386,6 +388,9 @@ const Shop = () => {
                           title="WhatsApp Enquiry"
                         >
                           <FaWhatsapp size={18} />
+                          </button>
+                          <button onClick={(e) => { e.preventDefault(); toggleWishlist(product._id); }} className={"flex items-center justify-center p-[0.5rem] border border-[#c8956c] bg-transparent rounded-[30px] transition-all duration-200 hover:bg-[#c8956c] group/heart"} title="Wishlist">
+                            <Heart size={18} className={user?.wishlist?.some(item => item === product._id || item._id === product._id) ? "fill-[#c8956c] text-[#c8956c]" : "text-[#c8956c] group-hover/heart:text-[#15110F]"} />
                         </button>
                         <Link to={`/product/${product._id}`} className="p-[0.5rem_1rem] text-center border border-[#c8956c] text-[#c8956c] bg-transparent font-sans text-[0.8rem] font-normal uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-[#c8956c] hover:text-[#15110F]">Details</Link>
                         <Link to={`/product/${product._id}/enquiry`} className="p-[0.5rem_1rem] text-center border border-[#c8956c] bg-[#c8956c] text-[#15110F] font-sans text-[0.8rem] font-normal uppercase rounded-[30px] transition-all duration-200 no-underline hover:bg-transparent hover:text-[#c8956c]">Enquiry</Link>

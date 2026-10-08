@@ -3,10 +3,12 @@ import { useParams, Link } from 'react-router-dom';
 import { ChevronRight, ArrowLeft } from 'lucide-react';
 import useScrollAnimation from '../../hooks/useScrollAnimation';
 import axios from 'axios';
+import { useAuth } from '../../context/AuthContext';
 import Swal from 'sweetalert2';
 import LazyImage from '../../components/common/LazyMedia/LazyImage';
 
 const Enquiry = () => {
+  const { user } = useAuth();
   const { id } = useParams();
   
   const [product, setProduct] = useState(null);
@@ -86,6 +88,7 @@ const Enquiry = () => {
     const shippingDetails = `${formData.shipping} - Port: ${formData.port}`;
     
     const payload = {
+      userId: user ? user.id || user._id : undefined,
       product: product.productName,
       productId: product._id,
       customer: formData.customer,

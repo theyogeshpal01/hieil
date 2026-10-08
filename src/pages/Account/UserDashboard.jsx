@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { LogOut, User, Heart, FileText, CheckCircle } from 'lucide-react';
 
@@ -80,7 +80,23 @@ const UserDashboard = () => {
           {activeTab === 'wishlist' && (
             <div>
               <h3 className="text-2xl font-serif text-[#c8956c] mb-6">My Wishlist</h3>
-              <p className="text-[#888888]">Your saved products will appear here...</p>
+              {user?.wishlist?.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {user.wishlist.map(item => (
+                    <div key={item._id || item} className="bg-[#15110F] overflow-hidden rounded-xl border border-[#2c241c] flex flex-col transition-all hover:border-[#c8956c]">
+                      <img src={item.mainImage} alt={item.productName || 'Product'} className="w-full h-[200px] object-cover" />
+                      <div className="p-4">
+                        <h4 className="font-serif text-lg mb-3 line-clamp-1">{item.productName || 'Product'}</h4>
+                        <Link to={`/product/${item._id}`} className="text-[#c8956c] text-sm uppercase tracking-wider font-bold hover:text-white transition-colors">
+                          View Details
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-[#888888]">Your wishlist is currently empty.</p>
+              )}
             </div>
           )}
           
