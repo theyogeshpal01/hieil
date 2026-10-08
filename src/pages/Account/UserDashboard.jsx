@@ -214,15 +214,54 @@ const UserDashboard = () => {
                     <p className="text-[#888888]">You haven't placed any orders yet.</p>
                   ) : (
                     orders.map(order => (
-                      <div key={order._id} className="bg-[#15110F] p-5 rounded-xl border border-[#2c241c] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                        <div>
+                      <div key={order._id} className="bg-[#15110F] p-5 rounded-xl border border-[#2c241c] flex flex-col md:flex-row justify-between items-start md:items-start gap-4">
+                        <div className="flex-1 w-full">
                           <div className="text-[#c8956c] font-bold mb-1">{order.orderNo || order._id}</div>
                           <div className="text-white text-lg font-serif">{order.product}</div>
-                          <div className="text-sm text-[#888888] mt-1">{new Date(order.createdAt).toLocaleDateString()}</div>
+                          <div className="text-sm text-[#888888] mt-1 mb-4">{new Date(order.createdAt).toLocaleDateString()}</div>
+                          
+                          <div className="w-full bg-[#110e0c] p-4 rounded-lg">
+                            <h5 className="text-[#c8956c] font-bold mb-3 text-sm">PAYMENT ENTRIES</h5>
+                            {order.payments?.length > 0 ? (
+                              <div className="overflow-x-auto">
+                                <table className="w-full text-sm text-left">
+                                  <thead className="text-[#888888] border-b border-[#2c241c]">
+                                    <tr>
+                                      <th className="py-2">Date</th>
+                                      <th className="py-2">Amount</th>
+                                      <th className="py-2">Mode</th>
+                                      <th className="py-2">Reference</th>
+                                      <th className="py-2">Status</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {order.payments.map(p => (
+                                      <tr key={p._id} className="border-b border-[#2c241c]/50 text-white">
+                                        <td className="py-2">{new Date(p.createdAt).toLocaleDateString()}</td>
+                                        <td className="py-2 font-bold">${p.amount}</td>
+                                        <td className="py-2 uppercase">{p.mode}</td>
+                                        <td className="py-2 text-[#888888]">{p.reference || 'N/A'}</td>
+                                        <td className="py-2">
+                                          <span className={`px-2 py-1 rounded text-[10px] uppercase font-bold tracking-wider ${p.status === 'Completed' ? 'bg-green-500/20 text-green-500' : 'bg-yellow-500/20 text-yellow-500'}`}>
+                                            {p.status || 'Pending'}
+                                          </span>
+                                        </td>
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            ) : (
+                              <p className="text-[#888888] text-sm italic">
+                                No payment entries yet. Payments are handled directly (Bank/UPI). 
+                                Admin will update this log once payment is received.
+                              </p>
+                            )}
+                          </div>
                         </div>
-                        <div className="text-left md:text-right">
-                          <div className="text-xl text-white font-bold mb-1">${order.totalAmount}</div>
-                          <span className="bg-[#c8956c]/20 text-[#c8956c] text-xs px-2 py-1 rounded uppercase">{order.status || 'Processing'}</span>
+                        <div className="text-left md:text-right shrink-0">
+                          <div className="text-xl text-white font-bold mb-2">${order.totalAmount}</div>
+                          <span className="bg-[#c8956c]/20 text-[#c8956c] text-xs px-2 py-1 rounded uppercase font-bold tracking-wider">{order.status || 'Processing'}</span>
                         </div>
                       </div>
                     ))
