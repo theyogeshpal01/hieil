@@ -374,14 +374,12 @@ const Shop = () => {
                     ></div>
                   )}
                   
-                  <div className={`flex justify-between items-center ${viewMode === 'list' ? 'mt-[0.5rem]' : 'mt-auto'}`}>
-                    {(product.priceOnRequest || product.price) ? (
-                      <span className="font-sans text-[1.15rem] font-semibold text-white">
-                        {product.priceOnRequest ? "Price on Request" : `$${Number(product.offerPrice || product.price).toFixed(2)}`}
-                      </span>
-                    ) : (
-                      <span></span>
-                    )}
+                  <div className={`${viewMode === 'list' ? 'mt-[0.5rem] flex items-center justify-between' : 'mt-auto flex flex-col items-start gap-3'}`}>
+                      {(product.priceOnRequest || product.price) ? (
+                        <span className="font-sans text-[1.15rem] font-semibold text-[#c8956c]">
+                          {product.priceOnRequest ? "Price on Request" : `${Number(product.offerPrice || product.price).toFixed(2)}`}
+                        </span>
+                      ) : null}
                     <div className="flex gap-[0.5rem]">
                         <button 
                           onClick={(e) => {
