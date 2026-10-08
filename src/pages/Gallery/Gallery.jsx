@@ -112,7 +112,14 @@ const Gallery = () => {
             ))
           )}
         </div>
-      </section>
+      
+          {/* Infinite Scroll Loader */}
+          {visibleCount < filteredItems.length && (
+            <div ref={observerRef} className="w-full py-10 flex justify-center items-center col-span-full">
+              <div className="w-8 h-8 border-4 border-[#c8956c] border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          )}
+        </section>
 
       {/* User Shared Moments */}
       <section className="pt-[80px] px-0 pb-[120px] bg-[#15110F]">

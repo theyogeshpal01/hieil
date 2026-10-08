@@ -396,6 +396,12 @@ const Shop = () => {
               ))
             )}
           </div>
+            {/* Infinite Scroll Loader */}
+            {visibleCount < filteredcategories.length && (
+              <div ref={observerRef} className="w-full py-10 flex justify-center items-center">
+                <div className="w-8 h-8 border-4 border-[#c8956c] border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            )}
         </div>
       </div>
     </div>
