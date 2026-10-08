@@ -248,44 +248,70 @@ const UserDashboard = () => {
                           
                           <div className="w-full bg-[#110e0c] p-4 rounded-lg">
                             <h5 className="text-[#c8956c] font-bold mb-3 text-sm">PAYMENT ENTRIES</h5>
-                            {order.payments?.length > 0 ? (
-                              <div className="overflow-x-auto">
-                                <table className="w-full text-sm text-left">
-                                  <thead className="text-[#888888] border-b border-[#2c241c]">
-                                    <tr>
-                                      <th className="py-2">Date</th>
-                                      <th className="py-2">Amount</th>
-                                      <th className="py-2">Mode</th>
-                                      <th className="py-2">Reference</th>
-                                      <th className="py-2">Status</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    {order.payments.map(p => (
-                                      <tr key={p._id} className="border-b border-[#2c241c]/50 text-white">
-                                        <td className="py-2">{new Date(p.createdAt).toLocaleDateString()}</td>
-                                        <td className="py-2 font-bold">${p.amount}</td>
-                                        <td className="py-2 uppercase">{p.mode}</td>
-                                        <td className="py-2 text-[#888888]">{p.reference || 'N/A'}</td>
-                                        <td className="py-2">
-                                          <span className={`px-2 py-1 rounded text-[10px] uppercase font-bold tracking-wider ${p.status === 'Completed' ? 'bg-green-500/20 text-green-500' : 'bg-yellow-500/20 text-yellow-500'}`}>
-                                            {p.status || 'Pending'}
-                                          </span>
-                                        </td>
-                                      </tr>
-                                    ))}
-                                  </tbody>
-                                </table>
+                              
+                              {/* Financial Summary */}
+                              <div className="flex flex-wrap gap-4 mb-4 bg-[#15110F] p-3 rounded border border-[#2c241c]">
+                                <div className="flex-1">
+                                  <span className="block text-[#888888] text-xs">TOTAL AMOUNT</span>
+                                  <span className="text-white font-bold">${order.totalAmount || 0}</span>
+                                </div>
+                                <div className="flex-1">
+                                  <span className="block text-[#888888] text-xs">TOTAL PAID</span>
+                                  <span className="text-green-500 font-bold">
+                                    ${(order.installments || []).reduce((sum, inst) => inst.status === 'Paid' ? sum + (parseFloat(inst.amount) || 0) : sum, 0).toFixed(2)}
+                                  </span>
+                                </div>
+                                <div className="flex-1">
+                                  <span className="block text-[#888888] text-xs">PENDING BALANCE</span>
+                                  <span className="text-red-500 font-bold">
+                                    ${(
+                                      parseFloat(order.totalAmount || 0) - 
+                                      (order.installments || []).reduce((sum, inst) => inst.status === 'Paid' ? sum + (parseFloat(inst.amount) || 0) : sum, 0)
+                                    ).toFixed(2)}
+                                  </span>
+                                </div>
                               </div>
-                            ) : (
-                              <p className="text-[#888888] text-sm italic">
-                                No payment entries yet. Payments are handled directly (Bank/UPI). 
-                                Admin will update this log once payment is received.
-                              </p>
-                            )}
+
+                              {order.installments?.length > 0 ? (
+                                <div className="overflow-x-auto">
+                                  <table className="w-full text-sm text-left">
+                                    <thead className="text-[#888888] border-b border-[#2c241c]">
+                                      <tr>
+                                        <th className="py-2">Date/Due</th>
+                                        <th className="py-2">Title</th>
+                                        <th className="py-2">Amount</th>
+                                        <th className="py-2">Mode</th>
+                                        <th className="py-2">Reference</th>
+                                        <th className="py-2">Status</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {order.installments.map((p, idx) => (
+                                        <tr key={idx} className="border-b border-[#2c241c]/50 text-white">
+                                          <td className="py-2">{p.paymentDate ? new Date(p.paymentDate).toLocaleDateString() : (p.dueDate ? new Date(p.dueDate).toLocaleDateString() : 'N/A')}</td>
+                                          <td className="py-2">{p.title || 'Installment'}</td>
+                                          <td className="py-2 font-bold">${p.amount}</td>
+                                          <td className="py-2 uppercase">{p.paymentMode || '-'}</td>
+                                          <td className="py-2 text-[#888888]">{p.reference || '-'}</td>
+                                          <td className="py-2">
+                                            <span className={`px-2 py-1 rounded text-[10px] uppercase font-bold tracking-wider ${p.status === 'Paid' ? 'bg-green-500/20 text-green-500' : 'bg-yellow-500/20 text-yellow-500'}`}>
+                                              {p.status || 'Pending'}
+                                            </span>
+                                          </td>
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                </div>
+                              ) : (
+                                <p className="text-[#888888] text-sm italic">
+                                  No payment entries yet. Payments are handled directly (Bank/UPI). 
+                                  Admin will update this log once payment is received.
+                                </p>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                        <div className="text-left md:text-right shrink-0">
+                          <div className="text-left md:text-right shrink-0">
                           <div className="text-xl text-white font-bold mb-2">${order.totalAmount}</div>
                           <span className="bg-[#c8956c]/20 text-[#c8956c] text-xs px-2 py-1 rounded uppercase font-bold tracking-wider">{order.status || 'Processing'}</span>
                         </div>
