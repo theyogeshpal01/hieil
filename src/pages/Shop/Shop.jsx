@@ -329,7 +329,7 @@ const Shop = () => {
                 </select>
               </div>
               <div className="text-white font-medium hidden sm:block">{filteredcategories.length} categories</div>
-              <div className="flex gap-[0.5rem]">
+              <div className="flex flex-wrap gap-[0.5rem] w-full">
                 <Grid size={18} onClick={() => setViewMode('grid')} className={`cursor-pointer ${viewMode === 'grid' ? 'text-[#c8956c]' : 'text-[#888888] hover:text-[#c8956c]'}`} />
                 <List size={18} onClick={() => setViewMode('list')} className={`cursor-pointer ${viewMode === 'list' ? 'text-[#c8956c]' : 'text-[#888888] hover:text-[#c8956c]'}`} />
               </div>
@@ -375,7 +375,7 @@ const Shop = () => {
                           {product.priceOnRequest ? "Price on Request" : `${Number(product.offerPrice || product.price).toFixed(2)}`}
                         </span>
                       ) : null}
-                    <div className="flex gap-[0.5rem]">
+                    <div className="flex flex-wrap gap-[0.5rem] w-full">
                         <button 
                           onClick={(e) => {
                             e.preventDefault();
