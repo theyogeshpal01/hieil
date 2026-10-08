@@ -79,7 +79,7 @@ const UserDashboard = () => {
         {/* Sidebar */}
         <div className="w-full md:w-[300px] shrink-0">
           <div className="bg-[rgba(28,23,19,0.6)] backdrop-blur-[10px] border border-[#2c241c] rounded-2xl p-6 sticky top-[100px]">
-            <h2 className="text-2xl font-serif text-white mb-6 uppercase tracking-[1px]">My Account</h2>
+            <h3 className="text-2xl font-serif text-white mb-6 uppercase tracking-[1px]">My Account</h3>
             <div className="flex flex-col gap-2">
               {tabs.map(tab => (
                 <button
