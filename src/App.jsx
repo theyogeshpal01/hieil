@@ -1,4 +1,5 @@
 import React, { useEffect, Suspense, lazy } from 'react';
+import { AuthProvider } from './context/AuthContext';
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/layout/Header/Header';
 import Footer from './components/layout/Footer/Footer';
@@ -23,6 +24,8 @@ const AffiliateProgram = lazy(() => import('./pages/Services/AffiliateProgram'))
 const Blog = lazy(() => import('./pages/Blog/Blog'));
 const Gallery = lazy(() => import('./pages/Gallery/Gallery'));
 const Testimonials = lazy(() => import('./pages/Testimonials/Testimonials'));
+const AuthPage = lazy(() => import('./pages/Auth/AuthPage'));
+const UserDashboard = lazy(() => import('./pages/Account/UserDashboard'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService/TermsOfService'));
 const LegalInfo = lazy(() => import('./pages/LegalInfo/LegalInfo'));
@@ -80,6 +83,7 @@ function App() {
   }, []);
 
   return (
+    <AuthProvider>
     <Router>
       <ScrollToTop />
       <GlobalLoader />
@@ -120,10 +124,13 @@ function App() {
 
             {/* Admin Panel Route */}
             <Route path="/admin/*" element={<AdminApp />} />
-          </Routes>
+            <Route path="/auth" element={<AuthPage />} />
+          <Route path="/account" element={<UserDashboard />} />
+        </Routes>
         </Suspense>
       </div>
     </Router>
+    </AuthProvider>
   );
 }
 
