@@ -408,4 +408,6 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+import ErrorBoundary from '../../components/ErrorBoundary';
+
+export default function ShopWithErrorBoundary(props) { return <ErrorBoundary><Shop {...props} /></ErrorBoundary>; }
