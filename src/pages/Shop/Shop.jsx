@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { FaWhatsapp } from 'react-icons/fa';
 import { ChevronDown, ChevronUp, Grid, List, Star, Search, Filter, X, ChevronRight, SlidersHorizontal } from 'lucide-react';
@@ -74,26 +74,20 @@ const Shop = () => {
   const [categoriesList, setCategoriesList] = useState(['All categories']);
   const [viewMode, setViewMode] = useState('grid');
   const [visibleCount, setVisibleCount] = useState(12);
-  const observerRef = useRef(null);
+  const observer = useRef();
+  const observerRef = useCallback(node => {
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        setVisibleCount(prev => prev + 12);
+      }
+    }, { rootMargin: '200px' });
+    if (node) observer.current.observe(node);
+  }, []);
 
   useEffect(() => {
     setVisibleCount(12);
   }, [selectedFilters, queryCategory, querySubcategory]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setVisibleCount((prev) => prev + 12);
-        }
-      },
-      { rootMargin: '200px' }
-    );
-    if (observerRef.current) {
-      observer.observe(observerRef.current);
-    }
-    return () => observer.disconnect();
-  }, []);
   
   // Determine initial category from URL
   const initialCategory = queryCategory || (categoryId ? (categoryMap[categoryId] || categoryId) : 'All categories');

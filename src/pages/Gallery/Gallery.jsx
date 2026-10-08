@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { X } from 'lucide-react';
 import api from '../../config/api';
 
@@ -9,26 +9,20 @@ const Gallery = () => {
   const [activeCategory, setActiveCategory] = useState('All categories');
   const [selectedItem, setSelectedItem] = useState(null);
   const [visibleCount, setVisibleCount] = useState(12);
-  const observerRef = useRef(null);
+  const observer = useRef();
+  const observerRef = useCallback(node => {
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        setVisibleCount(prev => prev + 12);
+      }
+    }, { rootMargin: '200px' });
+    if (node) observer.current.observe(node);
+  }, []);
 
   useEffect(() => {
     setVisibleCount(12);
   }, [activeCategory]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setVisibleCount((prev) => prev + 12);
-        }
-      },
-      { rootMargin: '200px' } // Load slightly before reaching the bottom
-    );
-    if (observerRef.current) {
-      observer.observe(observerRef.current);
-    }
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
