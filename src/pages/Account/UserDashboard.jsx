@@ -139,7 +139,7 @@ const UserDashboard = () => {
                       <p className="text-[#888888]">You haven't made any inquiries yet.</p>
                     ) : (
                       <>
-                        {inquiries.map(inq => (
+                        {inquiries.filter(i => i.status !== 'Accepted').map(inq => (
                           <div key={inq._id} className="bg-[#15110F] p-6 rounded-xl border border-[#2c241c]">
                             <div className="flex justify-between items-start mb-4">
                               <h4 className="font-serif text-lg text-white">{inq.product || 'General Inquiry'}</h4>
@@ -177,7 +177,7 @@ const UserDashboard = () => {
                       <p className="text-[#888888]">No quotations received yet.</p>
                     ) : (
                       <>
-                        {quotations.map(quote => (
+                        {quotations.filter(q => q.status !== 'Accepted').map(quote => (
                           <div key={quote._id} className="bg-[#15110F] p-6 rounded-xl border border-[#c8956c] relative overflow-hidden">
                             <div className="absolute top-0 right-0 bg-[#c8956c] text-[#15110F] text-xs font-bold px-3 py-1 uppercase rounded-bl-lg">Quotation Received</div>
                             <h4 className="font-serif text-xl mb-2 text-white">Quotation #{quote.quoteNo || quote._id.substring(0,6)}</h4>
