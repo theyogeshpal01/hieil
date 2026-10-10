@@ -4,6 +4,7 @@ import { Menu, X, ChevronDown, ChevronUp, ChevronRight, User } from 'lucide-reac
 import { useAuth } from '../../../context/AuthContext';
 import { HEADER_LINKS } from '../../../constants/navigation';
 import api from '../../../config/api';
+import Swal from 'sweetalert2';
 
 const Header = () => {
   const { user } = useAuth();
@@ -16,6 +17,50 @@ const Header = () => {
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
   const navigate = useNavigate();
+
+
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [quoteEmail, setQuoteEmail] = useState('');
+  const [quoteSubmitting, setQuoteSubmitting] = useState(false);
+
+  const handleQuoteSubmit = async (e) => {
+    e.preventDefault();
+    if (!quoteEmail) return;
+    setQuoteSubmitting(true);
+    try {
+      await api.post('/inquiries', {
+        email: quoteEmail,
+        customer: user ? user.name : 'Guest',
+        type: 'inquiry',
+        status: 'Pending',
+        userId: user ? user.id : undefined,
+        message: 'Quick Quote Request',
+        product: '',
+        productId: ''
+      });
+      setIsQuoteModalOpen(false);
+      setQuoteEmail('');
+      Swal.fire({
+        title: 'Success',
+        text: 'Quote request submitted successfully!',
+        icon: 'success',
+        confirmButtonColor: '#c8956c',
+        background: '#110e0c',
+        color: '#fff'
+      });
+    } catch (error) {
+      Swal.fire({
+        title: 'Error',
+        text: error.response?.data?.message || 'Failed to submit quote request',
+        icon: 'error',
+        confirmButtonColor: '#c8956c',
+        background: '#110e0c',
+        color: '#fff'
+      });
+    } finally {
+      setQuoteSubmitting(false);
+    }
+  };
 
   useEffect(() => {
     // Fetch Categories
@@ -163,7 +208,7 @@ const Header = () => {
 
       <div className="flex items-center gap-4">
         <Link to="/account" className="hidden lg:flex items-center justify-center gap-2 border border-[#c8956c] text-[#c8956c] py-2 px-4 rounded-full text-[12px] tracking-[1px] hover:bg-[#c8956c] hover:text-[#110e0c] transition-all"><User size={16} />{user ? user.name.split(' ')[0] : 'LOGIN'}</Link>
-        <button className="hidden lg:block bg-[#c8956c] text-[#110e0c] border border-[#c8956c] py-3 px-7 text-[12px] tracking-[2px] cursor-pointer uppercase font-bold transition-all duration-300 hover:bg-transparent hover:text-[#c8956c]" onClick={() => navigate('/contact')}>GET QUOTE</button>
+        <button className="hidden lg:block bg-[#c8956c] text-[#110e0c] border border-[#c8956c] py-3 px-7 text-[12px] tracking-[2px] cursor-pointer uppercase font-bold transition-all duration-300 hover:bg-transparent hover:text-[#c8956c]" onClick={() => setIsQuoteModalOpen(true)}>GET QUOTE</button>
         <button className="block lg:hidden bg-transparent border-none text-[#c8956c] cursor-pointer p-1" onClick={toggleMobileMenu} aria-label="Toggle menu">
           {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -259,7 +304,42 @@ const Header = () => {
               </div>
             ))}
             <Link to="/account" className="block w-full border border-[#c8956c] text-[#c8956c] py-3.5 px-7 text-[12px] tracking-[2px] cursor-pointer uppercase font-bold mt-5 text-center transition-all duration-300 hover:bg-[#c8956c] hover:text-[#110e0c]" onClick={() => setIsMobileMenuOpen(false)}><div className="flex items-center justify-center gap-2"><User size={16} />{user ? user.name.split(' ')[0] : 'LOGIN / REGISTER'}</div></Link>
-            <button className="bg-[#c8956c] text-[#110e0c] border border-[#c8956c] py-3.5 px-7 text-[12px] tracking-[2px] cursor-pointer uppercase font-bold mt-5 text-center transition-all duration-300 hover:bg-transparent hover:text-[#c8956c]" onClick={() => { navigate('/contact'); setIsMobileMenuOpen(false); }}>GET QUOTE</button>
+            <button className="bg-[#c8956c] text-[#110e0c] border border-[#c8956c] py-3.5 px-7 text-[12px] tracking-[2px] cursor-pointer uppercase font-bold mt-5 text-center transition-all duration-300 hover:bg-transparent hover:text-[#c8956c]" onClick={() => { setIsQuoteModalOpen(true); setIsMobileMenuOpen(false); }}>GET QUOTE</button>
+          </div>
+        </div>
+      )}
+    
+      {/* Quick Quote Modal */}
+      {isQuoteModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+          <div className="bg-[#110e0c] border border-[#c8956c]/30 p-8 w-full max-w-md relative">
+            <button 
+              className="absolute top-4 right-4 text-[#888888] hover:text-[#c8956c] transition-colors"
+              onClick={() => setIsQuoteModalOpen(false)}
+            >
+              <X size={24} />
+            </button>
+            <h3 className="font-serif text-2xl text-white mb-2 uppercase tracking-[1px]">Get a Quote</h3>
+            <p className="text-[#888888] text-sm mb-6">Enter your email address to receive a quick quote.</p>
+            <form onSubmit={handleQuoteSubmit} className="flex flex-col gap-4">
+              <div>
+                <input 
+                  type="email" 
+                  value={quoteEmail}
+                  onChange={(e) => setQuoteEmail(e.target.value)}
+                  placeholder="Your Email Address" 
+                  required
+                  className="w-full bg-[#15110F] border border-[#2c241c] p-4 text-white placeholder-[#888888] focus:outline-none focus:border-[#c8956c] transition-colors"
+                />
+              </div>
+              <button 
+                type="submit" 
+                disabled={quoteSubmitting}
+                className="w-full bg-[#c8956c] text-[#110e0c] font-bold uppercase tracking-[2px] py-4 hover:bg-[#b5855c] transition-colors disabled:opacity-50"
+              >
+                {quoteSubmitting ? 'Submitting...' : 'Submit Request'}
+              </button>
+            </form>
           </div>
         </div>
       )}
